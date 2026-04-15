@@ -166,8 +166,8 @@
     padding: 1px 5px;
     border-radius: 4px;
   }
-  .stat-mom.up { color: #34d399; background: rgba(52,211,153,0.1); }
-  .stat-mom.down { color: #f87171; background: rgba(248,113,113,0.1); }
+  .stat-mom.up { color: #f04a5a; background: rgba(240,74,90,0.1); }
+  .stat-mom.down { color: #4a90e2; background: rgba(74,144,226,0.1); }
   .stat-mom.neutral { color: var(--text-muted); background: var(--border); }
   .stat-label {
     font-size: 10px;
@@ -328,8 +328,8 @@
   .hover-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .hover-val { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text); font-weight: 500; }
   .hover-mom { font-size: 10px; font-family: 'DM Mono', monospace; padding: 1px 4px; border-radius: 3px; }
-  .hover-mom.up { color: #34d399; }
-  .hover-mom.down { color: #f87171; }
+  .hover-mom.up { color: #f04a5a; }
+  .hover-mom.down { color: #4a90e2; }
 
   @media (max-width: 900px) {
     .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -517,7 +517,7 @@ function formatMoM(curr, prev, metric) {
   const pct = Math.abs(diff / prev * 100).toFixed(1);
   // For rank: lower is better, so negative diff = improvement
   const improved = isRank ? diff < 0 : diff > 0;
-  const sign = diff > 0 ? '+' : '−';
+  const sign = diff > 0 ? '▲' : '▼';
   return { text: `${sign}${pct}%`, cls: improved ? 'up' : 'down' };
 }
 
