@@ -160,12 +160,15 @@
   .card-rank-row {
     font-size: 11px;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
   }
-  .card-rank-val { font-weight: 700; color: var(--text-dim); }
+  .card-rank-val { font-weight: 700; color: var(--text-dim); white-space: nowrap; }
 
   /* Metric blocks */
   .card-metric-block {
@@ -201,11 +204,13 @@
   .metric-mom {
     font-size: 10px;
     font-weight: 600;
-    padding: 2px 6px;
+    padding: 2px 5px;
     border-radius: 4px;
     display: inline-flex;
     align-items: center;
     gap: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .metric-mom.up { color: var(--up); background: rgba(211,47,47,0.09); }
   .metric-mom.down { color: var(--down); background: rgba(21,101,192,0.09); }
@@ -351,9 +356,11 @@
   .top-table-wrap {
     overflow-x: auto;
     margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
   }
   .top-table {
-    width: 100%;
+    width: auto;
+    min-width: 100%;
     border-collapse: collapse;
     font-size: 11px;
     white-space: nowrap;
