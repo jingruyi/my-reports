@@ -821,7 +821,7 @@ const peakPlugin = {
       ctx.stroke();
       ctx.setLineDash([]);
       const cx = xPos, cy = yPos;
-      const outerR = 7, innerR = 3, spikes = 5;
+      const outerR = 10, innerR = 4, spikes = 5;
       ctx.beginPath();
       for (let s = 0; s < spikes * 2; s++) {
         const angle = (s * Math.PI / spikes) - Math.PI / 2;
@@ -829,17 +829,20 @@ const peakPlugin = {
         ctx.lineTo(cx + Math.cos(angle)*r, cy + Math.sin(angle)*r);
       }
       ctx.closePath();
-      ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-      ctx.lineWidth = 2;
-      ctx.lineJoin = 'round';
-      ctx.shadowColor = 'rgba(0,0,0,0.5)';
-      ctx.shadowBlur = 4;
-      ctx.stroke();
+      ctx.shadowColor = 'rgba(0,0,0,0.25)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetX = 1;
+      ctx.shadowOffsetY = 2;
       ctx.fillStyle = ds.borderColor;
-      ctx.shadowColor = ds.borderColor;
-      ctx.shadowBlur = 10;
       ctx.fill();
+      ctx.shadowColor = 'transparent';
       ctx.shadowBlur = 0;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2.5;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
       ctx.restore();
     });
   }
@@ -868,7 +871,7 @@ function buildChart() {
       pointRadius: 0,
       pointHoverRadius: g.bold ? 7 : 5,
       pointHoverBackgroundColor: g.color,
-      pointHoverBorderColor: '#0a0d14',
+      pointHoverBorderColor: '#ffffff',
       pointHoverBorderWidth: 2,
       tension: 0.35,
       fill: g.bold,
