@@ -482,7 +482,7 @@
       </div>
     </div>
     <div class="legend" id="legend" style="margin-bottom:14px;"></div>
-    <div class="chart-wrapper">
+    <div class="chart-wrapper" onmouseleave="hideHoverPanel()">
       <canvas id="mainChart"></canvas>
       <div class="hover-panel" id="hoverPanel">
         <div class="hover-date" id="hoverDate">—</div>
@@ -978,7 +978,14 @@ function showHoverPanel(idx) {
   document.getElementById('hoverRows').innerHTML = rows;
   document.getElementById('hoverPanel').classList.add('visible');
 }
-function hideHoverPanel() { document.getElementById('hoverPanel').classList.remove('visible'); }
+function hideHoverPanel() {
+  document.getElementById('hoverPanel').classList.remove('visible');
+}
+// Hide panel when mouse leaves the entire chart card
+document.addEventListener('DOMContentLoaded', () => {
+  const card = document.querySelector('.chart-card');
+  if (card) card.addEventListener('mouseleave', hideHoverPanel);
+});
 
 // ── LEGEND ───────────────────────────────────────────────────────────
 function buildLegend() {
