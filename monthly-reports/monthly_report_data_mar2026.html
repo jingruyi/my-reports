@@ -34,8 +34,9 @@
   }
   .container {
     max-width: 100%;
-    margin: 0 auto;
-    padding: 28px 24px;
+    width: 100%;
+    margin: 0;
+    padding: 16px 20px;
   }
 
   /* ── HEADER ── */
@@ -107,7 +108,7 @@
   /* ── SUMMARY CARDS ── */
   .summary-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
     margin-bottom: 8px;
   }
