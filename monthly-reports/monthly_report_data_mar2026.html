@@ -13,9 +13,9 @@
     --surface2: #f5f7fa;
     --border: #dde2ea;
     --border2: #c5ccd8;
-    --text: #111827;
-    --text-dim: #374151;
-    --text-muted: #6b7280;
+    --text: #000000;
+    --text-dim: #111111;
+    --text-muted: #444444;
     --heping: #c97a00;
     --wangzhe: #1d5fa8;
     --delta: #007a47;
@@ -30,6 +30,7 @@
     color: var(--text);
     font-family: 'Noto Sans KR', sans-serif;
     min-height: 100vh;
+    font-size: 15px;
   }
   .container {
     max-width: 100%;
@@ -88,7 +89,7 @@
 
   /* ── SECTION ── */
   .section-title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--text-dim);
     margin: 24px 0 12px;
@@ -133,7 +134,7 @@
 
   /* Game name */
   .card-game {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 3px;
     display: flex;
@@ -172,7 +173,7 @@
   }
   .card-metric-block:first-child { border-top: none; }
   .card-metric-label {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--text-muted);
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -185,7 +186,7 @@
     flex-wrap: wrap;
   }
   .card-big-val {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.1;
@@ -236,8 +237,8 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  .chart-title { font-size: 13px; font-weight: 600; color: var(--text-dim); }
-  .chart-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .chart-title { font-size: 15px; font-weight: 600; color: var(--text-dim); }
+  .chart-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
 
   /* Period tabs */
   .period-group {
@@ -309,7 +310,7 @@
     margin-bottom: 20px;
   }
   .top-text-title {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #92580a;
     margin-bottom: 12px;
@@ -318,8 +319,8 @@
     gap: 6px;
   }
   .top-text-body {
-    font-size: 13px;
-    color: #5c4a1e;
+    font-size: 14px;
+    color: #3a2a00;
     line-height: 1.9;
   }
   .top-text-body ul {
@@ -360,18 +361,20 @@
     background: #f5f7fa;
     color: #6b7280;
     font-weight: 600;
-    padding: 7px 10px;
+    padding: 8px 12px;
     text-align: center;
     border-bottom: 2px solid #dde2ea;
     border-right: 1px solid #e5e7eb;
     letter-spacing: 0.02em;
+    font-size: 13px;
   }
   .top-table td {
-    padding: 6px 10px;
+    padding: 8px 12px;
     border-bottom: 1px solid #f0f2f5;
     border-right: 1px solid #f0f2f5;
     text-align: center;
-    color: #374151;
+    color: #000000;
+    font-size: 13px;
   }
   .top-table tr:hover td { background: #fafafa; }
   .top-table td.game-name { text-align: left; font-weight: 700; color: #6b7280; }
@@ -404,15 +407,15 @@
   }
   .analysis-block:last-child { border-bottom: none; }
   .analysis-metric-title {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--text-muted);
     letter-spacing: 0.04em;
     margin-bottom: 8px;
   }
   .analysis-text {
-    font-size: 13px;
-    color: var(--text-dim);
+    font-size: 14px;
+    color: #111111;
     line-height: 2;
   }
   .game-tag {
