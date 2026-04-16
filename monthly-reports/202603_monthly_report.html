@@ -573,6 +573,24 @@
   .mkt-table colgroup + thead th { white-space: nowrap; }
   .mkt-table:has(colgroup) { table-layout: fixed; width: 100%; }
   .mkt-table:has(colgroup) td.left { white-space: normal; word-break: break-all; }
+  /* ── Revenue/A.DAU tables: fixed layout for column alignment ── */
+  .mkt-table.mkt-color-scale {
+    table-layout: fixed;
+    width: 100%;
+  }
+  .mkt-table.mkt-color-scale th:first-child,
+  .mkt-table.mkt-color-scale td:first-child {
+    width: 155px;
+    min-width: 155px;
+    max-width: 155px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mkt-table.mkt-color-scale th:not(:first-child),
+  .mkt-table.mkt-color-scale td:not(:first-child) {
+    width: calc((100% - 155px) / 12);
+  }
   /* ── Color-scale data rows ── */
   .mkt-table tr.row-2025 td,
   .mkt-table tr.row-2026 td { font-weight: 500; }
