@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경쟁사 월간 리포트 · 2026년 2월</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface2: #f5f7fa;
+    --border: #dde2ea;
+    --border2: #c5ccd8;
+    --text: #000000;
+    --text-dim: #111111;
+    --text-muted: #444444;
+    --heping: #c97a00;
+    --wangzhe: #1d5fa8;
+    --delta: #007a47;
+    --wuwei: #a0201b;
+    --accent: #c97a00;
+    --up: #d32f2f;
+    --down: #1565c0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    font-size: 15px;
+  }
+  .container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 16px 20px;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .report-header::before {
+    content: none;
+  }
+  .report-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .report-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 22px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .report-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .report-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── SECTION ── */
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-dim);
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: none;
+  }
+
+  /* ── SUMMARY CARDS ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 20px 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    border-top: 3px solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .summary-card.heping {
+    border-top-color: var(--heping);
+    border-top-width: 4px;
+    background: linear-gradient(160deg, #fffbf2 0%, #ffffff 60%);
+    box-shadow: 0 2px 12px rgba(201,122,0,0.12);
+  }
+  .summary-card.wangzhe { border-top-color: var(--wangzhe); }
+  .summary-card.delta { border-top-color: var(--delta); }
+  .summary-card.wuwei { border-top-color: var(--wuwei); }
+
+  /* Game name */
+  .card-game {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .card-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .heping .card-game { color: var(--heping); font-size: 16px; }
+  .heping .card-dot { display: none; }
+  .heping .card-star {
+    font-size: 14px;
+    line-height: 1;
+    margin-right: 2px;
+  }
+  .wangzhe .card-game { color: var(--wangzhe); }
+  .wangzhe .card-dot { background: var(--wangzhe); }
+  .delta .card-game { color: var(--delta); }
+  .delta .card-dot { background: var(--delta); }
+  .wuwei .card-game { color: var(--wuwei); }
+  .wuwei .card-dot { background: var(--wuwei); }
+
+  .card-rank-row {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .card-rank-val { font-weight: 700; color: var(--text-dim); white-space: nowrap; }
+
+  /* Metric blocks */
+  .card-metric-block {
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+  }
+  .card-metric-block:first-child { border-top: none; }
+  .card-metric-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .card-metric-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .card-big-val {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .card-mom-badges {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .metric-mom {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 5px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .metric-mom.up { color: var(--up); background: rgba(211,47,47,0.09); }
+  .metric-mom.down { color: var(--down); background: rgba(21,101,192,0.09); }
+  .metric-mom.flat { color: var(--text-muted); background: var(--bg); }
+
+  /* ── CHART CARD ── */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .chart-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
+  }
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chart-title { font-size: 15px; font-weight: 600; color: var(--text-dim); }
+  .chart-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+  /* Period tabs */
+  .period-group {
+    display: flex;
+    gap: 3px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
+  }
+  .period-btn {
+    padding: 5px 14px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .period-btn.active { background: var(--accent); color: #fff; font-weight: 700; }
+  .period-btn:hover:not(.active) { color: var(--text); background: var(--border); }
+
+  /* Legend */
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    cursor: pointer; opacity: 1; transition: opacity 0.2s; user-select: none;
+  }
+  .legend-item.dimmed { opacity: 0.3; }
+  .legend-line { width: 18px; height: 3px; border-radius: 2px; }
+  .legend-line.bold { height: 4px; }
+  .legend-label { font-size: 11px; font-weight: 500; color: var(--text-dim); }
+  .legend-item.heping .legend-label { color: var(--heping); font-weight: 700; }
+
+  .chart-wrapper { position: relative; height: 320px; }
+
+  /* Hover panel */
+  .hover-panel {
+    position: absolute; top: 0; right: 0;
+    background: #fff;
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    min-width: 190px;
+    opacity: 0; transition: opacity 0.15s;
+    pointer-events: none; z-index: 50;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .hover-panel.visible { opacity: 1; }
+  .hover-date { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .hover-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 3px 0; }
+  .hover-game { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-dim); }
+  .hover-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .hover-val { font-size: 12px; color: var(--text); font-weight: 600; }
+  .hover-mom { font-size: 10px; padding: 1px 4px; border-radius: 3px; }
+  .hover-mom.up { color: var(--up); }
+  .hover-mom.down { color: var(--down); }
+
+  /* ── TOP TEXT SECTION ── */
+  .top-text-section {
+    background: #fffbeb;
+    border: 1px solid #f5d98a;
+    border-left: 4px solid #f0b429;
+    border-radius: 0;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .top-text-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #92580a;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .top-text-body {
+    font-size: 14px;
+    color: #3a2a00;
+    line-height: 1.9;
+  }
+  .top-text-body ul {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .top-text-body li {
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+    margin-bottom: 4px;
+  }
+  .top-text-body li::before {
+    content: "• ";
+    color: #f0b429;
+    font-weight: 700;
+  }
+  .top-text-body .g-tag { font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 12px; color: #6b7280; background: rgba(107,114,128,0.1); }
+  .g-tag.gn-hp { color: #c97a00 !important; background: rgba(201,122,0,0.1) !important; }
+  .g-tag.gn-wz { color: #1d5fa8 !important; background: rgba(29,95,168,0.1) !important; }
+  .g-tag.gn-df { color: #007a47 !important; background: rgba(0,122,71,0.1) !important; }
+  .g-tag.gn-vm { color: #a0201b !important; background: rgba(160,32,27,0.1) !important; }
+  .top-text-body .note {
+    color: #a07840;
+    font-size: 12px;
+  }
+  /* ── TOP TABLE ── */
+  .top-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .top-table {
+    width: auto;
+    min-width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .top-table th {
+    background: #f5f7fa;
+    color: #6b7280;
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: center;
+    border: 1px solid #dde2ea;
+    border-bottom: 2px solid #dde2ea;
+    letter-spacing: 0.02em;
+    font-size: 13px;
+  }
+  .top-table td {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+    color: #000000;
+    font-size: 13px;
+  }
+  .top-table tr:hover td { background: #fafafa; }
+  .top-table td.game-name { text-align: left; font-weight: 700; color: #6b7280; }
+  .top-table td.game-name.gn-hp { color: #c97a00; }
+  .top-table td.game-name.gn-wz { color: #1d5fa8; }
+  .top-table td.game-name.gn-df { color: #007a47; }
+  .top-table td.game-name.gn-vm { color: #a0201b; }
+  .top-table td.rank { font-weight: 700; color: #374151; }
+  .top-table tr.highlight-hp td { background: #fffbeb; }
+  .top-table tr.highlight-df td { background: #f0fdf4; }
+  .top-table tr.highlight-vm td { background: #fff1f0; }
+  .top-table tr.highlight-cf td { background: #fff7ed; }
+  .mom-up   { color: #c0392b !important; font-weight: 600; }
+  .mom-down { color: #1a56db !important; font-weight: 600; }
+  .mom-flat { color: #9ca3af !important; }
+
+  .top-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+  /* ── ANALYSIS SECTION ── */
+  .analysis-card {
+    padding: 4px 0 16px 0;
+  }
+  .analysis-block {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .analysis-block:last-child { border-bottom: none; }
+  .analysis-metric-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .analysis-text {
+    font-size: 14px;
+    color: #111111;
+    line-height: 2;
+  }
+  .game-tag {
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .game-tag.heping  { color: var(--heping);  background: rgba(201,122,0,0.1); }
+  .game-tag.wangzhe { color: var(--wangzhe); background: rgba(29,95,168,0.1); }
+  .game-tag.delta   { color: var(--delta);   background: rgba(0,122,71,0.1);  }
+  .game-tag.wuwei   { color: var(--wuwei);   background: rgba(160,32,27,0.1); }
+  .event-tag {
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    position: fixed; top: 14px; right: 20px; z-index: 999;
+    display: flex; gap: 2px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 2px;
+  }
+  .lang-btn {
+    padding: 3px 10px; border: none; background: transparent;
+    color: var(--text-muted); cursor: pointer; border-radius: 4px;
+    font-size: 11px; font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700; transition: all 0.15s; letter-spacing: 0.05em;
+  }
+  .lang-btn.active { background: var(--accent); color: #fff; }
+  .lang-btn:hover:not(.active) { color: var(--text); }
+
+  /* CN font */
+  body.lang-cn, body.lang-cn button, body.lang-cn div, body.lang-cn span, body.lang-cn h1, body.lang-cn p {
+    font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", sans-serif !important;
+  }
+
+  @media (max-width: 900px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  #sectionMkt::after { display: none; }
+
+  /* ── MERGED MARKET SECTION ── */
+  .merged-divider { height: 1px; background: var(--border); margin: 28px 0 20px; }
+  .merged-wrap { margin-top: 4px; }
+  .mkt-summary-card, .mkt-panel-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 16px;
+  }
+  .mkt-panel-card {
+    border-radius: 0 0 14px 14px;
+    border-top: none;
+  }
+  .mkt-summary-card {
+    padding: 20px 24px;
+    background: #fffbeb;
+    border: 1px solid #f5d98a;
+    border-left: 4px solid #f0b429;
+    box-shadow: none;
+  }
+  .mkt-summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .mkt-summary-item { border-top: 4px solid transparent; padding-top: 10px; }
+  .mkt-summary-item.g1 { border-top-color: #1d5fa8; }
+  .mkt-summary-item.g2 { border-top-color: #007a47; }
+  .mkt-summary-item.g3 { border-top-color: #a0201b; }
+  .mkt-summary-game { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .mkt-summary-item.g1 .mkt-summary-game { color: #1d5fa8; }
+  .mkt-summary-item.g2 .mkt-summary-game { color: #007a47; }
+  .mkt-summary-item.g3 .mkt-summary-game { color: #a0201b; }
+  .mkt-bullets { margin: 0; padding: 0; list-style: none; }
+  .mkt-bullets li { margin-bottom: 4px; line-height: 1.9; font-size: 14px; color: #3a2a00; padding-left: 1.2em; text-indent: -1.2em; }
+  .mkt-bullets li::before { content: "• "; color: #f0b429; font-weight: 700; }
+  .mkt-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+    border-bottom: none;
+    align-items: flex-end;
+  }
+  .mkt-tab-btn {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-top: 4px solid transparent;
+    border-radius: 14px 14px 0 0;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--surface2);
+    color: var(--text-dim);
+    transition: all 0.15s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .mkt-tab-btn.active.g1 { background: rgba(29,95,168,0.08); border-top-color: #1d5fa8; color: #1d5fa8; box-shadow: 0 2px 8px rgba(29,95,168,0.12); }
+  .mkt-tab-btn.active.g2 { background: rgba(0,122,71,0.08);  border-top-color: #007a47; color: #007a47; box-shadow: 0 2px 8px rgba(0,122,71,0.12); }
+  .mkt-tab-btn.active.g3 { background: rgba(160,32,27,0.08); border-top-color: #a0201b; color: #a0201b; box-shadow: 0 2px 8px rgba(160,32,27,0.12); }
+  .mkt-tab-btn:hover:not(.active) { background: var(--border); color: var(--text); }
+  .mkt-panel { display: none; }
+  .mkt-panel.active { display: block; }
+  .mkt-panel-card { padding: 20px 24px; border-top: none; }
+  .mkt-kpi-list { list-style: none; padding: 0; margin: 6px 0 0; }
+  .mkt-kpi-list li { padding-left: 1.2em; text-indent: -1.2em; margin-bottom: 4px; line-height: 1.85; }
+  .mkt-kpi-list li::before { content: "• "; color: var(--text-muted); font-weight: 700; }
+  .mkt-kpi {
+    font-size: 13px; line-height: 1.85; color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .mkt-panel[data-game="1"] .mkt-kpi { color: var(--text-dim); }
+  .mkt-panel[data-game="2"] .mkt-kpi { color: var(--text-dim); }
+  .mkt-panel[data-game="3"] .mkt-kpi { color: var(--text-dim); }
+  .mkt-subtitle { font-size: 13px; font-weight: 700; color: var(--text-dim); margin: 20px 0 10px; }
+  .mkt-note { font-size: 13px; line-height: 1.85; color: var(--text-dim); margin-bottom: 10px; }
+  .mkt-table-wrap { overflow-x: auto; margin-bottom: 14px; -webkit-overflow-scrolling: touch; }
+  .mkt-table { width: auto; min-width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+  .mkt-table th {
+    background: #f5f7fa; color: #6b7280; font-weight: 600; padding: 8px 12px; text-align: center;
+    border: 1px solid #dde2ea; border-bottom: 2px solid #dde2ea;
+    letter-spacing: 0.02em; font-size: 13px;
+  }
+  .mkt-table td {
+    padding: 8px 12px; border: 1px solid #e5e7eb; text-align: center;
+    color: #000000; font-size: 13px; vertical-align: middle;
+  }
+  .mkt-table td.left { text-align: left; white-space: normal; min-width: 260px; }
+  .mkt-table tr:hover td { background: #fafafa; }
+  .mkt-row-label { font-weight: 700; color: #374151; }
+  .mkt-highlight-col { border-left: 2px solid #c97a00 !important; border-right: 2px solid #c97a00 !important; }
+  .mkt-top-border { border-top: 2px solid #c97a00 !important; }
+  .mkt-bottom-border { border-bottom: 2px solid #c97a00 !important; }
+  .mkt-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .b-version{ background:#dbeafe; color:#1d4ed8; }
+  .b-commerce{ background:#fef3c7; color:#92400e; }
+  .b-event{ background:#dcfce7; color:#166534; }
+  .b-collab{ background:#f3e8ff; color:#7e22ce; }
+  .b-esports{ background:#ffedd5; color:#9a3412; }
+  .b-ip{ background:#fce7f3; color:#9d174d; }
+  .b-ugc{ background:#ecfeff; color:#0e7490; }
+  .b-other{ background:#f3f4f6; color:#374151; }
+  /* ── Event table fixed columns ── */
+  .mkt-table colgroup + thead th { white-space: nowrap; }
+  .mkt-table:has(colgroup) { table-layout: fixed; width: 100%; }
+  .mkt-table:has(colgroup) td.left { white-space: normal; word-break: break-all; }
+  /* ── Revenue/A.DAU tables: fixed px width, columns always aligned ── */
+  .mkt-table.mkt-color-scale {
+    table-layout: fixed;
+    width: 1700px;
+  }
+  .mkt-table.mkt-color-scale th:first-child,
+  .mkt-table.mkt-color-scale td:first-child {
+    width: 155px;
+    white-space: nowrap;
+  }
+  /* ── Color-scale data rows ── */
+  .mkt-table tr.row-2025 td,
+  .mkt-table tr.row-2026 td { font-weight: 500; }
+  .lang-cn .txt-kr, body:not(.lang-cn) .txt-cn { display: none !important; }
+  .lang-cn .txt-cn, body:not(.lang-cn) .txt-kr { display: inline !important; }
+  .lang-cn .txt-cn.block, body:not(.lang-cn) .txt-kr.block { display: block !important; }
+  .lang-cn .txt-cn.inline-block, body:not(.lang-cn) .txt-kr.inline-block { display: inline-block !important; }
+
+  /* Color-scale table row backgrounds */
+  .mkt-table tr.row-2025 { background: #f9fafb; }
+  .mkt-table tr.row-2026 { background: #eff6ff !important; font-weight: 600; }
+  .mkt-table tr.row-mom  { background: #fffdf0 !important; }
+  .mkt-table tr.row-yoy  { background: #f7fdf9 !important; }
+  @media (max-width: 900px) {
+    .mkt-summary-grid { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('kr')">KR</button>
+  <button class="lang-btn" onclick="setLang('cn')">CN</button>
+</div>
+
+<div class="container">
+
+
+
+  <!-- TOP TEXT SECTION -->
+  <div class="top-text-section">
+    <div class="top-text-title" id="topTitle">⭐ 2月 iOS畅销榜Top10</div>
+    <div class="top-text-body" id="topBody">
+      <ul>
+        <li>iOS畅销榜Top3排名保持不变，为<span class="g-tag gn-wz">王者荣耀</span>、<span class="g-tag gn-hp">和平精英</span>、<span class="g-tag gn-df">Delta Force</span>，Top10中有4款射击游戏</li>
+        <li><span class="g-tag">Whiteout Survival</span><span class="note">（*3周年活动）</span>、<span class="g-tag">开心消消乐</span><span class="note">（*《甄嬛传》联动活动）</span>流水环比上涨超过50%；<span class="g-tag">梦幻西游</span><span class="note">（*11周年活动）</span>、<span class="g-tag">CF M</span><span class="note">（*「星见奇遇」版本开启）</span>重新回到iOS畅销榜Top10</li>
+        <li>其他重点游戏：<span class="g-tag">洛克王国：世界</span><span class="note">（*腾讯2026.3.26上线的开放世界精灵养成游戏）</span> -13位、<span class="g-tag">DNF M</span> -16位、<span class="g-tag">超自然行动组</span> -21位、<span class="g-tag">逆战：未来</span> -33位</li>
+        <li><span class="g-tag">洛克王国：世界</span>自3.26上线后目前排名保持在iOS畅销榜Top10</li>
+      </ul>
+    </div>
+  </div>
+  <!-- TOP TABLE -->
+  <div class="top-table-wrap">
+    <table class="top-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Game Name</th>
+          <th>iOS Downloads</th>
+          <th>iOS Revenue (SUM)</th>
+          <th>Average DAU</th>
+          <th>流水MoM</th>
+          <th>流水YoY</th>
+          <th>活跃MoM</th>
+          <th>活跃YoY</th>
+          <th>Developer</th>
+          <th>Publisher</th>
+          <th>Game Genre</th>
+          <th>Artstyle</th>
+          <th>Dimension</th>
+          <th>IP</th>
+          <th>IP 来源</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="rank">1</td>
+            <td class="game-name"><span class="txt-kr">Honor of Kings</span><span class="txt-cn">Honor of Kings</span></td>
+            <td>2,114,902</td><td>$121,345,715</td><td>9,612,662</td>
+            <td class="mom-down">▼18.1%</td><td class="mom-down">▼11.6%</td><td class="mom-down">▼0.6%</td><td class="mom-down">▼0.5%</td>
+            <td>Tencent</td><td>Tencent</td><td class="left">Action, MOBA</td>
+            <td>Cartoony</td><td>3D</td><td>-</td><td class="left">Original</td>
+          </tr>
+          <tr class="highlight-hp">
+            <td class="rank">2</td>
+            <td class="game-name  gn-hp"><span class="txt-kr">⭐ 화평정영</span><span class="txt-cn">⭐ 和平精英</span></td>
+            <td>1,995,891</td><td>$91,090,291</td><td>6,243,176</td>
+            <td class="mom-up">▲17.7%</td><td class="mom-up">▲21.7%</td><td class="mom-up">▲2.6%</td><td class="mom-down">▼5.5%</td>
+            <td>Tencent</td><td>Tencent</td><td class="left">Shooting, Battle Royale</td>
+            <td>Realistic</td><td>3D</td><td>PUBG</td><td class="left">Console / PC</td>
+          </tr>
+          <tr class="highlight-df">
+            <td class="rank">3</td>
+            <td class="game-name gn-df"><span class="txt-kr">Delta Force</span><span class="txt-cn">Delta Force</span></td>
+            <td>3,421,631</td><td>$53,146,829</td><td>2,503,841</td>
+            <td class="mom-up">▲21.5%</td><td class="mom-up">▲780.6%</td><td class="mom-up">▲10.2%</td><td class="mom-up">▲233.5%</td>
+            <td>Tencent</td><td>Tencent</td><td class="left">Survival, Shooting</td>
+            <td>Realistic</td><td>3D</td><td>Delta Force</td><td class="left">Console / PC</td>
+          </tr>
+          <tr>
+            <td class="rank">4</td>
+            <td class="game-name"><span class="txt-kr">TFT: Teamfight Tactics</span><span class="txt-cn">TFT: Teamfight Tactics</span></td>
+            <td>929,002</td><td>$36,005,026</td><td>741,554</td>
+            <td class="mom-up">▲18.1%</td><td class="mom-up">▲6.7%</td><td class="mom-up">▲7.1%</td><td class="mom-down">▼13.6%</td>
+            <td>Tencent</td><td>Tencent</td><td class="left">Strategy, Auto Chess</td>
+            <td>Cartoony</td><td>3D</td><td>LOL</td><td class="left">Console / PC</td>
+          </tr>
+          <tr class="highlight-vm">
+            <td class="rank">5</td>
+            <td class="game-name gn-vm"><span class="txt-kr">Valorant Mobile</span><span class="txt-cn">Valorant Mobile</span></td>
+            <td>1,680,795</td><td>$23,915,745</td><td>352,842</td>
+            <td class="mom-up">▲13.4%</td><td>-</td><td class="mom-up">▲5.9%</td><td>-</td>
+            <td>Riot/Tencent</td><td>Tencent</td><td class="left">Shooting, Action, Strategy</td>
+            <td>Realistic</td><td>3D</td><td>Valorant</td><td class="left">Console / PC</td>
+          </tr>
+          <tr>
+            <td class="rank">6</td>
+            <td class="game-name"><span class="txt-kr">Whiteout Survival</span><span class="txt-cn">Whiteout Survival</span></td>
+            <td>536,558</td><td>$19,215,577</td><td>117,449</td>
+            <td class="mom-down">▼17.8%</td><td class="mom-down">▼27.5%</td><td class="mom-up">▲46.2%</td><td class="mom-down">▼40.0%</td>
+            <td>Century Games</td><td>Century Games</td><td class="left">Strategy</td>
+            <td>Cartoony</td><td>2D</td><td>-</td><td class="left">Original</td>
+          </tr>
+          <tr>
+            <td class="rank">7</td>
+            <td class="game-name"><span class="txt-kr">Eggy Party: Trendy Party Game</span><span class="txt-cn">Eggy Party: Trendy Party Game</span></td>
+            <td>2,267,492</td><td>$18,016,813</td><td>1,205,240</td>
+            <td class="mom-up">▲153.8%</td><td class="mom-up">▲67.3%</td><td class="mom-up">▲19.6%</td><td class="mom-down">▼31.1%</td>
+            <td>NetEase</td><td>NetEase</td><td class="left">Party, Party Royale</td>
+            <td>Cartoony</td><td>3D</td><td>-</td><td class="left">Original</td>
+          </tr>
+          <tr>
+            <td class="rank">8</td>
+            <td class="game-name"><span class="txt-kr">League of Legends: Wild Rift</span><span class="txt-cn">League of Legends: Wild Rift</span></td>
+            <td>308,241</td><td>$14,926,927</td><td>289,902</td>
+            <td class="mom-up">▲86.2%</td><td class="mom-up">▲20.3%</td><td class="mom-up">▲2.4%</td><td class="mom-down">▼17.9%</td>
+            <td>Tencent</td><td>Tencent</td><td class="left">Action, MOBA</td>
+            <td>Cartoony</td><td>3D</td><td>LOL</td><td class="left">Console / PC</td>
+          </tr>
+          <tr>
+            <td class="rank">9</td>
+            <td class="game-name"><span class="txt-kr">초자연행동조</span><span class="txt-cn">超自然行动组</span></td>
+            <td>784,576</td><td>$13,718,570</td><td>574,479</td>
+            <td class="mom-up">▲65.8%</td><td class="mom-up">▲34717.6%</td><td class="mom-up">▲5.7%</td><td class="mom-up">▲1111.4%</td>
+            <td>NIGHT STUDIOS</td><td>Giant Network</td><td class="left">Horror Adventure</td>
+            <td>Realistic</td><td>3D</td><td>-</td><td class="left">Original</td>
+          </tr>
+          <tr>
+            <td class="rank">10</td>
+            <td class="game-name"><span class="txt-kr">Naruto Mobile</span><span class="txt-cn">Naruto Mobile</span></td>
+            <td>420,015</td><td>$13,673,066</td><td>341,344</td>
+            <td class="mom-down">▼12.8%</td><td class="mom-up">▲42.0%</td><td class="mom-up">▲2.8%</td><td class="mom-up">▲6.5%</td>
+            <td>Tencent</td><td>Tencent</td><td class="left">Action, MOBA</td>
+            <td>Anime</td><td>2D</td><td>Naruto</td><td class="left">Anime</td>
+          </tr>
+          </tbody>
+    </table>
+  </div>
+
+  <div class="top-divider"></div>
+
+  <!-- SUMMARY SECTION -->
+  <div class="section-title" id="sectionSummary">📊 월간 핵심 지표 요약</div>
+  <div class="summary-grid" id="summaryGrid"></div>
+
+    <!-- CHART SECTION -->
+  <div class="section-title" id="sectionChart">📈 월별 추이</div>
+
+  <div class="analysis-card">
+    <div class="analysis-block">
+      <div class="analysis-metric-title" id="analysisRankTitle">📱 iOS 순위</div>
+      <div class="analysis-text" id="analysisRank">
+        • <span class="game-tag wangzhe">왕자영요</span>·<span class="game-tag heping">화평정영</span> 은 안정적으로 Top 2 유지<br>
+        • <span class="game-tag delta">Delta Force</span> 하반월에 Top 3 이탈<br>
+        • <span class="game-tag wuwei">Valorant M</span> 순위 변동 심함, <span class="event-tag">자각금랑</span> 스킨 출시 시 Top 3 회복, 최저 Top 10 이탈
+      </div>
+    </div>
+    <div class="analysis-block">
+      <div class="analysis-metric-title" id="analysisRevenueTitle">💰 iOS 수익</div>
+      <div class="analysis-text" id="analysisRevenue">
+        • 춘절 이벤트 이후 전 게임 매출 전반적 하락<br>
+        • <span class="game-tag heping">화평정영</span> 월말 <span class="event-tag">SS38 시즌</span> 오픈·시즌 패스 출시로 당월 최고 매출 달성<br>
+        • <span class="game-tag wangzhe">왕자영요</span> 3월 중하순 신규 상업화 부재로 매출 지속 하락<br>
+        • <span class="game-tag delta">Delta Force</span> <span class="event-tag">3.13 명야장미</span> 외관 출시 시 당월 최고 매출 달성<br>
+        • <span class="game-tag wuwei">Valorant M</span> <span class="event-tag">자각금랑</span> 스킨 출시 시 최고 매출 달성
+      </div>
+    </div>
+    <div class="analysis-block">
+      <div class="analysis-metric-title" id="analysisDauTitle">👥 DAU</div>
+      <div class="analysis-text" id="analysisDau">
+        • <span class="game-tag wangzhe">왕자영요</span> 선두 유지, 주말마다 활성 상승<br>
+        • <span class="game-tag heping">화평정영</span>·<span class="game-tag delta">Delta Force</span> 는 전월 대비 안정적인 활성 유지
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title" id="chartTitle">iOS 최고 매출 순위</div>
+        <div class="chart-subtitle">화평정영 · 왕자영요 · Delta Force · Valorant M　|　2026년 2월</div>
+      </div>
+      <div class="period-group">
+        <button class="period-btn active" id="mRank" onclick="setMetric('rank')">📱 <span id="mRankLabel">iOS 순위</span></button>
+        <button class="period-btn" id="mRevenue" onclick="setMetric('revenue')">💰 <span id="mRevenueLabel">매출</span></button>
+        <button class="period-btn" id="mDau" onclick="setMetric('dau')">👥 <span id="mDauLabel">DAU</span></button>
+      </div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="chart-wrapper" onmouseleave="hideHoverPanel()">
+      <canvas id="mainChart"></canvas>
+      <div class="hover-panel" id="hoverPanel">
+        <div class="hover-date" id="hoverDate">—</div>
+        <div id="hoverRows"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="merged-divider"></div>
+  <div class="section-title" id="sectionMkt">🧭 <span class="txt-kr">시장 동향 및 마케팅</span><span class="txt-cn">市场动向及营销</span></div>
+
+  <div class="merged-wrap" id="marketSection">
+    <div class="mkt-summary-card">
+      <div class="mkt-summary-grid">
+        <div class="mkt-summary-item g1">
+          <div class="mkt-summary-game"><span class="txt-kr">왕자영요</span><span class="txt-cn">王者荣耀</span></div>
+          <ul class="mkt-bullets">
+            <li><span class="txt-kr"><strong>매출/트래픽:</strong> iOS 평균 순위 Top 1(변동 없음). 각종 춘절 유료화 이벤트 개시 후 매출 상위권 유지. MAU▼0.6%, A.DAU▼0.6%.</span><span class="txt-cn"><strong>流水/流量：</strong>iOS畅销榜Top1（-）春节各种商业化活动开始后流水保持在高位。MAU▼0.6%，A.DAU▼0.6%。</span></li>
+            <li><span class="txt-kr"><strong>게임 내:</strong> 춘절 버전 업데이트 진행, 밸런타인데이 스킨, 말의 해 한정 스킨 등 신규 유료화 아이템과 기간제 재출시 스킨 출시</span><span class="txt-cn"><strong>游戏内：</strong>进行了新春版本更新，推出情人节皮肤、马年限定皮肤等多款新商业化产品，并有多款皮肤限时返场；</span></li>
+            <li><span class="txt-kr"><strong>게임 외:</strong> 2월 한 달 간 총 10건의 브랜드 콜라보(마이 리틀 포니/푸닝잉거/6대 박물관/무후사·대만구 오프라인) 및 다수의 연예인 홍보 이벤트(올스타 라이브/농촌 체험 라이브/웨이보 홍보) 진행, 말의 해 한정 스킨 파생 음원 및 신년 쇼츠 공개</span><span class="txt-cn"><strong>游戏外：</strong>2月共进行了10次品牌联动（*小马宝莉/普宁英歌/6大博物馆/武侯祠、大湾区）及多个明星宣推活动（*全明星赛直播/代言人农家乐/微博宣推），并推出马年限定主题皮肤衍生音乐与新年贺岁短片</span></li>
+          </ul>
+        </div>
+        <div class="mkt-summary-item g2">
+          <div class="mkt-summary-game">Delta Force</div>
+          <ul class="mkt-bullets">
+            <li><span class="txt-kr"><strong>매출/트래픽:</strong> iOS 평균 3위(▲2). 2.10-2.11 위룡의 첫 노블 스킨 [우주 수호자] 출시 기간 매출 최고점 달성. MAU▲10.2%, A.DAU▲10.2%.</span><span class="txt-cn"><strong>流水/流量：</strong>iOS畅销榜第3位（▲2）；2.10-2.11威龙首款干员研究外观【凌霄戍卫】上线时流水达到本月peak；MAU▲10.2%，A.DAU▲10.2%。</span></li>
+            <li><span class="txt-kr"><strong>게임 내:</strong> 춘절 버전 업데이트 진행, 춘절 이벤트 및 신춘/섣달 그믐/새해 선택 패키지 출시, 위룡의 첫 노블 스킨 [우주 수호자] 출시</span><span class="txt-cn"><strong>游戏内：</strong>进行了春节版本更新，推出新春活动及新春/除夕/开年自选捆绑包，威龙首款干员研究外观【凌霄戍卫】上线</span></li>
+            <li><span class="txt-kr"><strong>게임 외:</strong> 2월 한 달 간 총 4건의 브랜드 콜라보(하이디라오/고덕지도/웨이보 게임즈/틱톡 게임즈)와 2건의 오프라인 이벤트(Wanyoo PC방/선전 신춘 페스티벌), 연예인 류타오(刘涛) 홍보모델 섭외, 신춘 인플루언서 컵 라이브 이벤트 진행</span><span class="txt-cn"><strong>游戏外：</strong>2月共进行了4次品牌联动（*海底捞/高德地图/微博游戏/抖音游戏）及2次线下活动（*网鱼电竞/深圳新春嘉年华），邀请明星刘涛宣传推广，并开启新春红人杯明星+战队直播活动</span></li>
+          </ul>
+        </div>
+        <div class="mkt-summary-item g3">
+          <div class="mkt-summary-game"><span class="txt-kr">Valorant M</span><span class="txt-cn">Valorant Mobile</span></div>
+          <ul class="mkt-bullets">
+            <li><span class="txt-kr"><strong>매출/트래픽:</strong> iOS 평균 7위(▲1). 2.20 업데이트 후 [Ignite Knife] 무기와 2026 시즌 패키지 출시 시점에 매출 최고점 달성. MAU▲5.9%, A.DAU▲5.9%.</span><span class="txt-cn"><strong>流水/流量：</strong>iOS畅销榜第7位（▲1）；2.20版本更新，【离火刃】武器与2026赛季礼包上线时流水达到本月peak；MAU▲5.9%，A.DAU▲5.9%。</span></li>
+            <li><span class="txt-kr"><strong>게임 내:</strong> 대규모 버전 업데이트 1회 진행, 신춘 버전 "마력전개" 출시, 신규 영웅/맵/아케이드 모드 및 일련의 신춘 보너스 이벤트와 유료화 출시</span><span class="txt-cn"><strong>游戏内：</strong>共进行1次大版本更新，新春版本"马力全开"上线，新英雄/地图/娱乐玩法推出，并推出一系列新春福利活动及商业化；</span></li>
+            <li><span class="txt-kr"><strong>게임 외:</strong> 2월 한 달 간 총 4건의 브랜드 콜라보(알리페이/Vivo/VooV/고덕택시)와 4인의 연예인 콜라보 홍보(타오저 게임 음원 및 전용 이벤트/장링허 라이브/저우예·왕쥔카이 홍보)</span><span class="txt-cn"><strong>游戏外：</strong>2月共进行了4次品牌联动（*支付宝/Vivo/腾讯会议/高德打车）及4位明星联动宣推（*陶喆推出游戏音乐与专属活动/张凌赫直播秀/周也、王俊凯宣推）</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mkt-tabs" id="mktTabs">
+      <button class="mkt-tab-btn g1 active" data-tab="1"><span class="txt-kr">왕자영요</span><span class="txt-cn">王者荣耀</span></button>
+      <button class="mkt-tab-btn g2" data-tab="2"><span class="txt-kr">Delta Force</span><span class="txt-cn">三角洲行动</span></button>
+      <button class="mkt-tab-btn g3" data-tab="3"><span class="txt-kr">Valorant M</span><span class="txt-cn">无畏契约手游</span></button>
+    </div>
+
+    <div class="mkt-panel  active" data-game="1">
+      <div class="mkt-panel-card">
+        <div class="mkt-kpi"><strong><span class="txt-kr">매출/트래픽</span><span class="txt-cn">流水/流量</span></strong><ul class="mkt-kpi-list">
+    <li><span class="txt-kr">2월 왕자영요는 iOS 평균 순위 <strong>Top 1</strong>(변동 없음), 총 매출 <strong>$121,345,715</strong>(MoM <span class="mom-down">▼18.1%</span>, YoY <span class="mom-down">▼11.6%</span>)</span><span class="txt-cn">2月，王者荣耀畅销榜平均排名稳定在<strong>Top 1</strong>（-），流水合计<strong>$121,345,715</strong>（MoM <span class="mom-down">▼18.1%</span>，YoY <span class="mom-down">▼11.6%</span>）</span></li>
+    <li><span class="txt-kr">각종 춘절 유료화 이벤트 개시 후 매출 상위권 유지. MAU <strong>53,145,407</strong>(MoM <span class="mom-down">▼0.6%</span>, YoY <span class="mom-down">▼13.3%</span>)</span><span class="txt-cn">春节各种商业化活动开始后流水保持在高位。MAU为<strong>53,145,407</strong>（MoM <span class="mom-down">▼0.6%</span>，YoY <span class="mom-down">▼13.3%</span>）</span></li>
+    <li><span class="txt-kr">A.DAU <strong>9,613,916</strong>(MoM <span class="mom-down">▼0.6%</span>, YoY <span class="mom-down">▼0.5%</span>), 2.15 춘절 버전 이벤트 및 유료화 스킨 출시 시점에 액티브 유저 수 최고점 달성</span><span class="txt-cn">A.DAU为<strong>9,613,916</strong>（MoM <span class="mom-down">▼0.6%</span>，YoY <span class="mom-down">▼0.5%</span>），2.15多个新春版本活动及商业化皮肤推出时活跃达到本月peak</span></li>
+    <li><span class="txt-kr">2월 겨울방학+춘절 연휴 기간 매출/활성 유저 수 감소 (원인: ①1월 높은 기저에 따른 자연 조정 ②춘절 이벤트 부정적 여론 ③시장 경쟁에 따른 트래픽 분산)</span><span class="txt-cn">2月寒假+春节假期期间流水/活跃下降（原因：①1月基数过高的自然回落；②春节活动引发较大负面舆论；③受市场竞争分流影响）</span></li>
+  </ul></div>
+        <div class="mkt-table-wrap"><table class="mkt-table mkt-color-scale">
+          <thead><tr><th class="left" style="min-width:140px"><span class="txt-kr">왕자영요 Revenue</span><span class="txt-cn">王者荣耀 Revenue</span></th><th><span class="txt-kr">1월</span><span class="txt-cn">1月</span></th><th class="mkt-highlight-col mkt-top-border"><span class="txt-kr">2월</span><span class="txt-cn">2月</span></th><th><span class="txt-kr">3월</span><span class="txt-cn">3月</span></th><th><span class="txt-kr">4월</span><span class="txt-cn">4月</span></th><th><span class="txt-kr">5월</span><span class="txt-cn">5월</span></th><th><span class="txt-kr">6월</span><span class="txt-cn">6月</span></th><th><span class="txt-kr">7월</span><span class="txt-cn">7月</span></th><th><span class="txt-kr">8월</span><span class="txt-cn">8月</span></th><th><span class="txt-kr">9월</span><span class="txt-cn">9月</span></th><th><span class="txt-kr">10월</span><span class="txt-cn">10月</span></th><th><span class="txt-kr">11월</span><span class="txt-cn">11月</span></th><th><span class="txt-kr">12월</span><span class="txt-cn">12月</span></th></tr></thead>
+          <tbody>
+            <tr class="row-2025"><td class="mkt-row-label">2025</td><td>$150,665,261</td><td class="mkt-highlight-col">$137,191,803</td><td>$84,401,767</td><td>$134,889,734</td><td>$135,172,796</td><td>$104,849,995</td><td>$123,405,420</td><td>$130,968,157</td><td>$94,791,828</td><td>$126,280,884</td><td>$75,047,723</td><td>$71,151,787</td></tr>
+            <tr class="row-2026"><td class="mkt-row-label">2026</td><td>$148,212,582</td><td class="mkt-highlight-col"><strong>$121,345,715</strong></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-mom"><td class="mkt-row-label">MoM</td><td class="mom-up">▲108.3%</td><td class="mkt-highlight-col mom-down">▼18.1%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-yoy"><td class="mkt-row-label">YoY</td><td class="mom-down">▼1.6%</td><td class="mkt-highlight-col mkt-bottom-border mom-down">▼11.6%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody></table></div>
+        <div class="mkt-table-wrap"><table class="mkt-table mkt-color-scale">
+          <thead><tr><th class="left" style="min-width:140px"><span class="txt-kr">왕자영요 A.DAU</span><span class="txt-cn">王者荣耀 A.DAU</span></th><th><span class="txt-kr">1월</span><span class="txt-cn">1月</span></th><th class="mkt-highlight-col mkt-top-border"><span class="txt-kr">2월</span><span class="txt-cn">2月</span></th><th><span class="txt-kr">3월</span><span class="txt-cn">3月</span></th><th><span class="txt-kr">4월</span><span class="txt-cn">4月</span></th><th><span class="txt-kr">5월</span><span class="txt-cn">5월</span></th><th><span class="txt-kr">6월</span><span class="txt-cn">6月</span></th><th><span class="txt-kr">7월</span><span class="txt-cn">7月</span></th><th><span class="txt-kr">8월</span><span class="txt-cn">8月</span></th><th><span class="txt-kr">9월</span><span class="txt-cn">9月</span></th><th><span class="txt-kr">10월</span><span class="txt-cn">10月</span></th><th><span class="txt-kr">11월</span><span class="txt-cn">11月</span></th><th><span class="txt-kr">12월</span><span class="txt-cn">12月</span></th></tr></thead>
+          <tbody>
+            <tr class="row-2025"><td class="mkt-row-label">2025</td><td>11,091,615</td><td class="mkt-highlight-col">9,660,963</td><td>10,600,517</td><td>9,900,279</td><td>10,106,893</td><td>10,076,221</td><td>9,895,497</td><td>9,713,288</td><td>9,547,243</td><td>9,638,666</td><td>9,454,940</td><td>9,241,123</td></tr>
+            <tr class="row-2026"><td class="mkt-row-label">2026</td><td>9,673,415</td><td class="mkt-highlight-col"><strong>9,613,916</strong></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-mom"><td class="mkt-row-label">MoM</td><td class="mom-up">▲4.7%</td><td class="mkt-highlight-col mom-down">▼0.6%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-yoy"><td class="mkt-row-label">YoY</td><td class="mom-down">▼12.8%</td><td class="mkt-highlight-col mkt-bottom-border mom-down">▼0.5%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody></table></div>
+        <div class="mkt-subtitle"><span class="txt-kr">게임 내 동향</span><span class="txt-cn">游戏内动态</span></div>
+        <ul class="mkt-kpi-list"><li><span class="txt-kr">춘절 버전 업데이트 진행, 밸런타인데이 스킨, 말의 해 한정 스킨 등 신규 유료화 아이템과 기간제 재출시 스킨 출시</span><span class="txt-cn">进行了新春版本更新，推出情人节皮肤、马年限定皮肤等多款新商业化产品，并有多款皮肤限时返场；</span></li></ul>
+        <div class="mkt-table-wrap"><table class="mkt-table">
+          <colgroup><col style="width:20%"><col style="width:12%"><col><col style="width:7%"></colgroup>
+          <thead><tr><th><span class="txt-kr">날짜</span><span class="txt-cn">日期</span></th><th><span class="txt-kr">유형</span><span class="txt-cn">类型</span></th><th><span class="txt-kr">내용</span><span class="txt-cn">内容</span></th><th>Link</th></tr></thead>
+          <tbody>
+          <tr>
+            <td>2026.02.05</td>
+            <td><span class="mkt-badge b-version"><span class="txt-kr">버전 업데이트</span><span class="txt-cn">版本更新</span></span></td>
+            <td class="left"><span class="txt-kr">(2.5-) 이벤트 참여해 포니 코인 획득, [마이 리틀 포니] 콜라보 리소스 및 전설 스킨 무료 교환；(2.6-) 반고-감세영가 스킨 출시；(2.5-) 보석 룰렛 업데이트, 난릉왕-무영즙미 스킨 출시；(2.5-) 마르코 폴로/혁성 스킨 기간 한정 재출시；글로벌 영웅 스킨 5종 기간 한정 체험</span><span class="txt-cn">（*2.5-）参与活动赚小马钱，免费换【小马宝莉】联动资源及传说皮肤！；（*2.6-）盘古-撼世英歌皮肤上架；（*2.5-）钻石夺宝更新，兰陵王-雾影缉谜皮肤上架；（*2.5-）马可波罗/弈星 皮肤限时直售返场；5位全球英雄限时体验</span></td>
+            <td><a href="https://pvp.qq.com/web201706/newsdetail.shtml?tid=794397" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.12</td>
+            <td><span class="mkt-badge b-version"><span class="txt-kr">버전 업데이트</span><span class="txt-cn">版本更新</span></span></td>
+            <td class="left"><span class="txt-kr">2.15 로그인 시 기간 한정 게임 포인트권 666개, 보상 보너스권 20개 등 보상 획득；2.15 00:00 [로계천추] 말의 해 한정 스킨 출시；(2.15-) 묵연강호-이신 무쌍 소원/진품전설 소원/천기개홍 천막 소원 오픈；영요 클래식: 안젤라 스킨 출시；마상유전 미니언 기간 한정 출시；춘절 룰렛 기간 한정 혜택 오픈；여포/오은 깜짝 세일 스킨, (2.18) 상관완아·한신 스킨 출시；판타지 상점 오픈；춘절 충전 이벤트 오픈 등</span><span class="txt-cn">2月15日登录领限时点券x666，暴击夺宝x20等好礼；2月15日零点【路启千秋】马年限定皮肤上架；（*2.15-）墨染江湖-李信无双祈愿/珍品传说祈愿/天骥开鸿天幕祈愿开启；荣耀典藏：安琪拉皮肤上架；小兵皮肤：马上有钱小兵限时上架；新春夺宝限时优惠及暴击夺宝限时开启；吕布/敖隐秒杀皮肤上线/（*2.18）上官婉儿、韩信皮肤上架；奇幻商店开启，多款皮肤限时返场；新春累计充值活动上线 等</span></td>
+            <td><a href="https://pvp.qq.com/web201706/newsdetail.shtml?tid=793367" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.27</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">3월 월간 보너스 수첩 오픈 예정；달마-성군·항금 스킨 출시；월 1위안 상자/다이아 보이스 출시；충전 이벤트 진행</span><span class="txt-cn">3月月度福利礼册即将开启；达摩-星君·亢金皮肤上架；每月1元礼盒/钻石语音上架；累计充值奖励推出</span></td>
+            <td><a href="https://pvp.qq.com/web201706/newsdetail.shtml?tid=796073" target="_blank">Link ↗</a></td>
+          </tr>
+          </tbody></table></div>
+        <div class="mkt-subtitle"><span class="txt-kr">게임 외 동향</span><span class="txt-cn">游戏外动态</span></div>
+        <ul class="mkt-kpi-list"><li><span class="txt-kr">2월 한 달 간 총 10건의 브랜드 콜라보(마이 리틀 포니/푸닝잉거/6대 박물관/무후사·대만구 오프라인 이벤트) 및 다수의 연예인 홍보 이벤트(올스타 이벤트전 라이브/홍보대사 농촌 체험 이벤트/웨이보 홍보) 진행, 말의 해 한정 스킨 파생 음원 및 춘절 맞이 쇼츠 공개</span><span class="txt-cn">2月共进行了10次品牌联动（*小马宝莉 游戏内联名皮肤/非遗"普宁英歌" 游戏内联名皮肤/6大博物馆 6款马年限定皮肤/武侯祠、大湾区 线下游园活动）及多个明星相关宣推活动（*全明星表演赛直播活动/代言人农家乐直播活动/微博宣推），并推出马年限定主题皮肤衍生音乐与新年贺岁短片</span></li></ul>
+        <div class="mkt-table-wrap"><table class="mkt-table">
+          <colgroup><col style="width:20%"><col style="width:12%"><col><col style="width:7%"></colgroup>
+          <thead><tr><th><span class="txt-kr">날짜</span><span class="txt-cn">日期</span></th><th><span class="txt-kr">유형</span><span class="txt-cn">类型</span></th><th><span class="txt-kr">내용</span><span class="txt-cn">内容</span></th><th>Link</th></tr></thead>
+          <tbody>
+          <tr>
+            <td>2026.02.04</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 x 마이 리틀 포니 인게임 콜라보 스킨 출시</span><span class="txt-cn">王者荣耀 x 小马宝莉 推出游戏内联名皮肤</span></td>
+            <td><a href="https://weibo.com/5698023579/QqiMK1dFm" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.04</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 x 무형 문화유산 푸닝잉거 인게임 콜라보 스킨 출시</span><span class="txt-cn">王者荣耀 x 普宁英歌 非遗 推出游戏内联名皮肤</span></td>
+            <td><a href="https://weibo.com/5698023579/QqiQossTf" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">6대 박물관(청두시 문물고고연구원/취안저우 해외교통사박물관/간쑤 간독박물관/리장시박물원/쿠차박물원/시안박물원)과 콜라보, 말의 해 한정 스킨 6종 출시</span><span class="txt-cn">联合6大博物馆（*成都市文物考古研究院、泉州海外交通史博物馆、甘肃简牍博物馆、丽江市博物院、龟兹研究院、西安博物院）推出6款马年限定皮肤</span></td>
+            <td><a href="https://weibo.com/5698023579/QqxLrFiOZ" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06</td>
+            <td><span class="mkt-badge b-ip"><span class="txt-kr">IP 파생</span><span class="txt-cn">IP衍生</span></span></td>
+            <td class="left"><span class="txt-kr">가수 류위닝(刘宇宁)을 섭외해 왕자영요 말의 해 한정 스킨 테마송 <행가> 발표</span><span class="txt-cn">邀请歌手刘宇宁献唱王者荣耀马年限定皮肤主题曲《行歌》</span></td>
+            <td><a href="https://weibo.com/5698023579/QqyyatcQa" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06–2026.03.07</td>
+            <td><span class="mkt-badge b-ip"><span class="txt-kr">IP 파생</span><span class="txt-cn">IP衍生</span></span></td>
+            <td class="left"><span class="txt-kr">[심동적왕자·겨울의 고백] 시리즈 굿즈 기간 한정 판매</span><span class="txt-cn">【心动的王者·冬日告白】系列周边限时开售</span></td>
+            <td><a href="https://weibo.com/5698023579/QqHMtcGnY" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.10–2026.05.10</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 x 웨강아오 대만구 오프라인 왕자 등회 및 기간 한정 농촌 유원지 오픈</span><span class="txt-cn">王者荣耀 x 大湾区 线下 举办王者灯会与限时农味游园</span></td>
+            <td><a href="https://weibo.com/5698023579/Qrt8QbrHD" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.12</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 말의 해 올스타 이벤트 대회; 인기스타 양미(杨幂)/저우선(周深)/시대소년단 라이브</span><span class="txt-cn">王者荣耀马年全明星表演赛 明星 杨幂/周深/时代少年团 直播</span></td>
+            <td><a href="https://weibo.com/5698023579/QrvKOyEGm" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.13</td>
+            <td><span class="mkt-badge b-ip"><span class="txt-kr">IP 파생</span><span class="txt-cn">IP衍生</span></span></td>
+            <td class="left"><span class="txt-kr">신년 숏폼 드라마 <왕자촌에 어서오세요> 공개</span><span class="txt-cn">推出新年贺岁短片《欢迎来到王者村》</span></td>
+            <td><a href="https://weibo.com/5698023579/QrBZ7zBhL" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.13</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 브랜드 홍보모델 바이루(白鹿) 크리에이티브 배포</span><span class="txt-cn">王者荣耀品牌代言人 白鹿 宣传推广</span></td>
+            <td><a href="https://weibo.com/5698023579/QrC9hlLyy" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.13</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 브랜드 홍보모델 시대소년단 말의 해 농가락 라이브 이벤트</span><span class="txt-cn">王者荣耀品牌代言人 时代少年团 马年农家乐直播活动</span></td>
+            <td><a href="https://weibo.com/5698023579/QrFd73daW" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.13</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">왕자영요 x 무후사 오프라인 신춘 플레이그라운드 이벤트</span><span class="txt-cn">王者荣耀 x 武侯祠 线下新春游园会活动</span></td>
+            <td><a href="https://weibo.com/5698023579/QrXKL7Hg9" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.14</td>
+            <td><span class="mkt-badge b-ip"><span class="txt-kr">IP 파생</span><span class="txt-cn">IP衍生</span></span></td>
+            <td class="left"><span class="txt-kr">협곡에서의 편지 - 제23탄 [오은] 테마 편지 봉투&카드덱</span><span class="txt-cn">峡谷来信-第23封【敖隐】 主题信笺&卡组</span></td>
+            <td><a href="https://weibo.com/5698023579/QrLbpB658" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.23</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">S34 시즌 프리뷰 라이브</span><span class="txt-cn">S34新赛季前瞻直播</span></td>
+            <td><a href="https://weibo.com/5698023579/Qtb0f59pw" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.25–2026.03.08</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">왕자캠프를 통해 이벤트 참여 및 보상 수령 (원소절 커뮤니티 이벤트)</span><span class="txt-cn">使用王者营地参与活动领取奖励（元宵社群活动）</span></td>
+            <td><a href="https://weibo.com/5698023579/Qtrtpjiw7" target="_blank">Link ↗</a></td>
+          </tr>
+          </tbody></table></div>
+      </div>
+    </div>
+
+    <div class="mkt-panel" data-game="2">
+      <div class="mkt-panel-card">
+        <div class="mkt-kpi"><strong><span class="txt-kr">매출/트래픽</span><span class="txt-cn">流水/流量</span></strong><ul class="mkt-kpi-list">
+    <li><span class="txt-kr">2월 Delta Force는 iOS 평균 순위 <strong>3위</strong>(▲2), 총 매출 <strong>$53,146,829</strong>(MoM <span class="mom-up">▲21.5%</span>, YoY <span class="mom-up">▲780.6%</span>)</span><span class="txt-cn">2月，Delta Force在iOS畅销榜平均排名<strong>第3位</strong>（▲2）；流水合计<strong>$53,146,829</strong>（MoM <span class="mom-up">▲21.5%</span>，YoY <span class="mom-up">▲780.6%</span>）</span></li>
+    <li><span class="txt-kr">2.10-2.11 위룡의 첫 노블 스킨 [우주 수호자] 출시 기간 매출 최고점 달성</span><span class="txt-cn">2.10-2.11威龙首款干员研究外观【凌霄戍卫】上线时流水达到本月peak</span></li>
+    <li><span class="txt-kr">MAU <strong>13,281,195</strong>(MoM <span class="mom-up">▲10.2%</span>, YoY <span class="mom-up">▲162.4%</span>), A.DAU <strong>2,503,926</strong>(MoM <span class="mom-up">▲10.2%</span>, YoY <span class="mom-up">▲233.5%</span>)</span><span class="txt-cn">MAU为<strong>13,281,195</strong>（MoM <span class="mom-up">▲10.2%</span>，YoY <span class="mom-up">▲162.4%</span>），A.DAU为<strong>2,503,926</strong>（MoM <span class="mom-up">▲10.2%</span>，YoY <span class="mom-up">▲233.5%</span>）</span></li>
+    <li><span class="txt-kr">2.10 누적 7일 로그인 시 기간 한정 할인권 배포 이벤트 오픈 후 액티브 유저 수 꾸준히 증가</span><span class="txt-cn">2.10日累计7天登录送限时券活动开启后活跃一路上升</span></li>
+  </ul></div>
+        <div class="mkt-table-wrap"><table class="mkt-table mkt-color-scale">
+          <thead><tr><th class="left" style="min-width:140px"><span class="txt-kr">Delta Force Revenue</span><span class="txt-cn">Delta Force Revenue</span></th><th><span class="txt-kr">1월</span><span class="txt-cn">1月</span></th><th class="mkt-highlight-col mkt-top-border"><span class="txt-kr">2월</span><span class="txt-cn">2月</span></th><th><span class="txt-kr">3월</span><span class="txt-cn">3月</span></th><th><span class="txt-kr">4월</span><span class="txt-cn">4月</span></th><th><span class="txt-kr">5월</span><span class="txt-cn">5월</span></th><th><span class="txt-kr">6월</span><span class="txt-cn">6月</span></th><th><span class="txt-kr">7월</span><span class="txt-cn">7月</span></th><th><span class="txt-kr">8월</span><span class="txt-cn">8月</span></th><th><span class="txt-kr">9월</span><span class="txt-cn">9月</span></th><th><span class="txt-kr">10월</span><span class="txt-cn">10月</span></th><th><span class="txt-kr">11월</span><span class="txt-cn">11月</span></th><th><span class="txt-kr">12월</span><span class="txt-cn">12月</span></th></tr></thead>
+          <tbody>
+            <tr class="row-2025"><td class="mkt-row-label">2025</td><td>$9,553,466</td><td class="mkt-highlight-col">$6,035,206</td><td>$5,625,028</td><td>$11,781,905</td><td>$15,293,548</td><td>$12,345,097</td><td>$39,389,496</td><td>$30,505,936</td><td>$51,937,420</td><td>$49,201,000</td><td>$53,472,085</td><td>$33,912,364</td></tr>
+            <tr class="row-2026"><td class="mkt-row-label">2026</td><td>$43,733,017</td><td class="mkt-highlight-col"><strong>$53,146,829</strong></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-mom"><td class="mkt-row-label">MoM</td><td class="mom-up">▲29.0%</td><td class="mkt-highlight-col mom-up">▲21.5%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-yoy"><td class="mkt-row-label">YoY</td><td class="mom-up">▲357.8%</td><td class="mkt-highlight-col mkt-bottom-border mom-up">▲780.6%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody></table></div>
+        <div class="mkt-table-wrap"><table class="mkt-table mkt-color-scale">
+          <thead><tr><th class="left" style="min-width:140px"><span class="txt-kr">Delta Force A.DAU</span><span class="txt-cn">Delta Force A.DAU</span></th><th><span class="txt-kr">1월</span><span class="txt-cn">1月</span></th><th class="mkt-highlight-col mkt-top-border"><span class="txt-kr">2월</span><span class="txt-cn">2月</span></th><th><span class="txt-kr">3월</span><span class="txt-cn">3月</span></th><th><span class="txt-kr">4월</span><span class="txt-cn">4月</span></th><th><span class="txt-kr">5월</span><span class="txt-cn">5월</span></th><th><span class="txt-kr">6월</span><span class="txt-cn">6月</span></th><th><span class="txt-kr">7월</span><span class="txt-cn">7月</span></th><th><span class="txt-kr">8월</span><span class="txt-cn">8月</span></th><th><span class="txt-kr">9월</span><span class="txt-cn">9月</span></th><th><span class="txt-kr">10월</span><span class="txt-cn">10月</span></th><th><span class="txt-kr">11월</span><span class="txt-cn">11月</span></th><th><span class="txt-kr">12월</span><span class="txt-cn">12月</span></th></tr></thead>
+          <tbody>
+            <tr class="row-2025"><td class="mkt-row-label">2025</td><td>688,252</td><td class="mkt-highlight-col">750,848</td><td>802,293</td><td>907,592</td><td>1,190,519</td><td>1,380,641</td><td>1,567,818</td><td>1,736,613</td><td>1,818,492</td><td>2,091,084</td><td>2,123,130</td><td>2,173,554</td></tr>
+            <tr class="row-2026"><td class="mkt-row-label">2026</td><td>2,272,253</td><td class="mkt-highlight-col"><strong>2,503,926</strong></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-mom"><td class="mkt-row-label">MoM</td><td class="mom-up">▲4.5%</td><td class="mkt-highlight-col mom-up">▲10.2%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-yoy"><td class="mkt-row-label">YoY</td><td class="mom-up">▲230.1%</td><td class="mkt-highlight-col mkt-bottom-border mom-up">▲233.5%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody></table></div>
+        <div class="mkt-subtitle"><span class="txt-kr">게임 내 동향</span><span class="txt-cn">游戏内动态</span></div>
+        <ul class="mkt-kpi-list"><li><span class="txt-kr">춘절 버전 업데이트 진행, 춘절 이벤트 및 신춘/섣달 그믐/새해 선택 패키지 출시, 위룡의 첫 노블 스킨 [우주 수호자] 출시</span><span class="txt-cn">进行了春节版本更新，推出新春活动及新春/除夕/开年自选捆绑包，威龙首款干员研究外观【凌霄戍卫】上线</span></li></ul>
+        <div class="mkt-table-wrap"><table class="mkt-table">
+          <colgroup><col style="width:20%"><col style="width:12%"><col><col style="width:7%"></colgroup>
+          <thead><tr><th><span class="txt-kr">날짜</span><span class="txt-cn">日期</span></th><th><span class="txt-kr">유형</span><span class="txt-cn">类型</span></th><th><span class="txt-kr">내용</span><span class="txt-cn">内容</span></th><th>Link</th></tr></thead>
+          <tbody>
+          <tr>
+            <td>2026.02.05</td>
+            <td><span class="mkt-badge b-version"><span class="txt-kr">버전 업데이트</span><span class="txt-cn">版本更新</span></span></td>
+            <td class="left"><span class="txt-kr">춘절 이벤트 예고；(2.13-2.26) 위룡의 춘절 식당；(2.13-2.26) 아사라 아이템 시장(듀얼 모드)；(2.13-2.26) 춘절 선택 패키지 등；전투 밸런스 조정</span><span class="txt-cn">新春活动预告；（*2.13-2.26）威龙的年味食堂；（*2.13-2.26）阿萨拉年货节（双模式）；（*2.13-2.26）新春自选捆绑包 等；战场平衡调整</span></td>
+            <td><a href="https://df.qq.com/cp/a20240906main/newsdetail.html?id=295903065640086851" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.10</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">위룡의 첫 노블 스킨 [우주 수호자] 출시</span><span class="txt-cn">威龙首款干员研究外观【凌霄戍卫】上线</span></td>
+            <td><a href="https://weibo.com/7852949543/QqQCIA2Do" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.10</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">(2.10-2.23) 누적 7일 로그인 시 기간 한정 델타 티켓 2600개 획득；(2.13-) 이벤트 참여 시 전설급 무기 스킨 패키지 무료 획득；(2.16-2.26) 섣달 그믐 로그인 시 패키지 3종 중 1종 획득</span><span class="txt-cn">（*2.10-2.23）累计7天登录游戏，送2600限时券；（*2.13起）参与活动免费领传说武器外观捆绑包；（*2.16-2.26）除夕登录送捆绑包三选一</span></td>
+            <td><a href="https://df.qq.com/cp/a20240906main/newsdetail.html?id=5964392859173990415" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.26</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">새해 보너스；(2.27) 새해 패키지 4종 중 1종 획득 등</span><span class="txt-cn">开年福利；（*2.27）开年捆绑包四选一 等</span></td>
+            <td><a href="https://df.qq.com/cp/a20240906main/newsdetail.html?id=14760392140058263206" target="_blank">Link ↗</a></td>
+          </tr>
+          </tbody></table></div>
+        <div class="mkt-subtitle"><span class="txt-kr">게임 외 동향</span><span class="txt-cn">游戏外动态</span></div>
+        <ul class="mkt-kpi-list"><li><span class="txt-kr">2월 한 달 간 총 4건의 브랜드 콜라보(하이디라오 콜라보 세트 및 이벤트/고덕지도 내비게이션 보이스 출시/웨이보 게임즈 홍바오 이벤트/틱톡 게임즈 신춘 라이브 시청 후 보상 추첨 이벤트)와 2건의 오프라인 이벤트(Wanyoo PC방 채팅 이벤트/선전 신춘 페스티벌)를 진행, 이 외에 인기 연예인 류타오(刘涛)를 홍보모델로 섭외하고 연예인과 프로 팀이 협업하는 신춘 인플루언서 컵 라이브 이벤트 진행</span><span class="txt-cn">2月共进行了4次品牌联动（*海底捞 联动套餐与联动活动/高德地图 推出导航语音/微博游戏 新春瓜分红包活动/抖音游戏 新春开播看直播抽奖）及2次线下活动（*网鱼电竞 开黑福利/深圳 新春嘉年华），此外还邀请明星刘涛帮助宣传推广游戏，并开启新春红人杯明星+战队直播活动；</span></li></ul>
+        <div class="mkt-table-wrap"><table class="mkt-table">
+          <colgroup><col style="width:20%"><col style="width:12%"><col><col style="width:7%"></colgroup>
+          <thead><tr><th><span class="txt-kr">날짜</span><span class="txt-cn">日期</span></th><th><span class="txt-kr">유형</span><span class="txt-cn">类型</span></th><th><span class="txt-kr">내용</span><span class="txt-cn">内容</span></th><th>Link</th></tr></thead>
+          <tbody>
+          <tr>
+            <td>2026.02.03</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Delta Force × 하이디라오；(2.4-) 콜라보 세트 메뉴 예약 판매；(2.7-) 중국 전역 콜라보 이벤트 오픈；이벤트 지점에서 암호 또는 전황 웨이보 작업 시 취미용 인형 획득</span><span class="txt-cn">三角洲行动×海底捞；(*2.4起）联动套餐预售开启；(*2.7起）联动活动全国上线；前往活动门店，对暗号或发布战况微博，有机会获得趣味玩偶</span></td>
+            <td><a href="https://weibo.com/7852949543/Qqa60COez" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">오프라인 Wanyoo PC방에서 채팅 시 보너스 획득</span><span class="txt-cn">前往线下网鱼电竞开黑抽取福利</span></td>
+            <td><a href="https://weibo.com/7852949543/Qqp8a7S0O" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Delta Force x 고덕지도 위룡 내비게이션 보이스 출시</span><span class="txt-cn">三角洲行动 x 高德地图 推出威龙导航语音</span></td>
+            <td><a href="https://weibo.com/7852949543/QqyysiAWJ" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">인기 연예인 류타오(刘涛)를 홍보모델로 섭외, 크리에이티브 배포</span><span class="txt-cn">邀请明星刘涛 帮助宣传推广</span></td>
+            <td><a href="https://weibo.com/7852949543/QralcArxp" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.07</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">신춘 인플루언서 컵 연예인+프로 팀 라이브 진행；라이브 시청 시 말의 해 한정 아이템 획득</span><span class="txt-cn">新春红人杯 明星+战队 直播开启；看直播赢取马年限定道具</span></td>
+            <td><a href="https://weibo.com/7852949543/QqINl569v" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06–2026.02.08</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">(2.6-2.8) 선전 푸톈에서 신춘 페스티벌 진행；(2.10-) 푸톈 Festival Plaza에 홍운화래 전시구역 설치, 유저가 암호 "화래"를 말하면 전용 꽃 굿즈 획득</span><span class="txt-cn">（*2.6-2.8）在深圳福田举办新春嘉年华；（*2.10起）在福田节日广场设"红运花来"展区，玩家答暗号"花来"可领专属年花周边</span></td>
+            <td><a href="https://weibo.com/7852949543/QrjPm54SO" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.13</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Delta Force X 웨이보 게임즈 카드 수집 시 홍바오 획득 이벤트</span><span class="txt-cn">三角洲行动 X 微博游戏 新春集卡瓜分红包活动</span></td>
+            <td><a href="https://weibo.com/7852949543/Qrm1DBebr" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.15–2026.03.03</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Delta Force x 틱톡 게임즈 춘절 라이브/라이브 시청 후 보상 배포 이벤트</span><span class="txt-cn">三角洲行动 x 抖音游戏 推出新春开直播/看直播领福利</span></td>
+            <td><a href="https://df.qq.com/cp/a20240906main/newsdetail.html?id=658027466389812130" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.23–2026.02.27</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">오퍼레이터 비 콜로니의 생일；하이디라오와 콜라보를 통해 5일 연속 전국 12개 하이디라오 Delta Force 테마 지점 개설</span><span class="txt-cn">干员蜂医生日；联动海底捞，连续5天在全国12家海底捞三角洲行动主题店，部署蜂医庆生点</span></td>
+            <td><a href="https://weibo.com/7852949543/Qt8OBwH6o" target="_blank">Link ↗</a></td>
+          </tr>
+          </tbody></table></div>
+      </div>
+    </div>
+
+    <div class="mkt-panel" data-game="3">
+      <div class="mkt-panel-card">
+        <div class="mkt-kpi"><strong><span class="txt-kr">매출/트래픽</span><span class="txt-cn">流水/流量</span></strong><ul class="mkt-kpi-list">
+    <li><span class="txt-kr">2월 Valorant M은 iOS 평균 순위 <strong>7위</strong>(▲1), 총 매출 <strong>$23,915,745</strong>(MoM <span class="mom-up">▲13.4%</span>)</span><span class="txt-cn">2月，Valorant Mobile在iOS畅销榜平均排名<strong>第7位</strong>（▲1）；流水合计<strong>$23,915,745</strong>（MoM <span class="mom-up">▲13.4%</span>）</span></li>
+    <li><span class="txt-kr">2.20 업데이트 후 [Ignite Knife] 무기와 2026 시즌 패키지 출시 시점에 매출 최고점 달성</span><span class="txt-cn">2.20版本更新，【离火刃】武器与2026赛季礼包上线时流水达到本月peak</span></li>
+    <li><span class="txt-kr">MAU <strong>2,894,692</strong>(MoM <span class="mom-up">▲5.9%</span>), A.DAU <strong>352,945</strong>(MoM <span class="mom-up">▲5.9%</span>)</span><span class="txt-cn">MAU为<strong>2,894,692</strong>（MoM <span class="mom-up">▲5.9%</span>），A.DAU为<strong>352,945</strong>（MoM <span class="mom-up">▲5.9%</span>）</span></li>
+    <li><span class="txt-kr">2.5 신춘 버전 신규 영웅/맵/유료화 상품 출시 시점에 액티브 유저 수 최고점 달성</span><span class="txt-cn">2.5新春版本新英雄/新地图/新商业化上线时，活跃达到本月peak</span></li>
+  </ul></div>
+        <div class="mkt-table-wrap"><table class="mkt-table mkt-color-scale">
+          <thead><tr><th class="left" style="min-width:140px"><span class="txt-kr">Valorant M Revenue</span><span class="txt-cn">Valorant M Revenue</span></th><th><span class="txt-kr">1월</span><span class="txt-cn">1月</span></th><th class="mkt-highlight-col mkt-top-border"><span class="txt-kr">2월</span><span class="txt-cn">2月</span></th><th><span class="txt-kr">3월</span><span class="txt-cn">3月</span></th><th><span class="txt-kr">4월</span><span class="txt-cn">4月</span></th><th><span class="txt-kr">5월</span><span class="txt-cn">5월</span></th><th><span class="txt-kr">6월</span><span class="txt-cn">6月</span></th><th><span class="txt-kr">7월</span><span class="txt-cn">7月</span></th><th><span class="txt-kr">8월</span><span class="txt-cn">8月</span></th><th><span class="txt-kr">9월</span><span class="txt-cn">9月</span></th><th><span class="txt-kr">10월</span><span class="txt-cn">10月</span></th><th><span class="txt-kr">11월</span><span class="txt-cn">11月</span></th><th><span class="txt-kr">12월</span><span class="txt-cn">12月</span></th></tr></thead>
+          <tbody>
+            <tr class="row-2025"><td class="mkt-row-label">2025</td><td>—</td><td class="mkt-highlight-col">—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>$6,858,299</td><td>$14,988,473</td><td>$14,213,726</td><td>$15,913,048</td><td>$14,974,931</td></tr>
+            <tr class="row-2026"><td class="mkt-row-label">2026</td><td>$21,082,135</td><td class="mkt-highlight-col"><strong>$23,915,745</strong></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-mom"><td class="mkt-row-label">MoM</td><td class="mom-up">▲40.8%</td><td class="mkt-highlight-col mom-up">▲13.4%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-yoy"><td class="mkt-row-label">YoY</td><td>-</td><td class="mkt-highlight-col mkt-bottom-border">-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody></table></div>
+        <div class="mkt-table-wrap"><table class="mkt-table mkt-color-scale">
+          <thead><tr><th class="left" style="min-width:140px"><span class="txt-kr">Valorant M A.DAU</span><span class="txt-cn">Valorant M A.DAU</span></th><th><span class="txt-kr">1월</span><span class="txt-cn">1月</span></th><th class="mkt-highlight-col mkt-top-border"><span class="txt-kr">2월</span><span class="txt-cn">2月</span></th><th><span class="txt-kr">3월</span><span class="txt-cn">3月</span></th><th><span class="txt-kr">4월</span><span class="txt-cn">4月</span></th><th><span class="txt-kr">5월</span><span class="txt-cn">5월</span></th><th><span class="txt-kr">6월</span><span class="txt-cn">6月</span></th><th><span class="txt-kr">7월</span><span class="txt-cn">7月</span></th><th><span class="txt-kr">8월</span><span class="txt-cn">8月</span></th><th><span class="txt-kr">9월</span><span class="txt-cn">9月</span></th><th><span class="txt-kr">10월</span><span class="txt-cn">10月</span></th><th><span class="txt-kr">11월</span><span class="txt-cn">11月</span></th><th><span class="txt-kr">12월</span><span class="txt-cn">12月</span></th></tr></thead>
+          <tbody>
+            <tr class="row-2025"><td class="mkt-row-label">2025</td><td>—</td><td class="mkt-highlight-col">—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>607,103</td><td>484,882</td><td>455,239</td><td>381,176</td><td>327,414</td></tr>
+            <tr class="row-2026"><td class="mkt-row-label">2026</td><td>333,186</td><td class="mkt-highlight-col"><strong>352,945</strong></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-mom"><td class="mkt-row-label">MoM</td><td class="mom-up">▲1.8%</td><td class="mkt-highlight-col mom-up">▲5.9%</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-yoy"><td class="mkt-row-label">YoY</td><td>-</td><td class="mkt-highlight-col mkt-bottom-border">-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody></table></div>
+        <div class="mkt-subtitle"><span class="txt-kr">게임 내 동향</span><span class="txt-cn">游戏内动态</span></div>
+        <ul class="mkt-kpi-list"><li><span class="txt-kr">대규모 버전 업데이트 1회 진행, 신춘 버전 "마력전개" 출시, 신규 영웅/맵/아케이드 모드 및 일련의 신춘 보너스 이벤트와 유료화 출시</span><span class="txt-cn">共进行1次大版本更新，新春版本"马力全开"上线，新英雄/地图/娱乐玩法推出，并推出一系列新春福利活动及商业化；</span></li></ul>
+        <div class="mkt-table-wrap"><table class="mkt-table">
+          <colgroup><col style="width:20%"><col style="width:12%"><col><col style="width:7%"></colgroup>
+          <thead><tr><th><span class="txt-kr">날짜</span><span class="txt-cn">日期</span></th><th><span class="txt-kr">유형</span><span class="txt-cn">类型</span></th><th><span class="txt-kr">내용</span><span class="txt-cn">内容</span></th><th>Link</th></tr></thead>
+          <tbody>
+          <tr>
+            <td>2026.02.02–2026.02.28</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">미션 완료 후 보상 교환</span><span class="txt-cn">完成任务兑换奖励</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=4254496636980971421&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.04</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">스킨 [수공달인] 출시</span><span class="txt-cn">皮肤【手工达人】上架</span></td>
+            <td><a href="https://weibo.com/7982741612/QqgtS8Md5" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.05</td>
+            <td><span class="mkt-badge b-version"><span class="txt-kr">버전 업데이트</span><span class="txt-cn">版本更新</span></span></td>
+            <td class="left"><span class="txt-kr">신규 요원——데드록 추가；신맵——선셋 추가；춘절 한정 신규 아케이드 모드 출시</span><span class="txt-cn">新英雄——钢锁 登场；新地图——日落之城 推出；推出新春限定全新娱乐玩法</span></td>
+            <td><a href="https://weibo.com/7982741612/QqnWAAYYv" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.05</td>
+            <td><span class="mkt-badge b-other"><span class="txt-kr">기타</span><span class="txt-cn">其他</span></span></td>
+            <td class="left"><span class="txt-kr">영웅 조정；버그 수정</span><span class="txt-cn">英雄调整；错误修复</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=13717461440059457678&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.05</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">적염철기 세트 출시；[요린위룡] 시리즈 스킨 출시</span><span class="txt-cn">赤焰铁骥套装 上架；【耀鳞威龙】系列皮肤 上架</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=15322835101959646409&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.05–2026.03.08</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">미션 완료 후 스킨 및 아이템 교환</span><span class="txt-cn">完成任务兑换皮肤和道具奖励</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=7656737484139757764&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">춘절 패스 출시</span><span class="txt-cn">新春通行证上架</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=6051974694743456851&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06–2026.03.03</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">야시장 오픈；전용 할인 혜택으로 스킨 구매 가능</span><span class="txt-cn">夜市开启，用户可获得专属折扣买皮肤</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=3743543651036621838&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.11–2026.03.03</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">춘절 보너스 이벤트-카드를 뒤집어 보너스 추첨, 한정판 홍바오 스킨 획득</span><span class="txt-cn">新春福利活动-翻牌抽福利，获得限量红包封面</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=8198499702921779885&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.12–2026.03.08</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">춘절 보너스 이벤트-홍바오 비</span><span class="txt-cn">新春福利活动-新春红包雨</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=5029747815990758219&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.12</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">2026 춘절 세트 출시；[수정서약] 시리즈 스킨 출시</span><span class="txt-cn">2026春节套装 上架；【水晶誓约】系列皮肤上线</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=12309772358859167499&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.16</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">[적영천효] 시리즈 스킨 출시</span><span class="txt-cn">【赤影天骁】系列皮肤上线</span></td>
+            <td><a href="https://weibo.com/7982741612/QrVoD1JsA" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.19</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">[Ignite Knife] 무기 출시</span><span class="txt-cn">【离火刃】武器上线</span></td>
+            <td><a href="https://weibo.com/7982741612/QsefCqSXx" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.20</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">신규 기간 한정 모드: 2v2 매칭 모드 "투우" 등장；요원 "게코" 강화；폭파 모드 장비 조정</span><span class="txt-cn">全新限时模式：2v2匹配模式"斗牛"登场；英雄"盖克"增强；爆能大乱斗装备调整</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=8559600039247364977&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.20</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">VCT 2026 시즌 패키지 출시</span><span class="txt-cn">VCT 2026赛季礼包上架</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=15220518233357398918&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.23</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">[기점] 시리즈 스킨 출시</span><span class="txt-cn">【奇点】系列皮肤上线</span></td>
+            <td><a href="https://weibo.com/7982741612/QsZo6o382" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.26</td>
+            <td><span class="mkt-badge b-commerce"><span class="txt-kr">상업화</span><span class="txt-cn">商业化</span></span></td>
+            <td class="left"><span class="txt-kr">포커야 시리즈 세트 출시</span><span class="txt-cn">破壳鸭系列 套装上线</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=3865744641816753197&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.27</td>
+            <td><span class="mkt-badge b-event"><span class="txt-kr">이벤트 업데이트</span><span class="txt-cn">活动更新</span></span></td>
+            <td class="left"><span class="txt-kr">원소절 이벤트-이벤트 참여 시 원소절 관련 카드 커버/페인트 획득</span><span class="txt-cn">元宵活动-参与活动领元宵相关卡面/喷漆</span></td>
+            <td><a href="https://weibo.com/7982741612/QtJJS4Ag4" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.28</td>
+            <td><span class="mkt-badge b-other"><span class="txt-kr">기타</span><span class="txt-cn">其他</span></span></td>
+            <td class="left"><span class="txt-kr">버그 수정</span><span class="txt-cn">错误修复</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=5957511407726497197&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          </tbody></table></div>
+        <div class="mkt-subtitle"><span class="txt-kr">게임 외 동향</span><span class="txt-cn">游戏外动态</span></div>
+        <ul class="mkt-kpi-list"><li><span class="txt-kr">2월 한 달 간 총 4건의 브랜드 콜라보(알리페이 홍바오 이벤트/Vivo 오프라인 인증/VooV 무료 회의 시간 연장 및 AI 자동 Summary 출시 이벤트/고덕택시 전용 택시 스킨)와 4인의 연예인을 통한 콜라보 홍보(타오저 게임 음원 및 전용 이벤트/장링허 라이브/저우예, 왕쥔카이 홍보)</span><span class="txt-cn">2月共进行了4次品牌联动（*支付宝 集福领红包/Vivo 线下打卡/腾讯会议 开黑免费会议时长AI自动纪要/高德打车 专属打车装扮）及4位明星联动宣推（*陶喆 推出游戏音乐与游戏专属活动/张凌赫 直播秀/周也、王俊凯 宣推）</span></li></ul>
+        <div class="mkt-table-wrap"><table class="mkt-table">
+          <colgroup><col style="width:20%"><col style="width:12%"><col><col style="width:7%"></colgroup>
+          <thead><tr><th><span class="txt-kr">날짜</span><span class="txt-cn">日期</span></th><th><span class="txt-kr">유형</span><span class="txt-cn">类型</span></th><th><span class="txt-kr">내용</span><span class="txt-cn">内容</span></th><th>Link</th></tr></thead>
+          <tbody>
+          <tr>
+            <td>2026.02.03</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Valorant x 알리페이 복 수집 후 홍바오 배포 이벤트</span><span class="txt-cn">无畏契约 x 支付宝 推出集福领红包活动</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=17809318474945413898&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.06–2026.02.08</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Valorant M 미니 프로그램에 전투 공간 출시；이벤트 참여 시 굿즈, 한정판 카드 커버/칭호 등 획득</span><span class="txt-cn">无畏契约 手游小程序上线决斗空间，参与活动获得周边及限定卡面/称号等；</span></td>
+            <td><a href="https://weibo.com/7982741612/QqfiOe26n" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.07</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">가수 타오저(陶喆) 콜라보；게임 음원 출시, 인게임에 전용 이벤트 진행</span><span class="txt-cn">联动歌手 陶喆 推出游戏音乐，游戏内上线专属活动"抓马机"</span></td>
+            <td><a href="https://weibo.com/7982741612/QqCwsovpb" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.07</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Valorant x Vivo(휴대폰 브랜드) 오프라인 인증 이벤트 진행</span><span class="txt-cn">无畏契约 x vivo（手机品牌） 推出线下打卡活动</span></td>
+            <td><a href="https://weibo.com/7982741612/QqqQppkpq" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.08</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">연예인 장링허(张凌赫) 첫 Valorant 라이브</span><span class="txt-cn">明星 张凌赫 无畏契约首秀</span></td>
+            <td><a href="https://weibo.com/7982741612/QqR0NkbLZ" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.09</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Valorant x VooV(텐센트 회의) 무료 회의 시간 연장/AI 자동 Summary 기능 출시</span><span class="txt-cn">无畏契约 x 腾讯会议 推出免费会议时长/AI自动纪要</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=1197528361275714611&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.09–2026.02.15</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">Valorant x 고덕택시 전용 택시 스킨 출시；택시 예약 6회 성공 시 게임 패키지 획득</span><span class="txt-cn">无畏契约 x 高德打车 推出专属打车装扮/打车满6单送游戏礼包</span></td>
+            <td><a href="https://val.qq.com/newsdetails.html?docid=7800168281653996585&goback=news" target="_blank">Link ↗</a></td>
+          </tr>
+          <tr>
+            <td>2026.02.15</td>
+            <td><span class="mkt-badge b-collab"><span class="txt-kr">협업 컬라보</span><span class="txt-cn">合作联动</span></span></td>
+            <td class="left"><span class="txt-kr">장링허(张凌赫)/저우예(周也)/타오저(陶喆)/왕쥔카이(王俊凯) 크리에이티브 광고 배포</span><span class="txt-cn">联动明星 张凌赫/周也/陶喆/王俊凯 帮助宣传推广</span></td>
+            <td><a href="https://weibo.com/7982741612/QrV0hmxef" target="_blank">Link ↗</a></td>
+          </tr>
+          </tbody></table></div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+const GAMES = [
+  { key: '和平精英',           label: '화평정영',   color: '#c97a00', width: 3.5, bold: true  },
+  { key: '王者荣耀',           label: '왕자영요',   color: '#1d5fa8', width: 1.8, bold: false },
+  { key: '三角洲行动',         label: 'Delta Force', color: '#007a47', width: 1.8, bold: false },
+  { key: '无畏契约：源能行动', label: 'Valorant M', color: '#a0201b', width: 1.8, bold: false },
+];
+
+const I18N = {
+  kr: {
+    reportTitle: '경쟁사 월간 리포트',
+    reportMeta: '기간：2026.02.01 — 2026.02.28　|　출처：Sensor Tower　|　iOS',
+    reportBadge: '2026년 2월',
+    sectionSummary: '📊 월간 핵심 지표 요약',
+    sectionChart: '📈 월별 추이',
+    topTitle: '⭐ 2월 iOS 매출 랭킹 Top 10',
+    topBody: `<ul>
+<li>iOS畅销榜Top3为<span class="g-tag gn-wz">王者荣耀</span>、<span class="g-tag gn-hp">和平精英</span>、<span class="g-tag gn-df">Delta Force</span>，Top10中有3款射击游戏；</li>
+<li>2月，<span class="g-tag gn-hp">和平精英</span>/<span class="g-tag gn-df">Delta Force</span>/<span class="g-tag gn-vm">Valorant M</span>受新春活动及新商业化推出的影响，流水均有一定程度的上升</li>
+<li>2月<span class="g-tag gn-wz">王者荣耀</span>在寒假+春节假期期间流水/活跃下降（原因：①1月基数过高的自然回落；②春节活动引发较大负面舆论；③受市场竞争分流影响）</li>
+<li>本月<span class="g-tag">蛋仔派对</span>流水环比上涨153.8%（*全新副本/赛季更新/新春限定地图）、<span class="g-tag">LOLM</span>流水环比上涨86.2%（*马年限定皮肤/新英雄上线）重新回到iOS畅销榜Top10</li>
+<li>巨人网络的恐怖冒险+搜打撤游戏<span class="g-tag">超自然行动组</span>流水环比上涨65.8%，同比上涨34717.6%，首次登上iOS畅销榜Top10</li>
+<li>其他重点游戏：<span class="g-tag">逆战：未来</span><span class="note">（*腾讯2026.1.13上线的新射击游戏）</span>-12位、<span class="g-tag">CF M</span>-14位</li>
+</ul>`,
+    sectionAnalysis: '📝 월간 분석 요약',
+    analysisRankTitle: '📱 iOS 순위',
+    analysisRevenueTitle: '💰 iOS 수익',
+    analysisDauTitle: '👥 DAU',
+    analysisRankText: `• <span class="game-tag wangzhe">王者荣耀</span>、<span class="game-tag heping">和平精英</span>稳定在前二位<br>• <span class="game-tag delta">Delta Force</span>在14天限时活动开启当日登上iOS畅销榜Top1<br>• <span class="game-tag wuwei">Valorant M</span>自2.19限定商品"离火刃"上线后排名稳定在Top5`,
+    analysisRevenueText: `• <span class="game-tag heping">和平精英</span>在神装/载具返场期间流水显著提升<br>• <span class="game-tag wangzhe">王者荣耀</span>流水在2.12版本更新大量商业化皮肤推出后保持在高位<br>• <span class="game-tag delta">Delta Force</span>在2.10红皮推出后流水达到本月peak<br>• <span class="game-tag wuwei">Valorant M</span>在2.12春节套装与【水晶誓约】系列皮肤上线时迎来高峰`,
+    analysisDauText: `• <span class="game-tag wangzhe">王者荣耀</span>保持领先，每到周末活跃上升<br>• <span class="game-tag heping">和平精英</span>整月活跃较为稳定<br>• <span class="game-tag delta">Delta Force</span>与<span class="game-tag wuwei">Valorant M</span>在春节活动开启后活跃上涨`,
+    chartTitles: { rank: 'iOS 최고 매출 순위', revenue: 'iOS 매출', dau: 'iOS DAU' },
+    pbDay: '일', pbWeek: '주', pbMonth: '월',
+    mRankLabel: 'iOS 순위', mRevenueLabel: '매출', mDauLabel: 'DAU',
+    rankLabel: 'iOS 평균 순위', revenueLabel: '수익', dauLabel: 'A.DAU',
+    momLabel: 'MoM',
+    rankUnit: '위',
+    noChange: '변화없음',
+    gameLabels: { '和平精英':'화평정영','王者荣耀':'왕자영요','三角洲行动':'Delta Force','无畏契约：源能行动':'Valorant M' },
+  },
+  cn: {
+    reportTitle: '竞品月度报告',
+    reportMeta: '时间：2026.02.01 — 2026.02.28　|　数据来源：Sensor Tower　|　iOS',
+    reportBadge: '2026年2月',
+    sectionSummary: '📊 月度核心指标汇总',
+    sectionChart: '📈 月度趋势',
+    topTitle: '⭐ 2月 iOS畅销榜Top10',
+    topBody: `<ul>
+        <li>iOS畅销榜Top3排名保持不变，为<span class="g-tag gn-wz">王者荣耀</span>、<span class="g-tag gn-hp">和平精英</span>、<span class="g-tag gn-df">Delta Force</span>，Top10中有4款射击游戏</li>
+        <li><span class="g-tag">Whiteout Survival</span><span class="note">（*3周年活动）</span>、<span class="g-tag">开心消消乐</span><span class="note">（*《甄嬛传》联动活动）</span>流水环比上涨超过50%；<span class="g-tag">梦幻西游</span><span class="note">（*11周年活动）</span>、<span class="g-tag">CF M</span><span class="note">（*「星见奇遇」版本开启）</span>重新回到iOS畅销榜Top10</li>
+        <li>其他重点游戏：<span class="g-tag">洛克王国：世界</span><span class="note">（*腾讯2026.3.26上线的开放世界精灵养成游戏）</span> -13位、<span class="g-tag">DNF M</span> -16位、<span class="g-tag">超自然行动组</span> -21位、<span class="g-tag">逆战：未来</span> -33位</li>
+        <li><span class="g-tag">洛克王国：世界</span>自3.26上线后目前排名保持在iOS畅销榜Top10</li>
+      </ul>`,
+    sectionAnalysis: '📝 月度分析摘要',
+    analysisRankTitle: '📱 iOS 排名',
+    analysisRevenueTitle: '💰 iOS 收入',
+    analysisDauTitle: '👥 DAU',
+    analysisRankText: `• <span class="game-tag wangzhe">王者荣耀</span>·<span class="game-tag heping">和平精英</span> 稳定在前二位<br>• <span class="game-tag delta">Delta Force</span> 下半月跌出Top3<br>• <span class="game-tag wuwei">Valorant M</span> 排名起伏较大，<span class="event-tag">【紫阙金琅】</span>系列皮肤上线时回升到Top3，最低跌出畅销榜Top10`,
+    analysisRevenueText: `• 春节大活动过后本月各游戏流水都有一定程度的下降<br>• <span class="game-tag heping">和平精英</span> 月底 <span class="event-tag">SS38赛季</span> 上线，赛季手册推出时流水达到本月peak<br>• <span class="game-tag wangzhe">王者荣耀</span> 3月中下旬因未推出商业化流水一路下滑<br>• <span class="game-tag delta">Delta Force</span> 在 <span class="event-tag">3.13【冥夜蔷薇】</span>系列外观上线时流水达到本月peak<br>• <span class="game-tag wuwei">Valorant M</span> 在 <span class="event-tag">【紫阙金琅】</span>系列皮肤上线时达到peak`,
+    analysisDauText: `• <span class="game-tag wangzhe">王者荣耀</span> 保持领先，每到周末活跃上升<br>• <span class="game-tag heping">和平精英</span> 与 <span class="game-tag delta">Delta Force</span> 整月活跃较为稳定`,
+    chartTitles: { rank: 'iOS 畅销榜排名', revenue: 'iOS 收入', dau: 'iOS DAU' },
+    pbDay: '日', pbWeek: '周', pbMonth: '月',
+    mRankLabel: 'iOS 排名', mRevenueLabel: '收入', mDauLabel: 'DAU',
+    rankLabel: 'iOS平均排名', revenueLabel: '收入', dauLabel: 'A.DAU',
+    momLabel: 'MoM',
+    rankUnit: '位',
+    noChange: '无变化',
+    gameLabels: { '和平精英':'和平精英','王者荣耀':'王者荣耀','三角洲行动':'三角洲行动','无畏契约：源能行动':'无畏契约手游' },
+  }
+};
+
+const RAW = {"rank": {"和平精英": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [1, 2, 1, 2, 4, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]}, "王者荣耀": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [2, 1, 2, 1, 1, 1, 2, 2, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "三角洲行动": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [3, 3, 4, 3, 7, 6, 5, 4, 2, 1, 1, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 4, 3, 3, 3]}, "无畏契约：源能行动": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [17, 14, 14, 12, 6, 8, 7, 6, 7, 9, 10, 4, 5, 8, 10, 6, 6, 5, 4, 4, 4, 5, 3, 4, 5, 6, 5, 6]}}, "revenue": {"和平精英": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [3921792.17, 2676565.72, 3361135.32, 2982281.3, 1336283.82, 2903871.43, 5268402.4, 4824606.76, 4011936.6, 3053937.09, 3241299.41, 2845551.61, 3532013.96, 3476496.37, 2832352.53, 2886914.43, 3735750.77, 3244264.24, 2781219.19, 3194483.64, 3380313.17, 2929974.09, 2669244.73, 3353979.33, 3559841.27, 2672814.62, 3198040.01, 3214925.38]}, "王者荣耀": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [3774203.49, 4317775.04, 2949421.39, 2987218.09, 3733119.1, 4661888.21, 2994191.3, 2747381.96, 2153295.86, 2088102.6, 2214415.65, 4232715.84, 5654866.47, 5716151.3, 4829514.22, 4938672.58, 6140006.7, 5220668.56, 4421279.86, 5160185.93, 5443828.86, 4733993.12, 4340561.38, 5443290.05, 5728419.12, 4391065.0, 5164154.81, 5165328.44]}, "三角洲行动": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [1710639.2, 1362056.31, 1406991.29, 1476737.71, 799133.7, 970625.39, 1046390.63, 1070569.76, 2536654.37, 5200778.74, 5500561.5, 2772992.1, 2050672.64, 1588829.01, 1815525.17, 1983226.25, 2802601.75, 2380392.78, 1981657.18, 2080801.42, 1887910.78, 1714645.72, 1136053.3, 1293997.55, 1242396.86, 1077309.39, 1186854.24, 1069824.24]}, "无畏契约：源能行动": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [267690.48, 235102.97, 270260.75, 436047.46, 740220.46, 802533.59, 837103.13, 694816.97, 501084.85, 476283.19, 585687.64, 972126.59, 1039633.25, 867990.74, 613310.85, 901569.57, 1357172.92, 1304263.69, 1365921.38, 1485595.61, 1386079.59, 1062396.65, 1369399.48, 1173911.19, 1030662.85, 743146.38, 823832.15, 571900.34]}}, "dau": {"和平精英": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [6221164, 6134299, 6197195, 6196957, 6132079, 6135797, 6227626, 6235069, 6153684, 6225200, 6241817, 6165615, 6247782, 6272233, 6294013, 6305513, 6317048, 6343816, 6364933, 6291092, 6376913, 6369286, 6256494, 6241335, 6239178, 6218221, 6207019, 6198524]}, "王者荣耀": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [10654087, 9298535, 8483368, 8496749, 8556846, 9082129, 10565996, 10548500, 9378960, 8919813, 9107221, 9338976, 9831356, 11085453, 11400360, 10187409, 9995210, 9994436, 9823697, 9613176, 10044946, 10094917, 9192530, 9021148, 9212032, 9068106, 8951332, 9242364]}, "三角洲行动": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [2383791, 2368230, 2329409, 2340599, 2348079, 2354571, 2395081, 2404191, 2406973, 2416562, 2459981, 2475325, 2491240, 2520941, 2549332, 2544364, 2592868, 2622772, 2643759, 2650804, 2664954, 2655093, 2612745, 2624007, 2606218, 2565173, 2541078, 2541774]}, "无畏契约：源能行动": {"dates": ["2026-02-01", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-07", "2026-02-08", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-02-23", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-02-28"], "values": [409239, 325579, 295920, 300206, 312968, 337972, 402370, 408579, 370329, 352081, 345466, 346958, 351222, 385903, 397537, 388547, 379533, 383019, 385210, 356102, 354454, 356682, 351548, 333335, 326277, 322202, 301375, 301834]}}};
+const FEB = {"rank": {"和平精英": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]}, "王者荣耀": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "三角洲行动": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]}, "无畏契约：源能行动": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]}}, "revenue": {"和平精英": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94, 2496025.94]}, "王者荣耀": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03, 4781051.03]}, "三角洲行动": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48, 1410742.48]}, "无畏契约：源能行动": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87, 680068.87]}}, "dau": {"和平精英": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389, 6087389]}, "王者荣耀": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415, 9673415]}, "三角洲行动": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253, 2272253]}, "无畏契约：源能行动": {"dates": ["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-17", "2026-01-18", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-24", "2026-01-25", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-01-31"], "values": [333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186, 333186]}}};
+const YOY = {"rank": {"和平精英": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]}, "王者荣耀": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}, "三角洲行动": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25]}, "无畏契约：源能行动": {"dates": [], "values": []}}, "revenue": {"和平精英": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68, 2672952.68]}, "王者荣耀": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25, 4899707.25]}, "三角洲行动": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07, 215543.07]}, "无畏契约：源能行动": {"dates": [], "values": []}}, "dau": {"和平精英": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345, 6605345]}, "王者荣耀": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963, 9660963]}, "三角洲行동": {"dates": ["2025-02-01", "2025-02-02", "2025-02-03", "2025-02-04", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-08", "2025-02-09", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-15", "2025-02-16", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-22", "2025-02-23", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28"], "values": [750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848, 750848]}, "无畏契约：源能行动": {"dates": [], "values": []}}};
+
+let currentMetric = 'rank';
+let currentPeriod = 'day';
+let currentLang = 'kr';
+let chart = null;
+let hiddenGames = new Set();
+let lastAgg = {};
+let lastLabels = [];
+
+// ── AGGREGATION ──────────────────────────────────────────────────────
+function aggregateData(metric, period) {
+  const result = {};
+  for (const g of GAMES) {
+    const src = RAW[metric][g.key];
+    if (!src) { result[g.key] = { dates: [], values: [] }; continue; }
+    const fdates = [...src.dates], fvals = [...src.values];
+    // filter rank zeros
+    const pairs = fdates.map((d,i)=>({d,v:fvals[i]}))
+      .filter(x => !(metric==='rank' && x.v===0));
+
+    if (period === 'day') {
+      result[g.key] = { dates: pairs.map(x=>x.d), values: pairs.map(x=>x.v) };
+      continue;
+    }
+    const groups = {};
+    pairs.forEach(({d,v}) => {
+      const key = getPeriodKey(d, period);
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(v);
+    });
+    const dates = Object.keys(groups).sort();
+    const values = dates.map(k => {
+      const arr = groups[k];
+      const sum = arr.reduce((a,b)=>a+b,0);
+      if (metric==='rank' || metric==='dau') return Math.round(sum/arr.length);
+      return sum;
+    });
+    result[g.key] = { dates, values };
+  }
+  return result;
+}
+
+function getPeriodKey(dateStr, period) {
+  const d = new Date(dateStr + 'T00:00:00');
+  if (period === 'week') {
+    const day = d.getDay() || 7;
+    const mon = new Date(d); mon.setDate(d.getDate() - day + 1);
+    return `${mon.getFullYear()}-W${String(getISOWeek(mon)).padStart(2,'0')}`;
+  }
+  if (period === 'month') return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+  return dateStr;
+}
+function getISOWeek(d) {
+  const jan4 = new Date(d.getFullYear(), 0, 4);
+  const dow = jan4.getDay() || 7;
+  const ws = new Date(jan4); ws.setDate(jan4.getDate() - dow + 1);
+  return Math.round((d - ws) / 604800000) + 1;
+}
+
+// ── FORMAT ──────────────────────────────────────────────────────────
+function formatVal(val, metric) {
+  if (val === null || val === undefined) return '—';
+  const t = I18N[currentLang];
+  if (metric === 'rank') return `${Math.round(val)}${t.rankUnit}`;
+  if (val >= 1e6) return `$${(val/1e6).toFixed(2)}M`;
+  if (val >= 1e3) return `$${(val/1e3).toFixed(1)}K`;
+  return metric === 'revenue' ? `$${val.toFixed(0)}` : val.toLocaleString();
+}
+function formatDauVal(val) {
+  if (!val) return '—';
+  if (val >= 1e6) return `${(val/1e6).toFixed(2)}M`;
+  if (val >= 1e3) return `${(val/1e3).toFixed(1)}K`;
+  return val.toLocaleString();
+}
+function formatAxisVal(val, metric) {
+  if (metric === 'rank') return `${Math.round(val)}`;
+  if (val >= 1e6) return `$${(val/1e6).toFixed(1)}M`;
+  if (val >= 1e3) return `$${(val/1e3).toFixed(0)}K`;
+  return `${val}`;
+}
+function formatMoM(curr, prev, metric) {
+  if (!prev) return null;
+  const diff = curr - prev;
+  if (diff === 0) return { text: '0.0%', cls: 'flat' };
+  const pct = Math.abs(diff/prev*100).toFixed(1);
+  const improved = metric === 'rank' ? diff < 0 : diff > 0;
+  const sign = diff > 0 ? '▲' : '▼';
+  return { text: `${sign}${pct}%`, cls: improved ? 'up' : 'down' };
+}
+function formatYoY(curr, prev, metric) {
+  if (!prev || prev === 0) return null;
+  const diff = curr - prev;
+  if (diff === 0) return { text: '0.0%', cls: 'flat' };
+  const pct = Math.abs(diff/prev*100).toFixed(1);
+  const improved = metric === 'rank' ? diff < 0 : diff > 0;
+  const sign = diff > 0 ? '▲' : '▼';
+  return { text: `${sign}${pct}%`, cls: improved ? 'up' : 'down' };
+}
+
+function formatRankDiff(curr, prev, unit) {
+  // Returns rank change as position diff e.g. "▲1위"
+  if (prev === null || prev === undefined) return null;
+  const diff = curr - prev; // positive = dropped in rank (worse), negative = improved
+  if (diff === 0) return { text: '−', cls: 'flat' };
+  const absDiff = Math.abs(diff);
+  const improved = diff < 0; // rank number decreased = better
+  const arrow = diff < 0 ? '▲' : '▼';
+  return { text: `${arrow}${absDiff}${unit}`, cls: improved ? 'up' : 'down' };
+}
+function formatTickDate(label, period) {
+  if (period === 'day') {
+    const p = label.split('-'); return `${parseInt(p[1])}.${parseInt(p[2])}`;
+  }
+  if (period === 'week') {
+    const [y,w] = label.split('-W'); const week = parseInt(w), year = parseInt(y);
+    const jan4 = new Date(year,0,4); const dow = jan4.getDay()||7;
+    const sun = new Date(jan4); sun.setDate(jan4.getDate()-dow+1+(week-1)*7+6);
+    return `${sun.getMonth()+1}.${sun.getDate()}`;
+  }
+  if (period === 'month') { const [y,m]=label.split('-'); return `${y}.${parseInt(m)}`; }
+  return label;
+}
+
+// ── SUMMARY CARDS ────────────────────────────────────────────────────
+function buildSummary() {
+  const t = I18N[currentLang];
+  const clsMap = { '和平精英':'heping','王者荣耀':'wangzhe','三角洲行动':'delta','无畏契约：源能行动':'wuwei' };
+
+  function getMonthVal(metric, gkey) {
+    const mv = RAW[metric][gkey]?.values || [];
+    const fv = FEB[metric][gkey]?.values || [];
+    if (!mv.length) return { val: null, mom: null };
+    const avg = a => a.reduce((s,v)=>s+v,0)/a.length;
+    const cur = metric==='revenue' ? mv.reduce((s,v)=>s+v,0) : Math.round(avg(mv));
+    const prv = metric==='revenue' ? fv.reduce((s,v)=>s+v,0) : Math.round(avg(fv));
+    return { val: cur, mom: formatMoM(cur, prv, metric) };
+  }
+
+  function momBadge(mom, label) {
+    if (!mom) return `<span class="metric-mom flat">—</span>`;
+    return `<span class="metric-mom ${mom.cls}">${label}${mom.text}</span>`;
+  }
+
+  function bigNum(val, metric) {
+    if (val === null) return '—';
+    if (metric === 'rank') return `${val}${t.rankUnit}`;
+    if (metric === 'revenue') {
+      if (val >= 1e6) return `$${(val/1e6).toFixed(2)}M`;
+      if (val >= 1e3) return `$${(val/1e3).toFixed(1)}K`;
+      return `$${val.toLocaleString()}`;
+    }
+    // dau
+    if (val >= 1e6) return `${(val/1e6).toFixed(2)}M`;
+    if (val >= 1e3) return `${(val/1e3).toFixed(1)}K`;
+    return val.toLocaleString();
+  }
+
+  document.getElementById('summaryGrid').innerHTML = GAMES.map(g => {
+    const cls = clsMap[g.key];
+    const rank = getMonthVal('rank', g.key);
+    const rev  = getMonthVal('revenue', g.key);
+    const dau  = getMonthVal('dau', g.key);
+    const gameName = t.gameLabels[g.key];
+
+    // Rank diff: show position change not percentage
+    const febRankVal = (() => {
+      const fv = FEB['rank'][g.key]?.values || [];
+      if (!fv.length) return null;
+      return Math.round(fv.reduce((s,v)=>s+v,0)/fv.length);
+    })();
+    const rankDiff = rank.val !== null && febRankVal !== null
+      ? formatRankDiff(rank.val, febRankVal, t.rankUnit)
+      : null;
+    const rankChange = rankDiff
+      ? `<span class="metric-mom ${rankDiff.cls}" style="font-size:11px;">MoM${rankDiff.text}</span>`
+      : `<span class="metric-mom flat" style="font-size:11px;">—</span>`;
+    // YoY rank diff
+    const yoyRankVals = YOY['rank'][g.key]?.values || [];
+    const yoyRankAvg = yoyRankVals.length ? Math.round(yoyRankVals.reduce((s,v)=>s+v,0)/yoyRankVals.length) : null;
+    const rankYoYDiff = (rank.val !== null && yoyRankAvg)
+      ? formatRankDiff(rank.val, yoyRankAvg, t.rankUnit) : null;
+    const rankYoYHtml = rankYoYDiff
+      ? `<span class="metric-mom ${rankYoYDiff.cls}" style="font-size:11px;">YoY${rankYoYDiff.text}</span>`
+      : '';
+
+    return `<div class="summary-card ${cls}">
+      <div class="card-game">${cls === "heping" ? '<span class="card-star">⭐</span>' : '<div class="card-dot"></div>'} ${gameName}</div>
+      <div class="card-rank-row">
+        ${t.rankLabel}　<span class="card-rank-val">${rank.val !== null ? rank.val + t.rankUnit : '—'}</span>
+        ${rankChange}
+      </div>
+
+      <div class="card-metric-block">
+        <div class="card-metric-label">${t.revenueLabel}</div>
+        <div class="card-big-val">${bigNum(rev.val, 'revenue')}</div>
+        <div class="card-mom-badges">
+          ${momBadge(rev.mom, 'MoM')}
+          ${(() => {
+            const yv = YOY['revenue'][g.key]?.values || [];
+            const yTotal = yv.length ? yv.reduce((s,v)=>s+v,0) : null;
+            const yoy = yTotal ? formatYoY(rev.val, yTotal, 'revenue') : null;
+            return yoy ? `<span class="metric-mom ${yoy.cls}">YoY${yoy.text}</span>` : '<span class="metric-mom flat">— YoY</span>';
+          })()}
+        </div>
+      </div>
+
+      <div class="card-metric-block">
+        <div class="card-metric-label">${t.dauLabel}</div>
+        <div class="card-big-val">${bigNum(dau.val, 'dau')}</div>
+        <div class="card-mom-badges">
+          ${momBadge(dau.mom, 'MoM')}
+          ${(() => {
+            const yv = YOY['dau'][g.key]?.values || [];
+            const yAvg = yv.length ? Math.round(yv.reduce((s,v)=>s+v,0)/yv.length) : null;
+            const yoy = yAvg ? formatYoY(dau.val, yAvg, 'dau') : null;
+            return yoy ? `<span class="metric-mom ${yoy.cls}">YoY${yoy.text}</span>` : '<span class="metric-mom flat">— YoY</span>';
+          })()}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── PEAK PLUGIN ──────────────────────────────────────────────────────
+const peakPlugin = {
+  id: 'peakPlugin',
+  afterDraw(chart) {
+    const { ctx, scales: { x, y }, data } = chart;
+    data.datasets.forEach(ds => {
+      if (ds.hidden) return;
+      const pi = ds._peakIdx;
+      if (pi < 0 || pi === undefined) return;
+      const val = ds.data[pi];
+      if (val === null || val === undefined) return;
+      const xPos = x.getPixelForValue(pi);
+      const yPos = y.getPixelForValue(val);
+      ctx.save();
+      ctx.setLineDash([4,4]);
+      ctx.strokeStyle = ds.borderColor + '99';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(xPos, y.top); ctx.lineTo(xPos, yPos); ctx.stroke();
+      ctx.setLineDash([]);
+      const cx = xPos, cy = yPos;
+      const outerR = 10, innerR = 4, spikes = 5;
+      ctx.beginPath();
+      for (let s = 0; s < spikes*2; s++) {
+        const angle = (s*Math.PI/spikes) - Math.PI/2;
+        const r = s%2===0 ? outerR : innerR;
+        ctx.lineTo(cx+Math.cos(angle)*r, cy+Math.sin(angle)*r);
+      }
+      ctx.closePath();
+      ctx.shadowColor = 'rgba(0,0,0,0.2)';
+      ctx.shadowBlur = 8; ctx.shadowOffsetX = 1; ctx.shadowOffsetY = 2;
+      ctx.fillStyle = ds.borderColor;
+      ctx.fill();
+      ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+      ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+};
+Chart.register(peakPlugin);
+
+function findPeak(values, metric) {
+  const nonnull = values.map((v,i)=>({v,i})).filter(x=>x.v!==null&&x.v!==undefined);
+  if (!nonnull.length) return -1;
+  return metric==='rank'
+    ? nonnull.reduce((b,c)=>c.v<b.v?c:b).i
+    : nonnull.reduce((b,c)=>c.v>b.v?c:b).i;
+}
+
+// ── CHART ────────────────────────────────────────────────────────────
+function buildChart() {
+  const agg = aggregateData(currentMetric, currentPeriod);
+  lastAgg = agg;
+  const allDates = [...new Set(GAMES.flatMap(g=>agg[g.key]?.dates||[]))].sort();
+  lastLabels = allDates;
+
+  const datasets = GAMES.map(g => {
+    const gdata = agg[g.key] || { dates:[], values:[] };
+    const dateMap = {}; gdata.dates.forEach((d,i)=>dateMap[d]=gdata.values[i]);
+    const vals = allDates.map(d=>dateMap[d]!==undefined?dateMap[d]:null);
+    return {
+      label: g.label, data: vals,
+      borderColor: g.color,
+      backgroundColor: g.bold ? `${g.color}12` : 'transparent',
+      borderWidth: g.bold ? 3.5 : 1.8,
+      pointRadius: 0, pointHoverRadius: g.bold ? 7 : 5,
+      pointHoverBackgroundColor: g.color, pointHoverBorderColor: '#ffffff', pointHoverBorderWidth: 2,
+      tension: 0.35, fill: false, spanGaps: true,
+      hidden: hiddenGames.has(g.key), order: g.bold ? 0 : 1,
+      _peakIdx: findPeak(vals, currentMetric),
+    };
+  });
+
+  const canvas = document.getElementById('mainChart');
+  if (chart) chart.destroy();
+  chart = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: { labels: allDates, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: { duration: 300 },
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      onHover: (evt, elements) => {
+        if (!elements.length) { hideHoverPanel(); return; }
+        showHoverPanel(elements[0].index);
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(0,0,0,0.06)', drawTicks: false },
+          border: { display: false },
+          ticks: {
+            color: '#6b7280', font: { family: 'Noto Sans KR', size: 10 },
+            maxTicksLimit: 16, maxRotation: 0, autoSkip: true,
+            callback(val) {
+              const label = this.getLabelForValue(val);
+              return label ? formatTickDate(label, currentPeriod) : '';
+            }
+          }
+        },
+        y: {
+          reverse: currentMetric === 'rank',
+          grid: { color: 'rgba(0,0,0,0.06)', drawTicks: false },
+          border: { display: false },
+          ticks: {
+            color: '#6b7280', font: { family: 'Noto Sans KR', size: 10 }, maxTicksLimit: 8,
+            callback(v) { return formatAxisVal(v, currentMetric); }
+          }
+        }
+      }
+    }
+  });
+}
+
+// ── HOVER PANEL ──────────────────────────────────────────────────────
+function showHoverPanel(idx) {
+  const label = lastLabels[idx]; if (!label) return;
+  const d = new Date(label.includes('-W') ? label : label + 'T00:00:00');
+  let dateStr = label;
+  if (currentPeriod === 'day') dateStr = `${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()}`;
+  else if (currentPeriod === 'week') dateStr = `주: ${label}`;
+  else if (currentPeriod === 'month') dateStr = `${label.split('-')[0]}년 ${parseInt(label.split('-')[1])}월`;
+  document.getElementById('hoverDate').textContent = dateStr;
+
+  const rows = GAMES.map(g => {
+    if (hiddenGames.has(g.key)) return '';
+    const agg = lastAgg[g.key];
+    const dateMap = {}; agg.dates.forEach((d,i)=>dateMap[d]=agg.values[i]);
+    const curr = dateMap[label];
+    const prev = lastLabels[idx-1] ? dateMap[lastLabels[idx-1]] : undefined;
+    if (curr===undefined||curr===null) return '';
+    const mom = formatMoM(curr, prev, currentMetric);
+    const momHtml = mom ? `<span class="hover-mom ${mom.cls}">MoM${mom.text}</span>` : '';
+    return `<div class="hover-row">
+      <div class="hover-game"><div class="hover-dot" style="background:${g.color}"></div><span>${g.label}</span></div>
+      <div style="display:flex;align-items:center;gap:5px">
+        <span class="hover-val">${formatVal(curr, currentMetric)}</span>${momHtml}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('hoverRows').innerHTML = rows;
+  document.getElementById('hoverPanel').classList.add('visible');
+}
+function hideHoverPanel() { document.getElementById('hoverPanel').classList.remove('visible'); }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const card = document.querySelector('.chart-card');
+  if (card) card.addEventListener('mouseleave', hideHoverPanel);
+});
+
+// ── LEGEND ───────────────────────────────────────────────────────────
+function buildLegend() {
+  document.getElementById('legend').innerHTML = GAMES.map(g => {
+    const isH = g.key === '和平精英';
+    const dim = hiddenGames.has(g.key) ? ' dimmed' : '';
+    return `<div class="legend-item${isH?' heping':''}${dim}" onclick="toggleGame('${g.key}')">
+      <div class="legend-line${isH?' bold':''}" style="background:${g.color}"></div>
+      <span class="legend-label">${g.label}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── CONTROLS ─────────────────────────────────────────────────────────
+function setPeriod(p) {
+  currentPeriod = p;
+  ['day','week','month'].forEach((v,i) => {
+    document.getElementById(['pbDay','pbWeek','pbMonth'][i]).classList.toggle('active', v===p);
+  });
+  buildChart(); buildLegend();
+}
+
+function setMetric(m) {
+  currentMetric = m;
+  const t = I18N[currentLang];
+  ['rank','revenue','dau'].forEach(v => {
+    document.getElementById({rank:'mRank',revenue:'mRevenue',dau:'mDau'}[v]).classList.toggle('active', v===m);
+  });
+  safe('chartTitle', el => { el.textContent = t.chartTitles[m]; });
+  buildChart(); buildLegend();
+}
+
+function toggleGame(key) {
+  if (hiddenGames.has(key)) hiddenGames.delete(key); else hiddenGames.add(key);
+  buildLegend(); buildChart();
+}
+
+function safe(id, fn) {
+  const el = document.getElementById(id);
+  if (el) fn(el);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = I18N[lang];
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent===lang.toUpperCase()));
+  safe('sectionSummary', el => el.innerHTML = `${t.sectionSummary}`);
+  safe('topTitle', el => el.textContent = t.topTitle);
+  safe('topBody',  el => el.innerHTML  = t.topBody);
+  safe('sectionAnalysis',      el => el.innerHTML = `${t.sectionAnalysis}`);
+  safe('analysisRankTitle',    el => el.textContent = t.analysisRankTitle);
+  safe('analysisRevenueTitle', el => el.textContent = t.analysisRevenueTitle);
+  safe('analysisDauTitle',     el => el.textContent = t.analysisDauTitle);
+  safe('analysisRank',         el => el.innerHTML   = t.analysisRankText);
+  safe('analysisRevenue',      el => el.innerHTML   = t.analysisRevenueText);
+  safe('analysisDau',          el => el.innerHTML   = t.analysisDauText);
+  safe('sectionChart',   el => el.innerHTML = `${t.sectionChart}`);
+  safe('sectionMkt', el => el.innerHTML = `🧭 <span class="txt-kr">시장 동향 및 마케팅</span><span class="txt-cn">市场动向及营销</span>`);
+
+  safe('mRankLabel', el => { el.textContent = t.mRankLabel; });
+  safe('mRevenueLabel', el => { el.textContent = t.mRevenueLabel; });
+  safe('mDauLabel', el => { el.textContent = t.mDauLabel; });
+  safe('chartTitle', el => { el.textContent = t.chartTitles[currentMetric]; });
+  GAMES.forEach(g => { g.label = t.gameLabels[g.key]; });
+  document.body.classList.toggle('lang-cn', lang === 'cn');
+  buildSummary(); buildChart(); buildLegend();
+}
+
+
+
+
+function lerpColorMkt(ratio) {
+  var r, g, b;
+  if (ratio >= 0.5) {
+    var t = (ratio - 0.5) * 2;
+    r = 255; g = Math.round(255 - t * 80); b = Math.round(255 - t * 100);
+  } else {
+    var t = ratio * 2;
+    r = Math.round(155 + t * 100); g = Math.round(185 + t * 70); b = 255;
+  }
+  return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+function applyMktColorScale() {
+  document.querySelectorAll('table.mkt-color-scale').forEach(function(table) {
+    var dataRows = table.querySelectorAll('tr.row-2025, tr.row-2026');
+    if (!dataRows.length) return;
+    var cells = [], values = [];
+    dataRows.forEach(function(row) {
+      row.querySelectorAll('td').forEach(function(td, i) {
+        if (i === 0) return;
+        var cleaned = td.textContent.replace(/[$,\s▲▼—\-]/g, '').trim();
+        var v = parseFloat(cleaned);
+        if (!isNaN(v) && v > 0) { cells.push(td); values.push(v); }
+      });
+    });
+    if (!values.length) return;
+    var min = Math.min.apply(null, values);
+    var max = Math.max.apply(null, values);
+    cells.forEach(function(td, i) {
+      var ratio = max === min ? 0.5 : (values[i] - min) / (max - min);
+      td.style.backgroundColor = lerpColorMkt(ratio);
+    });
+  });
+}
+
+function initMarketTabs() {
+  const tabsWrap = document.getElementById('mktTabs');
+  if (!tabsWrap) return;
+  const setTab = (n) => {
+    tabsWrap.style.borderBottomColor = {1:'#1d5fa8',2:'#007a47',3:'#a0201b'}[n];
+    document.querySelectorAll('.mkt-tab-btn').forEach(btn => btn.classList.toggle('active', Number(btn.dataset.tab) === n));
+    document.querySelectorAll('.mkt-panel').forEach(panel => panel.classList.toggle('active', Number(panel.dataset.game) === n));
+    setTimeout(applyMktColorScale, 30);
+  };
+  document.querySelectorAll('.mkt-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => setTab(Number(btn.dataset.tab)));
+  });
+  setTab(1);
+}
+
+
+// ── MKT TABLE COLOR SCALE ────────────────────────────────────────────
+function mktColorScale() {
+  document.querySelectorAll('.mkt-table').forEach(function(table) {
+    var dataRows = table.querySelectorAll('tr.row-2025, tr.row-2026');
+    if (!dataRows.length) return;
+    var cells = [], values = [];
+    dataRows.forEach(function(row) {
+      row.querySelectorAll('td').forEach(function(td, i) {
+        if (i === 0) return;
+        var text = td.textContent.replace(/[$,\s—\-]/g, '');
+        var v = parseFloat(text);
+        if (!isNaN(v) && v > 0) { cells.push(td); values.push(v); }
+      });
+    });
+    if (!values.length) return;
+    var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+    cells.forEach(function(td, i) {
+      var ratio = max === min ? 0.5 : (values[i] - min) / (max - min);
+      var r, g, b;
+      if (ratio >= 0.5) {
+        var t = (ratio - 0.5) * 2;
+        r = 255; g = Math.round(255 - t * 80); b = Math.round(255 - t * 100);
+      } else {
+        var t = ratio * 2;
+        r = Math.round(155 + t * 100); g = Math.round(185 + t * 70); b = 255;
+      }
+      td.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', mktColorScale);
+
+// ── INIT ─────────────────────────────────────────────────────────────
+buildSummary();
+buildChart();
+buildLegend();
+initMarketTabs();
+applyMktColorScale();
+</script>
+</body>
+</html>
