@@ -1,1 +1,38 @@
+name: Update folder READMEs
 
+on:
+  push:
+    branches: [main]
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate READMEs for each folder
+        run: |
+          BASE_URL="https://jingruyi.github.io/my-reports"
+
+          for folder in monthly-reports weekly-reports; do
+            echo "# 📄 $folder" > $folder/README.md
+            echo "" >> $folder/README.md
+            echo "| 文件名 | 链接 |" >> $folder/README.md
+            echo "|--------|------|" >> $folder/README.md
+            for f in $folder/*.html; do
+              [ -f "$f" ] || continue
+              filename=$(basename "$f")
+              echo "| $filename | [$filename]($BASE_URL/$folder/$filename) |" >> $folder/README.md
+            done
+          done
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Auto-update folder READMEs"
+          git push
