@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026.04 CP Out-Game Monthly Review · KR / CN</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#ffffff; --surface:#fff; --surface2:#f7f8fa; --border:#e4e7ed;
+  --text:#1c1f2e; --text-dim:#6b7280; --text-muted:#9ca3af;
+  --primary:#1d5fa8; --primary-light:#dbeafe;
+  --positive:#15803d; --positive-bg:#f0fdf4; --positive-border:#86efac;
+  --negative:#b91c1c; --negative-bg:#fef2f2; --negative-border:#fca5a5;
+  --orange:#c2410c; --orange-bg:#fff7ed;
+  --purple:#6d28d9; --purple-bg:#f5f3ff;
+  --teal:#0e7490; --teal-bg:#ecfeff;
+  --pink:#be185d; --pink-bg:#fdf2f8;
+  --radius:12px; --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Microsoft YaHei","微软雅黑","PingFang SC","DM Sans","Malgun Gothic",sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding:32px 28px 60px;max-width:1060px;margin:0 auto;}
+
+/* ── Language Toggle ──────────────────────────────────────────── */
+.lang-toggle{position:fixed;top:20px;right:24px;display:flex;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);z-index:999;border:1.5px solid #e4e7ed;}
+.lang-toggle button{padding:7px 16px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all 0.15s;font-family:inherit;}
+#btn-kr{background:#1d5fa8;color:#fff;}
+#btn-cn{background:#fff;color:#9ca3af;}
+body.lang-cn #btn-kr{background:#fff;color:#9ca3af;}
+body.lang-cn #btn-cn{background:#1d5fa8;color:#fff;}
+.txt-cn{display:none;}
+body.lang-cn .txt-kr{display:none;}
+body.lang-cn .txt-cn{display:inline;}
+.blk-cn{display:none;}
+body.lang-cn .blk-kr{display:none;}
+body.lang-cn .blk-cn{display:block;}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.report-header{background:linear-gradient(135deg,#1c3a6e 0%,#1d5fa8 55%,#2980d4 100%);border-radius:var(--radius);padding:28px 32px 24px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden;}
+.report-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.report-header::after{content:'';position:absolute;bottom:-60px;left:30%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:relative;}
+.header-game{font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px;}
+.header-title{font-family:"DM Serif Display",serif;font-size:28px;font-weight:400;line-height:1.2;color:#fff;margin-bottom:4px;}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.75);font-weight:300;}
+.header-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:8px 16px;text-align:center;flex-shrink:0;}
+.header-badge-label{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.05em;}
+.header-badge-value{font-size:20px;font-weight:700;color:#fff;margin-top:2px;}
+.header-meta{display:flex;gap:24px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.15);position:relative;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:6px;}
+.meta-label{font-size:12px;color:rgba(255,255,255,0.55);}
+.meta-value{font-size:13px;color:rgba(255,255,255,0.9);font-weight:500;}
+
+/* ── Section Titles ───────────────────────────────────────────── */
+.section-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--text);margin:28px 0 14px;}
+.section-title .icon{width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.section-line{flex:1;height:1px;background:var(--border);}
+
+/* ── Summary Cards ────────────────────────────────────────────── */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;}
+.summary-card{background:var(--surface);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);border-top:3px solid;}
+.summary-card.trend{border-color:var(--primary);}
+.summary-card.strategy{border-color:var(--positive);}
+.summary-card-title{font-size:15px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:12px;}
+.summary-card p,.summary-card li{font-size:13px;color:var(--text);line-height:1.75;}
+.summary-card ul{padding-left:18px;}
+.summary-card li{margin-bottom:6px;}
+.highlight{font-weight:700;color:var(--primary);}
+
+/* ── Info Table ───────────────────────────────────────────────── */
+.info-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;}
+.info-table th{background:var(--surface2);color:var(--text-dim);font-weight:600;font-size:12px;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);width:160px;}
+.info-table td{padding:10px 14px;border-bottom:1px solid #f3f4f6;vertical-align:top;color:var(--text);}
+.info-table tr:last-child th,.info-table tr:last-child td{border-bottom:none;}
+
+/* ── Event Tables ─────────────────────────────────────────────── */
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px;}
+.event-table{width:100%;border-collapse:collapse;font-size:13px;}
+.event-table th{background:var(--surface2);color:var(--text-dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;padding:11px 16px;text-align:left;border-bottom:1px solid var(--border);}
+.event-table td{padding:12px 16px;border-bottom:1px solid #f3f4f6;vertical-align:top;color:var(--text);line-height:1.65;font-size:13px;}
+.event-table tr:last-child td{border-bottom:none;}
+.event-table tr:hover td{background:#fafbfc;}
+.td-date{white-space:nowrap;color:var(--text-dim);font-size:12px;min-width:130px;}
+.td-link a{color:var(--primary);text-decoration:none;font-weight:500;font-size:12px;display:inline-block;margin:2px 0;}
+.td-link a:hover{text-decoration:underline;}
+.td-effect{font-size:12.5px;color:var(--text-dim);line-height:1.6;}
+.td-type{width:108px;vertical-align:top;}
+.td-content{min-width:220px;}
+.td-location{min-width:80px;white-space:nowrap;color:var(--text-dim);font-size:12.5px;}
+.topic-link{display:inline;color:var(--primary);font-size:inherit;text-decoration:none;font-weight:600;}
+.topic-link:hover{text-decoration:underline;}
+.effect-num{color:#dc2626;font-weight:700;}
+.b-commerce{background:var(--orange-bg);color:var(--orange);}
+.b-event{background:var(--teal-bg);color:var(--teal);}
+.b-esports{background:#ede9fe;color:#5b21b6;}
+.b-ugc{background:var(--purple-bg);color:var(--purple);}
+.b-welfare{background:#f0fdf4;color:#166534;}
+.b-music{background:#eef2ff;color:#4338ca;}
+.b-merch{background:var(--pink-bg);color:var(--pink);}
+.b-seasonal{background:#ecfdf5;color:#065f46;}
+.b-collab-c{background:#fdf4ff;color:#7e22ce;}
+
+/* ── Badge ─────────────────────────────────────────────────────── */
+.badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap;}
+.b-version{background:var(--primary-light);color:var(--primary);}
+.b-collab{background:var(--purple-bg);color:var(--purple);}
+.b-live{background:#fdf4ff;color:#7e22ce;}
+.b-offline{background:#f0fdf4;color:#166534;}
+.b-online{background:#dbeafe;color:#1e40af;}
+.b-brand{background:var(--orange-bg);color:var(--orange);}
+.b-celeb{background:var(--pink-bg);color:var(--pink);}
+
+/* ── Trend image placeholder ───────────────────────────────────── */
+.img-placeholder{background:var(--surface2);border:1px dashed var(--border);border-radius:8px;height:160px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:12px;text-align:center;line-height:1.5;}
+.trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.trend-label{font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:6px;text-align:center;}
+
+/* ── Section divider ───────────────────────────────────────────── */
+.section-div{border:none;border-top:1px solid var(--border);margin:6px 0 14px;}
+
+/* ── Sub section ───────────────────────────────────────────────── */
+.sub-section{font-size:14px;font-weight:700;color:var(--text);margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.sub-section::before{content:'';display:inline-block;width:4px;height:16px;background:var(--primary);border-radius:2px;}
+
+/* ── Calendar ──────────────────────────────────────────────────── */
+.calendar-section{margin-top:30px;}
+.cal-table{width:100%;border-collapse:collapse;font-size:11.5px;box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;}
+.cal-table th{background:var(--primary);color:#fff;font-weight:600;padding:9px 10px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);}
+.cal-table th:last-child{border-right:none;}
+.cal-table td{padding:8px 10px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;color:var(--text);font-size:11px;line-height:1.5;}
+.cal-table td:last-child{border-right:none;}
+.cal-table tr:last-child td{border-bottom:none;}
+.cal-table tr:nth-child(even) td{background:var(--surface2);}
+.cal-row-label{background:var(--surface2)!important;font-weight:700;color:var(--text-dim);text-align:center;white-space:nowrap;}
+
+/* ── Footnote ──────────────────────────────────────────────────── */
+.footnote{font-size:11.5px;color:var(--text-dim);line-height:1.8;margin-top:16px;padding:14px 16px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--border);}
+.report-footer{text-align:center;margin-top:36px;font-size:12px;color:var(--text-muted);}
+
+/* ── Charts ────────────────────────────────────────────────────── */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+.chart-card{
+  background:#ffffff;
+  border:1px solid #dde2ea;
+  border-radius:16px;
+  padding:20px 24px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,0.07);
+}
+.chart-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#1d5fa8,transparent);
+  opacity:0.6;
+}
+.chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.chart-card-title{font-size:13px;font-weight:700;color:#374151;letter-spacing:0.04em;}
+.chart-card-sub{font-size:11px;color:#9ca3af;margin-top:3px;}
+/* Legend */
+.clegend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+.clegend-item{display:flex;align-items:center;gap:6px;cursor:pointer;opacity:1;transition:opacity 0.2s;user-select:none;}
+.clegend-item.dimmed{opacity:0.28;}
+.clegend-line{width:20px;height:3px;border-radius:2px;flex-shrink:0;}
+.clegend-label{font-size:12px;font-weight:600;color:#374151;}
+/* Chart wrapper + hover panel */
+.chart-wrapper{position:relative;height:280px;}
+.hover-panel{
+  position:absolute;top:0;right:0;
+  background:#ffffff;border:1px solid #dde2ea;border-radius:10px;
+  padding:11px 13px;min-width:180px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.12);
+  opacity:0;transition:opacity 0.18s;pointer-events:none;z-index:50;
+}
+.hover-panel.visible{opacity:1;}
+.hover-date{font-size:11px;color:#6b7280;margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid #e5e7eb;letter-spacing:0.04em;}
+.hover-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 0;}
+.hover-game{display:flex;align-items:center;gap:6px;font-size:11px;color:#6b7280;}
+.hover-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.hover-val{font-size:12px;color:#111827;font-weight:600;}
+/* Stat strip — Image-2 style cards */
+.stat-strip{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.stat-card2{background:#ffffff;border:1px solid #e4e7ed;border-radius:10px;padding:11px 16px;min-width:110px;flex:1;}
+.sc2-header{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.sc2-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.sc2-label{font-size:11px;font-weight:600;color:#6b7280;letter-spacing:0.02em;font-family:"Microsoft YaHei","微软雅黑",sans-serif;}
+.sc2-main{display:flex;align-items:baseline;gap:3px;margin-bottom:1px;}
+.sc2-rank{font-size:26px;font-weight:800;color:#111827;line-height:1;}
+.sc2-unit{font-size:13px;font-weight:600;color:#374151;}
+.sc2-badge{font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px;}
+.sc2-badge.up{color:#ef4444;background:rgba(239,68,68,0.1);}
+.sc2-badge.down{color:#3b82f6;background:rgba(59,130,246,0.1);}
+.sc2-badge.flat{color:#9ca3af;background:#f3f4f6;}
+.sc2-sub{font-size:10px;color:#9ca3af;margin-bottom:5px;}
+.sc2-best{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;color:#374151;padding-top:5px;border-top:1px solid #e4e7ed;}
+.sc2-star{font-size:13px;color:#f59e0b;line-height:1;font-style:normal;}
+.sc2-bdate{font-size:10px;color:#9ca3af;margin-left:2px;font-weight:400;}
+canvas{display:block;width:100%!important;}
+@media(max-width:700px){.charts-grid{grid-template-columns:1fr;}.chart-wrapper{height:220px;}}
+
+/* ── Key-number chips in summary ─────────────────────────────── */
+.plat-tag{display:inline-block;background:#f1f5f9;color:#64748b;font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px;margin:0 2px 0 0;white-space:nowrap;letter-spacing:0.01em;}
+.evt-mark{display:inline;background:#fef3c7;color:#92400e;padding:1px 5px;
+border-radius:3px;font-weight:600;font-size:12.5px;}
+.num-chip{display:inline-block;font-weight:700;font-size:12px;padding:1px 7px;border-radius:5px;line-height:1.6;white-space:nowrap;}
+.num-chip.blue{background:#dbeafe;color:#1d5fa8;}
+.num-chip.red{background:#fee2e2;color:#dc2626;}
+.num-chip.green{background:#d1fae5;color:#065f46;}
+.summary-card li{margin-bottom:8px;font-size:13px;line-height:1.75;}
+.summary-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.summary-kv{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-dim);}
+.summary-kv .lbl{font-weight:600;color:var(--text);}
+/* ── Lightbox ──────────────────────────────────────────────────── */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lb-overlay.open{display:flex;}
+.lb-overlay img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);}
+.lb-close{position:fixed;top:20px;right:28px;font-size:32px;color:#fff;cursor:pointer;line-height:1;opacity:0.8;}
+.lb-close:hover{opacity:1;}
+
+@media(max-width:700px){
+  .summary-grid{grid-template-columns:1fr;}
+  .trend-grid{grid-template-columns:1fr;}
+  body{padding:20px 14px 48px;}
+  .event-table th,.event-table td{padding:8px 12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Language Toggle ─────────────────────────────────────────── -->
+<div class="lang-toggle">
+  <button id="btn-kr" onclick="setLang('kr')">KR</button>
+  <button id="btn-cn" onclick="setLang('cn')">CN</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════════════ -->
+<div class="report-header">
+  <div class="header-top">
+    <div>
+      <div class="header-game">화평정영 PUBG Mobile · PUBGM Operations &amp; Coordination Team</div>
+      <div class="header-title">
+        <span class="txt-kr">CP Out-Game Monthly Review</span>
+        <span class="txt-cn">CP Out-Game Monthly Review</span>
+      </div>
+      <div class="header-sub">
+        <span class="txt-kr">2026년 4월　|　2026.04.01 — 2026.04.30</span>
+        <span class="txt-cn">2026年 4月　|　2026.04.01 — 2026.04.30</span>
+      </div>
+    </div>
+    <div class="header-badge">
+      <div class="header-badge-label">PERIOD</div>
+      <div class="header-badge-value">2026.04</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">📋 <span class="txt-kr">담당팀</span><span class="txt-cn">负责团队</span></span>
+      <span class="meta-value">PUBGM Operation &amp; Coordination Team</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">👤 <span class="txt-kr">담당자</span><span class="txt-cn">负责人</span></span>
+      <span class="meta-value">Ru Yi Jing (经如一)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">📅 <span class="txt-kr">조사 기간</span><span class="txt-cn">调查期间</span></span>
+      <span class="meta-value">2026.04.01 ~ 2026.04.30</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">📡 <span class="txt-kr">홍보 플랫폼</span><span class="txt-cn">调查平台</span></span>
+      <span class="meta-value"><span class="txt-kr">화평캠프, 웨이보, 틱톡, 샤오홍슈, Kwai, Bilibili 등</span><span class="txt-cn">和平营地、weibo、抖音、小红书、快手、Bilibili等</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SUMMARY
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📊</div>
+  <span class="txt-kr">Summary</span>
+  <span class="txt-cn">Summary</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR Summary -->
+<div class="blk-kr">
+  <div class="summary-grid">
+    <div class="summary-card trend">
+      <div class="summary-card-title">📈 인기도 상승 시점</div>
+      <ul>
+        <li><span class="highlight">iOS 랭킹:</span> 월평균 다운로드 <span class="num-chip blue">6위</span> · 월평균 매출 <span class="num-chip blue">2위</span> &nbsp;|&nbsp; Peak: 4.24 마이 리틀 포니 콜라보 유료화 출시 시점</li>
+        <li><span class="highlight">위챗/바이두/웨이보 지수:</span> 월초 <span class="evt-mark">백변사화 신장 출시</span> &amp; 월말 <span class="evt-mark">7주년 이벤트·콜라보 상품·버전 업데이트</span> 시 검색지수 최고점 달성</li>
+      </ul>
+    </div>
+    <div class="summary-card strategy">
+      <div class="summary-card-title">🎯 마케팅 동향</div>
+      <ul>
+        <li><strong>버전 홍보:</strong> 본월 <strong>「CP 7주년」</strong> 중심 홍보 진행.<br>
+          &nbsp;&nbsp;📌 <em>월초</em>: 신장 [백변사화-안니] 연예인 cos → 웨이보 <span class="num-chip red">2236.7만</span> · 샤오홍슈 <span class="num-chip red">3229만</span> · Kwai <span class="num-chip red">7.5억</span><br>
+          &nbsp;&nbsp;📌 <em>월 중하순</em>: 7주년 대규모 홍보+커뮤니티 장려 공모전 → 웨이보 <span class="num-chip red">3286.8만</span> · 샤오홍슈 <span class="num-chip red">2.4억</span> · Kwai <span class="num-chip red">50.2억</span></li>
+        <li><strong>Seasonal Marketing:</strong> 청명절·곡우 및 봄·여름 테마 댓글 참여 유상 이벤트 진행</li>
+        <li><strong>IP 콜라보:</strong> 브랜드 <span class="num-chip blue">7건</span> + 연예인 <span class="num-chip blue">2건</span> = 총 <span class="num-chip blue">9건</span> ｜ 루위샤오 cos 웨이보 <span class="num-chip red">2691.4만</span> ｜ 5대 IP 콜라보 계획 발표</li>
+        <li><strong>IP 파생:</strong> 음원 <span class="num-chip blue">2곡</span> + 퍼리 랜덤박스 굿즈 출시 ｜ 창사시 7주년 페스티벌 오프라인 진행</li>
+        <li><strong>라이브 이벤트:</strong> 라이브 커머스 <span class="num-chip green">6차례</span> ｜ PEL 파이널 '어락관새단' 이벤트 진행</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CN Summary -->
+<div class="blk-cn">
+  <div class="summary-grid">
+    <div class="summary-card trend">
+      <div class="summary-card-title">📈 热度较高时间点</div>
+      <ul>
+        <li><span class="highlight">iOS排名:</span> 月均下载 <span class="num-chip blue">6位</span> · 月均畅销 <span class="num-chip blue">2位</span> &nbsp;|&nbsp; Peak: 4.24 小马宝莉联名商业化推出时流水达到本月高点</li>
+        <li><span class="highlight">微信/百度/weibo指数:</span> 月初 <span class="evt-mark">百变纱华神装上线</span> &amp; 月末 <span class="evt-mark">7周年福利/联动商品/玩法更新</span> 时搜索达到高峰</li>
+      </ul>
+    </div>
+    <div class="summary-card strategy">
+      <div class="summary-card-title">🎯 市场动态</div>
+      <ul>
+        <li><strong>版本宣推:</strong> 本月重点围绕<strong>「和平精英7周年」</strong>进行宣推。<br>
+          &nbsp;&nbsp;📌 <em>月初</em>：神装【百变纱华-安妮】明星cos → weibo <span class="num-chip red">2236.7w</span> · 小红书 <span class="num-chip red">3229w</span> · 快手 <span class="num-chip red">7.5亿</span><br>
+          &nbsp;&nbsp;📌 <em>月中下旬</em>：7周年版本大量宣推+社群激励征稿活动 → weibo <span class="num-chip red">3286.8w</span> · 小红书 <span class="num-chip red">2.4亿</span> · 快手 <span class="num-chip red">50.2亿</span></li>
+        <li><strong>Seasonal Marketing:</strong> 清明·谷雨及春夏主题评论互动有奖活动</li>
+        <li><strong>IP合作联动:</strong> 品牌 <span class="num-chip blue">7件</span> + 明星 <span class="num-chip blue">2件</span> = 合计 <span class="num-chip blue">9件</span> ｜ 卢昱晓cos weibo <span class="num-chip red">2691.4w</span> ｜ 五大IP联动计划官宣</li>
+        <li><strong>IP衍生:</strong> 音乐 <span class="num-chip blue">2首</span> + 毛绒盲盒周边上线 ｜ 长沙线下七周年嘉年华</li>
+        <li><strong>直播活动:</strong> 带货直播 <span class="num-chip green">6场</span> ｜ PEL决赛"鱼乐观赛团"互动抽奖活动</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TREND
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📈</div>
+  <span class="txt-kr">트렌드 추이</span>
+  <span class="txt-cn">热度趋势</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="charts-grid">
+
+  <!-- ── iOS Ranking Chart ── -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-card-title">
+          <span class="txt-kr">🏆 iOS 게임 순위 추세</span>
+          <span class="txt-cn">🏆 iOS 游戏排名趋势</span>
+        </div>
+        <div class="chart-card-sub">CN App Store · Games · 2026.04 · Sensor Tower</div>
+      </div>
+    </div>
+    <!-- Image-2 style stat cards -->
+    <div class="stat-strip">
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#1d5fa8"></span><span class="sc2-label"><span class="txt-kr">다운로드 랭킹</span><span class="txt-cn">下载榜</span></span></div>
+        <div class="sc2-main">
+          <span class="sc2-rank" id="iosAvgFree">—</span>
+          <span class="sc2-unit"><span class="txt-kr">위</span><span class="txt-cn">位</span></span>
+          <span class="sc2-badge" id="iosFreeBadge"></span>
+        </div>
+        <div class="sc2-sub"><span class="txt-kr">2026.04 · 월평균</span><span class="txt-cn">2026.04 · 月均</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="iosBestFree">—</span><span class="sc2-bdate" id="iosBestFreeDate"></span></div>
+      </div>
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#d97706"></span><span class="sc2-label"><span class="txt-kr">인기 랭킹</span><span class="txt-cn">畅销榜</span></span></div>
+        <div class="sc2-main">
+          <span class="sc2-rank" id="iosAvgGross">—</span>
+          <span class="sc2-unit"><span class="txt-kr">위</span><span class="txt-cn">位</span></span>
+          <span class="sc2-badge" id="iosGrossBadge"></span>
+        </div>
+        <div class="sc2-sub"><span class="txt-kr">2026.04 · 월평균</span><span class="txt-cn">2026.04 · 月均</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="iosBestGross">—</span><span class="sc2-bdate" id="iosBestGrossDate"></span></div>
+      </div>
+    </div>
+    <div class="clegend" id="iosLegend"></div>
+    <div class="chart-wrapper" onmouseleave="hidePanel('iosHover')">
+      <canvas id="chartIOS"></canvas>
+      <div class="hover-panel" id="iosHover">
+        <div class="hover-date" id="iosHoverDate">—</div>
+        <div id="iosHoverRows"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Heat Index Chart ── -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-card-title">
+          <span class="txt-kr">🔥 플랫폼 인기도 지수</span>
+          <span class="txt-cn">🔥 平台热度指数</span>
+        </div>
+        <div class="chart-card-sub"><span class="txt-kr">weibo · wechat · baidu · 귀일화지수(각 피크값=100%) · 2026.04</span><span class="txt-cn">微博 · 微信 · 百度 · 归一化指数(各自峰值=100%) · 2026.04</span></div>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#f59e0b"></span><span class="sc2-label"><span class="txt-kr">weibo 지수</span><span class="txt-cn">微博指数</span></span></div>
+        <div class="sc2-main"><span class="sc2-rank" id="wbPeak">—</span></div>
+        <div class="sc2-sub"><span class="txt-kr">피크 원시값</span><span class="txt-cn">峰值原始数据</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="wbPeakDate">—</span></div>
+      </div>
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#16a34a"></span><span class="sc2-label"><span class="txt-kr">wechat 지수</span><span class="txt-cn">微信指数</span></span></div>
+        <div class="sc2-main"><span class="sc2-rank" id="wxPeak">—</span></div>
+        <div class="sc2-sub"><span class="txt-kr">피크 원시값</span><span class="txt-cn">峰值原始数据</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="wxPeakDate">—</span></div>
+      </div>
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#2563eb"></span><span class="sc2-label"><span class="txt-kr">baidu 지수</span><span class="txt-cn">百度指数</span></span></div>
+        <div class="sc2-main"><span class="sc2-rank" id="bdPeak">—</span></div>
+        <div class="sc2-sub"><span class="txt-kr">피크 원시값</span><span class="txt-cn">峰值原始数据</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="bdPeakDate">—</span></div>
+      </div>
+    </div>
+    <div class="clegend" id="heatLegend"></div>
+    <div class="chart-wrapper" onmouseleave="hidePanel('heatHover')">
+      <canvas id="chartHeat"></canvas>
+      <div class="hover-panel" id="heatHover">
+        <div class="hover-date" id="heatHoverDate">—</div>
+        <div id="heatHoverRows"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     1. VERSION PROMO
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📣</div>
+  <span class="txt-kr">1. 버전 홍보</span>
+  <span class="txt-cn">1. 版本宣推</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;">주요 홍보 플랫폼: 화평캠프, 웨이보, 틱톡, 샤오홍슈, Kwai, Bilibili 등</p>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:6px;">2026년 4월에는 각 커뮤니티에서 <strong>'CP 7주년'</strong> 관련 이벤트 위주로 홍보를 진행함. 월초에는 이번달의 신장 <strong>[백변사화-안니]</strong>를 홍보하면서 연예인 신장 코스프레 및 관련 테마 공모전으로 각 플랫폼에서 좋은 홍보 효과를 기록</p>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">관련 웨이보 조회수 <strong><span class="effect-num">2236.7만</span></strong>/샤오홍슈 <strong><span class="effect-num">3229만</span></strong>/Kwai <strong><span class="effect-num">7.5억</span></strong>；중하순 7주년 이벤트 관련 웨이보 조회수 <strong><span class="effect-num">3286.8만</span></strong>/샤오홍슈 <strong><span class="effect-num">2.4억</span></strong>/Kwai <strong><span class="effect-num">50.2억</span></strong></p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">홍보 내용</th><th class="td-content">홍보 활동</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="td-date">2026.04.01~2026.04.08</td>
+          <td class="td-type"><span style="display:inline-block;background:#dbeafe;color:#1e40af;font-weight:700;font-size:12px;padding:3px 9px;border-radius:5px;line-height:1.5">신장 [백변사화-안니]</span></td>
+          <td class="td-content">플랫폼에 홍보 어셋 및 동영상 배포, 테마 공모전 진행<br><strong>UGC：</strong><br><span class="plat-tag">화평캠프</span> 신장 "백변사화" 감상 테마 동영상 공모전<br><span class="plat-tag">웨이보</span> <span class="topic-link">#CP백변사화#</span> 태그 게시 시 현금 보상 및 3000 QQ 코인 획득 기회</td>
+          <td class="td-effect"><span class="topic-link"><span class="topic-link">#CP백변사화#</span></span> 웨이보 <span class="effect-num">2236.7만</span>/샤오홍슈 <span class="effect-num">3229만</span>/Kwai <span class="effect-num">7.5억</span></td>
+          <td class="td-link"><a href="https://weibo.com/7095404909/QuHQ2qEVR" target="_blank">Link ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td-date">2026.04.09~2026.04.30</td>
+          <td class="td-type"><span style="display:inline-block;background:#dbeafe;color:#1e40af;font-weight:700;font-size:12px;padding:3px 9px;border-radius:5px;line-height:1.5">7주년 신규 버전</span><div style="font-size:11px;color:#6b7280;margin-top:4px;line-height:1.4">（테마 에란겔+신규 총기+메트로 로얄 신규 총기+고분 탐험 신맵+초체대항 한정 모드+팀 섬멸전）</div></td>
+          <td class="td-content">플랫폼에 홍보 어셋 및 동영상 배포, 보상 제공 커뮤니티 이벤트 진행<br><strong>UGC：</strong><br><span class="plat-tag">화평캠프</span> 3D 컬렉션관/고분 탐험 신맵/깃발 따라 선물 찾기 이벤트<br><span class="plat-tag">웨이보</span> CP 7주년 장려 이벤트<br><span class="plat-tag">Bilibili</span> CP 7주년 창작 장려 이벤트<br><span class="plat-tag">샤오홍슈</span> CP 7주년 '싸울수록 젊어진다' 공모전</td>
+          <td class="td-effect"><span class="topic-link">#CP7주년#</span> 웨이보 <span class="effect-num">3286.8만</span>/샤오홍슈 <span class="effect-num">2.4억</span>/Kwai <span class="effect-num">50.2억</span><br><span class="topic-link">#CP이스포츠페스티벌#</span> 웨이보 305.5만<br><span class="topic-link">#CP화산탐험#</span> 웨이보 30.2만</td>
+          <td class="td-link">
+            <a href="https://weibo.com/7095404909/QAuh5uQLG" target="_blank">Link 1 ↗</a><br>
+            <a href="https://weibo.com/7095404909/QAJoIb7w2" target="_blank">Link 2 ↗</a><br>
+            <a href="https://gp.qq.com/gicp/news/1134/18772607.html" target="_blank">Link 3 ↗</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;">宣推平台集中在和平营地、weibo、抖音、小红书、快手、Bilibili等</p>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:6px;">2026年4月各社区重点围绕<strong>"和平精英7周年"</strong>相关活动进行宣推，月初宣传新神装【<strong>百变纱华-安妮</strong>】，通过邀请明星进行神装cos并推出相关主题征稿活动取得良好效果</p>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">神装相关话题weibo阅读量<strong><span class="effect-num">2236.7w</span></strong>/小红书浏览量<strong><span class="effect-num">3229w</span></strong>/快手播放量<strong><span class="effect-num">7.5亿</span></strong>；月中下旬7周年活动weibo阅读量<strong><span class="effect-num">3286.8w</span></strong>/小红书浏览量<strong><span class="effect-num">2.4亿</span></strong>/快手播放量<strong><span class="effect-num">50.2亿</span></strong></p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">宣推内容</th><th class="td-content">宣推活动</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="td-date">2026.04.01~2026.04.08</td>
+          <td class="td-type"><span style="display:inline-block;background:#dbeafe;color:#1e40af;font-weight:700;font-size:12px;padding:3px 9px;border-radius:5px;line-height:1.5">神装【百变纱华-安妮】</span></td>
+          <td class="td-content">平台进行常规爆料、发布宣传视频并推出主题征稿活动<br><strong>UGC：</strong><br><span class="plat-tag">和平营地</span>神装鉴赏"百变纱华"主题视频征稿活动<br><span class="plat-tag">weibo</span>带话题<span class="topic-link">#和平精英百变纱华#</span>发布相关微博</td>
+          <td class="td-effect"><span class="topic-link"><span class="topic-link">#和平精英百变纱华#</span></span> weibo <span class="effect-num">2236.7w</span>/小红书 <span class="effect-num">3229w</span>/快手 <span class="effect-num">7.5亿</span></td>
+          <td class="td-link"><a href="https://weibo.com/7095404909/QuHQ2qEVR" target="_blank">Link ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td-date">2026.04.09~2026.04.30</td>
+          <td class="td-type"><span style="display:inline-block;background:#dbeafe;color:#1e40af;font-weight:700;font-size:12px;padding:3px 9px;border-radius:5px;line-height:1.5">7周年新版本</span><div style="font-size:11px;color:#6b7280;margin-top:4px;line-height:1.4">（主题海岛+新枪械+地铁逃生新枪械+古墓迷途新地图+超体对抗限时玩法+歼灭团竞）</div></td>
+          <td class="td-content">平台进行常规爆料、发布宣传视频并推出互动有奖社群活动<br><strong>UGC：</strong><br><span class="plat-tag">和平营地</span>3D收藏馆/古墓迷途新地图/彩旗巡礼活动<br><span class="plat-tag">weibo</span>和平精英七周年激励活动<br><span class="plat-tag">Bilibili</span>和平精英七周年创作激励活动<br><span class="plat-tag">小红书</span>和平精英7周年庆"越打越年轻"征稿活动</td>
+          <td class="td-effect"><span class="topic-link">#和平精英七周年#</span> weibo <span class="effect-num">3286.8w</span>/小红书 <span class="effect-num">2.4亿</span>/快手 <span class="effect-num">50.2亿</span><br><span class="topic-link">#和平精英电玩嘉年华#</span> weibo 305.5w<br><span class="topic-link">#和平精英共闯火山#</span> weibo 30.2w</td>
+          <td class="td-link">
+            <a href="https://weibo.com/7095404909/QAuh5uQLG" target="_blank">Link 1 ↗</a><br>
+            <a href="https://weibo.com/7095404909/QAJoIb7w2" target="_blank">Link 2 ↗</a><br>
+            <a href="https://gp.qq.com/gicp/news/1134/18772607.html" target="_blank">Link 3 ↗</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     2. SEASONAL MARKETING
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">🗓️</div>
+  <span>2. Seasonal Marketing</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:12px;">2026년 4월, 화평캠프·weibo 플랫폼에서 청명절·곡우 및 봄·여름 관련 댓글 참여 공유 유상 이벤트 시리즈를 진행하였습니다.</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th class="td-content">이벤트 내용</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.03~2026.04.12</td><td class="td-type"><span class="badge b-seasonal">커뮤니티</span></td><td><span class="plat-tag">화평캠프</span> #CP청명절봄나들이 태그를 단 게시물 중 추첨을 통해 보상 배포</td><td class="td-link">—</td></tr>
+        <tr><td class="td-date">2026.04.05</td><td class="td-type"><span class="badge b-seasonal">커뮤니티</span></td><td><span class="plat-tag">웨이보</span> 청명절 기간 유저 댓글 중 추첨 통해 보상 배포</td><td class="td-link"><a href="https://weibo.com/7095404909/Qzmyf6INz" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.10~2026.04.19</td><td class="td-type"><span class="badge b-seasonal">커뮤니티</span></td><td><span class="plat-tag">화평캠프</span> #봄과여름으로가는길 이벤트, 봄/여름 한정 의상 공유 시 추첨 통해 보상 배포</td><td class="td-link">—</td></tr>
+        <tr><td class="td-date">2026.04.20</td><td class="td-type"><span class="badge b-seasonal">커뮤니티</span></td><td><span class="plat-tag">웨이보</span> 곡우 절기 기간 유저 댓글 중 추첨 통해 보상 배포</td><td class="td-link"><a href="https://weibo.com/7095404909/QBDXHj7IW" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:12px;">2026年4月，在和平营地、weibo平台推出一系列清明/谷雨及春夏相关评论互动分享有奖活动；</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">类型</th><th class="td-content">活动内容</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.03~2026.04.12</td><td class="td-type"><span class="badge b-seasonal">社群活动</span><td><span class="plat-tag">和平营地</span>#清明踏青行，和平赏春光 活动，发布带话题动态抽取用户获得奖励</td><td class="td-link">—</td></tr>
+        <tr><td class="td-date">2026.04.05</td><td class="td-type"><span class="badge b-seasonal">社群活动</span><td><span class="plat-tag">weibo</span>清明节邀请用户评论互动并进行抽奖</td><td class="td-link"><a href="https://weibo.com/7095404909/Qzmyf6INz" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.10~2026.04.19</td><td class="td-type"><span class="badge b-seasonal">社群活动</span><td><span class="plat-tag">和平营地</span>#我就这样美美走进春夏 活动，分享春夏限定穿搭，抽取用户获得奖励</td><td class="td-link">—</td></tr>
+        <tr><td class="td-date">2026.04.20</td><td class="td-type"><span class="badge b-seasonal">社群活动</span><td><span class="plat-tag">weibo</span>谷雨节气邀请用户进行评论互动有奖活动</td><td class="td-link"><a href="https://weibo.com/7095404909/QBDXHj7IW" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     3. COLLABORATION
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">🤝</div>
+  <span class="txt-kr">3. 콜라보</span>
+  <span class="txt-cn">3. 合作联动</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026년 4월 브랜드 콜라보 7건(Lenovo Legion/My friend rabbit/둥펑특음/원플러스/WONDERLAB/마이 리틀 포니/Dooro Bear)과 연예인 콜라보 2건(루위샤오/화천위) 등 총 9건의 콜라보 진행. 이 중 연예인 '루위샤오'의 신장 코스프레가 좋은 효과를 거둠(웨이보 조회수 <strong><span class="effect-num">2691.4만</span></strong>). 5대 IP(Renegade Immortal/ZXMOTO/전직고수/The Swords/백두산 여행) 콜라보 계획도 발표</p>
+  <div class="sub-section">브랜드 콜라보 <span class="badge b-brand">Brand</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th>브랜드/IP</th><th class="td-type">유형</th><th class="td-content">내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.10</td><td><strong>Lenovo Legion</strong></td><td class="td-type"><span class="badge b-version">디지털</span></td><td>Lenovo Legion x CP Legion Y700 5세대 공식 이스포츠 장비 선정</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QA8FChgHJ" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.17</td><td><strong>My friend rabbit</strong></td><td class="td-type"><span class="badge b-collab">이모티콘</span></td><td>CP x My friend rabbit 인게임 콜라보 한정 세트 출시</td><td class="td-effect"><span class="topic-link">#CPMyfriendrabbit#</span> 웨이보 30.3만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18760025.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.17</td><td><strong>둥펑특음</strong></td><td class="td-type"><span class="badge b-event">음료</span></td><td>CP 7주년×둥펑특음 인게임 '둥펑 충전소' 출시</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18766876.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.21</td><td><strong>원플러스 휴대폰</strong></td><td class="td-type"><span class="badge b-version">디지털</span></td><td>CP x 원플러스 7주년 7대 익스트림 콜라보</td><td class="td-effect"><span class="topic-link">#CP는원플러스로#</span> 웨이보 680.3만</td><td class="td-link"><a href="https://weibo.com/7095404909/QBPKjivbj" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.22</td><td><strong>WONDERLAB</strong></td><td class="td-type"><span class="badge b-welfare">식품</span></td><td>CP x WONDERLAB 한정판 콜라보 선물상자 출시</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18771283.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24</td><td><strong>마이 리틀 포니</strong></td><td class="td-type"><span class="badge b-merch">애니메이션</span></td><td>CP x 마이 리틀 포니 IP 7대 클래식 캐릭터 인게임 출시</td><td class="td-effect"><span class="topic-link">#CP마이리틀포니#</span> 웨이보 162.9만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18769614.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24</td><td><strong>Dooro Bear</strong></td><td class="td-type"><span class="badge b-merch">애니메이션</span></td><td>신규 버디 - Dooro Bear 출시</td><td class="td-effect"><span class="topic-link">#CPDooroBear#</span> 웨이보 23.3만</td><td class="td-link"><a href="https://weibo.com/7095404909/QCgsohIA9" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">유명인/연예인 콜라보 <span class="badge b-celeb">Celebrity</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th>인물</th><th class="td-type">유형</th><th class="td-content">내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.03</td><td><strong>루위샤오</strong></td><td class="td-type"><span class="badge b-celeb">연예인</span></td><td>신장 '백변사화·안니' 연예인 코스프레</td><td class="td-effect"><span class="topic-link">#CP사화대사루위샤오#</span> 웨이보 <span class="effect-num">2691.4만</span>/샤오홍슈 49.5만</td><td class="td-link"><a href="https://weibo.com/7095404909/Qz4hMoIjl" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.26</td><td><strong>화천위</strong></td><td class="td-type"><span class="badge b-celeb">연예인</span></td><td>CP 7주년 홍보대사 화천위가 7주년 테마송 '천만차분향' 발표, 녹주기원 오리지널 모드 창작 공식 발표</td><td class="td-effect"><span class="topic-link">#CP7주년화천위#</span> 웨이보 519.2만<br><span class="topic-link">#화천위녹주기원#</span> 웨이보 168.3만</td><td class="td-link"><a href="https://weibo.com/7095404909/QBEWzzZMK" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/QCCIHagZ4" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026年4月，《和平精英》共进行了9个合作，包括7个品牌合作（联想拯救者/粉红兔子/东鹏特饮/一加手机/万益蓝WONDERLAB/小马宝莉/萌芽熊）与2个明星合作（卢昱晓/华晨宇）；其中明星"卢昱晓"cos游戏内神装「百变纱华·安妮」获得了较好的宣传效果（weibo话题阅读量<strong><span class="effect-num">2691.4w</span></strong>），此外还官宣了五大IP（仙逆动画/张雪机车/全职高手/剑来动画/长白山文旅）联动计划</p>
+  <div class="sub-section">品牌合作 <span class="badge b-brand">Brand</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th>品牌/IP</th><th class="td-type">类型</th><th class="td-content">内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.10</td><td><strong>联想拯救者</strong></td><td class="td-type"><span class="badge b-version">数码</span></td><td>联想拯救者Y700五代正式成为赛事官方指定战机</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QA8FChgHJ" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.17</td><td><strong>粉红兔子</strong></td><td class="td-type"><span class="badge b-collab">表情包</span></td><td>和平精英 x 粉红兔子 推出游戏内联动限定套装</td><td class="td-effect"><span class="topic-link">#和平精英粉红兔子#</span> weibo 30.3w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18760025.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.17</td><td><strong>东鹏特饮</strong></td><td class="td-type"><span class="badge b-event">饮料</span></td><td>和平精英七周年×东鹏特饮 在游戏内推出"东鹏能量站"</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18766876.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.21</td><td><strong>一加手机</strong></td><td class="td-type"><span class="badge b-version">数码</span></td><td>和平精英 x 一加手机 7周年7大刺激联动</td><td class="td-effect"><span class="topic-link">#玩和平精英就用一加手机#</span> weibo 680.3w</td><td class="td-link"><a href="https://weibo.com/7095404909/QBPKjivbj" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.22</td><td><strong>万益蓝WONDERLAB</strong></td><td class="td-type"><span class="badge b-welfare">食品</span></td><td>和平精英 x 万益蓝WONDERLAB 联名限定礼盒上新</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18771283.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24</td><td><strong>小马宝莉</strong></td><td class="td-type"><span class="badge b-merch">动漫</span></td><td>和平精英 x 小马宝莉 游戏内推出IP七大经典角色</td><td class="td-effect"><span class="topic-link">#和平精英小马宝莉联动#</span> weibo 162.9w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18769614.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24</td><td><strong>萌芽熊</strong></td><td class="td-type"><span class="badge b-merch">动漫</span></td><td>全新伙伴-萌芽熊 上线</td><td class="td-effect"><span class="topic-link">#和平精英萌芽熊联动#</span> weibo 23.3w</td><td class="td-link"><a href="https://weibo.com/7095404909/QCgsohIA9" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">名人/明星合作 <span class="badge b-celeb">Celebrity</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th>人物</th><th class="td-type">类型</th><th class="td-content">内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.03</td><td><strong>卢昱晓</strong></td><td class="td-type"><span class="badge b-celeb">明星</span></td><td>联动明星cos游戏内神装「百变纱华·安妮」</td><td class="td-effect"><span class="topic-link">#和平精英纱华大使卢昱晓#</span> weibo <span class="effect-num">2691.4w</span>/小红书 49.5w</td><td class="td-link"><a href="https://weibo.com/7095404909/Qz4hMoIjl" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.26</td><td><strong>华晨宇</strong></td><td class="td-type"><span class="badge b-celeb">明星</span></td><td>和平精英7周年，品牌代言人华晨宇线下演唱7周年主题曲《千万次奔向》，正式官宣成为绿洲启元开发者</td><td class="td-effect"><span class="topic-link">#和平精英7周年华晨宇超级中场秀#</span> weibo 519.2w<br><span class="topic-link">#华晨宇PEL官宣成为绿洲开发者#</span> weibo 168.3w</td><td class="td-link"><a href="https://weibo.com/7095404909/QBEWzzZMK" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/QCCIHagZ4" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     4. IP DERIVATIVE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">🎪</div>
+  <span class="txt-kr">4. IP 파생</span>
+  <span class="txt-cn">4. IP衍生</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <div class="sub-section">온라인 <span class="badge b-online">Online</span></div>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:10px;">2026년 4월 7주년 이벤트에 발맞춰 IP 파생 음원 2곡과 '퍼리 랜덤박스' 굿즈 출시, 홍보대사 화천위가 부른 &lt;천만차분향&gt; 웨이보 조회수 790.2만</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th class="td-content">이벤트 내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.12</td><td class="td-type"><span class="badge b-music">IP파생-음원</span></td><td><span class="plat-tag">QQ 뮤직/Kugou/Kuwo</span> Gilly 7주년 모음곡 &lt;Game Start&gt; 발표</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QAqxIrVqh" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.22</td><td class="td-type"><span class="badge b-music">IP파생-음원</span></td><td>CP 7주년 테마곡 &lt;천만차분향&gt; 정식 발표, 홍보대사 화천위 노래와 편곡 참여</td><td class="td-effect"><span class="topic-link">#화천위CP신곡#</span> 웨이보 790.2만</td><td class="td-link"><a href="https://weibo.com/7095404909/QBWOGpzKu" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24</td><td class="td-type"><span class="badge b-merch">IP파생-굿즈</span></td><td>[CP fun 샤오더우] 퍼리 랜덤박스 출시</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QCfxTaXxD" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">오프라인 <span class="badge b-offline">Offline</span></div>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:10px;">2026년 4월 후난성 창사시에서 <strong>CP 7주년 페스티벌</strong> 이벤트 진행</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-location">장소</th><th class="td-content">이벤트 내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.20<br>~2026.04.26</td><td class="td-location"><span class="badge b-event">후난성<br>창사시</span></td><td>CP 7주년 페스티벌: 인기 코스어 100명 초대, 7주년 퍼레이드/댄스 챌린지/코스프레 대전<br>화천위 신곡 테마전 [화평화화점]<br>CP x 마이 리틀 포니 팝업스토어</td><td class="td-effect"><span class="topic-link">#CP7주년페스티벌#</span> 웨이보 <span class="effect-num">1173.4만</span><br><span class="topic-link">#창사에서싸울수록젊어진다#</span> 웨이보 <span class="effect-num">1018.2만</span></td><td class="td-link"><a href="https://weibo.com/7095404909/QBNMxucOp" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <div class="sub-section">线上活动 <span class="badge b-online">Online</span></div>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:10px;">2026年4月配合7周年活动上线2首IP衍生音乐，推出IP衍生周边毛绒盲盒，其中品牌代言人华晨宇演唱的新歌《千万次奔向》weibo话题阅读量790.2w</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">类型</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.12</td><td class="td-type"><span class="badge b-music">IP衍生-音乐</span></td><td><span class="plat-tag">QQ音乐/酷狗/酷我</span>吉莉7周年集合曲《Game Start》发表</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QAqxIrVqh" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.22</td><td class="td-type"><span class="badge b-music">IP衍生-音乐</span></td><td>和平精英7周年主题曲《千万次奔向》正式上线，品牌代言人华晨宇共创演唱</td><td class="td-effect"><span class="topic-link">#华晨宇和平新歌千万次奔向#</span> weibo 790.2w</td><td class="td-link"><a href="https://weibo.com/7095404909/QBWOGpzKu" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24</td><td class="td-type"><span class="badge b-merch">IP衍生-周边</span></td><td>【和平精英 fun小豆】毛绒盲盒上架</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QCfxTaXxD" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">线下活动 <span class="badge b-offline">Offline</span></div>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:10px;">2026年4月，《和平精英》在<strong>湖南长沙举办七周年嘉年华活动</strong></p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-location">活动地点</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.20<br>~2026.04.26</td><td class="td-location"><span class="badge b-event">湖南长沙</span></td><td>湖南长沙-和平精英七周年嘉年华：邀请百位权威COSER参与，七周年庆生大巡游/舞蹈挑战/cos大战<br>华晨宇全新单曲主题展【和平花花店】<br>CP x 小马宝莉 七周年嘉年华主题快闪店</td><td class="td-effect"><span class="topic-link">#和平精英七周年嘉年华#</span> weibo <span class="effect-num">1173.4w</span><br><span class="topic-link">#这把跳长沙越打越年轻#</span> weibo <span class="effect-num">1018.2w</span></td><td class="td-link"><a href="https://weibo.com/7095404909/QBNMxucOp" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     5. LIVE PLATFORM
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📡</div>
+  <span class="txt-kr">5. 라이브 플랫폼 이벤트</span>
+  <span class="txt-cn">5. 直播平台活动</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026년 4월 각 라이브 플랫폼에서 총 6차례 라이브 커머스를 진행, PEL 파이널 기간에는 중계를 시청하면서 미션을 통해 보상을 추첨하는 <strong>'어락관새단'</strong> 이벤트 진행</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th>플랫폼</th><th class="td-content">이벤트 내용</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.01~2026.04.08</td><td><span class="badge b-commerce">라이브 커머스</span></td><td>Huya</td><td>정영보전</td><td class="td-link"><a href="https://weibo.com/2698412232/QyLCXCgYZ" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.03</td><td><span class="badge b-commerce">라이브 커머스</span></td><td>Douyu</td><td>Douyu 정영 수첩</td><td class="td-link"><a href="https://weibo.com/3982726153/QyVg1rFb4" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.10~2026.04.19</td><td><span class="badge b-esports">이스포츠</span></td><td>CP 공식/Douyu/Huya/Kwai/틱톡/샤오홍슈</td><td>2026 CP Gold Cup S4 개최｜<span class="topic-link">#GoldCups4개막#</span> 웨이보 8.1만｜Douyu 스트리머 4.10 최고 시청자 수 201.19만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18763132.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.10~2026.04.16</td><td><span class="badge b-commerce">라이브 커머스</span></td><td>Douyu</td><td>이스포츠 수첩</td><td class="td-link"><a href="https://weibo.com/3982726153/QA8tBBB9U" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.18</td><td><span class="badge b-commerce">라이브 커머스</span></td><td>Douyu</td><td>화평마켓 업데이트, 독점 신상품 3종 캐릭터 스킨 출시</td><td class="td-link"><a href="https://weibo.com/7095404909/QBdfCjUq9" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.21~2026.04.26</td><td><span class="badge b-event">이벤트+라이브</span></td><td>Douyu</td><td>어락관새단: 라이브방에서 PEL 스프링 파이널 함께 시청, 미션 완료 후 추첨 기회 획득</td><td class="td-link"><a href="https://weibo.com/7095404909/QBOaTqZPi" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24~2026.04.26</td><td><span class="badge b-esports">이스포츠</span></td><td>CP 공식/Douyu/Huya/Kwai/틱톡 등</td><td>PEL 스프링 파이널｜<span class="topic-link">#2026PEL스프링파이널#</span> 웨이보 <span class="effect-num">4624만</span></td><td class="td-link"><a href="https://weibo.com/7095404909/QBG5sq8O8" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.30~2026.05.14</td><td><span class="badge b-commerce">라이브 커머스</span></td><td>Douyu</td><td>화평마켓 Renegade Immortal 콜라보 커머스</td><td class="td-link"><a href="https://weibo.com/3982726153/QCIKfkhK7" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026年4月，《和平精英》在各直播平台进行了6场直播带货活动，并在PEL决赛时推出<strong>"鱼乐观赛团"</strong>一起观看直播完成活动任务抽奖活动</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">类型</th><th>活动平台</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.04.01~2026.04.08</td><td><span class="badge b-commerce">带货直播</span></td><td>虎牙</td><td>精英宝典</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/2698412232/QyLCXCgYZ" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.03</td><td><span class="badge b-commerce">带货直播</span></td><td>斗鱼</td><td>斗鱼精英手册</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/3982726153/QyVg1rFb4" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.10~2026.04.19</td><td><span class="badge b-esports">电竞赛事</span></td><td>CP官方/斗鱼/虎牙/快手/抖音/小红书等</td><td>2026和平精英摸金杯S4开赛</td><td class="td-effect"><span class="topic-link">#摸金杯s4#</span> weibo 10.2w｜斗鱼相关主播4.10热度峰值201.19w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18763132.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.10~2026.04.16</td><td><span class="badge b-commerce">带货直播</span></td><td>斗鱼</td><td>电竞手册</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/3982726153/QA8tBBB9U" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.18</td><td><span class="badge b-commerce">带货直播</span></td><td>斗鱼</td><td>和平集市上新，独家新品【角色-蜜味薄巧】【角色-橙香气泡】【角色-草莓巴菲】3款角色外观</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QBdfCjUq9" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.21~2026.04.26</td><td><span class="badge b-event">活动+直播</span></td><td>斗鱼</td><td>鱼乐观赛团：在直播间一起观看和平精英PEL春季总决赛，完成活动任务获得抽奖机会</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/QBOaTqZPi" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.24~2026.04.26</td><td><span class="badge b-esports">电竞赛事</span></td><td>CP官方/斗鱼/虎牙/快手/抖音/小红书等</td><td>PEL春季总决赛</td><td class="td-effect"><span class="topic-link">#2026PEL春季赛总决赛#</span> weibo <span class="effect-num">4624w</span></td><td class="td-link"><a href="https://weibo.com/7095404909/QBG5sq8O8" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.04.30~2026.05.14</td><td><span class="badge b-commerce">带货直播</span></td><td>斗鱼</td><td>和平集市仙逆联名专场</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/3982726153/QCIKfkhK7" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CALENDAR / INDEX NOTE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title" style="margin-top:32px;">
+  <div class="icon">📅</div>
+  <span class="txt-kr">연간 캘린더</span>
+  <span class="txt-cn">年度日历</span>
+  <div class="section-line"></div>
+</div>
+
+<div style="overflow-x:auto;">
+  <table class="cal-table">
+    <thead>
+      <tr>
+        <th style="min-width:70px;">月份</th>
+        <th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th>
+        <th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cal-row-label">节日</td>
+        <td>元旦/新年<br>春节(农历除夕至初六)<br>元宵节(正月十五)</td>
+        <td>情人节(2.14)<br>复活节</td>
+        <td>植树节(3.12)</td>
+        <td>清明节(4.4-4.6)</td>
+        <td>五一劳动节(5.1-5.5)<br>网络情人节(5.20)<br>端午节(农历五月初五)</td>
+        <td>儿童节(6.1)</td>
+        <td>—</td>
+        <td>七夕节(七月初七)</td>
+        <td>开学季 新学期活动<br>正月十五 中秋节</td>
+        <td>国庆节(10.1-10.7)<br>万圣节(10.31)</td>
+        <td>双十一(11.11)<br>感恩节</td>
+        <td>双十二(12.12)<br>圣诞节(12.25)<br>跨年(12.31)</td>
+      </tr>
+      <tr>
+        <td class="cal-row-label">季节</td>
+        <td colspan="2">寒假/冬季活动</td>
+        <td colspan="3">春季主题活动</td>
+        <td colspan="3">暑假/夏季活动</td>
+        <td colspan="2">秋季活动</td>
+        <td colspan="2">冬季活动</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Footnote -->
+<div class="footnote">
+  <strong>*说明：</strong><br>
+  <strong>weibo指数：</strong>综合测算品牌在weibo平台上的社交声量、社交用户、与社交口碑三大维度数据，衡量品牌在平台上的社交资产经营表现，反应行业品牌格局变化；<br>
+  <strong>微信指数：</strong>基于微信大数据的移动端指数产品，能反映关键词在微信内的热度变化，来源于对微信搜索、公众号文章以及朋友圈公开转发文章形成的综合分析；<br>
+  <strong>百度指数：</strong>显示互联网用户对关键词搜索关注程度及持续变化情况，以网民在百度的搜索量为数据基础；
+</div>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────── -->
+<div class="report-footer">
+  <p>PUBGM Operations &amp; Coordination Team　·　2026.04.01 – 2026.04.31</p>
+  <p style="margin-top:6px;">
+    <a href="https://krafton.atlassian.net/wiki/x/YowTPQ" target="_blank" style="color:var(--primary);text-decoration:none;font-size:12px;">CN Version (Confluence) ↗</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://krafton.atlassian.net/wiki/x/nXzxPQ" target="_blank" style="color:var(--primary);text-decoration:none;font-size:12px;">KR Version (Confluence) ↗</a>
+  </p>
+</div>
+
+<!-- ── LIGHTBOX ────────────────────────────────────────────────── -->
+<div class="lb-overlay" id="lbOverlay" onclick="closeLB()">
+  <span class="lb-close" onclick="closeLB()">✕</span>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ★ 2026.04 MONTHLY DATA
+// ═══════════════════════════════════════════════════════════════
+const DATES=['4/1','4/2','4/3','4/4','4/5','4/6','4/7','4/8','4/9','4/10',
+             '4/11','4/12','4/13','4/14','4/15','4/16','4/17','4/18','4/19','4/20',
+             '4/21','4/22','4/23','4/24','4/25','4/26','4/27','4/28','4/29','4/30'];
+
+const iosData={
+  dates:DATES,
+  // topfreeapplications · Games · CN (和平精英)
+  download:[6,5,5,4,5,4,4,6,9,7,6,6,6,3,5,5,5,4,5,5,6,6,8,6,7,6,7,7,7,7],
+  // topgrossingapplications · Games · CN (和平精英)
+  revenue: [2,2,2,2,2,2,2,2,2,2,2,2,3,3,4,4,4,4,4,4,3,5,3,1,1,2,2,2,2,2]
+};
+
+const heatData={
+  dates:DATES,
+  weibo: [36231195,41644772,38785719,33849820,35256491,35103522,34624149,33762127,33087911,32902484,32899274,26546582,33515550,33741377,32454697,33286851,34191379,33609149,33302468,33497450,31737472,33306773,32396771,35400366,37634316,42184711,41042253,36844517,37527182,36898592],
+  wechat:[200391451,213313693,227898597,297075488,290903538,283124789,194248910,210489812,181253212,200498591,293280871,281614151,197886740,180068300,188620133,182798374,203879277,291112496,278505076,198294282,206313411,181230249,173478158,193211233,273565701,269538641,194160531,169883561,173677076,203845576],
+  baidu: [12325,12413,22839,31543,30083,24650,14473,15285,15221,18569,27706,23839,14034,20776,17838,17844,23122,30456,25659,15114,14045,14565,14932,18633,28336,24997,16608,16619,20179,27405]
+};
+
+// Key events on iOS chart — bilingual
+const KEY_EVENTS={
+  '4/3': {kr:'백변사화·안니 출시', cn:'百变纱华 上线'},
+  '4/9': {kr:'7주년 버전 홍보',   cn:'7周年版本宣推'},
+  '4/24':{kr:'마이리틀포니 연동·Peak', cn:'小马宝莉联动·Peak'},
+};
+
+// Heat chart peak labels — bilingual
+const HEAT_PEAK_LABELS=[
+  {kr:'화천위 7주년 공연',          cn:'华晨宇7周年演出'},    // weibo 4/26
+  {kr:'청명절+백변사화 출시',        cn:'清明节+百变纱华上线'}, // wechat 4/4
+  {kr:'청명절+백변사화 출시', cn:'清明节+百度高峰'},     // baidu 4/4
+];
+
+// ─── Utilities ─────────────────────────────────────────────────
+function fmt(v,d=1){if(v>=1e8)return(v/1e8).toFixed(d)+'亿';if(v>=1e4)return(v/1e4).toFixed(d)+'w';return v.toLocaleString();}
+function avg(a){return Math.round(a.reduce((s,x)=>s+x,0)/a.length);}
+function minIdx(a){let m=Infinity,r=0;a.forEach((v,i)=>{if(v<m){m=v;r=i;}});return r;}
+function maxIdx(a){let m=-Infinity,r=0;a.forEach((v,i)=>{if(v>m){m=v;r=i;}});return r;}
+function normalize(a){const mx=Math.max(...a);return a.map(v=>+(v/mx*100).toFixed(1));}
+function hidePanel(id){document.getElementById(id).classList.remove('visible');}
+function el(id){return document.getElementById(id);}
+function setText(id,v){const e=el(id);if(e)e.textContent=v;}
+function isKR(){return!document.body.classList.contains('lang-cn');}
+function getLabel(lbl){return typeof lbl==='object'?(isKR()?lbl.kr:lbl.cn):lbl;}
+
+// Language-aware number formatter (declared early to avoid TDZ)
+function fmtLang(v,d=1){
+  const unitB=isKR()?'억':'亿';
+  if(v>=1e8) return (v/1e8).toFixed(d)+unitB;
+  if(v>=1e4) return (v/1e4).toFixed(d)+'w';
+  return v.toLocaleString();
+}
+
+// Raw peak store + refresh (declared before heat chart IIFE)
+const _rawPeaks={};
+function refreshPeakDisplay(){
+  if(_rawPeaks.wb!==undefined) setText('wbPeak', fmtLang(_rawPeaks.wb));
+  if(_rawPeaks.wx!==undefined) setText('wxPeak', fmtLang(_rawPeaks.wx));
+  if(_rawPeaks.bd!==undefined) setText('bdPeak', fmtLang(_rawPeaks.bd,0));
+}
+
+// Global chart registry (for label redraw on language switch)
+const _charts=[];
+
+function hexGrad(ctx,hex,h){
+  const h2=hex.startsWith('#')?hex.slice(1):hex;
+  const r=parseInt(h2.slice(0,2),16),g=parseInt(h2.slice(2,4),16),b=parseInt(h2.slice(4,6),16);
+  const gr=ctx.createLinearGradient(0,0,0,h);
+  gr.addColorStop(0,`rgba(${r},${g},${b},0.18)`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+  return gr;
+}
+
+// ─── Star plugin (reference dashboard style) ───────────────────
+function makeStarPlugin(markers,peakLabels){
+  return{id:'starMarkers',afterDraw(chart){
+    const{ctx,scales,chartArea}=chart;
+    if(!chartArea)return;
+    const yScale=scales.y||Object.values(scales).find(s=>s.axis==='y');
+    const{top:topY,bottom:bottomY,left:leftX,right:rightX}=chartArea;
+    const drawnX=[];
+
+    markers.forEach(({dsIdx,ptIdx,color},mi)=>{
+      const meta=chart.getDatasetMeta(dsIdx);if(meta.hidden)return;
+      const pt=meta.data[ptIdx];if(!pt)return;
+      const cx=pt.x,cy=pt.y;
+      const outerR=10,innerR=4,spikes=5;
+      ctx.save();
+
+      // ── Full-height dashed line: chart top → chart bottom ──────
+      ctx.setLineDash([4,4]);
+      ctx.strokeStyle=color+'77';
+      ctx.lineWidth=1.2;
+      ctx.beginPath();
+      ctx.moveTo(cx,topY);
+      ctx.lineTo(cx,bottomY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // ── 5-point star at data point ────────────────────────────
+      ctx.beginPath();
+      for(let s=0;s<spikes*2;s++){
+        const angle=(s*Math.PI/spikes)-Math.PI/2;
+        const r=s%2===0?outerR:innerR;
+        ctx.lineTo(cx+Math.cos(angle)*r,cy+Math.sin(angle)*r);
+      }
+      ctx.closePath();
+      ctx.shadowColor='rgba(0,0,0,0.25)';ctx.shadowBlur=8;
+      ctx.shadowOffsetX=1;ctx.shadowOffsetY=2;
+      ctx.fillStyle=color;ctx.fill();
+      ctx.shadowColor='transparent';ctx.shadowBlur=0;
+      ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
+      ctx.strokeStyle='#ffffff';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+
+      // ── Peak label in TOP PADDING area ────────────────────────
+      const lblObj=peakLabels?peakLabels[mi]:null;
+      if(lblObj){
+        const label=getLabel(lblObj);
+        ctx.font='bold 9px "Microsoft YaHei","微软雅黑","DM Sans",sans-serif';
+        ctx.textAlign='center';ctx.textBaseline='top';
+        const tw=ctx.measureText(label).width;
+        const bw=tw+20,bh=17;
+        let bx=cx-bw/2;
+        bx=Math.max(leftX+2,Math.min(bx,rightX-bw-2));
+        let by=3;
+        drawnX.forEach(px=>{if(Math.abs(px-cx)<bw+8)by=21;});
+        drawnX.push(cx);
+
+        // Label text only (no box)
+        ctx.fillStyle=color;
+        ctx.fillText(label,cx,by+6);
+      }
+      ctx.restore();
+    });
+  }};
+}
+
+// ─── Event annotation lines plugin (iOS chart) ────────────────
+// Labels in top padding, dashed line extends to axis bottom
+const eventLinesPlugin={id:'eventLines',afterDraw(chart){
+  if(!chart._eventDates)return;
+  const{ctx,chartArea,scales:{x}}=chart;
+  if(!chartArea)return;
+  const{top,bottom,left,right}=chartArea;
+  const drawnX=[];
+  Object.entries(chart._eventDates).forEach(([date,lbl])=>{
+    const label=getLabel(lbl);
+    const idx=DATES.indexOf(date);if(idx<0)return;
+    const xPos=x.getPixelForValue(idx);
+    ctx.save();
+    ctx.font='bold 9px "Microsoft YaHei","微软雅黑","DM Sans",sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='top';
+    const tw=ctx.measureText(label).width;
+    const bw=tw+20,bh=17;
+    let bx=xPos-bw/2;
+    bx=Math.max(left+2,Math.min(bx,right-bw-2));
+    let by=3;
+    drawnX.forEach(px=>{if(Math.abs(px-xPos)<bw+8)by=21;});
+    drawnX.push(xPos);
+
+    // Full-height dashed line from label bottom → axis bottom
+    ctx.setLineDash([4,4]);
+    ctx.strokeStyle='rgba(100,116,139,0.42)';
+    ctx.lineWidth=1.3;
+    ctx.beginPath();
+    ctx.moveTo(xPos,by+bh+2);
+    ctx.lineTo(xPos,bottom);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Label text only (no box)
+    ctx.fillStyle='#374151';
+    ctx.fillText(label,xPos,by+6);
+    ctx.restore();
+  });
+}};
+Chart.register(eventLinesPlugin);
+
+function buildLegend(id,datasets,chart){
+  const wrap=el(id);if(!wrap)return;wrap.innerHTML='';
+  datasets.forEach((ds,i)=>{
+    const item=document.createElement('div');item.className='clegend-item';
+    item.innerHTML=`<div class="clegend-line" style="background:${ds.borderColor}"></div><span class="clegend-label">${ds.label}</span>`;
+    item.onclick=()=>{const m=chart.getDatasetMeta(i);m.hidden=!m.hidden;item.classList.toggle('dimmed',m.hidden);chart.update();};
+    wrap.appendChild(item);
+  });
+}
+
+const dsBase={borderWidth:2.2,tension:0.4,fill:false,backgroundColor:'transparent',
+  pointRadius:0,pointHoverRadius:5,pointHoverBackgroundColor:'#fff',pointHoverBorderWidth:2};
+
+// ═══════════════════════════════════════════════════════════════
+// iOS RANKING CHART
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const canvas=el('chartIOS');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const bfI=minIdx(iosData.download),bgI=minIdx(iosData.revenue);
+
+  setText('iosAvgFree',  avg(iosData.download));
+  setText('iosBestFree', `${iosData.download[bfI]}위`);
+  setText('iosBestFreeDate','· '+DATES[bfI]);
+  setText('iosAvgGross', avg(iosData.revenue));
+  setText('iosBestGross',`${iosData.revenue[bgI]}위`);
+  setText('iosBestGrossDate','· '+DATES[bgI]);
+
+  const BLUE='#1d5fa8',GOLD='#d97706';
+  const datasets=[
+    {label:'iOS 다운로드 랭킹',data:iosData.download,borderColor:BLUE,pointHoverBorderColor:BLUE,...dsBase},
+    {label:'iOS 인기 랭킹',data:iosData.revenue, borderColor:GOLD,pointHoverBorderColor:GOLD,...dsBase},
+  ];
+
+  const chart=new Chart(ctx,{
+    type:'line',data:{labels:DATES,datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      animation:{duration:700,easing:'easeInOutQuart'},
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{enabled:false}},
+      layout:{padding:{top:52}},
+      onHover:(e,items)=>{
+        const panel=el('iosHover');
+        if(!items.length){panel.classList.remove('visible');return;}
+        const i=items[0].index;if(i==null){panel.classList.remove('visible');return;}
+        setText('iosHoverDate',`📅 ${DATES[i]}`);
+        el('iosHoverRows').innerHTML=datasets.map(ds=>`
+          <div class="hover-row">
+            <span class="hover-game"><span class="hover-dot" style="background:${ds.borderColor}"></span>${ds.label}</span>
+            <span class="hover-val" style="color:${ds.borderColor}">${ds.data[i]}위</span>
+          </div>`).join('');
+        panel.classList.add('visible');
+      },
+      scales:{
+        x:{grid:{color:'#f0f2f5'},ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',maxTicksLimit:12}},
+        y:{reverse:true,min:1,grid:{color:'#f0f2f5'},
+          ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',callback:v=>`${v}위`},
+          title:{display:true,text:'↑ 낮을수록 순위 높음',font:{size:9,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af'}}
+      }
+    },
+    plugins:[makeStarPlugin([{dsIdx:0,ptIdx:bfI,color:BLUE},{dsIdx:1,ptIdx:bgI,color:GOLD}])]
+  });
+  chart._eventDates=KEY_EVENTS;
+  _charts.push(chart);
+  buildLegend('iosLegend',datasets,chart);
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// HEAT INDEX CHART — weibo=황  wechat=녹  baidu=청  归一化
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const canvas=el('chartHeat');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+
+  const wbN=normalize(heatData.weibo),wxN=normalize(heatData.wechat),bdN=normalize(heatData.baidu);
+  const wbI=maxIdx(heatData.weibo),wxI=maxIdx(heatData.wechat),bdI=maxIdx(heatData.baidu);
+
+  _rawPeaks.wb=heatData.weibo[wbI];  setText('wbPeak',fmtLang(_rawPeaks.wb));   setText('wbPeakDate',DATES[wbI]);
+  _rawPeaks.wx=heatData.wechat[wxI]; setText('wxPeak',fmtLang(_rawPeaks.wx));   setText('wxPeakDate',DATES[wxI]);
+  _rawPeaks.bd=heatData.baidu[bdI];  setText('bdPeak',fmtLang(_rawPeaks.bd,0)); setText('bdPeakDate',DATES[bdI]);
+
+  const YELLOW='#f59e0b',GREEN='#16a34a',BLUE='#2563eb';
+  const hDs={...dsBase,tension:0.38};
+  const datasets=[
+    {label:'weibo',data:wbN,raw:heatData.weibo, borderColor:YELLOW,pointHoverBorderColor:YELLOW,...hDs},
+    {label:'wechat',data:wxN,raw:heatData.wechat,borderColor:GREEN, pointHoverBorderColor:GREEN, ...hDs},
+    {label:'baidu',data:bdN,raw:heatData.baidu, borderColor:BLUE,  pointHoverBorderColor:BLUE,  ...hDs},
+  ];
+
+  const chart=new Chart(ctx,{
+    type:'line',data:{labels:DATES,datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      animation:{duration:700,easing:'easeInOutQuart'},
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{enabled:false}},
+      layout:{padding:{top:52}},
+      onHover:(e,items)=>{
+        const panel=el('heatHover');
+        if(!items.length){panel.classList.remove('visible');return;}
+        const i=items[0].index;if(i==null){panel.classList.remove('visible');return;}
+        setText('heatHoverDate',`📅 ${DATES[i]}`);
+        el('heatHoverRows').innerHTML=datasets.map(ds=>`
+          <div class="hover-row">
+            <span class="hover-game"><span class="hover-dot" style="background:${ds.borderColor}"></span>${ds.label}</span>
+            <span class="hover-val" style="color:${ds.borderColor}">${fmt(ds.raw[i])}<span style="font-size:10px;opacity:0.5;margin-left:3px">(${ds.data[i]}%)</span></span>
+          </div>`).join('');
+        panel.classList.add('visible');
+      },
+      scales:{
+        x:{grid:{color:'#f0f2f5'},ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',maxTicksLimit:12}},
+        y:{min:0,max:108,grid:{color:'#f0f2f5'},
+          ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',stepSize:25,callback:v=>v+'%'},
+          title:{display:true,text:'귀일화지수 (각 피크값=100%)',font:{size:9,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af'}}
+      }
+    },
+    plugins:[makeStarPlugin(
+      [{dsIdx:0,ptIdx:wbI,color:YELLOW},{dsIdx:1,ptIdx:wxI,color:GREEN},{dsIdx:2,ptIdx:bdI,color:BLUE}],
+      HEAT_PEAK_LABELS
+    )]
+  });
+  _charts.push(chart);
+  buildLegend('heatLegend',datasets,chart);
+})();
+
+// ── Language + Lightbox ────────────────────────────────────────
+function setLang(lang){
+  document.body.classList.toggle('lang-cn',lang==='cn');
+  localStorage.setItem('reportLang',lang);
+  refreshPeakDisplay();
+  _charts.forEach(c=>{try{c.update();}catch(e){}});
+}
+function closeLB(){document.getElementById('lbOverlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+(function(){const saved=localStorage.getItem('reportLang');if(saved==='cn')setLang('cn');})();
+</script>
+</body>
+</html>
