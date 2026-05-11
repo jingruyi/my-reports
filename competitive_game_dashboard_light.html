@@ -310,6 +310,13 @@
   .stat-mom-badge.up      { color: #f04a5a; background: rgba(240,74,90,0.12); }
   .stat-mom-badge.down    { color: #4a90e2; background: rgba(74,144,226,0.12); }
   .stat-mom-badge.neutral { color: var(--text-muted); background: var(--border); }
+  .stat-cmp-hint {
+    font-size: 10px;
+    color: var(--text-muted, #9ca3af);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    align-self: center;
+  }
   .stat-meta {
     font-size: 10px;
     color: var(--text-muted);
@@ -639,6 +646,7 @@ const I18N = {
     presetLabels: ['2024년',"Q1'24","Q2'24","Q3'24","Q4'24",'2025년',"Q1'25","Q2'25","Q3'25","Q4'25",'2026년',"Q1'26",'전체'],
     chartTitles: { rank:'iOS 최고 매출 순위 (숫자가 작을수록 순위 높음)', revenue:'iOS 매출', dau:'iOS DAU (일간 활성 이용자)' },
     momLabels: { day:'일환비', week:'주환비', month:'월환비', year:'연환비' },
+    rankMomLabels: { week:'전주 대비', month:'전월 대비' },
     periodLabels: { day:'최신 일', week:'최신 주', month:'최신 월', year:'최신 연' },
     gameLabels: { '和平精英':'화평정영','王者荣耀':'왕자영요','三角洲行动':'Delta Force','无畏契约：源能行动':'Valorant M' },
     subtitle: '화평정영 · 왕자영요 · Delta Force · Valorant M',
@@ -654,6 +662,7 @@ const I18N = {
     presetLabels: ['2024年',"Q1'24","Q2'24","Q3'24","Q4'24",'2025年',"Q1'25","Q2'25","Q3'25","Q4'25",'2026年',"Q1'26",'全部'],
     chartTitles: { rank:'iOS 畅销榜排名（数字越小=排名越高）', revenue:'iOS Revenue', dau:'iOS DAU（日活跃用户）' },
     momLabels: { day:'日环比', week:'周环比', month:'月环比', year:'年环比' },
+    rankMomLabels: { week:'与上周相比', month:'与上月相比' },
     periodLabels: { day:'最新日', week:'最新周', month:'最新月', year:'最新年' },
     gameLabels: { '和平精英':'和平精英','王者荣耀':'王者荣耀','三角洲行动':'三角洲行动','无畏契约：源能行动':'无畏契约手游' },
     subtitle: '和平精英 · 王者荣耀 · 三角洲行动 · 无畏契约手游',
@@ -666,12 +675,33 @@ const MAX_DATE = Object.values(RAW)
   .flatMap(metric => Object.values(metric).map(g => g.dates[g.dates.length - 1]))
   .sort().pop();
 
+// ── 计算最后一个完整月份（最后一天 = 当月末日则用该月，否则退一个月）──
+function computeLastCompleteMonth() {
+  const d = new Date(MAX_DATE + 'T00:00:00');
+  const y = d.getFullYear(), m = d.getMonth() + 1; // m: 1-indexed
+  const lastDayOfMonth = new Date(y, m, 0).getDate();
+  let ty, tm;
+  if (d.getDate() >= lastDayOfMonth) {
+    // 当月数据完整（或当天就是月末）
+    ty = y; tm = m;
+  } else {
+    // 当月数据不完整 → 用上一个月
+    tm = m === 1 ? 12 : m - 1;
+    ty = m === 1 ? y - 1 : y;
+  }
+  const from = `${ty}-${String(tm).padStart(2,'0')}-01`;
+  const lastDay = new Date(ty, tm, 0).getDate();
+  const to   = `${ty}-${String(tm).padStart(2,'0')}-${String(lastDay).padStart(2,'0')}`;
+  return { from, to };
+}
+const LAST_COMPLETE_MONTH = computeLastCompleteMonth();
+
 // ── 同步到输入框和预设按钮 ──
 document.addEventListener('DOMContentLoaded', () => {
   const toEl = document.getElementById('dateTo');
-  if (toEl) { toEl.value = MAX_DATE; toEl.max = MAX_DATE; }
+  if (toEl) { toEl.value = LAST_COMPLETE_MONTH.to; toEl.max = MAX_DATE; }
   const fromEl = document.getElementById('dateFrom');
-  if (fromEl) { fromEl.max = MAX_DATE; }
+  if (fromEl) { fromEl.value = LAST_COMPLETE_MONTH.from; fromEl.max = MAX_DATE; }
   // 更新"2026년"和"전체"预设按钮的结束日期
   document.querySelectorAll('.preset-btn').forEach(btn => {
     const m = btn.getAttribute('onclick');
@@ -688,8 +718,8 @@ document.addEventListener('DOMContentLoaded', () => {
 let currentLang = 'kr';
 let currentMetric = 'rank';
 let currentPeriod = 'day';
-let filterFrom = '2026-01-01';
-let filterTo   = MAX_DATE;
+let filterFrom = LAST_COMPLETE_MONTH.from;
+let filterTo   = LAST_COMPLETE_MONTH.to;
 let hiddenGames = new Set();
 let chart = null;
 let lastAgg = {};
@@ -774,10 +804,20 @@ function formatAxisVal(val, metric) {
 function formatMoM(curr, prev, metric) {
   if (prev === null || prev === undefined || curr === null) return null;
   const diff = curr - prev;
-  if (diff === 0) return { text: '0.0%', pct: 0, cls: 'neutral' };
-  const pct = Math.abs(diff / prev * 100).toFixed(1);
   const improved = metric === 'rank' ? diff < 0 : diff > 0;
   const sign = diff > 0 ? '▲' : '▼';
+  if (metric === 'rank') {
+    // Rank: smaller number = better position
+    // diff > 0 means rank number rose (position WORSENED) → ▼ red
+    // diff < 0 means rank number fell (position IMPROVED)  → ▲ green
+    if (diff === 0) return { text: '—', pct: 0, cls: 'neutral' };
+    const t = typeof currentLang !== 'undefined' && currentLang === 'cn' ? '位' : '위';
+    const posImproved = diff < 0; // position improved when rank number decreased
+    const rankSign = posImproved ? '▲' : '▼';
+    return { text: `${rankSign}${Math.abs(Math.round(diff))}${t}`, cls: posImproved ? 'up' : 'down' };
+  }
+  if (diff === 0) return { text: '0.0%', pct: 0, cls: 'neutral' };
+  const pct = Math.abs(diff / prev * 100).toFixed(1);
   return { text: `${sign}${pct}%`, cls: improved ? 'up' : 'down' };
 }
 
@@ -860,15 +900,79 @@ function buildStats() {
   const aggSub0 = aggregateData(currentMetric, subPeriods[0]);
   const aggSub1 = aggregateData(currentMetric, subPeriods[1]);
 
-  function getLatest(agg, gkey) {
+  // ── Shared helpers (buildStats scope) ──────────────────────────────
+  function toMonthKey(dateStr) { return dateStr.slice(0, 7); }
+
+  // Format comparison period label, e.g. "3/1–3/31"
+  function fmtCmpPeriod(fromStr, toStr) {
+    if (!fromStr || !toStr) return '';
+    function fmtD(s) {
+      const [, m, d] = s.split('-');
+      return `${parseInt(m)}/${parseInt(d)}`;
+    }
+    return `${fmtD(fromStr)}–${fmtD(toStr)}`;
+  }
+
+    function getRawRangeVal(metric, gkey, fromStr, toStr) {
+    const src = RAW[metric][gkey];
+    if (!src) return null;
+    const vals = [];
+    for (let i = 0; i < src.dates.length; i++) {
+      const d = src.dates[i], v = src.values[i];
+      if (d >= fromStr && d <= toStr) {
+        if (metric === 'rank' && v === 0) continue;
+        vals.push(v);
+      }
+    }
+    if (!vals.length) return null;
+    if (metric === 'revenue') return vals.reduce((a,b)=>a+b,0);
+    return vals.reduce((a,b)=>a+b,0) / vals.length;
+  }
+
+    function getLatest(agg, gkey) {
     const d = agg[gkey];
     if (!d || !d.values.length) return { val: null, mom: null, date: null };
     const n = d.values.length;
+    // For revenue/DAU: badge = same calendar days in previous month
+    if (currentMetric === 'revenue' || currentMetric === 'dau') {
+      function shiftToPrevMonthStr(dateStr) {
+        const [y, m, day] = dateStr.split('-').map(Number);
+        const pm = m === 1 ? 12 : m - 1;
+        const py = m === 1 ? y - 1 : y;
+        const lastDayPM = new Date(py, pm, 0).getDate();
+        const clampedDay = Math.min(day, lastDayPM);
+        return `${py}-${String(pm).padStart(2,'0')}-${String(clampedDay).padStart(2,'0')}`;
+      }
+      const prevFrom = shiftToPrevMonthStr(filterFrom);
+      const prevTo   = shiftToPrevMonthStr(filterTo);
+      const curVal   = getRawRangeVal(currentMetric, gkey, filterFrom, filterTo);
+      const prevVal  = getRawRangeVal(currentMetric, gkey, prevFrom, prevTo);
+      return {
+        val:     d.values[n-1],
+        mom:     formatMoM(curVal, prevVal, currentMetric),
+        date:    d.dates[n-1],
+        prevFrom, prevTo,
+      };
+    }
     return {
       val:  d.values[n-1],
       mom:  formatMoM(d.values[n-1], n>=2 ? d.values[n-2] : null, currentMetric),
       date: d.dates[n-1],
     };
+  }
+
+
+  // Compute avg rank from RAW data for an arbitrary date range (ignores filter)
+  function getRankAvgInRange(gkey, fromStr, toStr) {
+    const src = RAW['rank'][gkey];
+    if (!src) return null;
+    const vals = [];
+    for (let i = 0; i < src.dates.length; i++) {
+      if (src.dates[i] >= fromStr && src.dates[i] <= toStr && src.values[i] > 0)
+        vals.push(src.values[i]);
+    }
+    if (!vals.length) return null;
+    return Math.round(vals.reduce((a,b)=>a+b,0) / vals.length);
   }
 
   // Rank metric: show average rank over entire filtered range
@@ -877,16 +981,25 @@ function buildStats() {
     if (!d || !d.values.length) return { val: null, mom: null, date: null };
     const vals = d.values.filter(v => v > 0);
     if (!vals.length) return { val: null, mom: null, date: null };
-    const avg = Math.round(vals.reduce((a,b)=>a+b,0) / vals.length);
-    // MoM: compare last two periods from period-aggregated data
-    const pa = aggPeriod[gkey];
-    const pn = pa ? pa.values.length : 0;
-    const prevVal = (pa && pn >= 2) ? pa.values[pn-2] : null;
-    const curVal  = (pa && pn >= 1) ? pa.values[pn-1] : null;
+    const curAvg = Math.round(vals.reduce((a,b)=>a+b,0) / vals.length);
+    // Badge: compare with same calendar days in previous month
+    // e.g. filter 4/1–4/15 → compare 3/1–3/15; filter 4/1–4/30 → compare 3/1–3/31
+    function shiftToPrevMonth(dateStr) {
+      const [y, m, day] = dateStr.split('-').map(Number);
+      const pm = m === 1 ? 12 : m - 1;
+      const py = m === 1 ? y - 1 : y;
+      const lastDayPM = new Date(py, pm, 0).getDate();
+      const clampedDay = Math.min(day, lastDayPM);
+      return `${py}-${String(pm).padStart(2,'0')}-${String(clampedDay).padStart(2,'0')}`;
+    }
+    const prevFrom = shiftToPrevMonth(filterFrom);
+    const prevTo   = shiftToPrevMonth(filterTo);
+    const prevAvg  = getRankAvgInRange(gkey, prevFrom, prevTo);
     return {
-      val:  avg,
-      mom:  formatMoM(curVal, prevVal, 'rank'),
-      date: null,
+      val:     curAvg,
+      mom:     formatMoM(curAvg, prevAvg, 'rank'),
+      date:    null,
+      prevFrom, prevTo,   // expose for tooltip
     };
   }
 
@@ -904,8 +1017,12 @@ function buildStats() {
     const sub0    = getLatest(aggSub0,    g.key);
     const sub1    = getLatest(aggSub1,    g.key);
 
+    const cmpLabel = (primary.prevFrom && primary.prevTo)
+      ? fmtCmpPeriod(primary.prevFrom, primary.prevTo) : '';
+    const cmpTitle = cmpLabel
+      ? (currentLang === 'cn' ? `与 ${cmpLabel} 相比` : `${cmpLabel} 대비`) : '';
     const momBadge = primary.mom
-      ? `<span class="stat-mom-badge ${primary.mom.cls}">${primary.mom.text}</span>` : '';
+      ? `<span class="stat-mom-badge ${primary.mom.cls}" title="${cmpTitle}">${primary.mom.text}</span>` : '';
 
     // Peak: for revenue+dau use current period aggregation; for rank use day granularity
     const peakSource = ((currentMetric === 'revenue' || currentMetric === 'dau') && currentPeriod !== 'day')
@@ -927,10 +1044,77 @@ function buildStats() {
     const peakHtml = peakVal !== null
       ? `<div class="stat-peak">⭐ <span>${formatVal(peakVal, currentMetric)}</span> · ${peakStr}</div>` : '';
 
-    function subCell(periodKey, item) {
-      const c = item.mom ? item.mom.cls : 'neutral';
-      const txt = item.mom ? item.mom.text : '—';
-      const lbl = t.momLabels[periodKey] || periodKey;
+
+
+    // ── Sub-cell calendar-month comparison (all metrics) ─────────────
+    function getCalendarMonthMoM(metric, gkey) {
+      // Determine the last calendar month within the filter range
+      const curMonthKey  = toMonthKey(filterTo);   // e.g. "2026-04"
+      const [cy, cm]     = curMonthKey.split('-').map(Number);
+      const lastDayOfCurMonth = new Date(cy, cm, 0).getDate();
+      const filterToDay = parseInt(filterTo.slice(8, 10));
+      // 方案B: only show if filterTo covers the full current month
+      if (filterToDay < lastDayOfCurMonth) return null;
+      // Previous calendar month
+      const prevYear  = cm === 1 ? cy - 1 : cy;
+      const prevMonth = cm === 1 ? 12 : cm - 1;
+      const prevMonthKey = `${prevYear}-${String(prevMonth).padStart(2,'0')}`;
+      // Full calendar month date ranges
+      const curFrom  = `${curMonthKey}-01`;
+      const curTo    = `${cy}-${String(cm).padStart(2,'0')}-${String(lastDayOfCurMonth).padStart(2,'0')}`;
+      const prevFrom = `${prevMonthKey}-01`;
+      const prevTo   = `${prevYear}-${String(prevMonth).padStart(2,'0')}-${String(new Date(prevYear, prevMonth, 0).getDate()).padStart(2,'0')}`;
+      const curVal  = getRawRangeVal(metric, gkey, curFrom, curTo);
+      const prevVal = getRawRangeVal(metric, gkey, prevFrom, prevTo);
+      return formatMoM(
+        metric === 'rank' ? (curVal ? Math.round(curVal) : null) : curVal,
+        metric === 'rank' ? (prevVal ? Math.round(prevVal) : null) : prevVal,
+        metric
+      );
+    }
+
+    // ── Sub-cell calendar-week comparison (all metrics) ───────────────
+    function getCalendarWeekMoM(metric, gkey) {
+      // Last 7 days in filter vs 7 days before
+      const toDate   = new Date(filterTo + 'T00:00:00');
+      const fromDate = new Date(filterFrom + 'T00:00:00');
+      const curTo    = filterTo;
+      const curFrom  = new Date(Math.max(toDate - 6*86400000, fromDate)).toISOString().slice(0,10);
+      const prevTo   = new Date(new Date(curFrom+'T00:00:00') - 86400000).toISOString().slice(0,10);
+      const prevFrom = new Date(new Date(curFrom+'T00:00:00') - 7*86400000).toISOString().slice(0,10);
+      const curVal  = getRawRangeVal(metric, gkey, curFrom, curTo);
+      const prevVal = getRawRangeVal(metric, gkey, prevFrom, prevTo);
+      return formatMoM(
+        metric === 'rank' ? (curVal ? Math.round(curVal) : null) : curVal,
+        metric === 'rank' ? (prevVal ? Math.round(prevVal) : null) : prevVal,
+        metric
+      );
+    }
+
+    function subCell(periodKey, item, gkey) {
+      let c, txt, lbl;
+      if (periodKey === 'month') {
+        // All metrics: use proper calendar-month comparison
+        const mom = getCalendarMonthMoM(currentMetric, gkey);
+        c   = mom ? mom.cls : 'neutral';
+        txt = mom ? mom.text : '—';
+        lbl = currentMetric === 'rank'
+          ? ((t.rankMomLabels && t.rankMomLabels.month) || t.momLabels.month)
+          : t.momLabels.month;
+      } else if (periodKey === 'week') {
+        // All metrics: use rolling 7-day comparison
+        const mom = getCalendarWeekMoM(currentMetric, gkey);
+        c   = mom ? mom.cls : 'neutral';
+        txt = mom ? mom.text : '—';
+        lbl = currentMetric === 'rank'
+          ? ((t.rankMomLabels && t.rankMomLabels.week) || t.momLabels.week)
+          : t.momLabels.week;
+      } else {
+        // day / year: use existing aggregated comparison
+        c   = item.mom ? item.mom.cls : 'neutral';
+        txt = item.mom ? item.mom.text : '—';
+        lbl = t.momLabels[periodKey] || periodKey;
+      }
       return `<div class="stat-sub-cell">
         <div class="sub-label">${lbl}</div>
         <div class="sub-value ${c}">${txt}</div>
@@ -949,12 +1133,13 @@ function buildStats() {
       <div class="stat-main-row">
         <div class="stat-big-value">${primary.val !== null ? formatVal(primary.val, currentMetric) : '—'}</div>
         ${momBadge}
+        ${cmpLabel ? `<span class="stat-cmp-hint">vs ${cmpLabel}</span>` : ''}
       </div>
       <div class="stat-meta">${currentMetric === 'rank' ? (currentLang==='cn' ? '平均排名' : '평균 순위') : formatPeriodLabel(primary.date, currentPeriod)} · ${metricName}</div>
       ${peakHtml}
       <div class="stat-sub-row">
-        ${subCell(subPeriods[0], sub0)}
-        ${subCell(subPeriods[1], sub1)}
+        ${subCell(subPeriods[0], sub0, g.key)}
+        ${subCell(subPeriods[1], sub1, g.key)}
       </div>
     </div>`;
   }).join('');
