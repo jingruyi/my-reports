@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海出发·甘青环线10天9晚深度攻略</title>
+    <style>
+        :root {
+            --bg: #fdf8f1;
+            --card: #ffffff;
+            --gold: #c8965c;
+            --dark: #3e2c1b;
+            --accent1: #e07c4f;
+            --accent2: #5a7d7c;
+            --accent3: #8b5e3c;
+            --highlight: #fff8e7;
+            --border: #e8d5c0;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.8;
+            padding: 0;
+        }
+        
+        /* 封面头部 */
+        .hero {
+            background: linear-gradient(135deg, #b25d3c 0%, #d4946a 30%, #e8c89e 70%, #5a7d7c 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 30px;
+        }
+        .hero h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .hero .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+        .hero .tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero .tag {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 章节标题 */
+        h2 {
+            font-size: 2em;
+            margin: 35px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--gold);
+            display: inline-block;
+            color: var(--accent3);
+        }
+        .section-header {
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: var(--accent1);
+            margin: 20px 0 10px;
+            padding-left: 12px;
+            border-left: 4px solid var(--accent1);
+        }
+        h4 {
+            font-size: 1.1em;
+            color: var(--accent2);
+            margin: 15px 0 8px;
+        }
+        
+        /* 卡片 */
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 16px 0;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+        .card-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .card-row .card {
+            flex: 1;
+            min-width: 260px;
+        }
+        
+        /* 每日行程卡片 */
+        .day-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border-left: 6px solid var(--accent1);
+            position: relative;
+        }
+        .day-card .day-num {
+            position: absolute;
+            top: -14px;
+            left: 20px;
+            background: var(--accent1);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+        }
+        .day-card .day-theme {
+            color: var(--accent1);
+            font-weight: bold;
+            font-size: 1.15em;
+            margin: 8px 0 12px;
+            padding-top: 4px;
+        }
+        .day-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .day-card ul li {
+            padding: 5px 0;
+            border-bottom: 1px dotted var(--border);
+        }
+        .day-card ul li:last-child { border-bottom: none; }
+        .day-card .time-label {
+            display: inline-block;
+            background: var(--highlight);
+            padding: 1px 10px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--accent3);
+            margin-right: 6px;
+            min-width: 85px;
+            text-align: center;
+        }
+        
+        /* 八字重点卡片 */
+        .bazi-highlight {
+            background: linear-gradient(135deg, #fef9f0 0%, #fdf2e4 100%);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+            box-shadow: 0 4px 16px rgba(200,150,92,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .bazi-highlight::before {
+            content: "♾️";
+            position: absolute;
+            top: -30px;
+            right: -10px;
+            font-size: 120px;
+            opacity: 0.06;
+        }
+        .bazi-highlight h3 {
+            border-left: none;
+            padding-left: 0;
+            color: var(--accent3);
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .bazi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 16px;
+        }
+        .bazi-person {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .bazi-person:hover { transform: translateY(-2px); }
+        .bazi-person .person-icon {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+        }
+        .bazi-person .person-name {
+            font-weight: bold;
+            font-size: 1.15em;
+            color: var(--accent1);
+        }
+        .bazi-person .person-xi {
+            color: var(--accent3);
+            font-weight: 600;
+            margin: 6px 0;
+        }
+        .bazi-person .person-tip {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* 预算重点卡片 */
+        .budget-highlight {
+            background: linear-gradient(135deg, #f0f7f6 0%, #e6f0ef 100%);
+            border: 2px solid var(--accent2);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+            box-shadow: 0 4px 16px rgba(90,125,124,0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        .budget-highlight::before {
+            content: "💰";
+            position: absolute;
+            top: -20px;
+            right: -5px;
+            font-size: 100px;
+            opacity: 0.06;
+        }
+        .budget-highlight h3 {
+            border-left: none;
+            padding-left: 0;
+            color: var(--accent2);
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .budget-total {
+            text-align: center;
+            font-size: 2.2em;
+            font-weight: bold;
+            color: var(--accent2);
+            margin: 16px 0;
+        }
+        .budget-total span {
+            font-size: 0.5em;
+            color: #888;
+            font-weight: normal;
+        }
+        
+        /* 通用表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        th {
+            background: var(--accent3);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background: #fefcf9; }
+        
+        /* 标注 */
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .badge-gold { background: #fff0d6; color: #b27d3c; }
+        .badge-water { background: #dff0f0; color: #3d6e6e; }
+        .badge-fire { background: #fde4d6; color: #b24e2c; }
+        .badge-earth { background: #efe0cc; color: #6e4f2c; }
+        
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.5em; }
+            .hero { padding: 30px 15px; border-radius: 0 0 20px 20px; }
+            .card-row { flex-direction: column; }
+            .day-card { padding: 16px; }
+            .day-card .day-num { font-size: 0.8em; padding: 3px 12px; top: -12px; }
+            .container { padding: 0 12px; }
+        }
+        
+        @media print {
+            body { background: white; }
+            .hero { border-radius: 0; }
+            .card, .day-card, .bazi-highlight, .budget-highlight { box-shadow: none; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="hero">
+    <h1>🌄 上海出发 · 甘青环线</h1>
+    <div class="subtitle">10天9晚深度攻略</div>
+    <div class="tags">
+        <span class="tag">📅 9.25 — 10.4</span>
+        <span class="tag">👩‍👩‍👧 三位女生</span>
+        <span class="tag">💰 人均1.3万起</span>
+        <span class="tag">♾️ 八字调和</span>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- 路线总览 -->
+<div class="section-header"><h2>📝 路线总览</h2></div>
+<table>
+    <tr><th>天数</th><th>日期</th><th>行程亮点</th><th>住宿地</th></tr>
+    <tr><td>Day 1</td><td>9月25日</td><td>上海✈️西宁，高原初适应</td><td>西宁</td></tr>
+    <tr><td>Day 2</td><td>9月26日</td><td>青海湖骑行+日落，<span class="badge badge-water">C补水日</span></td><td>青海湖畔</td></tr>
+    <tr><td>Day 3</td><td>9月27日</td><td>茶卡天空之镜，翻越大冬树山</td><td>祁连</td></tr>
+    <tr><td>Day 4</td><td>9月28日</td><td>卓尔山雪顶，七彩丹霞日落</td><td>张掖</td></tr>
+    <tr><td>Day 5</td><td>9月29日</td><td>嘉峪关雄关，悬壁长城</td><td>嘉峪关</td></tr>
+    <tr><td>Day 6</td><td>9月30日</td><td>鸣沙山骑骆驼，月牙泉日落</td><td>敦煌</td></tr>
+    <tr><td>Day 7</td><td>10月1日</td><td>莫高窟朝圣（A类票）</td><td>敦煌</td></tr>
+    <tr><td>Day 8</td><td>10月2日</td><td><strong>🌟 敦煌慢游自由日</strong></td><td>敦煌</td></tr>
+    <tr><td>Day 9</td><td>10月3日</td><td>敦煌✈️上海，返程</td><td>上海</td></tr>
+    <tr><td>Day 10</td><td>10月4日</td><td>备选缓冲日</td><td>—</td></tr>
+</table>
+
+<!-- 每日行程 -->
+<div class="section-header"><h2>🗓️ 每日详细行程</h2></div>
+
+<!-- Day1 -->
+<div class="day-card">
+    <div class="day-num">DAY 1</div>
+    <div class="day-theme">9月25日 · 上海 → 西宁 · 初上高原，金土入怀</div>
+    <ul>
+        <li><span class="time-label">07:55</span> 上海浦东机场出发（MU2309 / HO1275）</li>
+        <li><span class="time-label">11:30</span> 专车接机，入住酒店（新华联索菲特/万达嘉华）</li>
+        <li><span class="time-label">12:30</span> 午餐：<strong>益鑫羊肉手抓馆</strong>（西宁老字号）</li>
+        <li><span class="time-label">14:00</span> <strong>东关清真大寺</strong>，金石建筑，庄严肃穆</li>
+        <li><span class="time-label">18:30</span> 莫家街逛吃：德禄酸奶、甜醅子、酿皮</li>
+        <li><span class="time-label">21:00</span> 早点休息，适应海拔</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>西宁新华联索菲特 / 万达嘉华（600-800元/间）</p>
+    <p>🍜 <strong>美食：</strong>手抓羊肉、土火锅、酸奶 | 💰 <strong>本日约：</strong>500元/人</p>
+    <p>♾️ <strong>五行：</strong>C选朝北房间补水，B选朝南暖局。初上高原，慢行多喝水。</p>
+</div>
+
+<!-- Day2 -->
+<div class="day-card">
+    <div class="day-num">DAY 2</div>
+    <div class="day-theme">9月26日 · 西宁 → 青海湖 · <span class="badge badge-water">大湖补水 · C的主场</span></div>
+    <ul>
+        <li><span class="time-label">08:00</span> 出发，京藏高速+109国道，远观日月山</li>
+        <li><span class="time-label">11:00</span> <strong>青海湖二郎剑</strong>，C多静坐湖边深呼吸，让水气入体</li>
+        <li><span class="time-label">13:30</span> 湖畔藏家乐午餐：牦牛肉火锅、青稞饼</li>
+        <li><span class="time-label">15:00</span> 环湖南路骑行1小时，黑马河观景台拍照</li>
+        <li><span class="time-label">18:00</span> 黑马河日落，湖水由蓝变金</li>
+        <li><span class="time-label">19:30</span> 晚餐：炕锅羊肉</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>青海湖畔藏式客栈（500-700元/间），全员近水而居</p>
+    <p>🍜 <strong>美食：</strong>炕锅羊肉、牦牛肉包子 | 💰 <strong>本日约：</strong>585元/人</p>
+    <p>♾️ <strong>五行：</strong>今日C的能量日！青海湖是整条线路的水行核心。B无需担心，干爽仍在。</p>
+</div>
+
+<!-- Day3 -->
+<div class="day-card">
+    <div class="day-num">DAY 3</div>
+    <div class="day-theme">9月27日 · 青海湖 → 茶卡 → 祁连 · <span class="badge badge-gold">盐白如金</span></div>
+    <ul>
+        <li><span class="time-label">06:30</span> 青海湖日出（自愿早起）</li>
+        <li><span class="time-label">10:00</span> <strong>茶卡天空之镜</strong>，盐白属金，A和C多感受</li>
+        <li><span class="time-label">13:00</span> 茶卡镇午餐：羊肉面片</li>
+        <li><span class="time-label">14:00</span> 翻越大冬树山垭口（4120m），经幡与雪山</li>
+        <li><span class="time-label">18:30</span> 抵达祁连，撒拉尔美食土火锅</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>祁连五矿国贸 / 卓尔山民宿（500-700元/间）</p>
+    <p>🍜 <strong>美食：</strong>黄菇炒肉、酥油茶 | 💰 <strong>本日约：</strong>610元/人</p>
+    <p>♾️ <strong>五行：</strong>茶卡盐白补A、C，祁连雪顶金气渐盛。</p>
+</div>
+
+<!-- Day4 -->
+<div class="day-card">
+    <div class="day-num">DAY 4</div>
+    <div class="day-theme">9月28日 · 祁连 → 张掖 · <span class="badge badge-fire">丹霞火土 · B的高光</span></div>
+    <ul>
+        <li><span class="time-label">08:00</span> <strong>卓尔山</strong>，远眺牛心山雪顶，赤山雪顶同框</li>
+        <li><span class="time-label">13:00</span> 翻越扁都口，祁连山峡谷秋色</li>
+        <li><span class="time-label">17:30</span> <strong>七彩丹霞</strong>日落，4号观景台最佳</li>
+        <li><span class="time-label">20:30</span> 张掖甘州市场：炒拨拉+杏皮水</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>张掖富来登温泉 / 凯艺酒店（400-600元/间）</p>
+    <p>🍜 <strong>美食：</strong>搓鱼面、炒拨拉、卷子鸡 | 💰 <strong>本日约：</strong>565元/人</p>
+    <p>♾️ <strong>五行：</strong>B的高光时刻！丹霞火土暖透B的寒湿。C多喝杏皮水润燥。</p>
+</div>
+
+<!-- Day5 -->
+<div class="day-card">
+    <div class="day-num">DAY 5</div>
+    <div class="day-theme">9月29日 · 张掖 → 嘉峪关 · <span class="badge badge-gold">金戈铁马</span></div>
+    <ul>
+        <li><span class="time-label">11:00</span> <strong>嘉峪关关城</strong>，天下第一雄关，A多摸城墙砖石</li>
+        <li><span class="time-label">14:00</span> 午餐：大漠馕坑肉、羊肉粉汤</li>
+        <li><span class="time-label">16:00</span> <strong>悬壁长城</strong>，长城如金蛇盘踞黑山</li>
+        <li><span class="time-label">18:30</span> 大唐美食街：烤羊腿</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>嘉峪关诺金国际 / 广场假日（400-550元/间）</p>
+    <p>🍜 <strong>美食：</strong>馕坑肉、羊肉粉汤 | 💰 <strong>本日约：</strong>530元/人</p>
+    <p>♾️ <strong>五行：</strong>全程金气最凝聚的人文景观。A今日能量最强。</p>
+</div>
+
+<!-- Day6 -->
+<div class="day-card">
+    <div class="day-num">DAY 6</div>
+    <div class="day-theme">9月30日 · 嘉峪关 → 敦煌 · <span class="badge badge-water">沙海月泉</span></div>
+    <ul>
+        <li><span class="time-label">07:30</span> 连霍高速前往敦煌，瓜州服务区吃蜜瓜</li>
+        <li><span class="time-label">13:00</span> 午餐：达记驴肉黄面</li>
+        <li><span class="time-label">15:00</span> <strong>鸣沙山月牙泉</strong>，骑骆驼，C走到泉边感受沙中水</li>
+        <li><span class="time-label">19:00</span> 鸣沙山日落，金色沙海</li>
+        <li><span class="time-label">21:00</span> 沙洲夜市：红柳烤肉、杏皮水</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>敦煌河西走廊大酒店 / 敦煌山庄（600-900元/间）</p>
+    <p>🍜 <strong>美食：</strong>驴肉黄面、红柳烤肉 | 💰 <strong>本日约：</strong>740元/人</p>
+    <p>♾️ <strong>五行：</strong>月牙泉是上天给C在敦煌的礼物，沙中水奇迹。</p>
+</div>
+
+<!-- Day7 -->
+<div class="day-card">
+    <div class="day-num">DAY 7</div>
+    <div class="day-theme">10月1日 · 敦煌莫高窟 · <span class="badge badge-gold">金石千年</span></div>
+    <ul>
+        <li><span class="time-label">09:00</span> <strong>莫高窟A类票</strong>（238元，需提前30天抢），8个洞窟+专业讲解</li>
+        <li><span class="time-label">13:30</span> 午餐：顺张黄面馆</li>
+        <li><span class="time-label">15:00</span> <strong>敦煌博物馆</strong>（免费需预约），丝路金石文物</li>
+        <li><span class="time-label">18:00</span> 党河风情线漫步，C沿河收水入怀</li>
+        <li><span class="time-label">19:30</span> 晚餐：靖远尕六羊羔肉</li>
+    </ul>
+    <p>🏨 <strong>住宿：</strong>同Day6 | 💰 <strong>本日约：</strong>768元/人</p>
+    <p>♾️ <strong>五行：</strong>壁画矿石颜料千年不褪，金土木火美之结合，三人皆宜。</p>
+</div>
+
+<!-- Day8 慢游日 -->
+<div class="day-card" style="border-left-color: #5a7d7c;">
+    <div class="day-num" style="background: #5a7d7c;">DAY 8 🌟</div>
+    <div class="day-theme" style="color: #5a7d7c;">10月2日 · 敦煌慢游自由日 · 随心而定</div>
+    <p><strong>🌿 上午三选一：</strong></p>
+    <ul>
+        <li><strong>A. 西千佛洞</strong>（30元）—— 莫高窟姊妹窟，人少清静，河谷水边漫步</li>
+        <li><strong>B. 雷音寺</strong>（免费）—— 唐代古刹，红墙出片</li>
+        <li><strong>C. 敦煌画院泥板画体验</strong>（120元）—— 2小时临摹一幅飞天</li>
+    </ul>
+    <p><strong>🌞 下午三选一：</strong></p>
+    <ul>
+        <li><strong>A. 再访鸣沙山</strong>（0元，门票3日有效）—— 人少光线好</li>
+        <li><strong>B. 党河漫步+买特产</strong>（李广杏、夜光杯）</li>
+        <li><strong>C. 摘星阁下午茶</strong>（约80元/人）—— 敦煌山庄顶楼，远眺沙山</li>
+    </ul>
+    <p><strong>🌙 晚间：</strong>沙洲胡杨焖饼告别晚宴</p>
+    <p>💰 <strong>本日约：</strong>610-650元/人 | 📌 备选日，可灵活压缩</p>
+</div>
+
+<!-- Day9-10 -->
+<div class="day-card">
+    <div class="day-num">DAY 9-10</div>
+    <div class="day-theme">10月3-4日 · 敦煌 → 上海 · 返程 & 缓冲</div>
+    <p>睡到自然醒，党河边最后一次散步。航班建议：MU2216 敦煌15:30-浦东22:10。</p>
+    <p>Day10为备选缓冲，若航班变动或想西安经停半日游（钟楼、回民街）可用。</p>
+    <p>💰 <strong>Day9约：</strong>150元/人（餐+送机）</p>
+</div>
+
+<!-- 🏨 住宿总览 -->
+<div class="section-header"><h2>🏨 住宿方案总览</h2></div>
+<table>
+    <tr><th>天数</th><th>城市</th><th>推荐酒店</th><th>价格/间</th><th>五行选房</th></tr>
+    <tr><td>Day1</td><td>西宁</td><td>新华联索菲特 / 万达嘉华</td><td>600-800</td><td>C朝北，B朝南</td></tr>
+    <tr><td>Day2</td><td>青海湖</td><td>云朵酒店 / 藏式客栈</td><td>500-700</td><td>全员近水</td></tr>
+    <tr><td>Day3</td><td>祁连</td><td>五矿国贸 / 卓尔山民宿</td><td>500-700</td><td>A朝西观雪山</td></tr>
+    <tr><td>Day4</td><td>张掖</td><td>富来登温泉 / 凯艺</td><td>400-600</td><td>C选安静北房</td></tr>
+    <tr><td>Day5</td><td>嘉峪关</td><td>诺金国际 / 广场假日</td><td>400-550</td><td>标准间</td></tr>
+    <tr><td>Day6-8</td><td>敦煌</td><td>河西走廊 / 敦煌山庄</td><td>600-900</td><td>家庭房/三人间</td></tr>
+</table>
+<p style="text-align:center; margin-top:8px; color:#888;">住宿方案：1间双床房（A+B）+ 1间大床房（C），或民宿三人间，人均约2700元。</p>
+
+<!-- ==================== -->
+<!-- 八字重点卡片 -->
+<!-- ==================== -->
+<div class="bazi-highlight">
+    <h3>♾️ 八字调和 · 三人专属锦囊</h3>
+    <p style="text-align:center; color:#888; margin-bottom:16px;">最大公约数：金、土 | B需燥土与火 | C需水润燥 | <strong>青海湖是通关密钥</strong></p>
+    <div class="bazi-grid">
+        <div class="bazi-person">
+            <div class="person-icon">🗻</div>
+            <div class="person-name">A · 辛金身弱</div>
+            <div class="person-xi">喜：金、土</div>
+            <div class="person-tip">
+                ⚡ <strong>能量点：</strong>祁连雪山、嘉峪关<br>
+                🥢 <strong>饮食：</strong>羊肉面食补土，少冰水<br>
+                🙌 <strong>宜：</strong>早起面西北深呼吸，触摸城墙砖石
+            </div>
+        </div>
+        <div class="bazi-person">
+            <div class="person-icon">☀️</div>
+            <div class="person-name">B · 己土寒湿</div>
+            <div class="person-xi">喜：燥土、火、金</div>
+            <div class="person-tip">
+                ⚡ <strong>能量点：</strong>张掖丹霞、鸣沙山<br>
+                🥢 <strong>饮食：</strong>姜茶、热性食物，避生冷<br>
+                ☀️ <strong>宜：</strong>多晒午后太阳（13-15点火旺）
+            </div>
+        </div>
+        <div class="bazi-person">
+            <div class="person-icon">💧</div>
+            <div class="person-name">C · 癸水身弱</div>
+            <div class="person-xi">喜：金、水</div>
+            <div class="person-tip">
+                ⚡ <strong>能量点：</strong>青海湖、月牙泉、党河<br>
+                🥢 <strong>饮食：</strong>杏皮水、瓜果、汤面<br>
+                🧴 <strong>宜：</strong>保温杯日饮1.5L，近水静坐
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center; margin-top:20px; font-weight:600; color:var(--accent3);">
+        🤝 旅途默契：青海湖段C做主 → 祁连山段三人皆宜 → 张掖敦煌B做主 → C自备保湿
+    </p>
+</div>
+
+<!-- ==================== -->
+<!-- 预算重点卡片 -->
+<!-- ==================== -->
+<div class="budget-highlight">
+    <h3>💰 总预算明细（人均 · 10天9晚）</h3>
+    <div class="budget-total">12,530 - 14,530 <span>元/人</span></div>
+    <table style="margin-top:16px;">
+        <tr><th>项目</th><th>明细</th><th>人均费用（元）</th></tr>
+        <tr><td>✈️ 往返机票</td><td>上海↔西宁/敦煌（含税）</td><td>3,000 - 3,500</td></tr>
+        <tr><td>🚙 当地包车</td><td>7座SUV/GL8，10天含油费司机</td><td>3,000</td></tr>
+        <tr><td>🏨 住宿</td><td>9晚 × 人均300元/晚</td><td>2,700</td></tr>
+        <tr><td>🍜 餐饮</td><td>10天 × 人均160元/天</td><td>1,600</td></tr>
+        <tr><td>🎫 门票+体验</td><td>莫高窟238+丹霞75+鸣沙山110+茶卡150+其他</td><td>1,000 - 1,200</td></tr>
+        <tr><td>🎨 慢游日机动</td><td>画院体验/下午茶等</td><td>150</td></tr>
+        <tr><td>🛡️ 旅行保险</td><td>高原综合险</td><td>80</td></tr>
+        <tr><td>📦 弹性预留</td><td>纪念品、加餐、杂费</td><td>1,000 - 1,500</td></tr>
+    </table>
+    <p style="text-align:center; margin-top:16px; font-weight:600; color:var(--accent2);">
+        ✅ 完全在人均3.5万预算舒适区内，丰俭由人
+    </p>
+</div>
+
+<!-- 美食地图 -->
+<div class="section-header"><h2>🍜 甘青美食地图</h2></div>
+<table>
+    <tr><th>城市</th><th>必吃</th><th>推荐店铺</th><th>人均</th></tr>
+    <tr><td>西宁</td><td>手抓羊肉、酸奶、甜醅子</td><td>益鑫手抓、雅君羊羔肉</td><td>80-130</td></tr>
+    <tr><td>青海湖</td><td>炕锅羊肉、牦牛肉包子</td><td>湖畔藏家乐</td><td>60-100</td></tr>
+    <tr><td>祁连</td><td>黄菇炒肉、土火锅</td><td>撒拉尔美食</td><td>70-120</td></tr>
+    <tr><td>张掖</td><td>搓鱼面、炒拨拉、杏皮水</td><td>甘州市场</td><td>50-80</td></tr>
+    <tr><td>嘉峪关</td><td>馕坑肉、羊肉粉汤</td><td>大唐美食街</td><td>80-120</td></tr>
+    <tr><td>敦煌</td><td>驴肉黄面、红柳烤肉</td><td>达记、靖远尕六</td><td>70-120</td></tr>
+</table>
+
+<!-- 出行提醒 -->
+<div class="section-header"><h2>🧳 出行提醒</h2></div>
+<div class="card-row">
+    <div class="card">
+        <h4>👗 衣物（9月底10月初）</h4>
+        <p>青海段0-15°C，甘肃段10-28°C，温差极大。必备：薄羽绒服/冲锋衣、防晒帽、墨镜、润唇膏、保湿面膜。拍照推荐红裙/披肩。</p>
+    </div>
+    <div class="card">
+        <h4>📋 提前预订</h4>
+        <p>莫高窟A类票提前30天抢（9月1日开放）；机票8月中旬购买最划算；包车提前1个月确认车型和司机。</p>
+    </div>
+    <div class="card">
+        <h4>⚠️ 高原注意</h4>
+        <p>青海段海拔3000-4120m，初到不剧烈运动。提前一周喝红景天，备布洛芬。三人互相关照。</p>
+    </div>
+</div>
+
+<!-- 结尾 -->
+<div style="text-align:center; margin:40px 0 20px; padding:30px; background:white; border-radius:16px; box-shadow:0 3px 12px rgba(0,0,0,0.06);">
+    <p style="font-size:1.3em; color:var(--accent1); font-weight:600;">🌅</p>
+    <p style="font-size:1.1em;">青海湖给C以水，祁连山给A以金，丹霞戈壁给B以暖阳。</p>
+    <p style="color:#888;">10天慢行，多出来的一天，是给敦煌的敬意，也是给你们自己的留白。</p>
+    <p style="font-weight:bold; color:var(--accent3); margin-top:12px;">祝三位旅途圆满，归来仍是春风满面的姑娘。</p>
+    <p style="font-size:0.85em; color:#bbb; margin-top:20px;">攻略生成：2026年5月 · 出发前请再次确认航班与门票</p>
+</div>
+
+</div><!-- container end -->
+
+</body>
+</html>
