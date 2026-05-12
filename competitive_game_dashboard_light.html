@@ -522,11 +522,13 @@
   .evt-link { color: var(--accent); text-decoration: none; font-size: 11px; white-space: nowrap; }
   .evt-link:hover { text-decoration: underline; }
   .no-events-msg { color: var(--text-muted); font-size: 12px; padding: 16px 0; text-align: center; }
-  .ebadge { display:inline-block; padding:2px 7px; border-radius:10px; font-size:10px; font-weight:700; white-space:nowrap; }
+  .ebadge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; white-space:nowrap; }
   .eb-version  { background:#dbeafe; color:#1d4ed8; }
-  .eb-event    { background:#dcfce7; color:#15803d; }
-  .eb-commerce { background:#fef3c7; color:#b45309; }
-  .eb-other    { background:#f1f5f9; color:#475569; }
+  .eb-event    { background:#dcfce7; color:#166534; }
+  .eb-commerce { background:#fef3c7; color:#92400e; }
+  .eb-collab   { background:#f3e8ff; color:#7e22ce; }
+  .eb-other    { background:#f3f4f6; color:#374151; }
+
   .evt-panel { display:none; }
   .evt-panel.active { display:block; }
 
@@ -1147,6 +1149,35 @@ function buildStats() {
 
 // ── PEAK PLUGIN ──────────────────────────────────────────────────────
 
+
+// ── Peak labels from monthly reports (per game per metric per month) ──
+const PEAK_LABELS = {
+  "2026-01": {
+    "和平精英":           { rank: {kr:"월말 버전 업데이트", cn:"月末版本更新"},        revenue: {kr:"월말 버전 업데이트",   cn:"月末版本更新"},        dau: {kr:"월말 버전 업데이트", cn:"月末版本更新"} },
+    "王者荣耀":           { rank: {kr:"S42 시즌 업데이트",   cn:"S42赛季版本更新"},    revenue: {kr:"S42 시즌 업데이트",    cn:"S42赛季版本更新"},    dau: {kr:"S42 시즌 업데이트",   cn:"S42赛季版本更新"} },
+    "三角洲行动":         { rank: {kr:"모포시스 신규 시즌 업데이트", cn:"蝶变时刻新赛季更新"}, revenue: {kr:"모포시스 신규 시즌 업데이트", cn:"蝶变时刻新赛季更新"}, dau: {kr:"모포시스 신규 시즌 업데이트", cn:"蝶变时刻新赛季更新"} },
+    "无畏契约：源能行动": { rank: {kr:"고양이 세트/암시장 이벤트", cn:"猫猫套装/暗市活动"}, revenue: {kr:"고양이 세트/암시장 이벤트", cn:"猫猫套装/暗市活动"}, dau: {kr:"고양이 세트 스킨 출시", cn:"猫猫套装皮肤上线"} },
+  },
+  "2026-02": {
+    "和平精英":           { rank: {kr:"X-Suit/차량 스킨 재출시", cn:"X-Suit/载具皮肤返场"}, revenue: {kr:"X-Suit/차량 스킨 재출시", cn:"X-Suit/载具皮肤返场"}, dau: {kr:"춘절 이벤트", cn:"春节假期活动"} },
+    "王者荣耀":           { rank: {kr:"춘절 버전 이벤트/유료화 스킨", cn:"春节版本活动/商业化皮肤"}, revenue: {kr:"춘절 버전 이벤트/유료화 스킨", cn:"春节版本活动/商业化皮肤"}, dau: {kr:"춘절 이벤트", cn:"春节假期活动"} },
+    "三角洲行动":         { rank: {kr:"위룡 노블 스킨 [우주 수호자]", cn:"威龙诺布尔皮肤[凌霄戍卫]"}, revenue: {kr:"위룡 노블 스킨 [우주 수호자]", cn:"威龙诺布尔皮肤[凌霄戍卫]"}, dau: {kr:"춘절 이벤트", cn:"春节假期活动"} },
+    "无畏契约：源能行动": { rank: {kr:"[Ignite knife] 무기 출시", cn:"[离火刃]武器上线"}, revenue: {kr:"[Ignite knife] 무기 출시", cn:"[离火刃]武器上线"}, dau: {kr:"신춘 버전 신규 영웅/맵", cn:"新春版本新英雄/地图"} },
+  },
+  "2026-03": {
+    "和平精英":           { rank: {kr:"SS38 시즌 업데이트/시즌 수첩", cn:"SS38赛季更新/赛季手册"}, revenue: {kr:"SS38 시즌 업데이트/시즌 수첩", cn:"SS38赛季更新/赛季手册"}, dau: {kr:"SS38 시즌 업데이트", cn:"SS38赛季更新"} },
+    "王者荣耀":           { rank: {kr:"슈퍼 교환 이벤트/전설 스킨", cn:"超级兑兑兑活动/传说皮肤"}, revenue: {kr:"슈퍼 교환 이벤트/전설 스킨", cn:"超级兑兑兑活动/传说皮肤"}, dau: {kr:"슈퍼 교환 이벤트", cn:"超级兑兑兑活动"} },
+    "三角洲行动":         { rank: {kr:"죽음의 장미 스킨 출시", cn:"冥夜蔷薇系列皮肤上线"}, revenue: {kr:"죽음의 장미 스킨 출시", cn:"冥夜蔷薇系列皮肤上线"}, dau: {kr:"죽음의 장미 스킨 출시", cn:"冥夜蔷薇系列皮肤上线"} },
+    "无畏契约：源能行动": { rank: {kr:"발로란트 야시장/프라임 시리즈 스킨", cn:"瓦手夜市/Prime系列皮肤"}, revenue: {kr:"프라임 시리즈 스킨 출시", cn:"Prime系列皮肤上线"}, dau: {kr:"발로란트 야시장 이벤트", cn:"瓦手夜市折扣活动"} },
+  },
+  "2026-04": {
+    "和平精英":           { rank: {kr:"7주년 버전 활동", cn:"7周年版本活动"},   revenue: {kr:"7주년 버전 활동", cn:"7周年版本活动"},   dau: {kr:"청명절 연휴", cn:"清明节假期"} },
+    "王者荣耀":           { rank: {kr:"나타2 콜라보 스킨", cn:"哪吒2联动皮肤上线"}, revenue: {kr:"나타2 콜라보 스킨", cn:"哪吒2联动皮肤上线"}, dau: {kr:"청명절 연휴", cn:"清明节假期"} },
+    "三角洲行动":         { rank: {kr:"에코 신규 시즌 업데이트", cn:"回声新赛季更新"},  revenue: {kr:"에코 신규 시즌 업데이트", cn:"回声新赛季更新"},  dau: {kr:"청명절 연휴", cn:"清明节假期"} },
+    "无畏契约：源能行动": { rank: {kr:"창·기원 시리즈 스킨 출시", cn:"创·纪元系列皮肤上线"}, revenue: {kr:"창·기원 시리즈 스킨 출시", cn:"创·纪元系列皮肤上线"}, dau: {kr:"청명절 연휴", cn:"清明节假期"} },
+  },
+};
+
 // ── Peak reason lookup from EVENTS_DB ───────────────────────────────
 // Convert week key "YYYY-Wxx" to {mon, sun} Date objects
 function weekKeyToDates(dateStr) {
@@ -1188,11 +1219,31 @@ function searchEventsInRange(gameKey, fromDate, toDate) {
     }
   }
   if (!best) return null;
-  return currentLang === 'cn' ? (best.label_cn || best.label_kr) : (best.label_kr || best.label_cn);
+  const rawLabel = currentLang === 'cn' ? (best.label_cn || best.label_kr) : (best.label_kr || best.label_cn);
+  if (!rawLabel) return null;
+  // Format: prefix with type verb for clarity on chart
+  const peakVerb = {
+    version:  { cn:'',     kr:''     },  // label already contains context
+    event:    { cn:'',     kr:''     },
+    commerce: { cn:'',     kr:''     },
+    collab:   { cn:'',     kr:''     },
+    other:    { cn:'',     kr:''     },
+  };
+  return rawLabel;
 }
 
 function findPeakReason(gameKey, dateStr) {
   if (!dateStr) return null;
+  // First: check PEAK_LABELS for the month (highest priority, from monthly reports)
+  try {
+    if (typeof PEAK_LABELS !== 'undefined' && PEAK_LABELS) {
+      const month = dateStr.length >= 7 ? dateStr.slice(0, 7).replace(/\./g, '-') : null;
+      if (month && PEAK_LABELS[month] && PEAK_LABELS[month][gameKey]) {
+        const pl = PEAK_LABELS[month][gameKey][currentMetric];
+        if (pl) return currentLang === 'cn' ? (pl.cn || pl.kr) : (pl.kr || pl.cn);
+      }
+    }
+  } catch(e) {}
   try { if (typeof EVENTS_DB === 'undefined' || !EVENTS_DB) return null; } catch(e) { return null; }
 
   // Week period: "YYYY-Wxx"
@@ -1530,8 +1581,8 @@ const EVENTS_DB = {
           {date:"2025-02-07",type:"version",label_kr:"대보름 이벤트",label_cn:"元宵节活动",content_kr:"대보름 이벤트 개시, 창-낭혼고장 스킨 출시, 테두리 패키지 출시",content_cn:"元宵节活动开启，推出限定皮肤及边框礼包",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=642842"},
           {date:"2025-02-13",type:"version",label_kr:"밸런타인데이/2v2모드",label_cn:"情人节/2v2模式",content_kr:"2v2 신규 모드 출시, 밸런타인데이 한정 스킨 출시, 커플 스킨 무료 배포",content_cn:"推出2v2新模式，上线情人节限定皮肤，免费配送情侣皮肤",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=643194"},
           {date:"2025-02-20",type:"version",label_kr:"국색방화 콜라보 스킨",label_cn:"国色芳华联动皮肤",content_kr:"국색방화 드라마 콜라보 스킨 무료 획득 이벤트, 적인걸·운영 스킨 출시",content_cn:"国色芳华剧集联动皮肤免费获取活动，狄仁杰·云缨限定皮肤上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=643595"},
-          {date:"2025-02-19",type:"event",label_kr:"×국색방화(드라마) 인게임 스킨",label_cn:"×国色芳华 游戏内联动皮肤",content_kr:"왕자영요×국색방화(드라마) 인게임 드라마 콜라보 스킨 출시",content_cn:"王者荣耀×国色芳华（剧集）推出游戏内联动皮肤",url:"https://weibo.com/5698023579/Pf2kbfsCl"},
-          {date:"2025-02-21",type:"event",label_kr:"×뤄양관광 인게임 스킨",label_cn:"×洛阳旅游 游戏内联动皮肤",content_kr:"왕자영요×뤄양 관광 인게임 모란 테마 콜라보 스킨 출시",content_cn:"王者荣耀×洛阳旅游推出游戏内牡丹主题联动皮肤",url:"https://weibo.com/5698023579/PfjpzpWjW"}
+          {date:"2025-02-19",type:"collab",label_kr:"×국색방화(드라마) 인게임 스킨",label_cn:"×国色芳华 游戏内联动皮肤",content_kr:"왕자영요×국색방화(드라마) 인게임 드라마 콜라보 스킨 출시",content_cn:"王者荣耀×国色芳华（剧集）推出游戏内联动皮肤",url:"https://weibo.com/5698023579/Pf2kbfsCl"},
+          {date:"2025-02-21",type:"collab",label_kr:"×뤄양관광 인게임 스킨",label_cn:"×洛阳旅游 游戏内联动皮肤",content_kr:"왕자영요×뤄양 관광 인게임 모란 테마 콜라보 스킨 출시",content_cn:"王者荣耀×洛阳旅游推出游戏内牡丹主题联动皮肤",url:"https://weibo.com/5698023579/PfjpzpWjW"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"2월 iOS 매출 2위 유지, MoM+4.9%/YoY+7.2%",summary_cn:"2月iOS畅销榜第2位，MoM+4.9%/YoY+7.2%",events:[]},
@@ -1559,8 +1610,8 @@ const EVENTS_DB = {
           {date:"2025-03-06",type:"version",label_kr:"여성의날 이벤트",label_cn:"女神节活动",content_kr:"전체·특선 여성 영웅 스킨 기간 한정 무료 배포",content_cn:"全体及精选女英雄皮肤限时免费配送",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=644483"},
           {date:"2025-03-13",type:"version",label_kr:"유비 스킨/다중 주문 모드",label_cn:"刘备皮肤/多重点单模式",content_kr:"영웅 유비 미션 완료 시 신규 스킨 무료 배포, 다중 주문 모드 오픈",content_cn:"完成任务免费获得刘备新皮肤，多重点单模式开启",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=644877"},
           {date:"2025-03-27",type:"version",label_kr:"S39 묘수공공/B.Duck 콜라보",label_cn:"S39妙手空空/B.Duck联动",content_kr:"S39 묘수공공 시즌 출시, 신규 영웅 공공아, B.Duck 콜라보 스킨 출시",content_cn:"S39妙手空空赛季上线，新英雄公孙娥登场，B.Duck联动皮肤上架",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=645513"},
-          {date:"2025-03-20",type:"event",label_kr:"×코카콜라 인게임 이벤트",label_cn:"×可口可乐 游戏内活动",content_kr:"왕자영요×코카콜라 콜라보 PV 출시, 인게임 이벤트 참여 시 보상 획득",content_cn:"王者荣耀×可口可乐联动PV上线，参与游戏内活动可获得奖励",url:"https://weibo.com/5698023579/Pjp6egKTv"},
-          {date:"2025-03-27",type:"event",label_kr:"×B.Duck 인게임 콜라보 스킨",label_cn:"×B.Duck 游戏内联动皮肤",content_kr:"왕자영요×B.Duck 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×B.Duck游戏内联动皮肤正式上线",url:"https://weibo.com/ttarticle/p/show?id=2309405148537267815586"}
+          {date:"2025-03-20",type:"collab",label_kr:"×코카콜라 인게임 이벤트",label_cn:"×可口可乐 游戏内活动",content_kr:"왕자영요×코카콜라 콜라보 PV 출시, 인게임 이벤트 참여 시 보상 획득",content_cn:"王者荣耀×可口可乐联动PV上线，参与游戏内活动可获得奖励",url:"https://weibo.com/5698023579/Pjp6egKTv"},
+          {date:"2025-03-27",type:"collab",label_kr:"×B.Duck 인게임 콜라보 스킨",label_cn:"×B.Duck 游戏内联动皮肤",content_kr:"왕자영요×B.Duck 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×B.Duck游戏内联动皮肤正式上线",url:"https://weibo.com/ttarticle/p/show?id=2309405148537267815586"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"3월 iOS 매출 1위 등극(왕자영요 역전), MoM+37.7%",summary_cn:"3月iOS畅销榜登顶第1位（超越王者荣耀），MoM+37.7%",events:[]},
@@ -1591,8 +1642,8 @@ const EVENTS_DB = {
           {date:"2025-04-17",type:"version",label_kr:"나타지마동요해 보이스/노부자 스킨",label_cn:"哪吒之魔童闹海语音/老夫子皮肤",content_kr:"나타지마동요해 콜라보 기간 한정 보이스 배포, 노부자 신규 스킨 출시",content_cn:"哪吒之魔童闹海联动限定语音包配送，老夫子新皮肤上架",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=644877"},
           {date:"2025-04-23",type:"version",label_kr:"산리오 콜라보 스킨",label_cn:"三丽鸥联动皮肤",content_kr:"산리오 콜라보 스킨 세트 3종 무료 배포, 5.5 보너스 이벤트 개시",content_cn:"三丽鸥联动皮肤及套装免费配送，55开黑节福利活动开启",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=650509"},
           {date:"2025-04-28",type:"version",label_kr:"아구도·전영웅 무료·궁극의 각성 모드",label_cn:"阿古朵·全英雄免费·终极觉醒模式",content_kr:"아구도 스킨 무료 배포, 전 영웅 기간 한정 무료, 궁극의 각성 신규 모드 출시",content_cn:"阿古朵皮肤免费配送，全英雄限时免费，终极觉醒新模式上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=723143"},
-          {date:"2025-04-15",type:"event",label_kr:"×산장위안 환경보호 콜라보 스킨",label_cn:"×三江源 环保联动皮肤",content_kr:"왕자영요×칭하이 산장위안 국립공원 환경 보호 콜라보 스킨 출시",content_cn:"王者荣耀×青海三江源国家公园环保联动皮肤上线",url:"https://weibo.com/5698023579/Pnpx3m1R9"},
-          {date:"2025-04-23",type:"event",label_kr:"×산리오 인게임 콜라보 스킨",label_cn:"×三丽鸥 游戏内联动皮肤",content_kr:"왕자영요×Sanrio 인게임 콜라보 스킨 다수 출시",content_cn:"王者荣耀×Sanrio游戏内多款联动皮肤正式上线",url:"https://weibo.com/5698023579/PoyIg7aFH"}
+          {date:"2025-04-15",type:"collab",label_kr:"×산장위안 환경보호 콜라보 스킨",label_cn:"×三江源 环保联动皮肤",content_kr:"왕자영요×칭하이 산장위안 국립공원 환경 보호 콜라보 스킨 출시",content_cn:"王者荣耀×青海三江源国家公园环保联动皮肤上线",url:"https://weibo.com/5698023579/Pnpx3m1R9"},
+          {date:"2025-04-23",type:"collab",label_kr:"×산리오 인게임 콜라보 스킨",label_cn:"×三丽鸥 游戏内联动皮肤",content_kr:"왕자영요×Sanrio 인게임 콜라보 스킨 다수 출시",content_cn:"王者荣耀×Sanrio游戏内多款联动皮肤正式上线",url:"https://weibo.com/5698023579/PoyIg7aFH"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"4월 iOS 매출 2위 유지, MoM-19.5%/YoY+24.1%",summary_cn:"4月iOS畅销榜第2位，MoM-19.5%/YoY+24.1%",events:[]},
@@ -1621,23 +1672,23 @@ const EVENTS_DB = {
         summary_cn:"5次版本更新/阿尔丰斯·慕夏联动、520皮肤、端午节皮肤上线。iOS流水榜第1位，MoM+4.2%",
         events:[
           {date:"2025-05-02",type:"version",label_kr:"모드·영웅 조정",label_cn:"模式·英雄调整",content_kr:"모드 전장 조정, 영웅 밸런스 조정",content_cn:"模式战场调整，英雄平衡性调整",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=761867"},
-          {date:"2025-05-08",type:"version",label_kr:"산리오 콜라보 스킨 배포",label_cn:"三丽鸥联动皮肤配送",content_kr:"妲己-美乐蒂之语·阿古朵-布丁狗之约 스킨 이벤트, 5.5 관전 이벤트",content_cn:"妲己-美乐蒂之语·阿古朵-布丁狗之约联动皮肤活动，55开黑节观赛活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=768130"},
+          {date:"2025-05-08",type:"version",label_kr:"산리오 콜라보 스킨 배포",label_cn:"三丽鸥联动皮肤配送",content_kr:"딸기-멜로디의 말·아구도-푸딩독의 약속 스킨 이벤트, 5.5 관전 이벤트",content_cn:"딸기-멜로디의 말·아구도-푸딩독의 약속联动皮肤活动，55开黑节观赛活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=768130"},
           {date:"2025-05-14",type:"version",label_kr:"520 이벤트",label_cn:"520活动",content_kr:"누적 대국 보상, 쌍인동무 예약 공유 이벤트",content_cn:"累计对局送好礼，双人同舞预约分享活动开启",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=772759"},
           {date:"2025-05-20",type:"version",label_kr:"알폰스 무하 콜라보/520 스킨",label_cn:"阿尔丰斯·慕夏联动/520皮肤",content_kr:"왕자영요×알폰스 무하 콜라보 개시, 520 정선 스킨 한정 무료 이벤트",content_cn:"王者荣耀×阿尔丰斯·慕夏联动开启，520精选皮肤限免活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=773383"},
           {date:"2025-05-28",type:"version",label_kr:"단오 스킨/아테나 스킨",label_cn:"端午节皮肤/雅典娜皮肤",content_kr:"미션 완료 시 루나 스킨 획득, 단오 스킨 한정 무료, 아테나 스킨 출시",content_cn:"完成任务获得露娜皮肤，端午皮肤限免，雅典娜新皮肤上架",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=774181"},
-          {date:"2025-05-20",type:"event",label_kr:"×알폰스 무하 인게임 콜라보 스킨",label_cn:"×阿尔丰斯·慕夏 游戏内联动皮肤",content_kr:"왕자영요×알폰스 무하(아티스트) 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×阿尔丰斯·慕夏（艺术家）游戏内联动皮肤上线",url:"https://weibo.com/5698023579/PsEx1vcu2"}
+          {date:"2025-05-20",type:"collab",label_kr:"×알폰스 무하 인게임 콜라보 스킨",label_cn:"×阿尔丰斯·慕夏 游戏内联动皮肤",content_kr:"왕자영요×알폰스 무하(아티스트) 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×阿尔丰斯·慕夏（艺术家）游戏内联动皮肤上线",url:"https://weibo.com/5698023579/PsEx1vcu2"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"5월 iOS 매출 2위 유지, MoM+8.7%/YoY+58.3%",summary_cn:"5月iOS畅销榜第2位，MoM+8.7%/YoY+58.3%",events:[]},
       "三角洲行动": {
         key:"df", name_kr:"Delta Force", name_cn:"三角洲行动",
-        summary_kr:"버전 업데이트 4회/胜者为王 전면전, 블랙 호크 다운 솔로 모드, 단오 이벤트. iOS 매출 Top10 첫 진입 MoM+42.0%",
-        summary_cn:"4次版本更新/胜者为王限时全面战场、黑鹰坠落单人模式、端午节活动上线。首次进入iOS畅销榜Top10，MoM+42.0%",
+        summary_kr:"버전 업데이트 4회/승자위왕 전면전, 블랙 호크 다운 솔로 모드, 단오 이벤트. iOS 매출 Top10 첫 진입 MoM+42.0%",
+        summary_cn:"4次版本更新/승자위왕限时全面战场、黑鹰坠落单人模式、端午节活动上线。首次进入iOS畅销榜Top10，MoM+42.0%",
         events:[
-          {date:"2025-05-08",type:"version",label_kr:"胜者为王/流光铂影 패키지",label_cn:"胜者为王/流光铂影武器包",content_kr:"전면전 한정 모드 胜者为王 개시, 流光铂影 패키지 출시",content_cn:"全面战场限时模式胜者为王开启，推出流光铂影新武器捆绑包",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16292478853003408765"},
-          {date:"2025-05-15",type:"commerce",label_kr:"黎明警戒 패키지",label_cn:"黎明警戒武器包",content_kr:"黎明警戒 신규 무기 패키지 출시",content_cn:"推出黎明警戒新武器捆绑包",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=571287612829882626"},
-          {date:"2025-05-22",type:"version",label_kr:"블랙 호크 다운 솔로/猩红乐队",label_cn:"黑鹰坠落孤军奋战单人模式/猩红乐队",content_kr:"블랙 호크 다운 솔로 모드 출시, 猩红乐队 패키지 출시",content_cn:"黑鹰坠落孤军奋战单人模式上线，猩红乐队捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=4050672551095889080"},
-          {date:"2025-05-29",type:"version",label_kr:"단오 상점/이벤트",label_cn:"端午商店/活动",content_kr:"단오 童心 상점, 단오 棕子 이벤트 오픈",content_cn:"端午童心商店上线，端午捡粽子活动开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=338597006076602915"}
+          {date:"2025-05-08",type:"version",label_kr:"승자위왕/유광백금 패키지",label_cn:"승자위왕/유광백금武器包",content_kr:"전면전 한정 모드 승자위왕 개시, 유광백금 패키지 출시",content_cn:"全面战场限时模式승자위왕开启，推出유광백금新武器捆绑包",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16292478853003408765"},
+          {date:"2025-05-15",type:"commerce",label_kr:"여명경계 패키지",label_cn:"여명경계武器包",content_kr:"여명경계 신규 무기 패키지 출시",content_cn:"推出여명경계新武器捆绑包",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=571287612829882626"},
+          {date:"2025-05-22",type:"version",label_kr:"블랙 호크 다운 솔로/스칼렛 밴드",label_cn:"黑鹰坠落孤军奋战单人模式/스칼렛 밴드",content_kr:"블랙 호크 다운 솔로 모드 출시, 스칼렛 밴드 패키지 출시",content_cn:"黑鹰坠落孤军奋战单人模式上线，스칼렛 밴드捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=4050672551095889080"},
+          {date:"2025-05-29",type:"version",label_kr:"단오 상점/이벤트",label_cn:"端午商店/活动",content_kr:"단오 동심 상점, 단오 종자 이벤트 오픈",content_cn:"端午童心商店上线，端午捡粽子活动开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=338597006076602915"}
         ]
       },
       "无畏契约：源能行动": {key:"ww",name_kr:"Valorant M",name_cn:"无畏契约：源能行动",summary_kr:"미출시",summary_cn:"未上线",events:[]}
@@ -1651,23 +1702,23 @@ const EVENTS_DB = {
         summary_kr:"버전 업데이트 3회/Duckyo 콜라보 스킨, 블리치 소울 라이징 천년혈전편 콜라보 개시. iOS 매출 1위 MoM-5.5%",
         summary_cn:"3次版本更新/小刘鸭联动皮肤、死神BLEACH千年血战篇联动开启。iOS流水榜第1位，MoM-5.5%",
         events:[
-          {date:"2025-06-05",type:"version",label_kr:"Duckyo 콜라보 스킨",label_cn:"小刘鸭联动皮肤",content_kr:"姬小满-小满鸭·牛魔-小牛鸭 콜라보 스킨 출시, 누적 로그인 이벤트",content_cn:"姬小满-小满鸭·牛魔-小牛鸭联动皮肤上架，累计签到活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=774591"},
-          {date:"2025-06-12",type:"version",label_kr:"스킨·이벤트 업데이트",label_cn:"皮肤·活动更新",content_kr:"露娜-命运加冕 스킨 직판, 杨戬 시련 업그레이드, 1위안 복지 주간",content_cn:"露娜-命运加冕皮肤直售，杨戬试炼升级，1元福利周活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=776984"},
+          {date:"2025-06-05",type:"version",label_kr:"Duckyo 콜라보 스킨",label_cn:"小刘鸭联动皮肤",content_kr:"히소만-소만오리·우마-아기소오리 콜라보 스킨 출시, 누적 로그인 이벤트",content_cn:"히소만-소만오리·우마-아기소오리联动皮肤上架，累计签到活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=774591"},
+          {date:"2025-06-12",type:"version",label_kr:"스킨·이벤트 업데이트",label_cn:"皮肤·活动更新",content_kr:"루나-운명의 대관 스킨 직판, 양전 시련 업그레이드, 1위안 복지 주간",content_cn:"루나-운명의 대관皮肤直售，양전试炼升级，1元福利周活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=776984"},
           {date:"2025-06-19",type:"version",label_kr:"블리치 천년혈전편 콜라보",label_cn:"死神BLEACH千年血战篇联动",content_kr:"왕자영요×블리치 소울 라이징 천년혈전편 콜라보 개시, 콜라보 스킨 배포",content_cn:"王者荣耀×BLEACH境·界千年血战篇联动开启，联动皮肤配送",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=777672"},
-          {date:"2025-06-12",type:"event",label_kr:"×Duckyo 인게임 콜라보 스킨",label_cn:"×小刘鸭 游戏内联动皮肤",content_kr:"왕자영요×Duckyo 인게임 콜라보 세트 출시",content_cn:"王者荣耀×小刘鸭游戏内联动套装上线",url:"https://weibo.com/5698023579/Pw47MAzlG"},
-          {date:"2025-06-19",type:"event",label_kr:"×블리치 인게임 콜라보 스킨",label_cn:"×BLEACH 游戏内联动皮肤",content_kr:"왕자영요×블리치 인게임 콜라보 활동 및 스킨 출시",content_cn:"王者荣耀×BLEACH游戏内联动活动及联动皮肤上线",url:"https://weibo.com/5698023579/PxfVe2Ap6"}
+          {date:"2025-06-12",type:"collab",label_kr:"×Duckyo 인게임 콜라보 스킨",label_cn:"×小刘鸭 游戏内联动皮肤",content_kr:"왕자영요×Duckyo 인게임 콜라보 세트 출시",content_cn:"王者荣耀×小刘鸭游戏内联动套装上线",url:"https://weibo.com/5698023579/Pw47MAzlG"},
+          {date:"2025-06-19",type:"collab",label_kr:"×블리치 인게임 콜라보 스킨",label_cn:"×BLEACH 游戏内联动皮肤",content_kr:"왕자영요×블리치 인게임 콜라보 활동 및 스킨 출시",content_cn:"王者荣耀×BLEACH游戏内联动活动及联动皮肤上线",url:"https://weibo.com/5698023579/PxfVe2Ap6"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"6월 iOS 매출 2위 유지, MoM-5.3%/YoY+60.9%",summary_cn:"6月iOS畅销榜第2位，MoM-5.3%/YoY+60.9%",events:[]},
       "三角洲行动": {
         key:"df", name_kr:"Delta Force", name_cn:"三角洲行动",
-        summary_kr:"버전 업데이트 4회/幻想曲·工业审判·深空威胁·超算纪元 패키지 출시. iOS 매출 9위",
-        summary_cn:"4次版本更新/幻想曲·工业审判·深空威胁·超算纪元捆绑包上线。iOS畅销榜第9位",
+        summary_kr:"버전 업데이트 4회/환상곡·공업심판·심공위협·초산기원 패키지 출시. iOS 매출 9위",
+        summary_cn:"4次版本更新/환상곡·공업심판·심공위협·초산기원捆绑包上线。iOS畅销榜第9位",
         events:[
-          {date:"2025-06-05",type:"commerce",label_kr:"幻想曲 패키지",label_cn:"幻想曲武器包",content_kr:"幻想曲 신규 무기 패키지 출시",content_cn:"推出幻想曲新武器捆绑包",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13501338437103966448"},
-          {date:"2025-06-12",type:"commerce",label_kr:"工业审判 패키지/巅峰对决",label_cn:"工业审判武器包/巅峰对决",content_kr:"工业审判 패키지 출시, 巅峰对决 이벤트 오픈",content_cn:"推出工业审判捆绑包，巅峰对决活动开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13644278146268422225"},
-          {date:"2025-06-19",type:"commerce",label_kr:"深空威胁 패키지",label_cn:"深空威胁武器包",content_kr:"深空威胁 신규 무기 패키지 출시, 시즌 수집품 한정 재출시",content_cn:"推出深空威胁新武器捆绑包，赛季收藏品限时返场",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=18061628647662015060"},
-          {date:"2025-06-26",type:"commerce",label_kr:"超算纪元 패키지",label_cn:"超算纪元武器包",content_kr:"超算纪元 신규 무기 패키지 출시, 시즌 스프린트 2배 적립",content_cn:"推出超算纪元新武器捆绑包，赛季冲刺双倍积分",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=2376032087560502370"}
+          {date:"2025-06-05",type:"commerce",label_kr:"환상곡 패키지",label_cn:"환상곡武器包",content_kr:"환상곡 신규 무기 패키지 출시",content_cn:"推出환상곡新武器捆绑包",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13501338437103966448"},
+          {date:"2025-06-12",type:"commerce",label_kr:"공업심판 패키지/전봉대결",label_cn:"공업심판武器包/전봉대결",content_kr:"공업심판 패키지 출시, 전봉대결 이벤트 오픈",content_cn:"推出공업심판捆绑包，전봉대결活动开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13644278146268422225"},
+          {date:"2025-06-19",type:"commerce",label_kr:"심공위협 패키지",label_cn:"심공위협武器包",content_kr:"심공위협 신규 무기 패키지 출시, 시즌 수집품 한정 재출시",content_cn:"推出심공위협新武器捆绑包，赛季收藏品限时返场",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=18061628647662015060"},
+          {date:"2025-06-26",type:"commerce",label_kr:"초산기원 패키지",label_cn:"초산기원武器包",content_kr:"초산기원 신규 무기 패키지 출시, 시즌 스프린트 2배 적립",content_cn:"推出초산기원新武器捆绑包，赛季冲刺双倍积分",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=2376032087560502370"}
         ]
       },
       "无畏契约：源能行动": {key:"ww",name_kr:"Valorant M",name_cn:"无畏契约：源能行动",summary_kr:"미출시",summary_cn:"未上线",events:[]}
@@ -1686,20 +1737,20 @@ const EVENTS_DB = {
           {date:"2025-07-17",type:"version",label_kr:"잔망루피 콜라보",label_cn:"蜡笔小新联动",content_kr:"왕자영요×잔망루피 콜라보 개시, 콜라보 세트·소원·병사 출시, 장주 스킨 출시",content_cn:"王者荣耀×蜡笔小新联动开启，联动套装·许愿屋·士兵上线，庄周皮肤上架",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=780311"},
           {date:"2025-07-24",type:"version",label_kr:"고점리 스킨 출시",label_cn:"高渐离皮肤上架",content_kr:"고점리 신규 스킨 출시, 기간 한정 미스터리 상점 오픈",content_cn:"高渐离新皮肤上架，限时神秘商店开启",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=780822"},
           {date:"2025-07-31",type:"version",label_kr:"산해기도 스킨/여름 보너스",label_cn:"山海奇道皮肤/夏日福利",content_kr:"산해기도 시리즈 스킨 출시, 여름 보너스 2탄, 3분 쟁패 이벤트",content_cn:"山海奇道系列皮肤上线，夏日狂欢福利第二弹，3分争霸活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=781248"},
-          {date:"2025-07-18",type:"event",label_kr:"×잔망루피 인게임 콜라보 세트",label_cn:"×蜡笔小新 游戏内联动套装",content_kr:"왕자영요×잔망루피 인게임 콜라보 세트 정식 출시",content_cn:"王者荣耀×蜡笔小新游戏内联动套装正式上线",url:"https://weibo.com/5698023579/PBtfL7Co9"}
+          {date:"2025-07-18",type:"collab",label_kr:"×잔망루피 인게임 콜라보 세트",label_cn:"×蜡笔小新 游戏内联动套装",content_kr:"왕자영요×잔망루피 인게임 콜라보 세트 정식 출시",content_cn:"王者荣耀×蜡笔小新游戏内联动套装正式上线",url:"https://weibo.com/5698023579/PBtfL7Co9"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"7월 iOS 매출 2위 유지(Delta Force이 급성장 MoM+95%)",summary_cn:"7月iOS畅销榜第2位（三角洲行动快速追赶，MoM+95%）",events:[]},
       "三角洲行动": {
         key:"df", name_kr:"Delta Force", name_cn:"三角洲行动",
-        summary_kr:"버전 업데이트 5회/破壁 신규 시즌·신맵 2종·명일방주 대규모 콜라보·KC17 신무기 출시. iOS 매출 4위 MoM+95%",
-        summary_cn:"5次版本更新/破壁新赛季·2张新地图·明日方舟大型联动·KC17新武器上线。iOS畅销榜第4位，MoM+95%",
+        summary_kr:"버전 업데이트 5회/파벽 신규 시즌·신맵 2종·명일방주 대규모 콜라보·KC17 신무기 출시. iOS 매출 4위 MoM+95%",
+        summary_cn:"5次版本更新/파벽新赛季·2张新地图·明日方舟大型联动·KC17新武器上线。iOS畅销榜第4位，MoM+95%",
         events:[
-          {date:"2025-07-03",type:"version",label_kr:"破壁 신규 시즌/신맵/명일방주 예고",label_cn:"破壁新赛季/新地图/明日方舟联动预告",content_kr:"破壁 신규 시즌 오픈, 신맵 潮汐监狱·风暴眼 추가, 명일방주 콜라보 이벤트 예고",content_cn:"新赛季破壁开启，新增潮汐监狱·风暴眼地图，明日方舟联动活动预告",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16509087684563454970"},
-          {date:"2025-07-11",type:"event",label_kr:"×명일방주 인게임 콜라보 스킨",label_cn:"×明日方舟 游戏内联动皮肤",content_kr:"명일방주 방주행동 에이전트 연구 이벤트 개시, 黑 天际线 패키지 출시",content_cn:"明日方舟方舟行动干员研究活动开启，黑天际线武器捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=11450340588294401127"},
-          {date:"2025-07-17",type:"version",label_kr:"KC17 신무기/夏日이벤트",label_cn:"KC17新武器/夏日活动",content_kr:"신무기 KC17 해금, 夏日冲浪商店 오픈",content_cn:"新武器KC17解锁，夏日冲浪商店开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13644278146268422225"},
+          {date:"2025-07-03",type:"version",label_kr:"파벽 신규 시즌/신맵/명일방주 예고",label_cn:"파벽新赛季/新地图/明日方舟联动预告",content_kr:"파벽 신규 시즌 오픈, 신맵 조석감옥·풍폭안 추가, 명일방주 콜라보 이벤트 예고",content_cn:"新赛季파벽开启，新增조석감옥·풍폭안地图，明日方舟联动活动预告",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16509087684563454970"},
+          {date:"2025-07-11",type:"collab",label_kr:"×명일방주 인게임 콜라보 스킨",label_cn:"×明日方舟 游戏内联动皮肤",content_kr:"명일방주 방주행동 에이전트 연구 이벤트 개시, 블랙 호라이즌 패키지 출시",content_cn:"明日方舟方舟行动干员研究活动开启，블랙 호라이즌武器捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=11450340588294401127"},
+          {date:"2025-07-17",type:"version",label_kr:"KC17 신무기/여름 이벤트",label_cn:"KC17新武器/夏日活动",content_kr:"신무기 KC17 해금, 서핑 이벤트 상점 오픈",content_cn:"新武器KC17解锁，서핑 이벤트 상점开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13644278146268422225"},
           {date:"2025-07-24",type:"version",label_kr:"이벤트 업데이트",label_cn:"活动更新",content_kr:"전면전 밸런스 조정, 이벤트 업데이트",content_cn:"全面战场平衡性调整，活动更新",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=4022584229356126965"},
-          {date:"2025-07-30",type:"event",label_kr:"×小肥柴 콜라보 예고",label_cn:"×小肥柴 联动预告",content_kr:"Delta Force×小肥柴 콜라보 예고(8.4 오픈 예정)",content_cn:"三角洲行动×小肥柴联动预告（预计8.4开启）",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=18078672079766383485"}
+          {date:"2025-07-30",type:"collab",label_kr:"×샤오페이차이 콜라보 예고",label_cn:"×샤오페이차이 联动预告",content_kr:"Delta Force×샤오페이차이 콜라보 예고(8.4 오픈 예정)",content_cn:"三角洲行动×샤오페이차이联动预告（预计8.4开启）",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=18078672079766383485"}
         ]
       },
       "无畏契约：源能行动": {key:"ww",name_kr:"Valorant M",name_cn:"无畏契约：源能行动",summary_kr:"미출시",summary_cn:"未上线",events:[]}
@@ -1710,38 +1761,38 @@ const EVENTS_DB = {
     games: {
       "王者荣耀": {
         key:"wz", name_kr:"왕자영요", name_cn:"王者荣耀",
-        summary_kr:"버전 업데이트 4회/诡秘之主·狐妖小红娘 콜라보, 5V5V5 혈전화용·双人巅峰赛 모드 출시. iOS 매출 1위 MoM+6.1%",
-        summary_cn:"4次版本更新/诡秘之主·狐妖小红娘联动，5V5V5血战华容·双人巅峰赛模式上线。iOS流水榜第1位，MoM+6.1%",
+        summary_kr:"버전 업데이트 4회/기비지주·호요소홍낭 콜라보, 5V5V5 혈전화용·2인 전봉전 모드 출시. iOS 매출 1위 MoM+6.1%",
+        summary_cn:"4次版本更新/기비지주·호요소홍낭联动，5V5V5혈전화용·2인 전봉전模式上线。iOS流水榜第1位，MoM+6.1%",
         events:[
-          {date:"2025-08-06",type:"version",label_kr:"사마의 스킨/血战华容 예고",label_cn:"司马懿皮肤/血战华容预告",content_kr:"사마의 신규 스킨 출시, 血战华容 모드 예약 이벤트",content_cn:"司马懿新皮肤上架，血战华容模式预约活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=781724"},
-          {date:"2025-08-14",type:"version",label_kr:"诡秘之主 콜라보/5V5V5 혈전화용",label_cn:"诡秘之主联动/5V5V5血战华容",content_kr:"诡秘之主 콜라보 개시, 5종 스킨 출시, 5V5V5 혈전화용 모드 오픈",content_cn:"诡秘之主联动开启，5款新皮肤上线，5V5V5血战华容玩法开启",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=782273"},
-          {date:"2025-08-21",type:"version",label_kr:"诡秘之主 콜라보 2탄",label_cn:"诡秘之主联动第二弹",content_kr:"诡秘之主 콜라보 스킨 원가 버전 추가, 双人巅峰赛 예약 이벤트",content_cn:"诡秘之主联动皮肤元歌版本追加，双人巅峰赛预约活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=782760"},
-          {date:"2025-08-28",type:"version",label_kr:"狐妖小红娘 콜라보/双人巅峰赛",label_cn:"狐妖小红娘联动/双人巅峰赛",content_kr:"왕자영요×狐妖小红娘 콜라보 스킨 출시, 七夕 双人巅峰赛 모드 개막",content_cn:"王者荣耀×狐妖小红娘联动皮肤上线，七夕双人巅峰赛模式开战",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=783216"},
-          {date:"2025-08-15",type:"event",label_kr:"×诡秘之主 인게임 콜라보 스킨",label_cn:"×诡秘之主 游戏内联动皮肤",content_kr:"왕자영요×诡秘之主 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×诡秘之主游戏内联动皮肤上线",url:"https://weibo.com/5698023579/PFU1oAoEU"},
-          {date:"2025-08-28",type:"event",label_kr:"×狐妖小红娘 인게임 콜라보 스킨",label_cn:"×狐妖小红娘 游戏内联动皮肤",content_kr:"왕자영요×狐妖小红娘 콜라보 인게임 스킨·天幕祈愿 출시",content_cn:"王者荣耀×狐妖小红娘联动动画及游戏内联动皮肤·天幕祈愿上线",url:"https://weibo.com/5698023579/Q1P2gxp1n"}
+          {date:"2025-08-06",type:"version",label_kr:"사마의 스킨/혈전화용 예고",label_cn:"司马懿皮肤/혈전화용预告",content_kr:"사마의 신규 스킨 출시, 혈전화용 모드 예약 이벤트",content_cn:"司马懿新皮肤上架，혈전화용模式预约活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=781724"},
+          {date:"2025-08-14",type:"version",label_kr:"기비지주 콜라보/5V5V5 혈전화용",label_cn:"기비지주联动/5V5V5혈전화용",content_kr:"기비지주 콜라보 개시, 5종 스킨 출시, 5V5V5 혈전화용 모드 오픈",content_cn:"기비지주联动开启，5款新皮肤上线，5V5V5혈전화용玩法开启",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=782273"},
+          {date:"2025-08-21",type:"version",label_kr:"기비지주 콜라보 2탄",label_cn:"기비지주联动第二弹",content_kr:"기비지주 콜라보 스킨 원가 버전 추가, 2인 전봉전 예약 이벤트",content_cn:"기비지주联动皮肤元歌版本追加，2인 전봉전预约活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=782760"},
+          {date:"2025-08-28",type:"version",label_kr:"호요소홍낭 콜라보/2인 전봉전",label_cn:"호요소홍낭联动/2인 전봉전",content_kr:"왕자영요×호요소홍낭 콜라보 스킨 출시, 칠석 2인 전봉전 모드 개막",content_cn:"王者荣耀×호요소홍낭联动皮肤上线，칠석2인 전봉전模式开战",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=783216"},
+          {date:"2025-08-15",type:"collab",label_kr:"×기비지주 인게임 콜라보 스킨",label_cn:"×기비지주 游戏内联动皮肤",content_kr:"왕자영요×기비지주 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×기비지주游戏内联动皮肤上线",url:"https://weibo.com/5698023579/PFU1oAoEU"},
+          {date:"2025-08-28",type:"collab",label_kr:"×호요소홍낭 인게임 콜라보 스킨",label_cn:"×호요소홍낭 游戏内联动皮肤",content_kr:"왕자영요×호요소홍낭 콜라보 인게임 스킨·천막기원 출시",content_cn:"王者荣耀×호요소홍낭联动动画及游戏内联动皮肤·천막기원上线",url:"https://weibo.com/5698023579/Q1P2gxp1n"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"8월 iOS 매출 2위 유지, Delta Force DAU가 화평정영 초과",summary_cn:"8月iOS畅销榜第2位，三角洲行动DAU超越和平精英",events:[]},
       "三角洲行动": {
         key:"df", name_kr:"Delta Force", name_cn:"三角洲行动",
-        summary_kr:"버전 업데이트 4회/宝藏月 이벤트, 명일방주 3차 에이전트 레드 스킨, Alan Walker 콜라보. iOS 매출 5위",
-        summary_cn:"4次版本更新/宝藏月特别活动、明日方舟第三位干员红皮、Alan Walker联动上线。iOS畅销榜第5位",
+        summary_kr:"버전 업데이트 4회/보장월 이벤트, 명일방주 3차 에이전트 레드 스킨, Alan Walker 콜라보. iOS 매출 5위",
+        summary_cn:"4次版本更新/보장월特别活动、明日方舟第三位干员红皮、Alan Walker联动上线。iOS畅销榜第5位",
         events:[
-          {date:"2025-08-08",type:"version",label_kr:"宝藏月 이벤트",label_cn:"宝藏月特别活动",content_kr:"宝藏月 스페셜 활동 개시, 무료 패키지 이벤트",content_cn:"宝藏月特别活动开启，免费送捆绑包活动",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16916860001288025153"},
-          {date:"2025-08-14",type:"version",label_kr:"企鹅物流 콜라보 이벤트",label_cn:"企鹅物流联动活动",content_kr:"企鹅物流 누적 시간 보상 이벤트 오픈",content_cn:"企鹅物流补给累计游戏时长奖励活动开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=3055701254918814433"},
-          {date:"2025-08-16",type:"commerce",label_kr:"×명일방주 3차 에이전트 레드 스킨",label_cn:"×明日方舟 第三位干员红皮上线",content_kr:"명일방주 3차 에이전트 蛊×能天使 午夜邮差 레드 스킨 추첨 개시",content_cn:"明日方舟联动第三位干员蛊×能天使午夜邮差红皮开放抽取",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13644278146268422225"},
-          {date:"2025-08-21",type:"version",label_kr:"宝藏月 2탄",label_cn:"宝藏月第二阶段",content_kr:"宝藏月 2단계 이벤트 개시, AW 콜라보 아이템 보상",content_cn:"宝藏月第二阶段开启，AW联动道具奖励",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16935260941022492512"},
-          {date:"2025-08-28",type:"version",label_kr:"七夕 한정 이벤트",label_cn:"七夕限定活动",content_kr:"七夕 한정 集市 이벤트, StoryBoard 패키지 출시",content_cn:"七夕限定集市活动，StoryBoard捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=8806801943625774167"},
-          {date:"2025-08-22",type:"event",label_kr:"×Alan Walker 인게임 외관/테마곡",label_cn:"×Alan Walker 游戏内联动外观/主题曲",content_kr:"Delta Force×Alan Walker 인게임 무기 외관·军牌, 宝藏月 테마곡 'old habits' 출시",content_cn:"三角洲行动×Alan Walker游戏内联动专属武器外观·军牌，宝藏月主题曲'old habits'上线",url:"https://weibo.com/7852949543/Q1snd3Y42"}
+          {date:"2025-08-08",type:"version",label_kr:"보장월 이벤트",label_cn:"보장월特别活动",content_kr:"보장월 스페셜 활동 개시, 무료 패키지 이벤트",content_cn:"보장월特别活动开启，免费送捆绑包活动",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16916860001288025153"},
+          {date:"2025-08-14",type:"version",label_kr:"펭귄 물류 콜라보 이벤트",label_cn:"펭귄 물류联动活动",content_kr:"펭귄 물류 누적 시간 보상 이벤트 오픈",content_cn:"펭귄 물류补给累计游戏时长奖励活动开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=3055701254918814433"},
+          {date:"2025-08-16",type:"commerce",label_kr:"×명일방주 3차 에이전트 레드 스킨",label_cn:"×明日方舟 第三位干员红皮上线",content_kr:"명일방주 3차 에이전트 고×텐진사 자정의 우편배달부 레드 스킨 추첨 개시",content_cn:"明日方舟联动第三位干员蛊×能天使午夜邮差红皮开放抽取",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=13644278146268422225"},
+          {date:"2025-08-21",type:"version",label_kr:"보장월 2탄",label_cn:"보장월第二阶段",content_kr:"보장월 2단계 이벤트 개시, AW 콜라보 아이템 보상",content_cn:"보장월第二阶段开启，AW联动道具奖励",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16935260941022492512"},
+          {date:"2025-08-28",type:"version",label_kr:"칠석 한정 이벤트",label_cn:"칠석限定活动",content_kr:"칠석 한정 시장 이벤트, 스토리보드 패키지 출시",content_cn:"칠석限定集市活动，StoryBoard捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=8806801943625774167"},
+          {date:"2025-08-22",type:"collab",label_kr:"×Alan Walker 인게임 외관/테마곡",label_cn:"×Alan Walker 游戏内联动外观/主题曲",content_kr:"Delta Force×Alan Walker 인게임 무기 외관·인식표, 보장월 테마곡 'old habits' 출시",content_cn:"三角洲行动×Alan Walker游戏内联动专属武器外观·인식표，보장월主题曲'old habits'上线",url:"https://weibo.com/7852949543/Q1snd3Y42"}
         ]
       },
       "无畏契约：源能行动": {
         key:"ww", name_kr:"Valorant M", name_cn:"无畏契约：源能行动",
-        summary_kr:"8.19 정식 출시/8대 개막 이벤트. 첫날 iOS 다운로드 2위, iOS 매출 8위. 月매출 $685만",
+        summary_kr:"8.19 정식 출시/8대 개막 이벤트. 첫날 iOS 다운로드 2위, iOS 매출 8위. 월 매출 $685만",
         summary_cn:"8.19正式上线/8大开服活动。首日iOS下载排名第2位，iOS流水榜平均第8位。月流水685万美元",
         events:[
-          {date:"2025-08-19",type:"version",label_kr:"정식 출시/8대 개막 이벤트",label_cn:"正式上线/8大开服活动",content_kr:"무畏契약 모바일 정식 출시, 로그인 보상·크로스게임 콜라보·고교 특권·미션 보상 등 8대 이벤트",content_cn:"无畏契约手游正式上线，推出登录奖励·跨游戏联动·高校特权·完成任务奖励等8大开服活动",url:"https://valm.qq.com/new-detail.html?docid=9168154266846516489&tagid=138206"},
-          {date:"2025-08-28",type:"version",label_kr:"七夕 한정 테두리·스프레이",label_cn:"七夕限定头像框·喷漆",content_kr:"七夕 한정 테두리 및 스프레이 출시",content_cn:"推出七夕节限定头像框及喷漆",url:"https://valm.qq.com/new-detail.html?docid=7026934671610719275&tagid=138206"}
+          {date:"2025-08-19",type:"version",label_kr:"정식 출시/8대 개막 이벤트",label_cn:"正式上线/8大开服活动",content_kr:"Valorant M 정식 출시, 로그인 보상·크로스게임 콜라보·고교 특권·미션 보상 등 8대 이벤트",content_cn:"无畏契约手游正式上线，推出登录奖励·跨游戏联动·高校特权·完成任务奖励等8大开服活动",url:"https://valm.qq.com/new-detail.html?docid=9168154266846516489&tagid=138206"},
+          {date:"2025-08-28",type:"version",label_kr:"칠석 한정 테두리·스프레이",label_cn:"칠석限定头像框·喷漆",content_kr:"칠석 한정 테두리 및 스프레이 출시",content_cn:"推出칠석节限定头像框及喷漆",url:"https://valm.qq.com/new-detail.html?docid=7026934671610719275&tagid=138206"}
         ]
       }
     }
@@ -1751,14 +1802,14 @@ const EVENTS_DB = {
     games: {
       "王者荣耀": {
         key:"wz", name_kr:"왕자영요", name_cn:"王者荣耀",
-        summary_kr:"버전 업데이트 4회/×罗小黑战记 콜라보 스킨, S41 천원 시즌 오픈, 신규 영웅 ChiCha. iOS 매출 1위 MoM-27.6%",
-        summary_cn:"4次版本更新/哪吒-罗小黑战记联动皮肤、S41天元赛季开启、新英雄池池登场。iOS流水榜第1位，MoM-27.6%",
+        summary_kr:"버전 업데이트 4회/×로소흑전기 콜라보 스킨, S41 천원 시즌 오픈, 신규 영웅 ChiCha. iOS 매출 1위 MoM-27.6%",
+        summary_cn:"4次版本更新/나타-로소흑전기 콜라보皮肤、S41天元赛季开启、新英雄池池登场。iOS流水榜第1位，MoM-27.6%",
         events:[
-          {date:"2025-09-04",type:"version",label_kr:"스킨 조각/桑启 스킨",label_cn:"皮肤碎片/桑启皮肤",content_kr:"로그인 이벤트 스킨 조각 획득, 桑启-青衿临川 스킨 출시",content_cn:"登录活动获得皮肤碎片，桑启-青衿临川皮肤上架",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=783642"},
-          {date:"2025-09-11",type:"version",label_kr:"×罗小黑战记 콜라보/성화적벽 모드",label_cn:"×罗小黑战记联动/圣火赤壁模式",content_kr:"왕자영요×罗小黑战记 콜라보 개시, 哪吒-罗小黑战记联动 스킨 무료 배포, 海战 성화적벽 모드 출시",content_cn:"王者荣耀×罗小黑战记联动确认，哪吒-罗小黑战记联动皮肤免费配送，海战圣火赤壁模式上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=784192"},
+          {date:"2025-09-04",type:"version",label_kr:"스킨 조각/상계 스킨",label_cn:"皮肤碎片/상계皮肤",content_kr:"로그인 이벤트 스킨 조각 획득, 상계-청금임천 스킨 출시",content_cn:"登录活动获得皮肤碎片，상계-청금임천皮肤上架",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=783642"},
+          {date:"2025-09-11",type:"collab",label_kr:"×로소흑전기 콜라보/성화적벽 모드",label_cn:"×로소흑전기联动/圣火赤壁模式",content_kr:"왕자영요×로소흑전기 콜라보 개시, 나타-로소흑전기 콜라보 스킨 무료 배포, 해전 성화적벽 모드 출시",content_cn:"王者荣耀×로소흑전기联动确认，나타-로소흑전기 콜라보皮肤免费配送，해전圣火赤壁模式上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=784192"},
           {date:"2025-09-25",type:"version",label_kr:"S41 천원/ChiCha 신규 영웅",label_cn:"S41天元/池池新英雄",content_kr:"S41 천원 시즌 오픈, 신규 영웅 ChiCha 출시",content_cn:"S41天元赛季开启，新英雄池池登场",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=784649"},
           {date:"2025-09-29",type:"version",label_kr:"국경절 보너스/Kai 무쌍 스킨",label_cn:"国庆节福利/凯无双皮肤",content_kr:"국경절 연휴 보너스 이벤트, Kai 애니메이션 파생 무쌍 스킨 출시",content_cn:"国庆节假日福利活动，凯动画衍生无双皮肤上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=785950"},
-          {date:"2025-09-29",type:"event",label_kr:"×罗小黑战记 인게임 콜라보 스킨",label_cn:"×罗小黑战记 游戏内联动皮肤",content_kr:"왕자영요×罗小黑战记 콜라보 인게임 스킨 정식 출시",content_cn:"王者荣耀×罗小黑战记联动游戏内皮肤正式上线",url:"https://weibo.com/5698023579/Q61R7tgNQ"}
+          {date:"2025-09-29",type:"collab",label_kr:"×로소흑전기 인게임 콜라보 스킨",label_cn:"×로소흑전기 游戏内联动皮肤",content_kr:"왕자영요×로소흑전기 콜라보 인게임 스킨 정식 출시",content_cn:"王者荣耀×로소흑전기联动游戏内皮肤正式上线",url:"https://weibo.com/5698023579/Q61R7tgNQ"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"9월 iOS 매출 3위(Delta Force에 역전), MoM-20.2%",summary_cn:"9月iOS畅销榜第3位（被三角洲行动超越），MoM-20.2%",events:[]},
@@ -1772,14 +1823,14 @@ const EVENTS_DB = {
           {date:"2025-09-17",type:"version",label_kr:"전쟁의 불길 시즌/신맵/신에이전트",label_cn:"战火季/新地图/新干员",content_kr:"전쟁의 불길 신규 시즌 오픈, 신규 에이전트·신맵·보스·신무기 출시",content_cn:"战火季新赛季开启，新侦察干员·新地图·新首领·新武器上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=3994859212868252244"},
           {date:"2025-09-26",type:"version",label_kr:"1주년 이벤트/GooseGooseDuck 패키지",label_cn:"1周年活动/鹅鸭杀捆绑包",content_kr:"1주년 감사 패키지·GooseGooseDuck 패키지 출시",content_cn:"1周年感谢礼包·鹅鸭杀捆绑包推出",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=11393521362139399214"},
           {date:"2025-09-29",type:"version",label_kr:"1주년 이벤트 3탄",label_cn:"1周年活动第三弹",content_kr:"1주년 이벤트 3탄 오픈",content_cn:"1周年活动第三弹开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=2782702201042160096"},
-          {date:"2025-09-17",type:"event",label_kr:"×GooseGooseDuck 인게임 아이템",label_cn:"×鹅鸭杀 游戏内联动道具",content_kr:"Delta Force×GooseGooseDuck 인게임 콜라보 아이템 출시",content_cn:"三角洲行动×鹅鸭杀游戏内联动道具上线",url:"https://weibo.com/7852949543/Q3XNHqr8T"},
-          {date:"2025-09-19",type:"commerce",label_kr:"×명일방주 3차 에이전트 스킨",label_cn:"×明日方舟 第三位干员皮肤",content_kr:"명일방주 3차 에이전트 骇爪×维什戴尔 레드 스킨 출시",content_cn:"明日方舟联动第三位干员骇爪×维什戴尔红皮上线",url:"https://weibo.com/7852949543/Q04dZdICY"},
+          {date:"2025-09-17",type:"collab",label_kr:"×GooseGooseDuck 인게임 아이템",label_cn:"×鹅鸭杀 游戏内联动道具",content_kr:"Delta Force×GooseGooseDuck 인게임 콜라보 아이템 출시",content_cn:"三角洲行动×鹅鸭杀游戏内联动道具上线",url:"https://weibo.com/7852949543/Q3XNHqr8T"},
+          {date:"2025-09-19",type:"commerce",label_kr:"×명일방주 3차 에이전트 스킨",label_cn:"×明日方舟 第三位干员皮肤",content_kr:"명일방주 3차 에이전트 해조×비슈다이어 레드 스킨 출시",content_cn:"明日方舟联动第三位干员해조×비슈다이어红皮上线",url:"https://weibo.com/7852949543/Q04dZdICY"},
           {date:"2025-09-21",type:"other",label_kr:"DAU 3000만 돌파 발표",label_cn:"官宣DAU突破3000万",content_kr:"Delta Force 중국 버전 DAU 3000만 돌파 공식 발표",content_cn:"三角洲行动中国版DAU突破3000万官方宣布",url:"https://weibo.com/7852949543/Q5A7wdkjo"}
         ]
       },
       "无畏契约：源能行动": {
         key:"ww", name_kr:"Valorant M", name_cn:"无畏契约：源能行动",
-        summary_kr:"버전 업데이트 3회/가이아의 복수 스킨·요원 게코 출시 후 매출 급증. 月매출 $1,499만 MoM+118.5%",
+        summary_kr:"버전 업데이트 3회/가이아의 복수 스킨·요원 게코 출시 후 매출 급증. 월 매출 $1,499만 MoM+118.5%",
         summary_cn:"3次版本更新/盖亚之怒皮肤·特工壁虎上线后流水急增。月流水1,499万美元，MoM+118.5%",
         events:[
           {date:"2025-09-12",type:"version",label_kr:"일반 업데이트/이스포츠 센터",label_cn:"常规更新/电竞中心",content_kr:"신규 퀵보이스 등 통상 업데이트, 이스포츠 센터 오픈",content_cn:"新快捷语音等常规更新，电竞中心开放",url:"https://valm.qq.com/new-detail.html?docid=18009673419807774331&tagid=138378"},
@@ -1797,12 +1848,12 @@ const EVENTS_DB = {
         summary_kr:"버전 업데이트 4회/출시 10주년 대형 이벤트·삼성퇴 콜라보 스킨·KPL 파이널 버전. iOS 매출 1위 MoM+33.2%",
         summary_cn:"4次版本更新/上线10周年大型活动·三星堆联动皮肤·KPL决赛版本。iOS流水榜第1位，MoM+33.2%",
         events:[
-          {date:"2025-10-09",type:"version",label_kr:"10주년 버전/罗小黑战记 스킨/天命争锋",label_cn:"10周年版本/罗小黑战记联名皮肤/天命争锋",content_kr:"출시 10주년 특별 버전, 罗小黑战记 콜라보 스킨 출시, 天命争锋 모드, 원류지자 신직업",content_cn:"10周年特别版本，罗小黑战记联名皮肤上架，天命争锋玩法开启，元流之子新职业上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=786193"},
+          {date:"2025-10-09",type:"version",label_kr:"10주년 버전/로소흑전기 스킨/천명쟁봉",label_cn:"10周年版本/로소흑전기联名皮肤/천명쟁봉",content_kr:"출시 10주년 특별 버전, 로소흑전기 콜라보 스킨 출시, 천명쟁봉 모드, 원류지자 신직업",content_cn:"10周年特别版本，로소흑전기联名皮肤上架，천명쟁봉玩法开启，元流之子新职业上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=786193"},
           {date:"2025-10-15",type:"version",label_kr:"10주년 보너스 이벤트",label_cn:"10周年福利活动",content_kr:"포인트 교환권 이벤트, 포인트 교환 상점, 재출시 스킨 투표",content_cn:"积分兑换券活动，积分兑换商店，返场皮肤投票",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=787279"},
           {date:"2025-10-23",type:"version",label_kr:"10주년 페스티벌/삼성퇴 콜라보",label_cn:"10周年嘉年华/三星堆联动",content_kr:"10.25 출시 10주년 기념 이벤트 전면 개시, 삼성퇴 콜라보 미니언·스킨 출시",content_cn:"10.25王者10周年纪念活动全面开启，三星堆联动小兵·皮肤上线",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=787859"},
           {date:"2025-10-30",type:"version",label_kr:"2025 KPL 파이널 버전",label_cn:"2025 KPL决赛版本",content_kr:"KPL 파이널 기념 세트 획득 이벤트, 챔피언 기념 테두리",content_cn:"KPL决赛纪念套装获取活动，冠军纪念边框",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=788326"},
-          {date:"2025-10-22",type:"event",label_kr:"×삼성퇴 인게임 한정 콜라보 스킨",label_cn:"×三星堆 游戏内限定联动皮肤",content_kr:"왕자영요×삼성퇴 인게임 한정 콜라보 스킨 출시",content_cn:"王者荣耀×三星堆游戏内限定联动皮肤上线",url:"https://weibo.com/5698023579/QaiBJ2WgB"},
-          {date:"2025-10-30",type:"event",label_kr:"×야채요정 인게임 콜라보 스킨",label_cn:"×蔬菜精灵 游戏内联动皮肤",content_kr:"왕자영요×야채요정 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×蔬菜精灵游戏内联动皮肤上线",url:"https://weibo.com/5698023579/QbtRL2vWg"}
+          {date:"2025-10-22",type:"collab",label_kr:"×삼성퇴 인게임 한정 콜라보 스킨",label_cn:"×三星堆 游戏内限定联动皮肤",content_kr:"왕자영요×삼성퇴 인게임 한정 콜라보 스킨 출시",content_cn:"王者荣耀×三星堆游戏内限定联动皮肤上线",url:"https://weibo.com/5698023579/QaiBJ2WgB"},
+          {date:"2025-10-30",type:"collab",label_kr:"×야채요정 인게임 콜라보 스킨",label_cn:"×蔬菜精灵 游戏内联动皮肤",content_kr:"왕자영요×야채요정 인게임 콜라보 스킨 출시",content_cn:"王者荣耀×蔬菜精灵游戏内联动皮肤上线",url:"https://weibo.com/5698023579/QbtRL2vWg"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"10월 iOS 매출 5위, 전월 대비 2계단 하락",summary_cn:"10月iOS畅销榜第5位，较上月下降2位",events:[]},
@@ -1813,7 +1864,7 @@ const EVENTS_DB = {
         events:[
           {date:"2025-10-23",type:"version",label_kr:"쏘우 콜라보/핼러윈 이벤트",label_cn:"电锯惊魂联动/万圣节活动",content_kr:"직쏘 게임방(듀오) 출시, 쏘우 캐릭터 패키지(이벤트 무료), 핼러윈 이벤트",content_cn:"直锯游戏房（双人模式）上线，电锯惊魂角色捆绑包（活动免费），万圣节活动",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=2782702201042160096"},
           {date:"2025-10-30",type:"version",label_kr:"시즌 패스 가속/이벤트",label_cn:"赛季通行证加速/活动",content_kr:"기간 한정 시즌 패스 레벨 가속, 신규 패키지 출시",content_cn:"限时赛季通行证等级加速，新捆绑包上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=2842565084375868407"},
-          {date:"2025-10-23",type:"event",label_kr:"×쏘우 인게임 레전드 스킨",label_cn:"×电锯惊魂 游戏内传说皮肤",content_kr:"Delta Force×쏘우 콜라보 레전드 스킨 [홍랑-쏘우] 출시",content_cn:"三角洲行动×电锯惊魂联动传说皮肤[红狼-电锯惊魂]上线",url:"https://weibo.com/7852949543/QasP21XpT"}
+          {date:"2025-10-23",type:"collab",label_kr:"×쏘우 인게임 레전드 스킨",label_cn:"×电锯惊魂 游戏内传说皮肤",content_kr:"Delta Force×쏘우 콜라보 레전드 스킨 [홍랑-쏘우] 출시",content_cn:"三角洲行动×电锯惊魂联动传说皮肤[红狼-电锯惊魂]上线",url:"https://weibo.com/7852949543/QasP21XpT"}
         ]
       },
       "无畏契约：源能行动": {
@@ -1852,12 +1903,12 @@ const EVENTS_DB = {
           {date:"2025-11-13",type:"version",label_kr:"아사라 신규 시즌/신맵 피라미드",label_cn:"阿萨拉新赛季/金字塔新地图",content_kr:"신규 시즌 아사라 오픈, 신맵(피라미드), 위험지역 아레나, 신규 에이전트·무기 출시",content_cn:"新赛季阿萨拉开启，金字塔新地图上线，危险区域竞技场，新干员·新武器上线",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=9257832193577242942"},
           {date:"2025-11-20",type:"version",label_kr:"타이드 프리즌 오픈",label_cn:"潮汐监狱适应行动",content_kr:"타이드 프리즌 적응 행동 기간 한정 오픈",content_cn:"潮汐监狱适应行动限时开启",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=3625813550988141794"},
           {date:"2025-11-27",type:"version",label_kr:"아사라 전투 개전 패키지",label_cn:"阿萨拉战斗开战捆绑包",content_kr:"종횡 패키지 출시, 타이드 프리즌 감옥 모드·아사라 전투 이벤트",content_cn:"纵横捆绑包上线，潮汐监狱模式·阿萨拉战斗活动",url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=17155749283628538248"},
-          {date:"2025-11-08",type:"event",label_kr:"×메탈기어솔리드 콜라보 발표",label_cn:"×合金装备 联动发布",content_kr:"Delta Force×합금장비△: 스네이크 이터 콜라보 발표, 12.19 이벤트 개시 예고",content_cn:"三角洲行动×合金装备△蛇吞行动联动发布，12.19联动活动开启预告",url:"https://weibo.com/7852949543/QcVITjd4a"}
+          {date:"2025-11-08",type:"collab",label_kr:"×메탈기어솔리드 콜라보 발표",label_cn:"×合金装备 联动发布",content_kr:"Delta Force×합금장비△: 스네이크 이터 콜라보 발표, 12.19 이벤트 개시 예고",content_cn:"三角洲行动×合金装备△蛇吞行动联动发布，12.19联动活动开启预告",url:"https://weibo.com/7852949543/QcVITjd4a"}
         ]
       },
       "无畏契约：源能行动": {
         key:"ww", name_kr:"Valorant M", name_cn:"无畏契约：源能行动",
-        summary_kr:"일반 업데이트 5회/빛의 속도 스킨 출시로 매출 소폭 상승. 月매출 $1,591만 MoM+12.0%",
+        summary_kr:"일반 업데이트 5회/빛의 속도 스킨 출시로 매출 소폭 상승. 월 매출 $1,591만 MoM+12.0%",
         summary_cn:"常规更新5次/光速皮肤上线带动流水小幅提升。月流水1,591万美元，MoM+12.0%",
         events:[
           {date:"2025-11-13",type:"commerce",label_kr:"빛의 속도 스킨 출시",label_cn:"光速皮肤上线",content_kr:"11.13 빛의 속도 신규 스킨 출시, 당월 매출 최고점 달성",content_cn:"11.13光速新皮肤上线，带动当月流水达到峰值",url:"https://valm.qq.com/new-detail.html?docid=12673670993520699837&tagid=138206"},
@@ -1879,7 +1930,7 @@ const EVENTS_DB = {
           {date:"2025-12-11",type:"version",label_kr:"몽경무한 난투 모드/스킨 공모전",label_cn:"梦境无限混战模式/皮肤设计大赛",content_kr:"몽경무한 난투 모드 오픈, 꿈의 스킨 디자인 공모전, 영웅 모드 업그레이드 공모",content_cn:"梦境无限混战模式开启，梦想皮肤设计大赛报名，英雄玩法升级共创活动",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=790454"},
           {date:"2025-12-18",type:"version",label_kr:"손오공 영웅 시련",label_cn:"孙悟空英雄试炼",content_kr:"손오공 영웅의 시련 이벤트 오픈, 몽경무한 모드 업데이트",content_cn:"孙悟空英雄试炼活动开启，梦境无限模式更新",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=790723"},
           {date:"2025-12-30",type:"version",label_kr:"손오공 무쌍 스킨/새해 컬렉션",label_cn:"孙悟空无双皮肤/新年典藏",content_kr:"손오공 무쌍 스킨 출시, 견희·야오 스킨 재출시, 새해 컬렉션 스킨 한정 무료",content_cn:"孙悟空无双皮肤上线，甄姬·瑶皮肤返场，新年典藏皮肤限时免费",url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=791192"},
-          {date:"2025-12-29",type:"event",label_kr:"×중국화 거장 손오공 스킨",label_cn:"×国画大师 孙悟空皮肤",content_kr:"중국화 거장 다이둔방과 협업한 손오공 스킨 및 홍보 포스터 공개",content_cn:"与国画大师戴敦邦联合创作孙悟空皮肤及宣传海报发布",url:"https://weibo.com/5698023579/QkDFusP4D"}
+          {date:"2025-12-29",type:"collab",label_kr:"×중국화 거장 손오공 스킨",label_cn:"×国画大师 孙悟空皮肤",content_kr:"중국화 거장 다이둔방과 협업한 손오공 스킨 및 홍보 포스터 공개",content_cn:"与国画大师戴敦邦联合创作孙悟空皮肤及宣传海报发布",url:"https://weibo.com/5698023579/QkDFusP4D"}
         ]
       },
       "和平精英": {key:"hp",name_kr:"화평정영",name_cn:"和平精英",summary_kr:"12월 iOS 매출 4위, 전월 대비 한 계단 상승",summary_cn:"12月iOS畅销榜第4位，较上月上升1位",events:[]},
@@ -1896,7 +1947,7 @@ const EVENTS_DB = {
       },
       "无畏契约：源能行动": {
         key:"ww", name_kr:"Valorant M", name_cn:"无畏契约：源能行动",
-        summary_kr:"버전 업데이트 5회/폭발직전 신규 버전·신맵·신규 영웅·전투 패스 출시. 月매출 $1,497만 MoM-5.9%",
+        summary_kr:"버전 업데이트 5회/폭발직전 신규 버전·신맵·신규 영웅·전투 패스 출시. 월 매출 $1,497만 MoM-5.9%",
         summary_cn:"5次版本更新/爆炸前夕新版本·新地图·新英雄·战令上线。月流水1,497万美元，MoM-5.9%",
         events:[
           {date:"2025-12-18",type:"version",label_kr:"폭발직전 신규 버전/신맵/신규 영웅",label_cn:"爆炸前夕新版本/新地图/新英雄",content_kr:"폭발직전 신규 버전 출시, 신맵·신규 영웅·장갑·전투 패스·발로란트 선행 카드 출시",content_cn:"爆炸前夕新版本上线，新地图·新英雄·手套·战令·瓦罗兰特先行卡上线",url:"https://valm.qq.com/new-detail.html?docid=11923780766938525785&tagid=138206"},
@@ -1956,7 +2007,7 @@ const EVENTS_DB = {
             content_cn:"赛季冲刺/蝶变时刻将至；雷斯地下商店上线；钢铁洪流活动模式回归；攻势：风眼基地挑战开启",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=10300211048532612330" },
           { date:"2026.01.29", type:"version",  label_kr:"대규모 버전 업데이트", label_cn:"大版本更新",
-            content_kr:"신규 시즌 '모포시스(蝶变时刻)' 오픈；신규 오퍼레이터·맵·모드·무기·탈것 출시；시즌 패스·신춘 보급품·신춘 소장품 '마상전운' 등장",
+            content_kr:"신규 시즌 '모포시스(접변시각)' 오픈；신규 오퍼레이터·맵·모드·무기·탈것 출시；시즌 패스·신춘 보급품·신춘 소장품 '마상전운' 등장",
             content_cn:"新赛季【蝶变时刻】开启；新干员·新地图·新玩法·新武器·新载具上线；赛季通行证·新春补给·新春收藏品「马上转运」登场",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=5063000012658166096" }
         ]
@@ -1971,7 +2022,7 @@ const EVENTS_DB = {
             content_cn:"【猫猫套】皮肤上线，流水达到本月peak",
             url:"" },
           { date:"2026.01.09", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"모바일 '야시장(夜市)' 이벤트 — 카드 뒤집기로 스킨 전용 할인 획득",
+            content_kr:"모바일 '야시장(야시장)' 이벤트 — 카드 뒤집기로 스킨 전용 할인 획득",
             content_cn:"手游「夜市」翻牌领取专属折扣，购买多款皮肤",
             url:"" },
           { date:"2026.01.10", type:"other",    label_kr:"핫픽스", label_cn:"热更新",
@@ -2001,7 +2052,7 @@ const EVENTS_DB = {
             url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=794397" },
           { date:"2026.02.12", type:"version",  label_kr:"춘절 버전 업데이트", label_cn:"新春版本更新",
             content_kr:"2.15 로랑 코르비에 말의 해 한정 스킨；묵연강호·진품전설·천기개홍 소원 이벤트；영요 클래식 안젤라 스킨；마상유전 미니언；여포·오은 깜짝 세일；다수 스킨 재출시；춘절 충전 이벤트",
-            content_cn:"2.15零点【路启千秋】马年限定皮肤上架；墨染江湖/珍品传说/天骥开鸿天幕祈愿开启；荣耀典藏安琪拉皮肤；马上有钱小兵；吕布/敖隐秒杀皮肤；多款皮肤限时返场；新春累计充值活动",
+            content_cn:"2.15零点【路启千秋】马年限定皮肤上架；墨染江湖/珍品传说/天骥开鸿천막기원开启；荣耀典藏安琪拉皮肤；马上有钱小兵；吕布/敖隐秒杀皮肤；多款皮肤限时返场；新春累计充值活动",
             url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=793367" },
           { date:"2026.02.27", type:"event",    label_kr:"이벤트 업데이트", label_cn:"活动更新",
             content_kr:"달마-성군·항금 스킨 출시；월 1위안 상자·다이아 보이스 출시；충전 이벤트",
@@ -2025,7 +2076,7 @@ const EVENTS_DB = {
             content_cn:"新春活动预告；威龙的年味食堂（2.13-2.26）；阿萨拉年货节（双模式）；新春自选捆绑包；战场平衡调整",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=295903065640086851" },
           { date:"2026.02.10", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"위룡의 첫 노블 스킨 [우주 수호자(凌霄戍卫)] 출시 — 당월 매출 최고점",
+            content_kr:"위룡의 첫 노블 스킨 [우주 수호자(능소수위)] 출시 — 당월 매출 최고점",
             content_cn:"威龙首款干员研究外观【凌霄戍卫】上线，流水达到本月peak",
             url:"https://weibo.com/7852949543/QqQCIA2Do" },
           { date:"2026.02.10", type:"event",    label_kr:"인게임 이벤트", label_cn:"游戏内活动",
@@ -2044,11 +2095,11 @@ const EVENTS_DB = {
         summary_cn: "iOS畅销榜平均排名第7位（▲1），流水合计$23,915,745（MoM▲13.4%）。2.20版本更新后【离火刃】武器与2026赛季礼包上线时流水达到本月peak。2.5新春版本时活跃达到本月peak。",
         events: [
           { date:"2026.02.04", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"스킨 [수공달인(手工达人)] 출시",
+            content_kr:"스킨 [수공달인(수공달인)] 출시",
             content_cn:"皮肤【手工达人】上架",
             url:"https://weibo.com/7982741612/QqgtS8Md5" },
           { date:"2026.02.05", type:"version",  label_kr:"버전 업데이트", label_cn:"版本更新",
-            content_kr:"신규 요원 데드록(钢锁) 출시；신맵 선셋(日落之城) 추가；춘절 한정 신규 아케이드 모드",
+            content_kr:"신규 요원 데드록(강쇄) 출시；신맵 선셋(일락지성) 추가；춘절 한정 신규 아케이드 모드",
             content_cn:"新英雄——钢锁登场；新地图——日落之城推出；推出新春限定全新娱乐玩法",
             url:"https://weibo.com/7982741612/QqnWAAYYv" },
           { date:"2026.02.05", type:"other",    label_kr:"핫픽스", label_cn:"热更新",
@@ -2056,7 +2107,7 @@ const EVENTS_DB = {
             content_cn:"英雄调整·错误修复",
             url:"https://val.qq.com/newsdetails.html?docid=13717461440059457678&goback=news" },
           { date:"2026.02.05", type:"commerce", label_kr:"유료화", label_cn:"商업화",
-            content_kr:"적염철기(赤焰铁骥) 세트 출시；[요린위룡(耀鳞威龙)] 시리즈 스킨 출시",
+            content_kr:"적염철기(적염철기) 세트 출시；[요린위룡(요린위룡)] 시리즈 스킨 출시",
             content_cn:"赤焰铁骥套装上架；【耀鳞威龙】系列皮肤上架",
             url:"https://val.qq.com/newsdetails.html?docid=15322835101959646409&goback=news" },
           { date:"2026.02.06", type:"commerce", label_kr:"유료화", label_cn:"商业化",
@@ -2064,23 +2115,23 @@ const EVENTS_DB = {
             content_cn:"新春通行证上架",
             url:"https://val.qq.com/newsdetails.html?docid=6051974694743456851&goback=news" },
           { date:"2026.02.06", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"야시장(夜市) 오픈 — 전용 할인 혜택으로 스킨 구매 가능(~3.03)",
+            content_kr:"야시장(야시장) 오픈 — 전용 할인 혜택으로 스킨 구매 가능(~3.03)",
             content_cn:"夜市开启，用户可获得专属折扣买皮肤（~3.03）",
             url:"https://val.qq.com/newsdetails.html?docid=3743543651036621838&goback=news" },
           { date:"2026.02.12", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"2026 춘절 세트(春节套装) 출시；[수정서약(水晶誓约)] 시리즈 스킨 출시",
+            content_kr:"2026 춘절 세트(춘절 세트) 출시；[수정서약(수정서약)] 시리즈 스킨 출시",
             content_cn:"2026春节套装上架；【水晶誓约】系列皮肤上线",
             url:"https://val.qq.com/newsdetails.html?docid=12309772358859167499&goback=news" },
           { date:"2026.02.16", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"[적영천효(赤影天骁)] 시리즈 스킨 출시",
+            content_kr:"[적영천효(적영천효)] 시리즈 스킨 출시",
             content_cn:"【赤影天骁】系列皮肤上线",
             url:"https://weibo.com/7982741612/QrVoD1JsA" },
           { date:"2026.02.19", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"[Ignite knife(离火刃)] 무기 출시 — 당월 매출 최고점",
+            content_kr:"[Ignite knife(이화인)] 무기 출시 — 당월 매출 최고점",
             content_cn:"【离火刃】武器上线，流水达到本月peak",
             url:"https://weibo.com/7982741612/QsefCqSXx" },
           { date:"2026.02.20", type:"event",    label_kr:"이벤트 업데이트", label_cn:"活动更新",
-            content_kr:"신규 기간 한정 모드: 2v2 매칭 '투우(斗牛)'；요원 '게코(盖克)' 강화；폭파 모드 장비 조정",
+            content_kr:"신규 기간 한정 모드: 2v2 매칭 '투우(투우)'；요원 '게코(게코)' 강화；폭파 모드 장비 조정",
             content_cn:"全新限时模式2v2「斗牛」登场；英雄「盖克」增强；爆能大乱斗装备调整",
             url:"https://val.qq.com/newsdetails.html?docid=8559600039247364977&goback=news" },
           { date:"2026.02.20", type:"commerce", label_kr:"유료화", label_cn:"商业化",
@@ -2088,11 +2139,11 @@ const EVENTS_DB = {
             content_cn:"VCT 2026赛季礼包上架",
             url:"https://val.qq.com/newsdetails.html?docid=15220518233357398918&goback=news" },
           { date:"2026.02.23", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"[기점(奇点)] 시리즈 스킨 출시",
+            content_kr:"[기점(기점)] 시리즈 스킨 출시",
             content_cn:"【奇点】系列皮肤上线",
             url:"https://weibo.com/7982741612/QsZo6o382" },
           { date:"2026.02.26", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"포커야(破壳鸭) 시리즈 세트 출시",
+            content_kr:"포커야(포각압) 시리즈 세트 출시",
             content_cn:"破壳鸭系列套装上线",
             url:"https://val.qq.com/newsdetails.html?docid=3865744641816753197&goback=news" },
           { date:"2026.02.28", type:"other",    label_kr:"핫픽스", label_cn:"热更新",
@@ -2113,16 +2164,16 @@ const EVENTS_DB = {
         summary_cn: "畅销榜均排Top1（-）；3月初传说皮肤+充值活动带动流水高位，中下旬因未推出商业化有所下滑；MAU环比-9.3%。",
         events: [
           { date:"2026.03.05", type:"version",  label_kr:"버전 업데이트", label_cn:"版本更新",
-            content_kr:"超级兑兑兑 이벤트 개시；전체 여성 영웅 무료 체험；아커 첫 전설 스킨 '나찰망해' 출시",
-            content_cn:"超级兑兑兑活动开启；全体女性英雄限免；阿轲首款传说皮肤-罗刹妄海上架",
+            content_kr:"슈퍼 교환 이벤트 개시；전체 여성 영웅 무료 체험；아커 첫 전설 스킨 나찰망해 출시",
+            content_cn:"슈퍼 교환活动开启；全体女性英雄限免；阿轲首款传说皮肤-罗刹妄海上架",
             url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=796429" },
           { date:"2026.03.12", type:"event",    label_kr:"이벤트 업데이트", label_cn:"活动更新",
-            content_kr:"超级兑兑兑 이벤트 계속；뽑기 업데이트；영웅 밸런스 조정",
-            content_cn:"超级兑兑兑活动继续；夺宝更新；英雄调整",
+            content_kr:"슈퍼 교환 이벤트 계속；뽑기 업데이트；영웅 밸런스 조정",
+            content_cn:"슈퍼 교환活动继续；夺宝更新；英雄调整",
             url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=796833" },
           { date:"2026.03.19", type:"version",  label_kr:"버전 업데이트", label_cn:"版本更新",
-            content_kr:"[影-百相守梦] 전설 스킨 무료 획득；뽑기 갱신；인게임 한정 스토리 보이스 추가；영웅 조정·버그 수정",
-            content_cn:"【影-百相守梦】全新皮肤免费得；夺宝奖池更新；新增局内限时剧情语音；英雄调整/修复",
+            content_kr:"[영-백상수몽] 전설 스킨 무료 획득；뽑기 갱신；인게임 한정 스토리 보이스 추가；영웅 조정·버그 수정",
+            content_cn:"【영-백상수몽】全新皮肤免费得；夺宝奖池更新；新增局内限时剧情语音；英雄调整/修复",
             url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=797207" }
         ]
       },
@@ -2135,91 +2186,213 @@ const EVENTS_DB = {
       "三角洲行动": {
         key: "df", name_kr: "Delta Force", name_cn: "三角洲行动",
         summary_kr: "iOS 매출 순위 평균 4위(-1). 3.13 [명야장미] 외형 출시 시 당월 최고 매출. 3.18 국서 DAU 5000만 돌파 공식 발표.",
-        summary_cn: "iOS畅销榜平均排名第4位（-1）；3.13【冥夜蔷薇】系列外观上线时流水达到峰值；3.18官宣国服DAU突破5000w。",
+        summary_cn: "iOS畅销榜平均排名第4位（-1）；3.13【명야장미】系列外观上线时流水达到峰值；3.18官宣国服DAU突破5000w。",
         events: [
           { date:"2026.03.06", type:"commerce", label_kr:"상업화",  label_cn:"商业化",
-            content_kr:"미션 완료 시 '蛊-不羁人生' 전설 외형 번들 획득（~4.19）",
-            content_cn:"完成任务领取「蛊-不羁人生」传说干员外观捆绑包（至4.19）",
+            content_kr:"미션 완료 시 '고-불기인생' 전설 외형 번들 획득（~4.19）",
+            content_cn:"完成任务领取「고-불기인생」传说干员外观捆绑包（至4.19）",
             url:"https://weibo.com/7852949543/QuPfScah5" },
           { date:"2026.03.12", type:"event",    label_kr:"이벤트 업데이트", label_cn:"活动更新",
-            content_kr:"신기한 수납박스 이벤트；하브크 화물 헬리콥터；蝶变行动：임계교봉（전면전장）；주말 복지 이벤트",
+            content_kr:"신기한 수납박스 이벤트；하브크 화물 헬리콥터；접변행동：임계교봉（전면전장）；주말 복지 이벤트",
             content_cn:"神奇收纳盒活动；哈夫克货载直升机活动；蝶变行动：临界交锋（全面战场）；周末福利活动",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=16715224558905450269" },
           { date:"2026.03.13", type:"commerce", label_kr:"상업화",  label_cn:"商业化",
-            content_kr:"[명야장미(冥夜蔷薇)] 시리즈 외형（~4.09）",
-            content_cn:"【冥夜蔷薇】系列外观（至4.09）",
+            content_kr:"[명야장미(명야장미)] 시리즈 외형（~4.09）",
+            content_cn:"【명야장미】系列外观（至4.09）",
             url:"https://weibo.com/7852949543/QvRISCGra" },
           { date:"2026.03.18", type:"other",    label_kr:"기타",    label_cn:"其他",
             content_kr:"국서 DAU 5000만 돌파 공식 발표",
             content_cn:"官宣国服DAU突破5000w",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=7799734944064833612" },
           { date:"2026.03.19", type:"event",    label_kr:"이벤트 업데이트", label_cn:"活动更新",
-            content_kr:"봉화 프로리그 봄 시즌 개막（3.25-5.23）；유금행렬(鎏金矩阵) 번들 출시；주말 활동",
-            content_cn:"烽火职业联赛春季赛开赛（3.25-5.23）；鎏金矩阵捆绑包上线；周末活动",
+            content_kr:"봉화 프로리그 봄 시즌 개막（3.25-5.23）；유금행렬(유금행렬) 번들 출시；주말 활동",
+            content_cn:"烽火职业联赛春季赛开赛（3.25-5.23）；유금행렬捆绑包上线；周末活动",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=7773214561135362404" },
           { date:"2026.03.25", type:"commerce", label_kr:"상업화",  label_cn:"商业化",
-            content_kr:"첫 직업 시리즈 외형 [유금행렬(鎏金矩阵)] 한정 판매（~5.23）",
-            content_cn:"首个职业赛事系列外观【鎏金矩阵】限时上架（至5.23）",
+            content_kr:"첫 직업 시리즈 외형 [유금행렬(유금행렬)] 한정 판매（~5.23）",
+            content_cn:"首个职业赛事系列外观【유금행렬】限时上架（至5.23）",
             url:"https://weibo.com/7852949543/QxGQMzAEo" },
           { date:"2026.03.26", type:"version",  label_kr:"버전 업데이트", label_cn:"版本更新",
-            content_kr:"'총 골라, 총 받아' 이벤트；출하!（봉화지대）；청야유렵；赛季挑战蝶变行动：沙海围城",
-            content_cn:"「摸好货，领好枪」活动；出货！（烽火地带）；青野游猎（全面战场）；赛季挑战蝶变行动：沙海围城",
+            content_kr:"'총 골라, 총 받아' 이벤트；출하!（봉화지대）；청야유렵；시즌 챌린지 접변행동：사해위성",
+            content_cn:"「摸好货，领好枪」活动；出货！（烽火地带）；青野游猎（全面战场）；시즌 챌린지 접변행동：사해위성",
             url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=17711410885216781655" },
           { date:"2026.03.27", type:"commerce", label_kr:"상업화",  label_cn:"商业化",
-            content_kr:"[경채만당(惊彩满堂)] 시리즈 외형（~4.23）",
-            content_cn:"【惊彩满堂】系列外观（至4.23）",
+            content_kr:"[경채만당(경채만당)] 시리즈 외형（~4.23）",
+            content_cn:"【경채만당】系列外观（至4.23）",
             url:"https://weibo.com/7852949543/QvRISCGra" }
         ]
       },
       "无畏契约：源能行动": {
         key: "ww", name_kr: "Valorant M", name_cn: "无畏契约：源能行动",
         summary_kr: "iOS 매출 순위 평균 7위(-). '와수야시' 이벤트 및 [자궐금랑] 스킨 출시 시 매출 최고점. MAU 전월 대비 -21.5%.",
-        summary_cn: "iOS畅销榜平均排名第7位（-）；「瓦手夜市」折扣活动及【紫阙金琅】皮肤上线时流水达到峰值；MAU环比-21.5%。",
+        summary_cn: "iOS畅销榜平均排名第7位（-）；「와수야시장」折扣活动及【자궐금랑】皮肤上线时流水达到峰值；MAU环比-21.5%。",
         events: [
           { date:"2026.03.03", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"[치린순유(炽鳞巡游)] 시리즈 스킨 출시",
-            content_cn:"【炽鳞巡游】系列皮肤上线",
+            content_kr:"[치린순유(치린순유)] 시리즈 스킨 출시",
+            content_cn:"【치린순유】系列皮肤上线",
             url:"https://weibo.com/7982741612/QucO4uPFS" },
           { date:"2026.03.08", type:"other",    label_kr:"핫픽스", label_cn:"热更新",
             content_kr:"버그 수정",
             content_cn:"错误修复",
             url:"https://weibo.com/7982741612/Qv6YH5MeA" },
           { date:"2026.03.12", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"Valorant M × LOL《双城之战》게임 내 콜라보 스킨 출시",
-            content_cn:"Valorant M × LOL《双城之战》游戏内联名皮肤上线",
+            content_kr:"Valorant M × LOL《이중도시전쟁》게임 내 콜라보 스킨 출시",
+            content_cn:"Valorant M × LOL《이중도시전쟁》游戏内联名皮肤上线",
             url:"https://weibo.com/7982741612/Qvqe36DS2" },
           { date:"2026.03.14", type:"event",    label_kr:"이벤트 업데이트", label_cn:"活动更新",
             content_kr:"와수환신계：랭크 더블 포인트·R포인트·쌍성의 도시 한정 장식/칭호·체험 총기 스킨",
-            content_cn:"瓦手焕新季：排位双倍加分、R点、双城之战限定饰品/称号、体验枪皮",
+            content_cn:"瓦手焕新季：排位双倍加分、R点、이중도시전쟁限定饰品/称号、体验枪皮",
             url:"https://weibo.com/7982741612/QvRIP2Tiu" },
           { date:"2026.03.14", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"와수야시(瓦手夜市)：직방 시청 복지 지급·대규모 스킨 할인",
-            content_cn:"瓦手夜市：前往直播间观看直播有机会获得福利，翻牌解锁海量皮肤折扣",
+            content_kr:"와수야시(와수야시장)：직방 시청 복지 지급·대규모 스킨 할인",
+            content_cn:"와수야시장：前往直播间观看直播有机会获得福利，翻牌解锁海量皮肤折扣",
             url:"https://weibo.com/7982741612/QvSvx0PbC" },
           { date:"2026.03.18", type:"other",    label_kr:"핫픽스", label_cn:"热更新",
             content_kr:"한정 모드 추가；일부 영웅 스킬 수정；버그 수정",
             content_cn:"限时玩法上线；部分英雄技能修复；错误修复",
             url:"https://valm.qq.com/new-detail.html?docid=6397621539070210861&tagid=138206" },
           { date:"2026.03.19", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"[자궐금랑(紫阙金琅)] 시리즈 스킨 출시",
-            content_cn:"【紫阙金琅】系列皮肤上线",
+            content_kr:"[자궐금랑(자궐금랑)] 시리즈 스킨 출시",
+            content_cn:"【자궐금랑】系列皮肤上线",
             url:"https://weibo.com/7982741612/QwudwrRin" },
           { date:"2026.03.26", type:"commerce", label_kr:"유료화", label_cn:"商业化",
-            content_kr:"[극간주의(极简主义)] 시리즈 스킨 출시",
-            content_cn:"【极简主义】系列皮肤上线",
+            content_kr:"[극간주의(극간주의)] 시리즈 스킨 출시",
+            content_cn:"【극간주의】系列皮肤上线",
             url:"https://weibo.com/7982741612/Qxyd0787Q" }
         ]
       }
     }
-  }
+  },
+  "2026-04": {
+    label_kr: "2026년 4월", label_cn: "2026年4月",
+    games: {
+      "和平精英": {
+        key:"hp", name_kr:"화평정영", name_cn:"和平精英",
+        summary_kr:"iOS 매출 순위 평균 2위（▲1）. 4.9 7주년 버전 업데이트（에란겔 테마/고분탐험 신맵）, 4.24 ×마이 리틀 포니/Dooro Bear 인게임 출시 및 피크 매출, iOS 1위 등극. PEL 스프링 파이널（#웨이보 4624만）. 청명절 연휴 DAU 최고점.",
+        summary_cn:"iOS畅销榜平均第2位（▲1）。4.9 7周年新版本更新（主题海岛/古墓迷途新地图），4.24 ×小马宝莉/萌芽熊游戏内上线，流水达到peak，登上iOS第1位。PEL春季总决赛（#weibo 4624w）。清明假期DAU达到月度最高点。",
+        events:[
+          {date:"2026.04.01",type:"commerce",label_kr:"백변사화·안니 스킨",label_cn:"百变纱华·安妮皮肤",
+           content_kr:"인게임 신장 [백변사화·안니] 스킨 출시; 연예인 루위샤오 코스프레 홍보（웨이보 2691만）",
+           content_cn:"游戏内【百变纱华·安妮】神装皮肤上线；联动明星卢昱晓cos宣传（weibo 2691w）",
+           url:""},
+          {date:"2026.04.09",type:"version",label_kr:"7주년 신규 버전 업데이트",label_cn:"7周年新版本更新",
+           content_kr:"7주년 버전 개시: 에란겔 테마 업데이트/신규 총기/메트로 로얄 신규 총기/고분 탐험 신맵/초체대항 한정 모드/팀 섬멸전; UGC 캠프 이벤트/버프 이벤트 동시 진행",
+           content_cn:"7周年版本开启：主题海岛更新/新枪械/地铁逃生新枪械/古墓迷途新地图/超体对抗限时玩法/歼灭团竞；和平营地UGC互动活动同步推出",
+           url:""},
+          {date:"2026.04.17",type:"collab",label_kr:"×My friend rabbit 인게임 콜라보",label_cn:"×粉红兔子游戏内联动",
+           content_kr:"화평정영 × My friend rabbit 인게임 콜라보 한정 세트 출시（웨이보 30.3만）",
+           content_cn:"和平精英 × 粉红兔子 推出游戏内联动限定套装（weibo 30.3w）",
+           url:""},
+          {date:"2026.04.24",type:"version",label_kr:"7주년 버전 활동/×마이 리틀 포니/Dooro Bear",label_cn:"7周年版本活动/×小马宝莉/萌芽熊",
+           content_kr:"화평정영 7주년 이벤트 클라이맥스: ×마이 리틀 포니 IP 7대 클래식 캐릭터 인게임 출시（웨이보 162.9만）; 신규 버디 Dooro Bear 출시（웨이보 23.3만）; 화천위 7주년 테마송 발표 → 피크 매출 달성, iOS 1위 등극",
+           content_cn:"7周年活动高潮：×小马宝莉 游戏内推出IP七大经典角色（weibo 162.9w）；全新伙伴萌芽熊上线（weibo 23.3w）；华晨宇演唱7周年主题曲《千万次奔向》发布，流水达到月度peak，登上iOS第1位",
+           url:""}
+        ]
+      },
+      "王者荣耀": {
+        key:"wz", name_kr:"왕자영요", name_cn:"王者荣耀",
+        summary_kr:"iOS 매출 순위 평균 1위（-）. 4.29 나타2 콜라보 스킨 4종 출시 및 둔황 시리즈 재출시 시 피크 매출. 청명절 연휴 DAU 최고점.",
+        summary_cn:"iOS畅销榜稳定第1位（-）。4.29《哪吒2》联动皮肤4款上线及敦煌系列皮肤返场时流水达到peak。清明假期DAU达到最高点。",
+        events:[
+          {date:"2026.04.01",type:"version",label_kr:"S43 시즌 업데이트",label_cn:"S43赛季版本更新",
+           content_kr:"S43 시즌 「막상상봉」 출시; 신규 영웅 원류지자·자객; 소가 위의 농장 모드; 조각상점·스타코인존 신규 스킨",
+           content_cn:"S43赛季「陌上相逢」上线；新英雄元流之子·刺客；农场新模式；星币商店更新",
+           url:""},
+          {date:"2026.04.10",type:"version",label_kr:"첫 원류지자 무기 출시",label_cn:"首款元流之子武器上线",
+           content_kr:"첫 원류지자 무기 무료 획득 이벤트; HoK 콜라보 이벤트; 스타코인 상점 업데이트",
+           content_cn:"首款元流之子武器参与活动免费获取；HoK联动活动；星币商店更新",
+           url:""},
+          {date:"2026.04.16",type:"version",label_kr:"HoK 콜라보 오픈",label_cn:"HoK联动开启",
+           content_kr:"왕자영요×HoK 콜라보 오픈, 에픽 스킨 배포; 1위안 패스 이벤트; KPL 스프링 우승팀 KSG 피드백 이벤트",
+           content_cn:"王者荣耀×HoK联动开启，史诗皮肤免费领；1元通行证活动；KPL春季赛冠军KSG反馈活动",
+           url:""},
+          {date:"2026.04.17",type:"collab",label_kr:"×HoK 게임 간 콜라보",label_cn:"×HoK游戏内联动",
+           content_kr:"왕자영요 × 왕자영요세계 인게임 연동: HoK에서 미션 완료 시 왕자영요 보상 획득",
+           content_cn:"王者荣耀 × 王者荣耀世界 游戏内联动：在《王者荣耀世界》完成任务可在《王者荣耀》中获得奖励",
+           url:""},
+          {date:"2026.04.23",type:"version",label_kr:"HoK 콜라보 추가 이벤트",label_cn:"HoK联动追加活动",
+           content_kr:"HoK 콜라보 이벤트 추가; 신규 스타코인 보너스 이벤트; 스타코인 상점 업데이트",
+           content_cn:"王者荣耀世界联动活动推出；全新星币福利活动；星币商店更新",
+           url:""},
+          {date:"2026.04.23",type:"commerce",label_kr:"밀라디 「청자작음」 스킨",label_cn:"米莱狄「青瓷雀吟」皮肤",
+           content_kr:"밀라디 「청자작음」 스킨 출시",
+           content_cn:"米莱狄「青瓷雀吟」皮肤上线",
+           url:""},
+          {date:"2026.04.29",type:"collab",label_kr:"×나타2 콜라보 오픈",label_cn:"×哪吒之魔童闹海联动开启",
+           content_kr:"왕자영요 × 영화《나타2》 콜라보 개시; 왕자 마작 모드 재출시; 기환상점; 5월 쿠폰북",
+           content_cn:"王者荣耀×电影《哪吒之魔童闹海》联动开启；王者麻将模式回归；奇幻商店；5月优惠券礼包",
+           url:""},
+          {date:"2026.04.29",type:"commerce",label_kr:"×나타2 콜라보 스킨 4종",label_cn:"×哪吒之魔童闹海联动皮肤4款",
+           content_kr:"왕자영요 × 영화《나타2》 콜라보 스킨 4종 출시 → 피크 매출 달성",
+           content_cn:"王者荣耀×电影《哪吒之魔童闹海》联动四款皮肤上线，流水达到月度peak",
+           url:""}
+        ]
+      },
+      "三角洲行动": {
+        key:"df", name_kr:"Delta Force", name_cn:"三角洲行动",
+        summary_kr:"iOS 매출 순위 평균 4위（▲1）. 4.16 에코 신규 시즌 업데이트 직후 iOS 1위 달성 및 Top3 유지. 월 매출 전월비 ▲39.7%.",
+        summary_cn:"iOS畅销榜平均第4位（▲1）。4.16【回声】新赛季更新后登上iOS第1位并保持Top3。月流水环比▲39.7%。",
+        events:[
+          {date:"2026.04.02",type:"event",label_kr:"시즌 말 스프린트",label_cn:"赛季末冲刺活动",
+           content_kr:"시즌 말 스프린트 이벤트 오픈; 한정판 컬렉션 및 거수기갑 이벤트 재출시",
+           content_cn:"赛季末冲刺开启；限定收藏品及巨兽机甲活动返场",
+           url:""},
+          {date:"2026.04.10",type:"commerce",label_kr:"금속 생명 패키지(레전드)",label_cn:"金属生命捆绑包（传说）",
+           content_kr:"금속 생명 레전드 패키지 출시; 시즌 말 스프린트/주말 이벤트",
+           content_cn:"金属生命捆绑包（传说）上线；赛季末冲刺活动；周末活动",
+           url:""},
+          {date:"2026.04.16",type:"version",label_kr:"에코 신규 시즌 업데이트",label_cn:"【回声】新赛季更新",
+           content_kr:"신규 시즌 「에코」 오픈; 신규 오퍼레이터 루크에벌리/신맵 움스운하/신무기 M82·AR57; 시즌 패스/만델브릭 스킨/스타드리프터 패키지 → iOS 1위 달성",
+           content_cn:"全新【回声】赛季开启；新干员卢克·埃弗利/新地图翁斯运河/新武器M82·AR57；赛季通行证/曼德布里克武器外观/星际漂流者礼包上线，流水达到peak，登上iOS第1位",
+           url:""},
+          {date:"2026.04.24",type:"event",label_kr:"버스트 페스티벌 1기",label_cn:"猛攻节首期活动",
+           content_kr:"버스트 페스티벌 1기 이벤트 오픈, 전용 무기 스킨 획득",
+           content_cn:"猛攻节首期活动开启，参与活动即可得猛攻节专属武器外观",
+           url:""},
+          {date:"2026.04.28",type:"version",label_kr:"툼 레이더 콜라보 버전",label_cn:"古墓丽影联动版本",
+           content_kr:"툼 레이더 콜라보 패키지 4종 출시; 오버로드 버스트(전면전) 신규 모드; 군번줄 수집/레드 헌팅 이벤트",
+           content_cn:"古墓丽影联动礼包4款上线；超载猛攻（全面战争）新模式；인식표收集/红色猎手活动",
+           url:""},
+          {date:"2026.04.30",type:"commerce",label_kr:"×툼 레이더 콜라보 레전드 스킨",label_cn:"×古墓丽影联动传说外观",
+           content_kr:"Delta Force × 툼 레이더 인게임 콜라보 레전드 스킨 출시",
+           content_cn:"Delta Force × 古墓丽影 推出游戏内联名传说皮肤上线",
+           url:""}
+        ]
+      },
+      "无畏契约：源能行动": {
+        key:"ww", name_kr:"Valorant M", name_cn:"无畏契约：源能行动",
+        summary_kr:"iOS 매출 순위 평균 8위（▼3）. 4.3 창·기원 시리즈 스킨 출시 시 피크 매출 및 Top3 달성. 4.9 파극신생 버전 신규 영웅 바이스 출시.",
+        summary_cn:"iOS畅销榜平均第8位（▼3）。4.3【创·纪元】系列皮肤上线时流水达到peak并达Top3。4.9【破棘新生】版本新英雄威斯上线。",
+        events:[
+          {date:"2026.04.02",type:"commerce",label_kr:"창·기원 시리즈 스킨",label_cn:"【创·纪元】系列皮肤",
+           content_kr:"「창·기원」 시리즈 스킨 출시 → 피크 매출 달성, iOS Top3 진입",
+           content_cn:"【创·纪元】系列皮肤上线，流水达到月度peak，进入iOS Top3",
+           url:""},
+          {date:"2026.04.09",type:"version",label_kr:"파극신생 버전/신규 영웅 바이스",label_cn:"【破棘新生】版本/新英雄威斯",
+           content_kr:"「파극신생」 버전 업데이트; 신규 영웅 바이스; 캐주얼/몸풀기/퀵 사격 신규 모드; 「빛의 감시자 2.0」 스킨/「극객성묘」 세트/패스 출시",
+           content_cn:"【破棘新生】版本更新；新英雄威斯上线；休闲/热身/快速射击新模式；「光明守望者2.0」外观/「极客星眸」套装/通行证上线",
+           url:""},
+          {date:"2026.04.16",type:"commerce",label_kr:"서브소닉 블랙 마켓 스킨",label_cn:"暗流锋芒黑市系列皮肤",
+           content_kr:"서브소닉 | 「블랙 마켓」 시리즈 스킨 출시",
+           content_cn:"暗流锋芒 | 【黑市】系列皮肤上线",
+           url:""},
+          {date:"2026.04.30",type:"commerce",label_kr:"2021 글로벌 챔피언십 스킨",label_cn:"【2021全球冠军赛】系列皮肤",
+           content_kr:"「2021 글로벌 챔피언십」 시리즈 스킨 출시",
+           content_cn:"【2021全球冠军赛】系列皮肤上线",
+           url:""}
+        ]
+      }
+    }
+  },
 };
 
 // ── Badge translations ──
 const EVT_BADGE = {
   version:  { kr:'버전 업데이트', cn:'版本更新', cls:'eb-version'  },
-  event:    { kr:'이벤트 업데이트', cn:'活动更新', cls:'eb-event'   },
-  commerce: { kr:'상업화',        cn:'商业化',   cls:'eb-commerce' },
-  other:    { kr:'핫픽스/기타',   cn:'热更新/其他', cls:'eb-other' },
+  event:    { kr:'이벤트',        cn:'活动',     cls:'eb-event'    },
+  commerce: { kr:'유료화',        cn:'商业化',   cls:'eb-commerce' },
+  collab:   { kr:'콜라보',        cn:'联动',     cls:'eb-collab'   },
+  other:    { kr:'기타',          cn:'其他',     cls:'eb-other'    },
 };
 const EVT_GAME_ACTIVE = { wz:'active-wz', hp:'active-hp', df:'active-df', ww:'active-ww' };
 
@@ -2292,13 +2465,61 @@ function buildMonthContent(monthKey, lang, ui, monthIdx) {
       const tbody = document.createElement('tbody');
       gdata.events.forEach(ev => {
         const badge = EVT_BADGE[ev.type] || EVT_BADGE.other;
-        const lbl   = ev['label_' + lang] || ev.label_kr || badge[lang] || badge.kr;
-        const cont  = ev['content_' + lang] || ev.content_kr || '';
+        const typeLbl = badge[lang] || badge.kr;
+        const keyTerm = ev['label_' + lang] || ev.label_kr || '';
+        const cont    = ev['content_' + lang] || ev.content_kr || '';
+        // Extract core noun from label, find & highlight in content (single accent color)
+        const ACCENT = '#c97a00';
+        function buildCandidates(label) {
+          const stripSfx = [
+            '游戏内联动皮肤','游戏内联动','联动皮肤','新版本更新','版本更新',
+            '新赛季更新','新赛季','联动上线','联动开启','联动',
+            '皮肤','更新','上线','活动','开启','버전 업데이트','인게임 콜라보',
+          ];
+          // Extract terms inside 【】 brackets
+          const bracketTerms = [...label.matchAll(/【([^】]+)】/g)].map(m => m[1]);
+          const parts = label.split(/[/／]/);
+          const set = new Set();
+          bracketTerms.forEach(t => set.add(t));
+          for (let p of parts) {
+            p = p.replace(/^[×\s]+/, '').replace(/【([^】]+)】/g, '$1').trim();
+            if (p) set.add(p);
+            for (const sfx of stripSfx) {
+              if (p.endsWith(sfx) && p.length > sfx.length + 1) {
+                set.add(p.slice(0, p.length - sfx.length).trim());
+                break;
+              }
+            }
+          }
+          return [...set].filter(c => c.length >= 2);
+        }
+        let contHtml = cont;
+        if (cont && keyTerm) {
+          const candidates = buildCandidates(keyTerm);
+          // sort longest first to avoid double-wrapping
+          candidates.sort((a, b) => b.length - a.length);
+          let result = cont;
+          const used = new Set();
+          for (const term of candidates) {
+            // skip if already wrapped (check result still has unwrapped occurrence)
+            if (!used.has(term) && result.includes(term)) {
+              result = result.split(term).join(
+                ' OPEN ' + term + ' CLOSE '
+              );
+              used.add(term);
+            }
+          }
+          // replace placeholders with actual spans (avoids nested replacement)
+          result = result
+            .replace(/ OPEN /g, '<span style="color:' + ACCENT + ';font-weight:700">')
+            .replace(/ CLOSE /g, '</span>');
+          contHtml = result;
+        }
         const tr = document.createElement('tr');
         tr.innerHTML =
           '<td class="evt-date">' + ev.date + '</td>' +
-          '<td><span class="ebadge ' + badge.cls + '">' + lbl + '</span></td>' +
-          '<td>' + cont + '</td>' +
+          '<td><span class="ebadge ' + badge.cls + '">' + typeLbl + '</span></td>' +
+          '<td>' + contHtml + '</td>' +
           '<td>' + (ev.url ? '<a class="evt-link" href="' + ev.url + '" target="_blank">Link ↗</a>' : '—') + '</td>';
         tbody.appendChild(tr);
       });
