@@ -1,38 +1,32 @@
-name: Update folder READMEs
+name: Auto-update folder READMEs
 
 on:
   push:
-    branches: [main]
+    paths:
+      - 'monthly-reports/**'  # 监听 monthly-reports 文件夹下的任何变动
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write  # 允许 workflow 写入仓库
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Generate READMEs for each folder
-        run: |
-          BASE_URL="https://jingruyi.github.io/my-reports"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-          for folder in monthly-reports weekly-reports; do
-            echo "# 📄 $folder" > $folder/README.md
-            echo "" >> $folder/README.md
-            echo "| 文件名 | 链接 |" >> $folder/README.md
-            echo "|--------|------|" >> $folder/README.md
-            for f in $folder/*.html; do
-              [ -f "$f" ] || continue
-              filename=$(basename "$f")
-              echo "| $filename | [$filename]($BASE_URL/$folder/$filename) |" >> $folder/README.md
-            done
-          done
+      - name: Generate README
+        run: python monthly-reports/generate_readme.py
 
-      - name: Commit and push
+      - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add monthly-reports/README.md
           git diff --cached --quiet || git commit -m "Auto-update folder READMEs"
           git push
