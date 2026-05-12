@@ -1,0 +1,34 @@
+name: Auto-update folder READMEs
+
+on:
+  push:
+    paths:
+      - '*.html'                  # 根目录 HTML 变动
+      - 'monthly-reports/**'      # monthly-reports 文件夹变动
+      - 'weekly-reports/**'       # weekly-reports 文件夹变动
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Generate all READMEs
+        run: python scripts/generate_readme.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md monthly-reports/README.md weekly-reports/README.md
+          git diff --cached --quiet || git commit -m "Auto-update folder READMEs"
+          git push
