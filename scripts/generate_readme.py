@@ -1,6 +1,7 @@
 """
 generate_readme.py
 统一为三个文件夹生成 README.md：根目录、monthly-reports、weekly-reports。
+链接格式为 GitHub Pages 地址，点击可直接在浏览器中打开 HTML 报告。
 
 【如何扩展规则】
 - 在各文件夹的 FOLDER_CONFIG 里修改 rules / default_type
@@ -9,6 +10,12 @@ generate_readme.py
 
 import os
 import re
+
+# ══════════════════════════════════════════════════════════════════
+#  GitHub Pages 基础地址（根据你的用户名和仓库名填写）
+# ══════════════════════════════════════════════════════════════════
+GITHUB_PAGES_BASE = "https://jingruyi.github.io/my-reports"
+
 
 # ══════════════════════════════════════════════════════════════════
 #  各文件夹配置
@@ -26,10 +33,11 @@ FOLDER_CONFIG = {
             ("dashboard_kr",       "韩服竞品大盘"),
             ("dashboard_light",    "竞品大盘（精简版）"),
             ("dashboard",          "竞品大盘"),
-            ("dunhuang",           "敦煌旅游攻略"),   # 示例：非报告类文件
+            ("dunhuang",           "敦煌旅游攻略"),
         ],
         "default_type": "报告文件",
         "readme_path": "README.md",
+        "pages_prefix": "",          # 根目录文件，链接不需要子路径
     },
 
     # ── monthly-reports ───────────────────────────────────────────
@@ -42,6 +50,7 @@ FOLDER_CONFIG = {
         ],
         "default_type": "竞品报告",
         "readme_path": "monthly-reports/README.md",
+        "pages_prefix": "monthly-reports/",
     },
 
     # ── weekly-reports ────────────────────────────────────────────
@@ -54,6 +63,7 @@ FOLDER_CONFIG = {
         ],
         "default_type": "竞品周报",
         "readme_path": "weekly-reports/README.md",
+        "pages_prefix": "weekly-reports/",
     },
 }
 
@@ -69,20 +79,19 @@ def month_label(yyyymm: str) -> str:
 
 
 def week_label(yyyyww: str) -> str:
-    """'202615' → '2026年第15周'  (格式 YYYYWW，共6位)"""
+    """'202615' → '2026年第15周'"""
     year, week = yyyyww[:4], str(int(yyyyww[4:6]))
     return f"{year}年第{week}周"
 
 
 def extract_prefix(filename: str, folder: str) -> str:
-    """从文件名提取时间前缀，monthly 用月份，weekly 用周次，根目录不加前缀"""
     if folder == "monthly-reports":
         m = re.match(r"(\d{6})", filename)
         return month_label(m.group(1)) if m else ""
     if folder == "weekly-reports":
         m = re.match(r"(\d{6})", filename)
         return week_label(m.group(1)) if m else ""
-    return ""  # 根目录不自动加前缀
+    return ""
 
 
 def describe(filename: str, folder: str, cfg: dict) -> str:
@@ -103,9 +112,6 @@ def list_html_files(folder: str) -> list:
 def generate_readme(folder: str, cfg: dict):
     html_files = list_html_files(folder)
 
-    # 文件夹前缀（用于生成相对链接）
-    link_prefix = f"{folder}/" if folder != "." else ""
-
     lines = [
         f"# {cfg['title']}\n",
         f"{cfg['intro']}\n",
@@ -115,10 +121,11 @@ def generate_readme(folder: str, cfg: dict):
 
     for f in html_files:
         desc = describe(f, folder, cfg)
-        link = f"{link_prefix}{f}"
-        lines.append(f"| {f} | {desc} | [{f}]({link}) |")
+        # 生成可直接在浏览器打开的 GitHub Pages 链接
+        url = f"{GITHUB_PAGES_BASE}/{cfg['pages_prefix']}{f}"
+        lines.append(f"| {f} | {desc} | [打开]({url}) |")
 
-    lines.append("")  # 末尾换行
+    lines.append("")
 
     with open(cfg["readme_path"], "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines))
@@ -133,7 +140,6 @@ def generate_readme(folder: str, cfg: dict):
 # ══════════════════════════════════════════════════════════════════
 if __name__ == "__main__":
     for folder, cfg in FOLDER_CONFIG.items():
-        # 若文件夹不存在则跳过（避免 weekly-reports 尚未创建时报错）
         target = folder if folder != "." else "."
         if not os.path.isdir(target):
             print(f"⚠️  文件夹 '{folder}' 不存在，跳过")
