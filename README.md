@@ -9,4 +9,3 @@
 | competitive_game_dashboard_kr_light.html | 韩服竞品大盘（精简版） | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard_kr_light.html) |
 | competitive_game_dashboard_light.html | 竞品大盘（精简版） | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard_light.html) |
 | gansu_dunhuang_10_day_guide.html | 敦煌旅游攻略 | [打开](https://jingruyi.github.io/my-reports/gansu_dunhuang_10_day_guide.html) |
-| kimi_html_20260512.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/kimi_html_20260512.html) |
