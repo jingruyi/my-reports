@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HongKong_Macau_Travel_Guide_2026</title>
+<style>
+:root{
+  --bg:#f7f3ec;--card:#ffffff;--gold:#c79a55;--dark:#243244;
+  --navy:#1f3f68;--blue:#2f74b5;--teal:#2d7d7b;--coral:#d96b4c;
+  --soft:#fffaf2;--border:#e7d8c4;--alert:#b33a3a;--alert-bg:#fff3f1;
+  --transport:#edf6fb;--transport-border:#75a9c9;--green:#6f9b6b;--muted:#64748b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",Arial,sans-serif;background:var(--bg);color:var(--dark);line-height:1.82}
+.hero{background:linear-gradient(135deg,#14375a 0%,#2f74b5 38%,#67a7b5 68%,#c79a55 100%);color:white;text-align:center;padding:50px 20px 42px;border-radius:0 0 42px 42px;margin-bottom:30px}
+.hero h1{font-size:2.15em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.24)}
+.hero .subtitle{font-size:1.05em;opacity:.96;margin-bottom:16px}
+.hero .tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.hero .tag{background:rgba(255,255,255,.24);backdrop-filter:blur(4px);padding:6px 16px;border-radius:20px;font-size:.9em;font-weight:500}
+.container{max-width:1080px;margin:0 auto;padding:0 20px 58px}
+h2{font-size:1.85em;margin:36px 0 16px;padding-bottom:8px;border-bottom:3px solid var(--gold);display:inline-block;color:var(--navy)}
+h3{font-size:1.32em;color:var(--blue);margin:20px 0 12px;padding-left:12px;border-left:4px solid var(--blue)}
+h4{font-size:1.08em;color:var(--teal);margin:6px 0 8px}
+.card{background:var(--card);border-radius:18px;padding:22px 24px;margin:14px 0;box-shadow:0 4px 18px rgba(31,63,104,.08);border:1px solid var(--border)}
+.card-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}.card-row .card{margin:0}
+.pill{display:inline-block;background:#efe0c8;border-radius:999px;padding:3px 10px;margin:2px 4px;font-size:.92em}.pill.blue{background:#e5f1fb;color:#1f5f92}.pill.green{background:#e9f4e4;color:#4f7d42}.pill.red{background:#fde8e4;color:#a74332}
+table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05)}th{background:var(--navy);color:white;padding:12px 14px;text-align:left;font-weight:650}td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}tr:last-child td{border-bottom:none}tr:nth-child(even){background:#fbf8f2}
+.day-card{background:var(--card);border-radius:20px;padding:24px;margin:28px 0;box-shadow:0 4px 18px rgba(31,63,104,.08);border-left:7px solid var(--blue);position:relative}.day-num{position:absolute;top:-15px;left:22px;background:var(--blue);color:white;padding:4px 16px;border-radius:999px;font-weight:700;font-size:.92em;letter-spacing:.4px}.day-theme{color:var(--blue);font-weight:800;font-size:1.15em;margin:8px 0 12px;padding-top:4px}.day-card ul{list-style:none;padding:0}.day-card li{padding:7px 0;border-bottom:1px dotted var(--border)}.day-card li:last-child{border-bottom:none}.time-label{display:inline-block;background:#fff4dd;padding:1px 10px;border-radius:10px;font-size:.86em;font-weight:700;color:#8a5a19;margin-right:8px;min-width:112px;text-align:center}.time-label.backup-label{background:#e8f4ff;color:#3a5d7c;border:1px solid #a7c9e3}.cost{color:#8a4b13;font-weight:700;white-space:nowrap}.small{font-size:.9em;color:var(--muted)}
+.transport-box{background:var(--transport);border:2px dashed var(--transport-border);border-radius:14px;padding:16px 18px;margin:14px 0}.transport-title{font-weight:800;color:#315e7a;margin-bottom:8px}.transport-item{display:grid;grid-template-columns:34px 1fr auto;gap:8px;align-items:start;padding:7px 0;border-bottom:1px dotted #c8d8e8;font-size:.94em}.transport-item:last-child{border-bottom:none}.transport-icon{text-align:center;font-size:1.18em}.transport-time{background:#75a9c9;color:white;padding:2px 10px;border-radius:999px;font-weight:700;font-size:.84em;white-space:nowrap}.transport-note{font-size:.88em;color:#446c7f;margin-top:8px;font-style:italic}.route-cost{display:block;color:#845317;font-weight:700;font-size:.92em;margin-top:2px}
+.note{background:#fff8ee;border-left:5px solid #e8a030;padding:14px 16px;margin:14px 0;border-radius:10px}.warning{background:var(--alert-bg);border-left:5px solid var(--alert);padding:14px 16px;margin:14px 0;border-radius:10px}.section-note{background:#f0f7ff;border-left:5px solid var(--blue);padding:14px 16px;margin:14px 0;border-radius:10px}.callout-redcotton{background:#fff0f3;border:1px solid #f1bac5;border-radius:16px;padding:18px;margin:14px 0}.hotel-confirmed{background:linear-gradient(135deg,#fffaf2 0%,#f4fbfb 100%);border:1px solid var(--border);border-radius:16px;padding:18px;margin:14px 0}.food-box{background:#fffdf8;border:1px dashed var(--border);border-radius:14px;padding:16px;margin:14px 0}.food-title{font-weight:800;color:#79522a;margin-bottom:8px}.food-option{display:inline-block;background:#fff0df;padding:4px 12px;border-radius:999px;margin:3px 4px;font-size:.9em;border:1px solid #d0a06c}.food-option.light{background:#eaf5f3;border-color:#88b7b1;color:#315f5a}
+.spot-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:8px}.spot{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px}.spot strong{color:var(--navy)}.spot p{font-size:.92em;color:#475569;line-height:1.65}.checklist ul{padding-left:20px;list-style:disc}.checklist li{border-bottom:none;padding:3px 0}.section-footer{text-align:center;margin:42px 0 20px;padding:28px;background:white;border-radius:18px;box-shadow:0 4px 18px rgba(31,63,104,.08)}
+@media(max-width:700px){.hero h1{font-size:1.55em}.hero{padding:32px 14px;border-radius:0 0 24px 24px}.container{padding:0 12px}.transport-item{grid-template-columns:30px 1fr}.transport-time{grid-column:2;justify-self:start}.day-card{padding:20px 16px}table{font-size:.88em}th,td{padding:9px 10px}.time-label{min-width:94px}}
+@media print{body{background:white}.hero{border-radius:0}.card,.day-card,.section-footer{box-shadow:none;break-inside:avoid}.transport-box,.note,.warning{break-inside:avoid}}
+
+.hero .date-pill{
+  display:inline-block;
+  margin:8px auto 8px;
+  padding:8px 22px;
+  border-radius:999px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 6px 18px rgba(0,0,0,.10);
+  font-size:1.02em;
+  font-weight:700;
+  letter-spacing:.6px;
+}
+.hero .eng-subtitle{
+  font-size:.82em;
+  opacity:.88;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.hero .tags{
+  max-width:860px;
+  margin:0 auto;
+}
+.hero .tag{
+  background:rgba(255,255,255,.20);
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+.hero .tag .emoji{margin-right:5px}
+.inline-cost{display:inline-block;background:#fff4dc;color:#9a5c00;border:1px solid #e8c98e;border-radius:999px;padding:1px 9px;margin-left:6px;font-weight:700;font-size:.88em}
+.red-alert{color:#c62828;font-weight:800}
+.spot-lines{line-height:1.78}
+.spot-lines strong{color:var(--navy)}
+.buy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:10px}
+.buy-card{background:#fffaf2;border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.buy-card h4{margin-top:0}
+.small-muted{color:var(--muted);font-size:.92em}
+
+
+.meal-line{
+  display:block;
+  margin-top:10px;
+  padding:12px 16px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#fff3df 0%,#ffe7c7 100%);
+  border:1px solid #e7c48d;
+  color:#744300;
+  box-shadow:0 2px 8px rgba(199,154,85,.12);
+}
+.meal-line strong{
+  display:inline-block;
+  margin-right:10px;
+  color:#b36b00;
+  font-weight:700;
+}
+
+
+.photo-box{
+  background:linear-gradient(135deg,#f7fbff 0%,#eef6ff 100%);
+  border:1px solid #c7ddf2;
+  border-radius:16px;
+  padding:16px 18px;
+  margin:14px 0;
+  box-shadow:0 2px 10px rgba(47,116,181,.08);
+}
+.photo-box .photo-title{
+  font-weight:800;
+  color:#1f5f92;
+  margin-bottom:8px;
+}
+.photo-box .photo-item{
+  display:inline-block;
+  background:#ffffff;
+  border:1px solid #bfd6ed;
+  color:#24577f;
+  padding:4px 12px;
+  border-radius:999px;
+  margin:4px 5px 4px 0;
+  font-size:.92em;
+}
+
+
+.photo-detail{
+  background:linear-gradient(135deg,#f7fbff 0%,#eef6ff 100%);
+  border:1px solid #c7ddf2;
+  border-radius:16px;
+  padding:16px 18px;
+  margin:14px 0;
+  box-shadow:0 2px 10px rgba(47,116,181,.08);
+}
+.photo-detail-title{
+  font-weight:800;
+  color:#1f5f92;
+  margin-bottom:10px;
+}
+.photo-detail ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.photo-detail li{
+  padding:8px 0;
+  border-bottom:1px dashed #c9deef;
+}
+.photo-detail li:last-child{
+  border-bottom:none;
+}
+.photo-detail strong{
+  color:#1f5f92;
+}
+.photo-nav{
+  display:block;
+  margin-top:3px;
+  color:#64748b;
+  font-size:.92em;
+}
+
+
+.day-card{overflow:visible!important;}
+.photo-detail{
+  position:relative;
+  z-index:2;
+  background:linear-gradient(135deg,#f7fbff 0%,#eef6ff 100%);
+  border:1px solid #c7ddf2;
+  border-radius:16px;
+  padding:16px 18px;
+  margin:14px 0;
+  box-shadow:0 2px 10px rgba(47,116,181,.08);
+}
+.photo-detail-title{font-weight:800;color:#1f5f92;margin-bottom:10px;}
+.photo-detail ul{list-style:none;padding:0;margin:0;}
+.photo-detail li{padding:8px 0;border-bottom:1px dashed #c9deef;}
+.photo-detail li:last-child{border-bottom:none;}
+.photo-detail strong{color:#1f5f92;}
+.photo-nav{display:block;margin-top:3px;color:#64748b;font-size:.92em;}
+
+
+.meal-options{
+  background:#fffaf2;
+  border:1px dashed #e5c79a;
+  border-radius:18px;
+  padding:16px 18px;
+  margin:12px 0 18px;
+}
+.meal-options-title{
+  font-weight:800;
+  color:#8b5a17;
+  margin-bottom:10px;
+}
+.meal-chip{
+  display:block;
+  background:#fff;
+  border:1px solid #d7b07a;
+  border-radius:999px;
+  padding:10px 16px;
+  margin:10px 0;
+  color:#6f4a16;
+}
+
+
+.macau-food-box{
+  background:#fffaf4;
+  border:1px dashed #e2b56d;
+  border-radius:18px;
+  padding:16px 18px;
+  margin:12px 0 18px;
+}
+.macau-food-title{
+  font-weight:800;
+  color:#9b5b00;
+  margin-bottom:10px;
+}
+.macau-food-item{
+  display:block;
+  background:#fff;
+  border:1px solid #e6c18d;
+  border-radius:999px;
+  padding:10px 16px;
+  margin:10px 0;
+  color:#734200;
+}
+
+
+.overview-card{
+  position:relative;
+  background:#fff;
+  border-radius:22px;
+  padding:22px 24px 20px;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+.overview-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:5px;
+}
+.overview-card.flight::before{
+  background:linear-gradient(90deg,#2f74b5,#6ea8dd);
+}
+.overview-card.hotel::before{
+  background:linear-gradient(90deg,#c98a2b,#f0bf68);
+}
+.overview-card.route::before{
+  background:linear-gradient(90deg,#2f8a62,#78c59f);
+}
+.overview-card h4{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:14px;
+  padding-bottom:12px;
+  border-bottom:1px solid #e7edf5;
+}
+.overview-card .mini{
+  color:#64748b;
+  font-size:.92em;
+}
+
+
+/* SAFETY FIX: prevent Day4/Day5 blue blob / blank block caused by pseudo elements or malformed overflow */
+.day-card::before,.day-card::after,.day-card:before,.day-card:after{
+  content:none!important;
+  display:none!important;
+}
+.day-card{
+  overflow:visible!important;
+}
+
+
+/* Screenshot-style photo check-in grid */
+.photo-grid-box{
+  background:linear-gradient(135deg,#ffffff 0%,#fde8ef 100%)!important;
+  border:1px solid #f2c4d0!important;
+  border-radius:16px!important;
+  padding:18px 20px!important;
+  margin:16px 0 22px!important;
+}
+.photo-grid-title{
+  font-weight:800!important;
+  color:#9b2f50!important;
+  margin-bottom:14px!important;
+  font-size:1.05em!important;
+}
+.photo-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.photo-card{
+  background:#ffffff!important;
+  border:1px solid #f2c4d0!important;
+  border-radius:14px!important;
+  padding:16px 18px!important;
+  box-shadow:none!important;
+}
+.photo-card strong{
+  display:block!important;
+  color:#1f3f68!important;
+  margin-bottom:6px!important;
+  font-size:1.04em!important;
+}
+.photo-card p{
+  margin:0!important;
+  color:#3a5068!important;
+  font-size:.95em!important;
+  line-height:1.75!important;
+}
+@media(max-width:900px){
+  .photo-grid{grid-template-columns:1fr!important;}
+}
+
+
+/* Screenshot-style photo check-in grid (duplicate) */
+.photo-grid-box{
+  background:linear-gradient(135deg,#ffffff 0%,#fde8ef 100%)!important;
+  border:1px solid #f2c4d0!important;
+  border-radius:16px!important;
+  padding:18px 20px!important;
+  margin:16px 0 22px!important;
+}
+.photo-grid-title{
+  font-weight:800!important;
+  color:#9b2f50!important;
+  margin-bottom:14px!important;
+  font-size:1.05em!important;
+}
+.photo-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+.photo-card{
+  background:#ffffff!important;
+  border:1px solid #f2c4d0!important;
+  border-radius:14px!important;
+  padding:16px 18px!important;
+  box-shadow:none!important;
+}
+.photo-card strong{
+  display:block!important;
+  color:#1f3f68!important;
+  margin-bottom:6px!important;
+  font-size:1.04em!important;
+}
+.photo-card p{
+  margin:0!important;
+  color:#3a5068!important;
+  font-size:.95em!important;
+  line-height:1.75!important;
+}
+@media(max-width:900px){
+  .photo-grid{grid-template-columns:1fr!important;}
+}
+/* SAFETY FIX: prevent Day4/Day5 blue blob / blank block */
+.day-card::before,.day-card::after,.day-card:before,.day-card:after{
+  content:none!important;
+  display:none!important;
+}
+.day-card{overflow:visible!important;}
+
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>上海出发 · 香港澳门5天4晚</h1>
+  <div class="date-pill">2026 · 06.10 — 06.14</div>
+  <div class="eng-subtitle">Hong Kong & Macau Slow Journey</div>
+  
+  
+  <div class="tags">
+    <span class="tag">🌊 港风慢旅行</span>
+    <span class="tag">🚋 上环 · 西营盘</span>
+    <span class="tag">🌅 坚尼地城日落</span>
+    <span class="tag">🍽️ 中环红棉 MIÁN</span>
+    <span class="tag">🚋 太平山缆车</span>
+    <span class="tag">🌇 西九龙日落</span>
+    <span class="tag">🛍️ 三丽鸥 · Chiikawa</span>
+    <span class="tag">🏨 澳门上葡京</span>
+  </div>
+
+
+</div>
+
+<div class="container">
+
+<div class="card-row">
+  <div class="card overview-card flight">
+    <h4>✈️ 航班交通</h4>
+    <p><strong>去程：</strong>2026.06.10 周三｜FM3013（MU721）｜08:15 上海虹桥机场 T1 → 11:00 香港机场 T1。</p>
+    <p><strong>返程：</strong>2026.06.14 周日｜FM3049（MU2056）｜19:55 澳门机场 → 22:20 上海虹桥机场 T1。</p>
+    <p><strong>联运说明：</strong>东方航空与上海航空联运航班，因此同一段行程会显示两个航班号。<div class="mini">虹桥 T1 → 香港 → 澳门 → 虹桥 T1</div></p>
+  </div>
+  <div class="card overview-card hotel">
+    <h4>🏨 住宿安排</h4>
+    <p><strong>香港2晚：</strong>宜必思香港中上环 ibis Hong Kong Central & Sheung Wan，地址：上环德辅道西28号。</p>
+    <p><strong>澳门2晚：</strong>澳门上葡京 Grand Lisboa Palace，地址：澳门路氹射击路。</p><div class="mini">香港住上环方便开户与港岛动线；澳门住路氹方便休息与夜景。</div>
+  </div>
+  <div class="card overview-card route">
+    <h4>🧭 总体路线</h4>
+    <p>上海 → 香港机场 → 上环 ibis → 上环/西营盘/坚尼地城 → 中环红棉 MIÁN → 西九龙/旺角 → 上环港澳码头 → 澳门上葡京 → 澳门老城 + 氹仔/路氹 → 澳门机场 → 上海。<div class='mini'>港岛慢旅行 + 澳门舒适收尾路线</div></p>
+  </div>
+</div>
+
+
+<h2>🗓️ 一、每日详细行程</h2>
+
+<section class="day-card">
+  <div class="day-num">DAY 1｜2026.06.10 周三</div>
+  <div class="day-theme">上海虹桥 · 香港抵达 · 上环 ibis · BOCHK 开户 · 老港味漫步</div>
+  <div class="transport-box">
+    <div class="transport-title">🚗 本日交通接驳 + 花费参考</div>
+    <div class="transport-item"><span class="transport-icon">✈️</span><span class="transport-route">FM3013（MU721）｜上海虹桥 T1 → 香港机场 T1<span class="route-cost">已含在机票总价 ¥5,304/3人</span></span><span class="transport-time">08:15—11:00</span></div>
+    <div class="transport-item"><span class="transport-icon">🚆</span><span class="transport-route">首选：机场快线 → 香港站 → 的士至 ibis 上环<span class="route-cost">机场快线约 HKD 115/人；短途的士约 HKD 50—90/车</span></span><span class="transport-time">约45—60min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚌</span><span class="transport-route">省钱备选：机场巴士 A11/E11 系列至中环/上环，再步行或短途的士<span class="route-cost">约 HKD 40—45/人</span></span><span class="transport-time">约60—85min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚕</span><span class="transport-route">省力备选：机场的士直达 ibis 上环，3人带行李最稳<span class="route-cost">约 HKD 350—450/车</span></span><span class="transport-time">约35—50min</span></div>
+    <div class="transport-note">酒店14:00后入住；抵达较早可先寄存行李。今天重点是入境、保存小白条、熟悉上环和完成BOCHK备选开户。</div>
+  </div>
+  <ul>
+    <li><span class="time-label">05:15</span>上海起床，检查身份证、港澳通行证、有效签注、开户材料原件、纸质地址证明、现金、充电宝。</li>
+    <li><span class="time-label">06:15</span>抵达虹桥 T1，办理值机/托运；爸妈早餐建议热饮+粥/面包，不要空腹飞行。</li>
+    <li><span class="time-label">08:15—11:00</span>乘 FM3013（MU721）飞抵香港机场 T1；入境后<strong class="red-alert">务必保存入境小白条</strong>。</li>
+    <li><span class="time-label">11:30—13:00</span>机场快线/机场巴士/的士前往 ibis 上环。带爸妈和行李时优先机场快线+短的士，若下雨或很累直接的士。</li>
+    <li><span class="time-label">13:00—13:15</span>抵达 ibis 上环，寄存行李或尝试提前入住；酒店14:00后正式入住，不强求提前入住。</li>
+    <li><span class="time-label">13:15—14:15</span><span class="meal-line"><strong>🍜 午餐</strong>酒店附近粥面、烧味饭、云吞面或茶餐厅，吃完检查 BOCHK 开户材料。</span></li>
+
+<div class="food-box"><div class="food-title">🍜 Day1 午餐备选（上环 / ibis 附近）</div>
+  <span class="food-option light">生记粥品专家：鱼腩粥 / 牛肉粥，适合爸妈，清淡舒服，约 HKD 45—80/人</span>
+  <span class="food-option">九记牛腩：香港经典牛腩面，汤底浓郁，可能排队，约 HKD 70—130/人</span>
+  <span class="food-option light">麦奀云吞面：云吞面、鲮鱼球很稳，适合第一天轻量吃，约 HKD 50—90/人</span>
+</div>
+
+    <li><span class="time-label">14:20—14:45</span>从 ibis 前往 BOCHK 中国银行（香港）上环分行。</li>
+    <li><span class="time-label">15:00—16:30</span><strong>BOCHK 中国银行（香港）上环分行开户核心时段。</strong>建议你按这个时间段预约；爸妈可在附近咖啡店、商场或银行等候区休息。</li>
+    <li><span class="time-label backup-label">灵活完成</span><strong>HSBC HK App 线上开户：</strong>可在 BOCHK 等号/等待期间尝试，也可晚上回酒店后完成；若遇到身份核验、地址证明、网络或资料问题，当天截图记录，Day2 可就近去中环/上环汇丰分行咨询。</li>
+    
+<li><span class="time-label">16:45—17:20</span>从 BOCHK 上环分行出发，先顺路去西营盘：拍斜坡街景、叮叮车和港大方向“日落飞车”氛围机位；这一段从上环一路往西走最顺，不需要折返。</li>
+
+<li><span class="time-label">17:20—18:30</span>继续前往坚尼地城海旁：新海旁路牌、海边网红机位、Winstons Coffee、% Arabica 或 Creo by Brentwood 任选其一休息；若爸妈体力好再加西环泳棚，若累则直接海边等日落即可。</li>
+
+    <li><span class="time-label">18:45—19:45</span><span class="meal-line"><strong>🍽️ 晚餐</strong>上环/西营盘烧味、云吞面、粥品或清淡粤菜。</span></li>
+<div class="food-box"><div class="food-title">🍽️ Day1 晚餐备选（西营盘 / 坚尼地城）</div>
+  <span class="food-option">新兴食家：传统点心与粤菜，适合长辈，约 HKD 80—150/人</span>
+  <span class="food-option light">烧味饭 / 云吞面小馆：第一天不建议吃太重口，约 HKD 50—100/人</span>
+  <span class="food-option">% Arabica / Winstons Coffee 周边简餐：适合看海后轻松结束，约 HKD 60—120/人</span>
+</div>
+    <li><span class="time-label">20:00—20:30</span>从坚尼地城/西营盘坐叮叮车或港铁回 ibis 周边，感受港岛夜景；不建议第一天过度暴走。</li>
+    <li><span class="time-label">20:45</span>回酒店，整理开户文件、BOCHK回执和第二天红棉订位信息；如 HSBC App 尚未完成，可在酒店安静环境下继续申请。</li>
+  </ul>
+<div class="photo-grid-box">
+  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
+  <div class="photo-grid">
+    <div class="photo-card"><strong>文武庙盘香</strong><p>导航“文武庙 Man Mo Temple”；从 ibis / BOCHK 上环分行出发短途步行或的士均可，适合和荷李活道、上环古董街一起走。</p></div>
+<div class="photo-card"><strong>上环古董街</strong><p>导航“荷李活道 Hollywood Road”或“摩罗上街 Cat Street”；从文武庙顺路步行即可，坡多时不要硬走。</p></div>
+<div class="photo-card"><strong>西营盘斜坡</strong><p>导航“西营盘站 Sai Ying Pun Station”或“正街 Centre Street”；从上环一路向西，先到西营盘再去坚尼地城最顺。</p></div>
+<div class="photo-card"><strong>港大日落飞车</strong><p>导航“香港大学站 C1 出口”附近；适合傍晚拍街道纵深和车流，停留 10—15 分钟即可。</p></div>
+<div class="photo-card"><strong>坚尼地城新海旁路牌</strong><p>导航“Kennedy Town Praya / 坚尼地城新海旁”；从西营盘坐港铁或叮叮车到坚尼地城后步行去海边。</p></div>
+<div class="photo-card"><strong>西环泳棚</strong><p>导航“西环泳棚 Sai Wan Swimming Shed”；最后一段楼梯较多，只在爸妈体力好、天气好时加，不作为必去。</p></div>
+  </div>
+</div>
+
+  <div class="note spot-lines"><strong>📍景点简介：</strong><br>
+<strong>文武庙：</strong>上环代表性的老香港庙宇，香火、盘香和中式建筑很有年代感；<br>
+<strong>上环古董街 / 荷李活道：</strong>适合淘小物、看老铺和感受时光里的慢生活；<br>
+<strong>西营盘：</strong>老港味与斜坡纵深感很强，适合安排轻松散步；<br>
+<strong>坚尼地城海旁：</strong>港岛西海边慢游区域，适合看海、喝咖啡和等日落；<br>
+<strong>西环泳棚：</strong>经典海边木栈道，风景特别，但上下楼梯较多，爸妈量力而行。</div>
+  
+  
+<div class="food-box"><div class="food-title">🍜 本日美食建议</div><span class="food-option light">生记粥品</span><span class="food-option light">沾仔记云吞面</span><span class="food-option">一乐烧鹅</span><span class="food-option">泰昌蛋挞</span><span class="food-option light">公利竹蔗水</span></div>
+  <div class="hotel-confirmed"><strong>🏨 今晚住宿：</strong>ibis Hong Kong Central & Sheung Wan｜上环德辅道西28号。<br><strong>入住提醒：</strong>14:00后入住；不含早餐；房内不提供牙刷、牙膏、浴帽、梳子、剃须刀等一次性用品，请自备。</div>
+</section>
+
+<section class="day-card">
+  <div class="day-num">DAY 2｜2026.06.11 周四</div>
+  <div class="day-theme">太平山 · 中环经典建筑 · 三丽鸥顺路停留 · 14:00 红棉 MIÁN</div>
+
+  <div class="transport-box">
+    <div class="transport-title">🚗 本日交通接驳 + 花费参考</div>
+    <div class="transport-item"><span class="transport-icon">🚕</span><span class="transport-route">ibis 上环 → 花园道山顶缆车总站<span class="route-cost">的士约 HKD 60—100/车；港铁/步行更省钱但坡多</span></span><span class="transport-time">约15—25min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚋</span><span class="transport-route">山顶 → 中环建筑线 → The Murray 红棉<span class="route-cost">缆车/巴士/的士按现场排队选择</span></span><span class="transport-time">约30—60min</span></div>
+    <div class="transport-item"><span class="transport-icon">⛴️</span><span class="transport-route">中环码头 → 天星小轮/尖沙咀夜景<span class="route-cost">天星小轮约 HKD 5—7/人</span></span><span class="transport-time">约10min</span></div>
+    <div class="transport-note">太平山上午去更稳，避开傍晚排队高峰；三丽鸥放在中环建筑线里顺路短停，Day3 不再绕回中环。</div>
+  </div>
+
+  <ul>
+    <li><span class="time-label">08:30—09:15</span><span class="meal-line"><strong>🥣 早餐</strong>ibis 上环附近吃早餐：生记粥品、瑞记咖啡或附近茶餐厅，吃完从上环出发。</span></li>
+
+<div class="food-box"><div class="food-title">🥣 ibis 上环附近早餐备选（酒店不含早餐）</div>
+    <span class="food-option light">生记粥品专家：鱼腩粥 / 牛肉粥，适合爸妈，约 HKD 45—80/人</span>
+    <span class="food-option light">瑞记咖啡：奶茶、多士、通粉，老港式早餐，约 HKD 40—70/人</span>
+    <span class="food-option">胜香园：番茄面、脆脆，适合顺路去中环时吃，约 HKD 50—90/人</span>
+    <span class="food-option">兰芳园中环店：丝袜奶茶、猪扒包，可能排队，约 HKD 50—90/人</span>
+  </div>
+
+    <li><span class="time-label">09:30—10:00</span>从 ibis 上环前往花园道山顶缆车总站；带爸妈建议首选的士到缆车站，少走坡路。</li>
+    <li><span class="time-label">10:15—11:45</span>太平山顶、山顶广场、卢吉道起点轻松观景。上午人相对少，爸妈体力也更好；卢吉道较平坦，不必走完全程。</li>
+    <li><span class="time-label">11:45—12:30</span>下山前往中环。若山顶缆车排队长，直接的士下山到金钟/中环，避免压缩红棉午餐前时间。</li>
+    <li><span class="time-label">12:30—13:20</span>中环建筑线顺路拍照：香港公园 / 中环漩涡水景 → The Henderson 外观；如时间允许，顺路短停中环威灵顿街30号三丽鸥旗舰店，停留约10—15分钟即可。</li>
+    <li><span class="time-label">13:20—13:45</span>艺穗会或砵典乍街二选一。艺穗会更顺路更轻松；砵典乍街坡度较陡，爸妈体力一般时只路过拍照。</li>
+    <li><span class="time-label">13:45—14:00</span>前往 The Murray 美利酒店，提前到达、洗手间整理、等位。</li>
+    <li><span class="time-label">14:00—15:30</span><span class="meal-line"><strong>🍽️ 午餐｜红棉 MIÁN</strong>The Murray 美利酒店内正式粤菜路线；保留订位备注：3人、带长辈、希望安静位置、不要空调直吹。环境安静，适合慢吃和休息；人均约 HKD 500—900（按点菜浮动）。</span></li>
+    <li><span class="time-label">15:45—16:30</span>饭后慢走香港公园或大馆，作为消食和休息点；如果天气热，直接进商场/咖啡店休息。</li>
+    <li><span class="time-label">16:45—18:30</span>往中环码头方向走：先到中环摩天轮，再去中环码头 / 中环码头天桥看维港天际线；这条路线基本一路往海边走，不折返。</li>
+    <li><span class="time-label">18:30—19:00</span>如天气好，可坐天星小轮到尖沙咀短暂看维港；如果爸妈累，就在中环码头附近结束拍照后回上环。</li>
+    <li><span class="time-label">19:00—20:00</span><span class="meal-line"><strong>🍽️ 晚餐</strong>中环/上环清淡粤菜、云吞面或烧味饭；若午餐吃得晚，晚餐可改甜品或轻食。</span></li>
+
+  <div class="food-box"><div class="food-title">🍽️ Day2 晚餐备选（中环 / 上环）</div>
+    <span class="food-option">一乐烧鹅：米其林烧鹅老店，适合体验经典港味，约 HKD 100—220/人</span>
+    <span class="food-option light">沾仔记：云吞面 + 鲮鱼球路线，适合午餐吃得晚的情况，约 HKD 60—100/人</span>
+    <span class="food-option">兰芳园 / 胜香园：适合轻食、奶茶、脆脆，约 HKD 50—100/人</span>
+    <span class="food-option light">公利竹蔗水 / 泰昌蛋挞：中环顺路加餐，不建议专门排长队</span>
+  </div>
+
+  <div class="note"><strong>📍景点简介：</strong><br>
+    <strong>太平山：</strong>香港经典高处观景点，上午去排队压力更低；<br>
+    <strong>香港公园：</strong>中环闹市中的清爽绿地，适合午餐前后短休；<br>
+    <strong>The Henderson：</strong>中环新地标建筑，外观线条适合拍照；<br>
+    <strong>三丽鸥旗舰店：</strong>中环威灵顿街30号，适合顺路短停，不单独折返；<br>
+    <strong>红棉 MIÁN：</strong>位于美利酒店内，环境安静、座位舒适、服务和菜品更偏正式粤菜；<br>
+    <strong>中环摩天轮 / 中环码头：</strong>维港合影与傍晚天际线最稳。</div>
+<div class="photo-grid-box">
+  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
+  <div class="photo-grid">
+    <div class="photo-card"><strong>太平山缆车</strong><p>导航“花园道山顶缆车总站”；上午去更稳，红棉午餐在14:00，不建议傍晚再上山。</p></div>
+<div class="photo-card"><strong>中环漩涡水景</strong><p>导航“香港公园/茶具文物馆”附近，结合香港公园和红棉前后的中环动线顺路打卡。</p></div>
+<div class="photo-card"><strong>The Henderson</strong><p>导航“The Henderson”；从香港公园/花园道一带去红棉前可顺路拍建筑外观。</p></div>
+<div class="photo-card"><strong>三丽鸥旗舰店</strong><p>导航“香港中环威灵顿街30号”；中环建筑线顺路短停，适合控制在10—15分钟。</p></div>
+<div class="photo-card"><strong>中环摩天轮</strong><p>导航“Hong Kong Observation Wheel”；红棉后去中环码头方向顺路，适合维港合影。</p></div>
+<div class="photo-card"><strong>中环码头 / 中环码头天桥</strong><p>导航“中环 7 号码头 / Central Pier 7”；可接天星小轮去尖沙咀，维港夜景很稳。</p></div>
+  </div>
+</div>
+
+  <div class="hotel-confirmed"><strong>🏨 今晚住宿：</strong>ibis Hong Kong Central & Sheung Wan｜上环德辅道西28号。<br><strong>入住提醒：</strong>酒店不含早餐；房内不提供牙刷、牙膏、浴帽、梳子、剃须刀等一次性用品，请自备。</div>
+</section>
+
+<section class="day-card">
+  <div class="day-num">DAY 3｜2026.06.12 周五</div>
+  <div class="day-theme">坚尼地城海边 · 上环码头赴澳门 · 上葡京入住 · 花园夜景</div>
+  <div class="transport-box">
+    <div class="transport-title">🚗 本日交通接驳 + 花费参考</div>
+    <div class="transport-item"><span class="transport-icon">🚋</span><span class="transport-route">上午港岛西：ibis 上环 → 西营盘/坚尼地城<span class="route-cost">叮叮车约 HKD 3/人；港铁约 HKD 5—10/人；短途的士约 HKD 60—120/车</span></span><span class="transport-time">约15—30min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚢</span><span class="transport-route">首选：上环港澳码头 → 澳门氹仔客运码头<span class="route-cost">TurboJET/金光飞航约 HKD/MOP 175—230/人，节假日和票种浮动</span></span><span class="transport-time">船约60min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚌</span><span class="transport-route">氹仔码头 → 上葡京：优先酒店免费班车<span class="route-cost">免费；如打车约 MOP 80—130/车</span></span><span class="transport-time">约15—25min</span></div>
+    <div class="transport-note">香港酒店12:00前离店；澳门上葡京15:00后入住。建议买15:00—16:00左右船票，上午可轻松补看坚尼地城/西营盘。</div>
+  </div>
+  <ul>
+    <li><span class="time-label">09:00—09:45</span><span class="meal-line"><strong>🥣 早餐</strong>ibis 上环附近早餐，随后整理行李。</span></li>
+    <li><span class="time-label">10:00—10:30</span>从上环出发前往九龙方向；今天不再返回中环，以油尖旺区域为主。</li>
+    <li><span class="time-label">10:30—11:30</span>九龙方向轻松线：港铁前往尖沙咀，九龙公园慢走休息，避免连续暴晒。</li>
+    <li><span class="time-label">11:30—12:30</span>尖沙咀钟楼 + 1881 Heritage 顺路拍照；钟楼在维港边5分钟即可，1881 欧式建筑室内外都出片，不需要消费。之后前往旺角 MOKO 新世纪广场：Chiikawa 香港店地下店 & 二层店；商场内动线清楚，适合购物和避暑。顺路可在旺角站 B3 口上天桥拍网红街景机位，停留 10—15 分钟即可。之后可继续前往海港城、K11 Musea 或星光大道方向。</li>
+    <li><span class="time-label">12:45—13:45</span><span class="meal-line"><strong>🍜 午餐</strong>MOKO / 旺角 / 尖沙咀商场内简餐，优先坐得舒服、上菜快的餐厅。</span></li>
+
+<div class="food-box"><div class="food-title">🍜 Day3 午餐备选（旺角 / 尖沙咀）</div>
+  <span class="food-option light">金华冰厅：菠萝油经典，适合旺角顺路打卡，约 HKD 40—80/人</span>
+  <span class="food-option">池记云吞面：适合带爸妈快速解决午餐，约 HKD 60—120/人</span>
+  <span class="food-option light">MOKO 商场内粤菜 / 茶餐厅：环境更舒服，适合长辈休息，约 HKD 80—180/人</span>
+</div>
+
+    <li><span class="time-label">14:00—15:00</span>西九龙文化区或香港天际线观景点短停：天气好看海和草坪，天气热则只拍照不久留。</li>
+    <li><span class="time-label">15:15—16:00</span>返回 ibis 取行李，前往上环港澳码头；带爸妈建议至少提前60分钟到码头。</li>
+    <li><span class="time-label">16:30左右</span>从上环港澳码头乘船赴澳门，优先选择到氹仔码头，方便接驳上葡京。</li>
+    <li><span class="time-label">17:30—18:30</span>抵达澳门后使用上葡京免费班车或的士前往酒店；办理入住，确认房间和泳池开放时间。</li>
+    <li><span class="time-label">19:00—20:30</span><span class="meal-line"><strong>🍽️ 晚餐</strong>上葡京 / 路氹商场内餐厅，第一晚以轻松、少走路为主。</span></li>
+<div class="food-box"><div class="food-title">🍽️ Day3 晚餐备选（澳门上葡京 / 路氹）</div>
+  <span class="food-option light">上葡京商场粤菜：第一晚最省力，环境舒服，约 MOP 120—250/人</span>
+  <span class="food-option">路氹轻食 / 葡式简餐：适合不想吃太撑的情况，约 MOP 80—180/人</span>
+</div>
+  </ul>
+<div class="photo-grid-box">
+  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
+  <div class="photo-grid">
+    <div class="photo-card"><strong>尖沙咀钟楼</strong><p>导航"尖沙咀钟楼 Tsim Sha Tsui Clock Tower"；维港边标志建筑，5分钟顺路拍照，不额外绕路。</p></div>
+<div class="photo-card"><strong>1881 Heritage</strong><p>导航"1881 Heritage"；前水警总部改建，欧式建筑室内外都出片，不需消费，适合带爸妈轻松参观。</p></div>
+<div class="photo-card"><strong>海港城 / K11 Musea</strong><p>导航“Harbour City”或“K11 Musea”；适合看维港、买伴手礼和室内休息。</p></div>
+<div class="photo-card"><strong>Chiikawa 香港店</strong><p>导航“MOKO 旺角新世纪广场”；地下店与二层店一起逛，适合放在旺角商场动线里。</p></div>
+<div class="photo-card"><strong>旺角站 B3 口上天桥</strong><p>导航“旺角站 B3 出口”；上天桥可拍旺角街景和车流，停留 10—15 分钟即可。</p></div>
+<div class="photo-card"><strong>九龙公园</strong><p>导航“九龙公园 / Kowloon Park”；在尖沙咀区域，适合爸妈慢走和避暑。</p></div>
+<div class="photo-card"><strong>香港天际线观景点</strong><p>导航“尖沙咀海滨 / Avenue of Stars”或“西九龙文化区海滨”；天气好时看维港最稳。</p></div>
+<div class="photo-card"><strong>西九龙草坪日落</strong><p>导航“西九龙文化区 Art Park”；适合坐草坪看日落，若赶船去澳门则只短暂停留。</p></div>
+  </div>
+</div>
+
+  <div class="note spot-lines"><strong>📍景点简介：</strong><br>
+<strong>九龙公园：</strong>尖沙咀市区里的绿洲，树荫多，适合爸妈慢走和短休息；<br>
+<strong>西九龙文化区：</strong>维港西侧的大草坪和海滨空间，适合傍晚坐着看日落；<br>
+<strong>MOKO 旺角新世纪广场：</strong>商场型购物点，适合安排 Chiikawa 香港店，不受天气影响。</div>
+
+  
+
+  <div class="hotel-confirmed"><strong>🏨 今晚住宿：</strong>澳门上葡京 Grand Lisboa Palace｜。<br><strong>入住提醒：</strong>15:00后入住；入住期间不含早餐；有泳池，建议带泳衣、泳帽/泳镜和防水袋；酒店提供免费班车服务，实际路线以当天酒店公告为准。</div>
+</section>
+
+<section class="day-card">
+  <div class="day-num">DAY 4｜2026.06.13 周六</div>
+  <div class="day-theme">澳门半岛历史城区 · 官也街 · 路氹夜景</div>
+
+  <div class="transport-box">
+    <div class="transport-title">🚗 本日交通接驳 + 花费参考</div>
+    <div class="transport-item"><span class="transport-icon">🚌</span><span class="transport-route">首选：上葡京免费班车/酒店接驳 → 澳门半岛<span class="route-cost">免费或少量接驳费用</span></span><span class="transport-time">约25—40min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚕</span><span class="transport-route">省力备选：上葡京的士 → 大三巴/议事亭前地一带<span class="route-cost">约 MOP 90—150/车</span></span><span class="transport-time">约20—30min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚌</span><span class="transport-route">半岛 → 氹仔/官也街/龙环葡韵<span class="route-cost">公交约 MOP 6/人；的士约 MOP 80—130/车</span></span><span class="transport-time">约20—35min</span></div>
+    <div class="transport-note">澳门老城区上午去更舒服，避开中午高温和人流；下午回氹仔/路氹区域，晚上看酒店夜景，不来回折返。</div>
+  </div>
+
+  <ul>
+    <li><span class="time-label">09:00—09:30</span><span class="meal-line"><strong>🥣 早餐</strong>上葡京商场内轻食/咖啡，或简单粥面；酒店不含早餐，早上不建议走太远。</span></li>
+
+  <div class="food-box"><div class="food-title">🥣 上葡京附近早餐备选（酒店不含早餐）</div>
+    <span class="food-option light">上葡京商场轻食/咖啡：最省力，约 MOP 50—100/人</span>
+    <span class="food-option light">路氹商场粥面/粤式简餐：清淡稳妥，约 MOP 60—120/人</span>
+    <span class="food-option">官也街周边茶餐厅：猪扒包、蛋挞、奶茶，约 MOP 50—90/人</span>
+  </div>
+
+    <li><span class="time-label">09:45—11:45</span>前往澳门半岛历史城区：先到大三巴牌坊，再顺路走恋爱巷、玫瑰圣母堂、议事亭前地。上午光线好，人流相对可控。</li>
+    <li><span class="time-label">12:00—13:15</span><span class="meal-line"><strong>🍜 午餐</strong>澳门老城区午餐，优先选黄枝记、盛记白粥、番茄屋、中国名粥等坐得舒服的店。</span></li>
+
+  <div class="food-box"><div class="food-title">🍜 Day4 午餐备选（澳门老城区 / 半岛）</div>
+    <span class="food-option">黄枝记：云吞面 / 虾子捞面经典，约 MOP 60—120/人</span>
+    <span class="food-option light">盛记白粥：适合爸妈吃清淡路线，约 MOP 50—100/人</span>
+    <span class="food-option">中国名粥🦀：海鲜粥路线，适合清淡午餐，约 MOP 60—140/人</span>
+    <span class="food-option light">番茄屋🍅：葡式 / 西式简餐，约 MOP 80—180/人</span>
+  </div>
+
+    <li><span class="time-label">13:30—15:00</span>从半岛前往氹仔：龙环葡韵住宅式博物馆 + 官也街。龙环葡韵相对平坦，适合拍照；官也街适合买小吃但不要久站。</li>
+    <li><span class="time-label">15:30—17:00</span>回上葡京休整或使用泳池。提醒：带泳衣；若爸妈累，就把下午改为酒店花园 + 大堂慢逛。</li>
+    <li><span class="time-label">17:30—19:00</span><span class="meal-line"><strong>🍽️ 晚餐</strong>官也街葡国菜、路氹酒店餐厅或上葡京内餐厅。</span></li>
+
+  <div class="food-box"><div class="food-title">🍽️ Day4 晚餐备选（路氹 / 官也街）</div>
+    <span class="food-option">官也街葡国菜：适合澳门体验感，约 MOP 150—300/人</span>
+    <span class="food-option light">上葡京酒店餐厅：不想暴走时最稳，约 MOP 120—280/人</span>
+    <span class="food-option">威尼斯人 / 巴黎人商场粤菜：环境舒适，约 MOP 100—250/人</span>
+    <span class="food-option light">金悦轩🍤：粤式点心和海鲜路线，约 MOP 180—350/人</span>
+  </div>
+
+    <li><span class="time-label">19:15—21:00</span>伦敦人、巴黎人铁塔、威尼斯人室内运河夜景；若不想走远，就在上葡京绿茵胜境花园与酒店夜景拍照。</li>
+  </ul>
+
+  <div class="note"><strong>📍景点简介：</strong><br>
+    <strong>大三巴牌坊：</strong>澳门最经典地标，适合上午早到避开人潮；<br>
+    <strong>恋爱巷：</strong>就在大三巴旁边，彩色街巷很适合顺路拍照；<br>
+    <strong>议事亭前地：</strong>葡式地砖和南欧建筑很有澳门风情；<br>
+    <strong>龙环葡韵：</strong>绿色葡式建筑群，平坦、清爽，适合爸妈慢慢拍照；<br>
+    <strong>官也街：</strong>小吃和手信集中，但人多时建议买到就走；<br>
+    <strong>伦敦人 / 巴黎人 / 威尼斯人：</strong>路氹夜景代表，适合晚上拍照。</div>
+<div class="photo-grid-box">
+  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
+  <div class="photo-grid">
+    <div class="photo-card"><strong>大三巴牌坊</strong><p>导航“大三巴牌坊 Ruins of St. Paul’s”；建议上午去，避开中午人流和高温。</p></div>
+<div class="photo-card"><strong>恋爱巷</strong><p>导航“恋爱巷 Travessa da Paixão”；就在大三巴旁边，适合顺路拍彩色街巷。</p></div>
+<div class="photo-card"><strong>议事亭前地</strong><p>导航“议事亭前地 Senado Square”；从大三巴一路下行可到。</p></div>
+<div class="photo-card"><strong>龙环葡韵</strong><p>导航“龙环葡韵住宅式博物馆”；相对平坦，适合爸妈拍照和慢走。</p></div>
+<div class="photo-card"><strong>巴黎人铁塔夜景</strong><p>导航“澳门巴黎人铁塔”；晚上灯光更好看，适合从上葡京/路氹酒店区出发。</p></div>
+<div class="photo-card"><strong>上葡京绿茵胜境花园</strong><p>就在上葡京酒店内/周边，适合晚饭后不想远走时拍照和散步。</p></div>
+  </div>
+</div>
+
+  <div class="food-box"><div class="food-title">🍜 澳门半岛 / 官也街顺路美食补充</div>
+    <span class="food-option">山海堂🥥：椰子甜品、人气糖水路线</span>
+    <span class="food-option light">占西饼店🥧：传统澳门饼店，适合买蛋挞和手信</span>
+    <span class="food-option">酥富匙🥧：澳门甜品路线，可与官也街一起安排</span>
+    <span class="food-option light">胜利茶餐厅🍛：老澳门茶餐厅，咖喱类和港式简餐较经典</span>
+    <span class="food-option">泽贤记鸡蛋仔🥞：官也街人气小吃</span>
+    <span class="food-option light">莫义记榴莲冰淇淋🍦：澳门经典甜品路线</span>
+    <span class="food-option">长洲糯米糍🥭：水果糯米糍路线</span>
+    <span class="food-option light">杨汁金捞🥭：港式甜品路线，适合下午茶或饭后甜品</span>
+  </div>
+</section>
+
+<section class="day-card">
+  <div class="day-num">DAY 5｜2026.06.14 周日</div>
+  <div class="day-theme">上葡京轻松收尾 · 手信采购 · 澳门机场返程</div>
+
+  <div class="transport-box">
+    <div class="transport-title">🚗 本日交通接驳 + 花费参考</div>
+    <div class="transport-item"><span class="transport-icon">🚌</span><span class="transport-route">上葡京 → 官也街 / 路氹商场<span class="route-cost">免费班车/短途的士约 MOP 50—90/车</span></span><span class="transport-time">约10—20min</span></div>
+    <div class="transport-item"><span class="transport-icon">🚌</span><span class="transport-route">上葡京 → 澳门机场<span class="route-cost">免费班车优先；的士约 MOP 60—100/车</span></span><span class="transport-time">约10—20min</span></div>
+    <div class="transport-note">今天不安排太远景点，重点是退房、手信、机场时间充裕；晚班机也不要把下午排太满。</div>
+  </div>
+
+  <ul>
+    <li><span class="time-label">09:00—09:45</span><span class="meal-line"><strong>🥣 早餐</strong>上葡京商场内轻食/咖啡，或路氹商场粥面简餐。</span></li>
+
+  <div class="food-box"><div class="food-title">🥣 上葡京附近早餐备选（酒店不含早餐）</div>
+    <span class="food-option light">上葡京商场轻食/咖啡：最省力，约 MOP 50—100/人</span>
+    <span class="food-option light">路氹商场粥面/粤式简餐：清淡稳妥，约 MOP 60—120/人</span>
+  </div>
+
+    <li><span class="time-label">10:00—11:00</span>上葡京酒店花园/大堂轻松拍照，或补拍前一天没拍够的路氹酒店景观。</li>
+    <li><span class="time-label">11:00—11:30</span>回房整理行李，11:30 前退房，行李寄存在酒店。</li>
+    <li><span class="time-label">11:45—13:00</span>官也街或路氹商场采购手信：蛋卷、杏仁饼、肉干、葡挞等；爸妈累就改在酒店商场轻松买。</li>
+    <li><span class="time-label">13:15—14:15</span><span class="meal-line"><strong>🍜 午餐</strong>上葡京/路氹商场内清淡粤菜、茶餐厅或葡式简餐。</span></li>
+
+  <div class="food-box"><div class="food-title">🍜 Day5 午餐备选（上葡京 / 路氹）</div>
+    <span class="food-option">上葡京商场粤菜 / 茶餐厅：退房后最省力，约 MOP 80—180/人</span>
+    <span class="food-option light">官也街简餐：适合买完手信后简单吃，约 MOP 60—150/人</span>
+    <span class="food-option">洪瑞珍🥪：适合买作飞机前轻食，约 MOP 30—60/人</span>
+    <span class="food-option light">柠檬车露🍦：澳门经典意式冰淇淋，约 MOP 35—70/人</span>
+  </div>
+
+    <li><span class="time-label">14:30—16:30</span>回酒店取行李前可自由休息；若想游泳，需确认退房后是否还能使用泳池/更衣室。</li>
+    <li><span class="time-label">16:45—17:15</span>乘上葡京免费班车或的士前往澳门机场。</li>
+    <li><span class="time-label">17:15—19:20</span>抵达澳门机场，办理值机、托运、安检；机场内可看星巴克限定或麦当劳限定。</li>
+    <li><span class="time-label">19:55—22:20</span>乘 FM3049（MU2056）澳门 → 上海虹桥 T1。</li>
+  </ul>
+
+  <div class="note"><strong>📍景点简介：</strong><br>
+    <strong>上葡京酒店花园：</strong>适合轻松收尾，不需要额外奔波；<br>
+    <strong>官也街：</strong>澳门手信和小吃集中区域，适合最后补买；<br>
+    <strong>澳门机场：</strong>返程节点，建议留足时间，不为了购物压缩登机时间。</div>
+<div class="photo-grid-box">
+  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
+  <div class="photo-grid">
+    <div class="photo-card"><strong>上葡京酒店花园</strong><p>就在上葡京酒店内/周边，退房前后都可顺路拍照，不额外绕路。</p></div>
+<div class="photo-card"><strong>官也街手信街景</strong><p>导航“官也街 Rua do Cunha”；适合买手信和小吃，注意人多时不要久站。</p></div>
+<div class="photo-card"><strong>伦敦人大本钟外观</strong><p>若前一晚没拍够，可白天补拍；从上葡京/路氹区域出发较方便。</p></div>
+<div class="photo-card"><strong>威尼斯人室内运河</strong><p>适合避暑和室内拍照；时间紧时可与路氹商场采购合并。</p></div>
+<div class="photo-card"><strong>澳门机场候机区</strong><p>返程前可拍简单记录照；重点是提前到机场，不压缩登机时间。</p></div>
+  </div>
+</div>
+
+  <div class="food-box"><div class="food-title">✈️ 路氹 / 机场顺路美食补充</div>
+    <span class="food-option">MOMOKAWA☕️：适合休息和咖啡路线</span>
+    <span class="food-option light">快乐蜂炸鸡🍟：快餐路线，适合赶时间时</span>
+    <span class="food-option">湘川馆🍜 / 酸辣粉🍜：如果吃腻粤菜，可以换重口味</span>
+    <span class="food-option light">金利食店🍛：澳门本地咖喱饭路线</span>
+    <span class="food-option">星巴克限定🌟 / 麦当劳限定🌟：适合机场最后补买限定</span>
+  </div>
+</section>
+<h2>🍍 二、推荐购买的特产 / 药品 / 手信</h2>
+
+<div class="card">
+  <h3>💊 香港万宁推荐购买好物</h3>
+  <p class="small-muted">建议优先在上环/中环万宁购买，不要等到机场临时买；药品类请按个人体质和说明书使用，长辈有基础病或长期用药时先咨询医生。</p>
+  <div class="buy-grid">
+    <div class="buy-card"><h4>👨‍👩‍👧 给爸妈/家庭常备</h4>
+      <p>黄道益活络油（缓解肩颈酸痛、肌肉疲劳、扭伤不适）</p>
+      <p>保心安油（缓解头晕、晕车、肚子不舒服、蚊虫叮咬）</p>
+      <p>和兴白花油（提神醒脑、缓解鼻塞、头痛、晕车）</p>
+      <p>双飞人（缓解轻微肠胃不适、晕车、头痛，外用/内服需按说明）</p>
+      <p>京都念慈菴（润喉、缓解嗓子干痛和咳嗽不适）</p>
+      <p>虎标系列（缓解肩颈、腰背和肌肉酸痛）</p>
+      <p>无比滴（缓解蚊虫叮咬后的瘙痒、红肿）</p>
+    </div>
+    <div class="buy-card"><h4>💊 保健与旅行恢复</h4>
+      <p>the GLOBALab 极低深海鱼油（辅助心血管健康，适合长辈日常保健需求）</p>
+      <p>蒸汽眼罩（缓解旅途眼部疲劳、帮助睡眠）</p>
+      <p>曼秀雷敦薄荷膏（提神、缓解鼻塞和轻微头痛）</p>
+      <p>喉糖/润喉糖（适合空调房、飞机和说话较多时润喉）</p>
+    </div>
+    <div class="buy-card"><h4>👩 女生护肤/美容</h4>
+      <p>红颜瓶（美容抗氧化、日常护肤保养类）</p>
+      <p>Mediheal 面膜（补水舒缓，适合旅行后修护）</p>
+      <p>曼丹眼唇卸妆（卸眼妆、唇妆方便，适合旅行装）</p>
+      <p>日系防晒/洗护小样（适合补货，不建议买太重瓶装）</p>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid var(--border);margin:22px 0 18px;"></div>
+
+  <h3>🛍️ 手信纪念品推荐好物</h3>
+  <p class="small-muted">手信优先在官也街、上环、中环等地采购，返程日不要把采购压到最后一刻。</p>
+  <table>
+    <tr><th>类别</th><th>推荐购买</th><th>适合买给谁</th><th>注意事项</th></tr>
+    <tr><td>香港手信</td><td>蝴蝶酥、曲奇、老婆饼、蛋卷、港式奶茶包、XO酱</td><td>同事、朋友、家人</td><td>曲奇和蛋卷易碎，建议随身或放行李箱上层。</td></tr>
+    <tr><td>澳门手信</td><td>杏仁饼、凤凰卷、肉脯、葡挞、花生糖、姜糖</td><td>长辈、亲戚、办公室分享</td><td>肉脯重量大，买少量精品即可；葡挞适合现吃，不适合长途带太多。</td></tr>
+    <tr><td>常备药品</td><td>保济丸、喇叭牌正露丸、黄道益活络油、双飞人、万金油/白花油</td><td>家中常备、爸妈备用</td><td>药品按个人体质购买；慢病用药不要临时替换医生处方。</td></tr>
+    <tr><td>长辈实用</td><td>跌打膏、驱风油、润喉糖、无糖饼干、港式汤包</td><td>爸妈/长辈</td><td>注意成分、糖分和保质期；液体类需托运。</td></tr>
+    <tr><td>自用小物</td><td>八达通纪念卡、香港限定茶包、澳门文创冰箱贴、Chiikawa小物</td><td>自己留念</td><td>控制重量，返程日不要买太多。</td></tr>
+  </table>
+</div>
+<h2>🎒 三、开户与出行必备清单</h2>
+<div class="card checklist" style="border-left:6px solid var(--gold);">
+  <h4>📌 证件与出行</h4>
+  <ul>
+    <li>身份证、港澳通行证、有效签注、香港入境小白条。</li>
+    <li>近3个月地址证明纸质件：建议每家银行各一份复印件。</li>
+    <li>工资/银行流水、个税、社保公积金、理财/券商持仓证明。</li>
+    <li>港币现金、小额零钱、能收短信的手机、充电宝。</li>
+    <li>BOCHK Mobile、HSBC HK提前下载；预约截图离线保存。</li>
+  </ul>
+  <h4>👴 长辈舒适</h4>
+  <ul>
+    <li>轻便折叠伞、防晒帽、薄外套（室内空调冷）、舒适防滑鞋。</li>
+    <li>常用药、肠胃药、晕车药、创可贴、湿巾、一次性马桶垫。</li>
+    <li>6月港澳闷热，不建议连续室外暴走；交通优先短途的士/班车。</li>
+  </ul>
+  <h4>🏨 酒店用品与泳池</h4>
+  <ul>
+    <li>香港 ibis 不提供牙刷、牙膏、浴帽、梳子、剃须刀等一次性用品，务必自备。</li>
+    <li>澳门上葡京有泳池：带泳衣、泳帽/泳镜、防水袋、拖鞋；爸妈可按体力选择是否使用。</li>
+    <li>香港和澳门酒店均不含早餐，每天早餐已在行程里安排外食/简餐方向。</li>
+  </ul>
+  <h4>💳 支付与网络</h4>
+  <ul>
+    <li>香港：八达通、支付宝/微信、Visa/Master、少量港币现金。</li>
+    <li>澳门：澳门币/港币基本都可用，但找零可能是澳门币；小店现金更稳。</li>
+    <li>提前开通手机漫游或购买港澳流量包，开户当天必须保证网络稳定。</li>
+  </ul>
+  <h4>🏦 开户材料清单</h4>
+  <ul>
+    <li><strong>必带：</strong>内地身份证、港澳通行证、有效香港旅游签注、入境小白条。</li>
+    <li><strong>地址证明：</strong>近3个月纸质账单/银行账单/信用卡账单/水电煤账单，姓名、内地地址需与本人一致；建议中英文地址都准备。</li>
+    <li><strong>资金与用途证明：</strong>内地银行卡流水、工资流水、个税APP截图、社保/公积金记录、券商/基金/理财持仓截图。</li>
+    <li><strong>现金：</strong>建议准备 HKD 2,000—3,000 小额现金，用于开户初始存款、交通和临时消费。</li>
+    <li><strong>App：</strong>提前下载 BOCHK Mobile、HSBC HK；汇丰建议到香港后用稳定网络通过 HSBC HK App 申请。</li>
+  </ul>
+  <h4>💬 建议开户话术</h4>
+  <ul>
+    <li><strong>用途：</strong>"用于港股及海外基金投资、家庭长期资产配置、境外旅行和日常消费备用。"</li>
+    <li><strong>资金来源：</strong>"内地工资收入、奖金、个人理财收益，资金来源稳定合规。"</li>
+    <li><strong>注意：</strong>不要说"帮别人收付款""虚拟货币交易""频繁跨境转账套利"等容易触发风控的用途。</li>
+  </ul>
+</div>
+
+<h2>💰 四、花费参考（3人，不含购物）</h2>
+<div class="card">
+  <table>
+    <tr><th>项目</th><th>已知/预计花费</th><th>说明</th></tr>
+    <tr><td>往返机票</td><td><strong>已付 ¥5304 / 3人</strong></td><td>FM3013（MU721）去程；FM3049（MU2056）返程；东航/上航联运。</td></tr>
+    <tr><td>香港酒店2晚</td><td><strong>已付 ¥2130 / 3人</strong></td><td>ibis Hong Kong Central & Sheung Wan，上环德辅道西28号，不含早餐。</td></tr>
+    <tr><td>澳门酒店2晚</td><td><strong>已付 ¥4502 / 3人</strong></td><td>澳门上葡京 Grand Lisboa Palace，3人2晚，不含早餐，有泳池和免费班车。</td></tr>
+    <tr><td>香港→澳门船票</td><td>约 HKD/MOP 175—230/人</td><td>建议上环港澳码头 → 澳门氹仔码头，方便接驳上葡京。</td></tr>
+    <tr><td>红棉 MIÁN</td><td>约 HKD 500—900/人</td><td>按点菜内容、服务费和是否点海鲜浮动。</td></tr>
+    <tr><td>市内交通</td><td>约 HKD/MOP 500—900/人</td><td>机场快线/的士/轮渡/澳门打车综合估算；澳门多用酒店免费班车可降低花费。</td></tr>
+    <tr><td>门票体验</td><td>约 HKD/MOP 200—600/人</td><td>山顶缆车、观景台、摩天轮等按实际选择。</td></tr>
+    <tr><td>开户备用现金</td><td>建议 HKD 2,000—3,000</td><td>用于初始存款、交通和临时现金需求。</td></tr>
+  </table>
+<div class="note"><strong>已确定花费合计：</strong>¥11,936（机票 ¥5,304 + 香港 ibis 2晚 ¥2,130 + 澳门上葡京 2晚 ¥4,502）。</div>
+</div>
+
+<h2>✅ 五、出发前预约清单</h2>
+<div class="card checklist">
+  <ul>
+    <li><strong>出发前14—30天：</strong>确认 BOCHK 预约、香港→澳门船票、上葡京是否需要提前确认3成人入住/加床。</li>
+    <li><strong>出发前7—14天：</strong>优先预约 BOCHK 6月10日下午上环/中环西侧分行；HSBC 按App线上申请要求准备材料。</li>
+    <li><strong>出发前7天：</strong>确认红棉 MIÁN 6月11日14:00订位，备注3人、带长辈、希望安静位置、不要空调直吹。</li>
+    <li><strong>出发前7天：</strong>购买香港→澳门船票，优先上环码头出发，目的地选氹仔码头，方便接驳上葡京。</li>
+    <li><strong>出发前3天：</strong>再次核对开户材料原件、地址证明纸质件、手机银行App、漫游短信、泳衣和酒店洗漱用品。</li>
+    <li><strong>出发前1天：</strong>所有证件和开户材料放入随身包，不托运。</li>
+  </ul>
+</div>
+
+
+
+</div>
+</body>
+</html>
