@@ -356,6 +356,95 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
 }
 .day-card{overflow:visible!important;}
 
+
+/* Collapsible details/summary */
+details.collapsible { margin: 14px 0; }
+details.collapsible summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: .95em;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  transition: background .15s;
+}
+details.collapsible summary::-webkit-details-marker { display: none; }
+details.collapsible summary::before {
+  content: "▶";
+  font-size: .72em;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+details.collapsible[open] summary::before { transform: rotate(90deg); }
+details.collapsible summary::after {
+  content: "展开";
+  font-size: .78em;
+  font-weight: 500;
+  margin-left: auto;
+  opacity: .6;
+}
+details.collapsible[open] summary::after { content: "收起"; }
+details.collapsible[open] summary {
+  border-radius: 14px 14px 0 0;
+}
+/* food style */
+details.collapsible.food-details summary {
+  background: #fffaf2;
+  border: 1px dashed var(--border);
+  color: #79522a;
+}
+details.collapsible.food-details[open] summary {
+  border-radius: 14px 14px 0 0 !important;
+  border-bottom: none;
+}
+details.collapsible.food-details .food-box {
+  margin: 0;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+}
+/* photo style */
+details.collapsible.photo-details summary {
+  background: linear-gradient(135deg,#ffffff 0%,#fde8ef 100%);
+  border: 1px solid #f2c4d0;
+  color: #9b2f50;
+}
+details.collapsible.photo-details .photo-grid-box {
+  margin: 0 !important;
+  padding-top: 14px !important;
+  border-top: none !important;
+  border-radius: 0 0 16px 16px !important;
+}
+details.collapsible.photo-details[open] summary {
+  margin-bottom: 0;
+  border-radius: 14px 14px 0 0;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Transport note style B */
+.transport-note {
+  border-left: 3px solid var(--color-border-secondary, #ccc);
+  margin-top: 5px;
+  padding-left: 10px;
+  font-size: .85em;
+  color: var(--muted);
+  line-height: 1.8;
+  display: block;
+}
+
+.transport-inline {
+  display: block;
+  color: var(--muted);
+  font-size: .85em;
+  margin-top: 3px;
+}
+.transport-inline::before {
+  content: "— ";
+}
 </style>
 </head>
 <body>
@@ -368,13 +457,13 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
   
   <div class="tags">
     <span class="tag">🌊 港风慢旅行</span>
-    <span class="tag">🚋 上环 · 西营盘</span>
     <span class="tag">🌅 坚尼地城日落</span>
     <span class="tag">🍽️ 中环红棉 MIÁN</span>
-    <span class="tag">🚋 太平山缆车</span>
-    <span class="tag">🌇 西九龙日落</span>
-    <span class="tag">🛍️ 三丽鸥 · Chiikawa</span>
+    <span class="tag">🚡 太平山缆车</span>
     <span class="tag">🏨 澳门上葡京</span>
+    <span class="tag">🗺️ 澳门半岛历史城区</span>
+    <span class="tag">🎡 永利皇宫喷泉</span>
+    <span class="tag">🌃 路氹夜游</span>
   </div>
 
 
@@ -405,63 +494,57 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
 
 <section class="day-card">
   <div class="day-num">DAY 1｜2026.06.10 周三</div>
-  <div class="day-theme">上海虹桥 · 香港抵达 · 上环 ibis · BOCHK 开户 · 老港味漫步</div>
+  <div class="day-theme">香港抵达 · BOCHK 开户 · 西营盘打卡 · 坚尼地城日落</div>
 <ul>
     <li><span class="time-label">05:15</span>上海起床，检查身份证、港澳通行证、有效签注、开户材料原件、纸质地址证明、现金、充电宝。</li>
     <li><span class="time-label">06:15</span>抵达虹桥 T1，办理值机/托运；爸妈早餐建议热饮+粥/面包，不要空腹飞行。</li>
     <li><span class="time-label">08:15—11:00</span>乘 FM3013（MU721）飞抵香港机场 T1；入境后<strong class="red-alert">务必保存入境小白条</strong>。</li>
-    <li><span class="time-label">11:40—12:29</span>乘机场巴士 A11 路至港澳码头（干诺道中），下车后步行至 ibis 上环。<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚌 A11路 机场 → 港澳码头 约42min</span><span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 下车步行约7min / 450米至酒店</span></li>
-    <li><span class="time-label">12:30—13:00</span>抵达 ibis 上环，寄存行李或尝试提前入住；酒店14:00后正式入住，不强求提前入住。</li>
-    <li><span class="time-label">13:15—14:15</span><span class="meal-line"><strong>🍜 午餐</strong>酒店附近粥面、烧味饭、云吞面或茶餐厅，吃完检查 BOCHK 开户材料。</span></li>
+    <li><span class="time-label">11:40—12:29</span>乘机场巴士 A11 路至港澳码头（干诺道中），下车后步行至 ibis 上环。<span class="transport-inline">🚌 A11路 机场 → 港澳码头 约42min</span><span class="transport-inline">🚶 下车步行约7min / 450米至酒店</span></li>
+    <li><span class="time-label">12:30—13:00</span>抵达 ibis 上环，寄存行李；酒店14:00后正式入住，不强求提前入住。</li>
+    <li><span class="time-label">13:00—13:30</span><span class="meal-line"><strong>🍜 午餐</strong>ibis 附近往西方向快速解决，吃完继续往西去银行，全程不折返。<span class="transport-inline">🚶 步行约 1 min 至汇丰</span></span></li>
 
-<div class="food-box"><div class="food-title">🍜 Day1 午餐备选（上环 / ibis 附近）</div>
-  <span class="food-option light">生记粥品专家🍚：畢街7-9号，鱼腩粥/牛肉粥，适合爸妈，约 HKD 45—80/人</span>
-  
+<details class="collapsible food-details"><summary>🍜 Day1 午餐备选（上环 / ibis 附近）</summary><div class="food-box">
+  <span class="food-option">筷子记🥢：中环威灵顿街85-89号均益商业大厦A1铺，<strong>必点沙茶酱捞面</strong>，面条/饭/猪扒包都好吃，支持支付宝/微信，性价比超高，约 HKD 50/人</span>
   <span class="food-option light">麦奀云吞面🍜：威灵顿街77号，云吞面/鲮鱼球很稳，约 HKD 50—90/人</span>
-  <span class="food-option">筷子记🥢：<strong>必点沙茶酱捞面</strong>，面条/饭/猪扒包都好吃，支持支付宝/微信，性价比超高，建议出发前 Google Maps 确认地址，约 HKD 50/人</span>
-</div>
+  <span class="food-option light">生记粥品专家🍚：畢街7-9号，鱼腩粥/牛肉粥，适合爸妈，约 HKD 45—80/人</span>
+</div></details>
 
-    <li><span class="time-label">14:20—14:45</span>从 ibis 前往 BOCHK 中国银行（香港）上环分行。<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 8 min</span></li>
-    <li><span class="time-label">15:00—16:30</span>BOCHK 中国银行（香港）上环分行开户核心时段。建议你按这个时间段预约；爸妈可在附近咖啡店、商场或银行等候区休息。</li>
-    <li><span class="time-label backup-label">灵活完成</span>HSBC HK App 线上开户：可在 BOCHK 等号/等待期间尝试，也可晚上回酒店后完成；若遇到身份核验、地址证明、网络或资料问题，当天截图记录，Day2 可就近去中环/上环汇丰分行咨询。</li>
+    <li><span class="time-label">13:30—13:40</span>步行前往 BOCHK 中银香港德辅道西分行（德辅道西111-119号）；途中顺路经过汇丰德辅道西分行（德辅道西40-50号），如需线下咨询可进去，若线上开户则直接路过继续走。<span class="transport-inline">🚶 步行约 4 min，往西走</span></li>
+    <li><span class="time-label">14:00—15:00</span>BOCHK 中银香港德辅道西分行开户（已预约14:00）；爸妈可在银行等候区或附近咖啡店休息。</li>
+    <li><span class="time-label backup-label">灵活完成</span>汇丰线上开户：HSBC HK App 可在 BOCHK 等号期间尝试，也可晚上回酒店完成；若遇到问题，刚才路过的汇丰德辅道西分行就在附近可折回，或 Day2 就近去汇丰上环分行（德辅道中293-301号）咨询。</li>
     
-<li><span class="time-label">16:45—17:20</span>从 BOCHK 上环分行出发，先顺路去西营盘<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 10 min</span>：拍斜坡街景、叮叮车和港大方向“日落飞车”氛围机位；这一段从上环一路往西走最顺，不需要折返。</li>
+    <li><span class="time-label">15:00—16:30</span>从中银香港德辅道西分行前往西营盘 B3 出口，按西边街 → 第三街 → 正街顺序连打三机位，一路不折返。<span class="transport-inline">🚶 步行至西营盘 B3 出口约 6 min，西边街→第三街约 7 min，第三街→正街约 3 min</span></li>
 
-<li><span class="time-label">17:20—18:30</span>继续前往坚尼地城海旁<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚋 叮叮车至坚尼地城站，约 10 min / HKD 3/人</span>：新海旁路牌、海边网红机位、Winstons Coffee、% Arabica 或 Creo by Brentwood 任选其一休息；若爸妈体力好再加西环泳棚，若累则直接海边等日落即可。</li>
+    <li><span class="time-label">16:30—19:10</span>从正街直接前往坚尼地城，七机位连打，坚尼地城海旁公园坐下等日落；6月10日香港日落约19:10，坐着等刚好。<span class="transport-inline">🚇 港岛线至坚尼地城站，约 10 min / HKD 4/人</span> <span class="transport-inline">🚶 步行约 5 min 至海旁公园</span></li>
 
-    <li><span class="time-label">18:45—19:45</span><span class="meal-line"><strong>🍽️ 晚餐</strong>上环/西营盘烧味<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行至附近餐厅，约 5 min</span>、云吞面、粥品或清淡粤菜。</span></li>
-<div class="food-box"><div class="food-title">🍽️ Day1 晚餐备选（西营盘 / 坚尼地城）</div>
-  <span class="food-option">新兴食家：传统点心与粤菜，适合长辈，约 HKD 80—150/人</span>
-  <span class="food-option light">烧味饭 / 云吞面小馆：第一天不建议吃太重口，约 HKD 50—100/人</span>
-  <span class="food-option">% Arabica / Winstons Coffee 周边简餐：适合看海后轻松结束，约 HKD 60—120/人</span>
-  <span class="food-option light">人和豆品厂🥛：上环/西营盘一带，新鲜豆浆/豆花，约 HKD 16起，适合散步途中顺路解渴，非正餐</span>
-</div>
-    <li><span class="time-label">20:00—20:30</span>从坚尼地城/西营盘坐叮叮车或港铁回 ibis 周边<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚋 叮叮车回上环，约 20 min / HKD 3/人</span>，感受港岛夜景；不建议第一天过度暴走。</li>
-    <li><span class="time-label">20:45</span>回酒店，整理开户文件、BOCHK回执和第二天红棉订位信息；如 HSBC App 尚未完成，可在酒店安静环境下继续申请。</li>
+    <li><span class="time-label">19:30—20:30</span><span class="meal-line"><strong>🍽️ 晚餐</strong>坚尼地城附近就近用餐，日落结束后不折返，云吞面、粥品或清淡粤菜。<span class="transport-inline">🚶 步行至附近餐厅，约 5 min</span></span></li>
+<details class="collapsible food-details"><summary>🍽️ Day1 晚餐备选（西营盘 / 坚尼地城）</summary><div class="food-box">
+  <span class="food-option">英记面家🍜：西营盘高街32号，米其林必比登，招牌牛腩/叉烧/牛杂汤面，老街坊情怀满满，约 HKD 40—70/人</span>
+  <span class="food-option light">坤记煲仔小菜🍲：西环德辅道西243-245号，煲仔饭18:00起才有，建议晚餐时段去，约 HKD 80—150/人</span>
+  <span class="food-option">泰夸张🌶️：石塘咀德辅道西390A号西环地铺，泰式料理，约 HKD 60—120/人</span>
+  <span class="food-option light">烧味饭 / 云吞面小馆🍚：第一天不建议吃太重口，约 HKD 50—100/人</span>
+  <span class="food-option">新兴食家🍽️：坚尼地城士美菲路 Markfield Building 地下8号铺，传统点心与粤菜，适合长辈，约 HKD 80—150/人</span>
+  <span class="food-option light">尝囍煲仔小菜🍲：坚尼地城北街25号，煲仔饭/小炒，约 HKD 80—150/人</span>
+  <span class="food-option">阿元来了🍳：坚尼地城北街31号，港式茶餐厅，约 HKD 50—90/人</span>
+  <span class="food-option">诚记🍜：坚尼地城爹核士街，16年老店本地人爱去，招牌沙爹牛筋面/西多士，便宜又好吃，约 HKD 37—50/人</span>
+</div></details>
+    <li><span class="time-label">20:30—21:00</span>从坚尼地城北街站坐叮叮车回 ibis 上环，感受港岛夜景；⚠️ 乘车方式：后门上车，前门下车，下车时才付车费；不建议第一天过度暴走。<span class="transport-inline">🚋 叮叮车，约 19 min / HKD 3/人（八达通、支付宝或现金）</span></li>
+    <li><span class="time-label">21:15</span>回酒店，整理开户文件、BOCHK回执和第二天红棉订位信息；如 HSBC App 尚未完成，可在酒店安静环境下继续申请。</li>
   </ul>
   
-<div class="photo-grid-box">
-  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
-  <div class="photo-grid">
-      <div class="photo-card"><strong>文武庙盘香</strong><p>导航“文武庙 Man Mo Temple”；从 ibis / BOCHK 上环分行出发短途步行或的士均可，适合和荷李活道、上环古董街一起走。</p></div>
-      <div class="photo-card"><strong>上环古董街</strong><p>导航“荷李活道 Hollywood Road”或“摩罗上街 Cat Street”；从文武庙顺路步行即可，坡多时不要硬走。</p></div>
-      <div class="photo-card"><strong>西营盘富康楼天桥</strong><p>导航"西营盘站B3口"；上天桥即是城市线条感机位；B2口到正街与第三街路口也很有老街区故事感。</p></div>
-      <div class="photo-card"><strong>西营盘三机位</strong><p>叮叮车东边街站下车，左侧过马路上坡：①正街—路的尽头是海；②第三街—IFC大厦同框；③西边街—礼贤会堂；三个机位连拍不走回头路。</p></div>
-      <div class="photo-card"><strong>港大站落日飞车</strong><p>叮叮车屈地街站下车，步行至香港大学地铁站：①B1口—落日飞车纵深感；②B2口右侧—高架桥下S弯；拍完可直接坐地铁1站到坚尼地城。</p></div>
-      <div class="photo-card"><strong>坚尼地城四机位</strong><p>地铁坚尼地城站C口出：①路的尽头是海；②坚尼地城海边路牌；③%Arabica咖啡门头；④Hong Kong be happy咖啡门头；四个机位集中步行可连打。离开时坐叮叮车可在附近北街站上车。</p></div>
-      <div class="photo-card"><strong>西环泳棚</strong><p>导航“西环泳棚 Sai Wan Swimming Shed”；最后一段楼梯较多，只在爸妈体力好、天气好时加，不作为必去。</p></div>
-    </div>
-</div>
+        <div class="note spot-lines"><strong>📍 景点简介：</strong><br>
+<strong>西营盘：</strong>港岛西区的老牌社区，保留着大量唐楼与旧式街道，是香港城市肌理变迁的缩影。正街、第三街、西边街一带坡道纵横，充满市井烟火气，近年成为港岛最受欢迎的街拍打卡区之一；<br>
+<strong>坚尼地城：</strong>港岛地铁西端终点站，旧称"西环"，是港岛少有仍保有浓厚本地生活气息的社区。海边一带视野开阔，面朝青衣、汀九方向，傍晚日落时分光线极佳，是港岛数一数二的看日落地点；<br>
+<strong>备选｜青莲台石墙树：</strong>坚尼地城隐世一景，百年古榕树根系蜿蜒包裹旧唐楼外墙，树与楼融为一体，是香港城市发展与自然共生的难得缩影，气氛静谧，傍晚光线尤佳；<br>
+<strong>备选｜西环泳棚：</strong>建于上世纪的旧式海上泳棚，木桩架于海面，蓝白色调透出旧香港海边生活气息，海景开阔，可远眺对岸及青洲，是港岛最有情怀的海边角落之一，最后一段路有楼梯，按体力选择是否前往。</div>
 
-  <div class="note spot-lines"><strong>📍 景点简介：</strong><br>
-    <strong>文武庙：</strong>荷李活道上的百年古庙，香火鼎盛，盘香烟雾缭绕，氛围浓厚；<br>
-    <strong>上环古董街（荷李活道）：</strong>古玩字画林立，老香港味道最浓的一段路；<br>
-    <strong>西营盘富康楼天桥：</strong>B3口上天桥可拍城市线条感机位，B2口至正街/第三街路口亦出片；<br>
-    <strong>西营盘三机位：</strong>叮叮车东边街站下车，正街、第三街、西边街三个机位连打，不走回头路；<br>
-    <strong>港大站落日飞车：</strong>B1口落日飞车纵深感，B2口右侧高架桥S弯，拍完坐地铁1站到坚尼地城；<br>
-    <strong>坚尼地城四机位：</strong>C口出：路的尽头是海、海边路牌、%Arabica门头、Hong Kong be happy门头，四个机位集中可连打；<br>
-    <strong>西环泳棚：</strong>坚尼地城海边隐秘打卡点，蓝白色木质泳棚出片率极高。
-  </div>
+<details class="collapsible photo-details"><summary>📸 本日拍照打卡点｜导航与顺路提示</summary><div class="photo-grid-box"><div class="photo-grid">
+      <div class="photo-card"><strong>✅ 西营盘</strong><p>西营盘站 B3 口出，按顺序连打三机位：①西边街：导航富康楼 → 步行至旁边天桥，全景机位耐心等车流最好看；顺路拍"鸿运当"招牌侧面，趣味小细节。②第三街：导航鸿兴茶餐厅（西边街与第三街交汇处），长焦拍车辆/人物与 IFC 同框；礼贤会堂近景等一辆出租车驶过更出片。③正街（长命斜）：西营盘经典机位，香港最陡道路之一，路的尽头望向海，纵深感极强。</p></div>
+      <div class="photo-card"><strong>✅ 坚尼地城</strong><p>地铁C口出，按顺序连打七机位：①网红篮球场：C口出，路线见导航，长焦将山、海、电车、船、桥、红的士一次性纳入画面；上午光影、傍晚蓝调都出片。②科士街 Winston's Coffee "Hong Kong be happy"：复古电影感天花板，全黑外墙配红底白字招牌，位于科士街转角，自带港风滤镜。③卑路乍街：沿科士街咖啡店往海边走途中，抓拍叮叮车行驶瞬间，经常有停留的叮叮车可合影。④叮叮车辦馆：门口港风装修好拍，店内有叮叮车相关纪念品和文创冰箱贴。⑤%Arabica咖啡馆：全白外墙配极简"%"标志，门口路牌可同时拍到白墙、蓝天和远处的海。⑥坚尼地城新海旁路标＋的士站：红的士与海景同框，日系港风交融；建议早点来，下午容易背光。⑦坚尼地城海旁公园：走累了可在长椅坐坐吹海风，网红石墩"海浪在发愁"超有生活气息。</p></div>
+      <div class="photo-card" style="border:1px dashed #d0b88a;background:#fffaf2;"><strong>⭐ 备选｜青莲台石墙树</strong><p>导航"青莲台 Ching Lin Terrace"；百年榕树根系包裹旧唐楼，步行约 5 min 可到，傍晚光线柔和最出片。体力充足时加。</p></div>
+      <div class="photo-card" style="border:1px dashed #d0b88a;background:#fffaf2;"><strong>⭐ 备选｜西环泳棚</strong><p>导航"西环泳棚 Sai Wan Swimming Shed"；最后一段楼梯较多，仅在爸妈体力好、天气好时加，不作为必去。</p></div>
+    </div>
+</div></details>
   
   
 
@@ -470,146 +553,123 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
 
 <section class="day-card">
   <div class="day-num">DAY 2｜2026.06.11 周四</div>
-  <div class="day-theme">太平山 · 中环经典建筑 · 14:00 红棉 MIÁN</div>
+ <div class="day-theme">六安居早茶 · 太平山缆车 · 中环漫游 · 红棉 MIÁN</div>
 <ul>
-    <li><span class="time-label">08:30—09:30</span><span class="meal-line"><strong>🥣 早餐</strong>莲香楼（上环新址）早茶：德辅道中249-251号东寧大厦，手推点心车，凤爪/叉烧包/虾饺/糯米鸡，慢慢享用。<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 ibis 步行至莲香楼约 5 min</span></span></li>
+    <li><span class="time-label">08:00—09:15</span><span class="meal-line"><strong>🥣 早餐</strong>六安居早茶（原蓮香居）：上环德辅道西40-50号2、3楼，米其林必比登推荐，手推点心车，凤爪/叉烧包/虾饺/糯米鸡，06:00起营业无需预约，直接去排队等位即可。<span class="transport-inline">🚶 ibis 步行至六安居约 3 min</span></span></li>
 
 
 
-    <li><span class="time-label">09:30—10:00</span>从莲香楼步行前往花园道山顶缆车总站<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 12—15 min</span>，沿花园道上坡，坡度平缓。</li>
-    <li><span class="time-label">10:15—11:45</span>太平山顶、山顶广场<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚡 太平山缆车上山，约 8 min / HKD 52/人</span>、卢吉道起点轻松观景。上午人相对少，爸妈体力也更好；卢吉道较平坦，不必走完全程。</li>
-    <li><span class="time-label">11:45—12:30</span>下山前往中环<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚡 缆车下山约 8 min → 🚶 步行至中环约 10 min</span>。若山顶缆车排队长，直接的士下山到金钟/中环，避免压缩红棉午餐前时间。</li>
-    
-<div class="food-box"><div class="food-title">🍡 Day2 顺路小食 & 饮品（中环）</div>
-<span class="food-option">Vission Bakery🥐：士丹顿街7号，半山扶梯旁，香港烘焙界爱马仕，抹茶麻糬丹麦酥必买，12:00去不排队；⚠️只收信用卡/八达通，约 HKD 50—80/件</span>
-    <span class="food-option light">兰芳园（中环总店）🧋：结志街2号（中环站D2口），70年老字号丝袜奶茶鼻祖，饭后顺路打卡，约 HKD 24—50/人</span>
-    <span class="food-option light">公利竹蔗水 / 泰昌蛋挞：中环传统小食，顺路加餐，约 HKD 10—30/件</span>
-    <span class="food-option light">富豪雪糕车🍦：天星小轮码头附近偶遇，香港街头文化象征，HKD 13/个，可遇不可求</span>
-</div><li><span class="time-label">12:30—13:20</span>中环建筑线顺路拍照<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行，全程约 15 min</span>：香港公园 / 中环漩涡水景 → The Henderson 外观。</li>
-    <li><span class="time-label">13:20—13:45</span>艺穗会或砵典乍街二选一<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 5 min</span>。艺穗会更顺路更轻松；砵典乍街坡度较陡，爸妈体力一般时只路过拍照。</li>
-    <li><span class="time-label">13:45—14:00</span>前往 The Murray 美利酒店<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 5 min</span>，提前到达、洗手间整理、等位。</li>
-    <li><span class="time-label">14:00—15:30</span><span class="meal-line"><strong>🍽️ 午餐｜红棉 MIÁN</strong>位于 The Murray 美利酒店内，主打精致粤菜，由名厨邵德龙主理，融合中国各地菜系精华；推荐：葱油炸子鸡、九肚鱼春卷、羊肚菌素粿、苹果叉烧酥、冬瓜高汤牛肉丸；人均约 HKD 500—900（按点菜浮动）。<span style="display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:8px;padding:2px 10px;font-size:.85em;font-weight:700;margin-left:8px;">💳 已预付定金 HKD 500，用餐时从账单中扣除</span></span></li>
-    <li><span class="time-label">15:45—16:30</span>饭后慢走香港公园或大馆（百年监狱改建艺术地标，Bakehouse 蛋挞酥到掉渣必买，Blue Bottle 可歇脚，内有展览和文创店）<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 3 min（公园紧邻红棉）</span>，作为消食和休息点；如果天气热，直接进商场/咖啡店休息。</li>
-    <li><span class="time-label">16:45—18:30</span>往中环码头方向走<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 15 min</span>：先到中环摩天轮，然后去中环码头 / 中环码头天桥看维港天际线；这条路线基本一路往海边走，不折返。</li>
-    <li><span class="time-label">18:30—19:00</span>如天气好，可坐天星小轮到尖沙咀<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">⛴️ 天星小轮，约 10 min / HKD 5—7/人</span>短暂看维港；如果爸妈累，就在中环码头附近结束拍照后回上环。</li>
-    <li><span class="time-label">19:00—20:00</span><span class="meal-line"><strong>🍽️ 晚餐</strong>中环/上环清淡粤菜<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 港铁中环站 → 上环站，约 5 min / HKD 5/人</span>、云吞面或烧味饭；若午餐吃得晚，晚餐可改甜品或轻食。</span></li>
+    <li><span class="time-label">09:15—09:40</span>从六安居出发前往花园道山顶缆车总站。<span class="transport-inline">🚋 叮叮车约 19 min / HKD 3/人（皇后街站上车，前门下车付费）</span> <span class="transport-inline">🚶 步行约 7 min 至缆车总站</span></li>
+    <li><span class="time-label">09:50—11:30</span>太平山缆车上山、山顶观景；卢吉道起点轻松散步，不必走完全程；若排队超过 30 分钟，改的士上山节省时间。<span class="transport-inline">🚡 太平山缆车上山，约 8 min / HKD 82/人（单程）</span></li>
+    <li><span class="time-label">11:30—13:45</span>下山乘15号巴士至中银大厦站，下车后步行进入中环，按顺路方向连打：中银大厦 → 遮打花园 → 皇后像广场 → 终审法院 → "所有目的地"天桥机位 → 都爹利街 → 圣约翰座堂 → The Henderson → 中环漩涡水景；13:45 前步行至 The Murray 美利酒店等位。<span class="transport-inline">🚌 15号巴士山顶 → 中银大厦站（金钟道），约 20 min / HKD 10/人，坐面向山脚的左侧座位</span> <span class="transport-inline">🚶 全程步行约 20 min，不折返</span></li>
+ <li><span class="time-label">14:00—15:30</span><span class="meal-line"><strong>🍜 午餐｜红棉 MIÁN</strong>位于 The Murray 美利酒店内，主打精致粤菜，由名厨邵德龙主理，融合中国各地菜系精华；推荐：葱油炸子鸡、九肚鱼春卷、羊肚菌素粿、苹果叉烧酥、冬瓜高汤牛肉丸；人均约 HKD 500—900（按点菜浮动）。<span style="display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:8px;padding:2px 10px;font-size:.85em;font-weight:700;margin-left:8px;">💳 已预付定金 HKD 500，用餐时从账单中扣除</span></span></li>
+    <li><span class="time-label">15:30—17:15</span>饭后从红棉出发往西北方向慢走消食，按顺路方向连打：军器厂街天桥叮叮车机位 → 银行街 S 弯 → 艺穗会 → 大馆（Bakehouse 蛋挞 + Blue Bottle 歇脚）→ 嘉咸街天桥 + 涂鸦墙 → 荷里活道梦露/赫本涂鸦。<span class="transport-inline">🚶 全程步行约 25 min，不折返</span></li>
+    <li><span class="time-label">17:15—18:30</span>从荷里活道往下走：石板街 → 半山扶梯 → 中环街市。<span class="transport-inline">🚶 步行约 15 min，一路顺坡往海边方向</span></li>
+    <li><span class="time-label">18:30—19:20</span>中环摩天轮外景 → 中环码头天桥看维港天际线。如天气好可坐天星小轮到尖沙咀短暂看维港；如爸妈累就在码头附近结束。<span class="transport-inline">🚶 步行约 10 min</span> <span class="transport-inline">⛴️ 天星小轮，约 10 min / HKD 5—7/人</span></li>
+    <li><span class="time-label">19:30—20:30</span><span class="meal-line"><strong>🍽️ 晚餐</strong>中环/上环清淡粤菜，云吞面或烧味饭；若午餐吃得晚，晚餐可改甜品或轻食。<span class="transport-inline">🚇 港铁中环站 → 上环站，约 5 min / HKD 5/人</span></span></li>
+    <li><span class="time-label">20:30—21:00</span>晚饭后回 ibis，整理行李，早些休息备战 Day3。<span class="transport-inline">🚇 港铁中环站 → 上环站，约 5 min / HKD 5/人</span> <span class="transport-inline">🚶 或步行约 12 min</span></li>
+    <li><span class="time-label backup-label">备选｜尖沙咀维港夜景</span>体力充足时，饭前从中环码头坐天星小轮至尖沙咀看幻彩咏香江灯光秀（每晚 20:00 准时开始，约 15 min），看完灯光秀后在尖沙咀附近用晚餐，饭后港铁回上环，回 ibis 约 21:30。<span class="transport-inline">⛴️ 天星小轮，约 10 min / HKD 5—7/人</span> <span class="transport-inline">🚇 尖沙咀站 → 上环站，约 20 min / HKD 9/人</span></li>
 
-  
-<div class="food-box"><div class="food-title">🍽️ Day2 晚餐备选（中环 / 上环）</div>
-    <span class="food-option">九记牛腩🍜：歌赋街21号，晚餐时段19:00—22:30营业，清汤牛腩/咖喱牛筋腩，红棉午餐后隔几小时再来刚好；⚠️现金结账，拒收千元港币；⚠️周日及公众假期休息，约 HKD 50—70/人</span>
-    <span class="food-option">一乐烧鹅🦢：士丹利街34-38号，米其林星级烧鹅老店，皮脆肉嫩，约 HKD 100—220/人</span>
-    <span class="food-option light">沾仔记🍜：威灵顿街98号（中环站D2口），云吞面+鲮鱼球，约 HKD 60—100/人</span>
-  </div>
+ 
+<details class="collapsible food-details"><summary>🍽️ Day2 晚餐备选（中环 / 上环）</summary><div class="food-box">
+ <span class="food-option light">沾仔记🍜：威灵顿街98号（中环站D2口），云吞面+鲮鱼球，约 HKD 60—100/人</span>
+ <span class="food-option">一乐烧鹅🦢：士丹利街34-38号，米其林星级烧鹅老店，皮脆肉嫩，约 HKD 100—220/人</span>
+ <span class="food-option">九记牛腩🍜：歌赋街21号，晚餐时段19:00—22:30营业，清汤牛腩/咖喱牛筋腩，红棉午餐后隔几小时再来刚好；⚠️现金结账，拒收千元港币；⚠️周日及公众假期休息，约 HKD 50—70/人</span>
+ </div></details>
 
-  <div class="note"><strong>📍景点简介：</strong><br>
-    <strong>太平山：</strong>香港经典高处观景点，上午去排队压力更低；<br>
-    <strong>香港公园：</strong>中环闹市中的清爽绿地，适合午餐前后短休；<br>
-    <strong>The Henderson：</strong>中环新地标建筑，外观线条适合拍照；<br>
-    <strong>中环摩天轮 / 中环码头：</strong>维港合影与傍晚天际线最稳。</div>
-<div class="photo-grid-box">
-  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
-  <div class="photo-grid">
-      <div class="photo-card"><strong>"所有目的地"天桥机位</strong><p>导航"交易广场3座"；中环站A口出来穿过天桥回头可见，路牌机位网红打卡点。</p></div>
-      <div class="photo-card"><strong>太平山缆车</strong><p>导航“花园道山顶缆车总站”；上午去更稳，红棉午餐在14:00，不建议傍晚再上山。</p></div>
-      <div class="photo-card"><strong>中环街市</strong><p>导航"Central Market"；电影《无名》取景地，门口复古时钟必打卡，内有宝藏小店。</p></div>
-      <div class="photo-card"><strong>嘉咸街彩色涂鸦墙</strong><p>导航"嘉咸街 Graham Street"；色彩饱和度高，随手一拍复古港风，从Henderson天桥方向顺路。</p></div>
-      <div class="photo-card"><strong>荷里活道梦露 / 赫本涂鸦</strong><p>导航"荷里活道 Hollywood Road"；嘉咸街对面，波普风壁画，对称构图出片。</p></div>
-      <div class="photo-card"><strong>嘉咸街天桥拍照点</strong><p>从 The Henderson 走天桥方向可到达，拍出仿佛站在马路中间的视觉效果。</p></div>
-      <div class="photo-card"><strong>大馆</strong><p>导航"大馆 Tai Kwun"；中区警署改建艺术地标，红砖墙随手出片；Bakehouse 蛋挞酥到掉渣，Blue Bottle 歇脚必选；从嘉咸街乘半山自动扶梯可直达，省去爬坡。</p></div>
-      <div class="photo-card"><strong>都爹利街</strong><p>导航"都爹利街 Duddell Street"；全港仅存煤气路灯+复古石阶，TVB经典取景地。</p></div>
-      <div class="photo-card"><strong>圣约翰座堂</strong><p>导航"St. John's Cathedral"；1845年哥特式建筑，阳光透过彩色玻璃窗极为治愈。</p></div>
-      <div class="photo-card"><strong>The Henderson</strong><p>导航“The Henderson”；从香港公园/花园道一带去红棉前可顺路拍建筑外观。</p></div>
-      <div class="photo-card"><strong>中环漩涡水景</strong><p>导航“香港公园/茶具文物馆”附近，结合香港公园和红棉前后的中环动线顺路打卡。</p></div>
-      <div class="photo-card"><strong>军器厂街天桥（叮叮车站）</strong><p>叮叮车军器厂街站下车上天桥：①港风路面+叮叮车同框；②叮叮车与教堂同框。</p></div>
-      <div class="photo-card"><strong>终审法院（天桥叮叮车机位）</strong><p>导航"终审法院 Court of Final Appeal"；天桥上等叮叮车与复古建筑同框，中环最经典构图。</p></div>
-      <div class="photo-card"><strong>银行街站叮叮车S弯</strong><p>叮叮车银行街站，下车上右前方天桥，可拍叮叮车驶过S弯经典构图。</p></div>
-      <div class="photo-card"><strong>中环摩天轮</strong><p>导航“Hong Kong Observation Wheel”；红棉后去中环码头方向顺路，适合维港合影。</p></div>
-      <div class="photo-card"><strong>中环码头 / 中环码头天桥</strong><p>导航“中环 7 号码头 / Central Pier 7”；可接天星小轮去尖沙咀，维港夜景很稳。</p></div>
-    </div>
-</div>
+ <div class="note spot-lines"><strong>📍 景点简介：</strong><br>
+<strong>太平山：</strong>香港最具代表性的观景高地，海拔约552米，天气好时可360度俯瞰维港、九龙半岛及南丫岛；太平山缆车沿用1888年路线，是香港历史最悠久的交通工具之一，车厢斜度最高达27度；<br>
+<strong>大馆：</strong>前中区警署建筑群改建而成的艺术文化地标，保留维多利亚时代红砖建筑，内有画廊、展览、Bakehouse 和 Blue Bottle 等人气店铺，从嘉咸街乘半山扶梯可直达；<br>
+<strong>嘉咸街 / 荷里活道：</strong>中环半山文艺街区，嘉咸街以彩色涂鸦墙和天桥机位著称，荷里活道有梦露、赫本等波普风壁画，两条街步行相连，色彩饱和度高；<br>
+<strong>石板街（砵典乍街）：</strong>中环百年花岗岩坡道，坡度陡峭，是港产片经典取景地，傍晚光线斜射时氛围最佳；<br>
+<strong>天星小轮：</strong>往来港岛与九龙的百年渡轮，1888年起航，船票极便宜，是感受香港最经典的方式之一；夜间"幻彩咏香江"灯光秀在尖沙咀海滨观看效果最佳。</div>
+<details class="collapsible photo-details"><summary>📸 本日拍照打卡点｜导航与顺路提示</summary><div class="photo-grid-box"><div class="photo-grid">
+ <div class="photo-card"><strong>✅ 太平山缆车（上下山）</strong><p>导航"花园道山顶缆车总站"；上山坐面向山顶的右侧视野最佳，顺走卢吉道起点观景，路况平坦不必走完全程。下山乘15号巴士，坐面向山脚的左侧，在中银大厦站（金钟道）下车。</p></div>
+ <div class="photo-card"><strong>✅ 中银大厦 → 遮打花园一带 → 都爹利街 → 红棉</strong><p>中银大厦站下车，按顺路连打：①中银大厦：贝聿铭设计，仰拍几何感极强。②遮打花园 → 皇后像广场 → 终审法院：殖民建筑群连打，中环最具历史纵深感的区域。③"所有目的地"天桥机位：导航交易广场3座，网红路牌打卡点。④都爹利街：全港仅存煤气路灯+复古石阶，TVB经典取景地。⑤圣约翰座堂：1845年哥特式建筑，彩色玻璃窗极为治愈。⑥The Henderson + 中环漩涡水景：顺路拍完步行至红棉。</p></div>
+ <div class="photo-card"><strong>✅ 叮叮车机位 → 艺穗会 → 大馆 → 嘉咸街 / 荷里活道</strong><p>红棉饭后往西北方向：①军器厂街天桥：港风路面+叮叮车同框，或叮叮车与教堂同框。②银行街站S弯：上右前方天桥，拍叮叮车驶过S弯经典构图。③艺穗会：1892年殖民风红砖建筑，随手出片。④大馆：前中区警署改建，Bakehouse蛋挞+Blue Bottle歇脚。⑤嘉咸街天桥 + 涂鸦墙：港风写真必冲。⑥荷里活道梦露/赫本涂鸦：波普风壁画，对称构图出片。</p></div>
+ <div class="photo-card"><strong>✅ 石板街 → 半山扶梯 → 中环街市</strong><p>①石板街（砵典乍街）：百年花岗岩坡道，港片经典取景地，傍晚光线斜射最出片；坡度较陡，爸妈拍完即可不必久站。②半山自动扶梯：全球最长户外有盖扶梯，800米从商业区连到半山区，沿途小吃店巨多。③中环街市：1939年老建筑翻新，门口复古时钟必打卡。</p></div>
+ <div class="photo-card"><strong>✅ 中环码头 → 天星小轮</strong><p>①中环摩天轮外景：60米摩天轮配维港背景，在附近拍外景即可，不必坐。②中环码头天桥：导航中环7号码头 Central Pier 7，维港天际线全景。③天星小轮（备选）：百年复古渡轮，吹着海风过维港，比打车浪漫100倍；船上可拍港岛skyline，HKD 5—7/人，约10 min。</p></div>
+ </div>
+</div></details>
 
-  <div class="hotel-confirmed"><strong>🏨 今晚住宿：</strong>ibis Hong Kong Central & Sheung Wan｜上环德辅道西28号。<br><strong>入住提醒：</strong>酒店不含早餐；房内不提供牙刷、牙膏、浴帽、梳子、剃须刀等一次性用品，请自备。</div>
+ <div class="hotel-confirmed"><strong>🏨 今晚住宿：</strong>ibis Hong Kong Central & Sheung Wan｜上环德辅道西28号。<br><strong>入住提醒：</strong>酒店不含早餐；房内不提供牙刷、牙膏、浴帽、梳子、剃须刀等一次性用品，请自备。</div>
 </section>
 
 <section class="day-card">
-  <div class="day-num">DAY 3｜2026.06.12 周五</div>
-  <div class="day-theme">坚尼地城海边 · 上环码头赴澳门 · 上葡京入住 · 花园夜景</div>
+ <div class="day-num">DAY 3｜2026.06.12 周五</div>
+  <div class="day-theme">尖沙咀 · 旺角市井 · 上环码头赴澳门 · 上葡京入住</div>
 <ul>
     <li><span class="time-label">09:00—09:30</span>退房，行李寄存 ibis 前台；今天最后取行李再去澳门。</li>
     <li><span class="time-label">09:30—10:00</span><span class="meal-line"><strong>🥣 早餐</strong>ibis 附近快速解决，出发前往尖沙咀。</span></li>
-<div class="food-box"><div class="food-title">🥣 Day3 早餐备选（上环 / ibis 附近）</div>
-  <span class="food-option light">牛奶冰室（中环店）🥛：干诺道中68号华懋广场II期，港式冰室，招牌黑糖牛乳红豆冰/拉丝菠萝包，约 HKD 40—80/人</span>
-  <span class="food-option">生记粥品专家🍚：畢街7-9号，鱼腩粥/牛肉粥，约 HKD 45—80/人</span>
-  <span class="food-option light">瑞记咖啡☕：皇后大道中345号上环市政大厦2楼熟食中心17号，60年老字号，招牌樽仔冻奶茶+香煎西多士，周日休息，约 HKD 40—70/人</span>
+<details class="collapsible food-details"><summary>🥣 Day3 早餐备选（上环 / ibis 附近）</summary><div class="food-box">
   <span class="food-option">胜香园🍅：美轮街2号排档（上环站A2口），番茄面、脆脆，约 HKD 50—90/人</span>
-</div>
-    <li><span class="time-label">10:00—10:30</span>从上环出发前往九龙方向<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 港铁上环站 → 尖沙咀站，约 20 min / HKD 9/人</span>；今天不再返回中环，以油尖旺区域为主。</li>
-    <li><span class="time-label">10:30—11:30</span>港铁前往尖沙咀，九龙公园慢走休息<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 尖沙咀站 → 步行约 5 min 至九龙公园</span>，避免连续暴晒。</li>
-    <li><span class="time-label">11:30—12:30</span>尖沙咀钟楼 + 1881 Heritage 顺路拍照<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 8 min 至钟楼，再步行 3 min 至 1881</span>；之后港铁前往旺角<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 尖沙咀站 → 旺角站，约 3 min / HKD 5/人</span>，顺路逛 MOKO，在旺角站B3口天桥拍街景机位。</li>
-    <li><span class="time-label">12:45—13:45</span><span class="meal-line"><strong>🍜 午餐</strong>MOKO<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 港铁尖沙咀站 → 旺角站，约 8 min / HKD 7/人</span> / 旺角 / 尖沙咀商场内简餐，优先坐得舒服、上菜快的餐厅。</span></li>
+  <span class="food-option light">瑞记咖啡☕：皇后大道中345号上环市政大厦2楼熟食中心17号，60年老字号，招牌樽仔冻奶茶+香煎西多士，周日休息，约 HKD 40—70/人</span>
+  <span class="food-option">生记粥品专家🍚：畢街7-9号，鱼腩粥/牛肉粥，约 HKD 45—80/人</span>
+  <span class="food-option light">牛奶冰室（中环店）🥛：干诺道中68号华懋广场II期，港式冰室，招牌黑糖牛乳红豆冰/拉丝菠萝包，约 HKD 40—80/人</span>
+</div></details>
+    <li><span class="time-label">10:00—11:00</span>港铁前往尖沙咀，到站后步行至九龙公园慢走休息，树荫多，适合爸妈乘凉避暑。⚠️ 若 Day2 晚上已去尖沙咀看灯光秀，九龙公园和海港城外景可直接跳过，节省约30分钟，直接去钟楼开始打卡。<span class="transport-inline">🚇 港铁上环站 → 尖沙咀站，约 20 min / HKD 9/人</span></li>
+    <li><span class="time-label">11:45—13:00</span>尖沙咀打卡：钟楼 + 1881 Heritage，沿星光大道 / 尖沙咀海滨长廊步行欣赏维港；顺路经过半岛酒店门口 + 海港城外景拍照，步行至油麻地警署打卡；之后港铁前往旺角，旺角站B3口天桥 + 朗豪坊通天扶梯打卡。<span class="transport-inline">🚶 步行约 8 min 至钟楼，再步行 3 min 至 1881</span> <span class="transport-inline">🚶 步行约 10 min，沿海边往东北方向</span> <span class="transport-inline">🚶 步行约 10 min 至油麻地警署</span> <span class="transport-inline">🚇 油麻地站 → 旺角站，约 3 min / HKD 5/人</span></li>
+    <li><span class="time-label">12:30—13:15</span><span class="meal-line"><strong>🍜 午餐</strong>旺角附近顺路解决，优先快出餐、坐得舒服的餐厅，吃完直接去 MOKO。<span class="transport-inline">🚶 步行至附近餐厅，约 5 min</span></span></li>
+    <li><span class="time-label">13:15—14:15</span>MOKO 3楼 Sanrio Gift Gate 购买 Chiikawa，预留约 1 小时挑选购物。</li>
 
-<div class="food-box"><div class="food-title">🍜 Day3 午餐备选（旺角 / 尖沙咀）</div>
-  <span class="food-option">筷子记🥢：旺角/油麻地一带，<strong>必点沙茶酱捞面</strong>，面条/饭/猪扒包都好吃，支持支付宝/微信，约 HKD 50/人</span>
+<details class="collapsible food-details"><summary>🍜 Day3 午餐备选（旺角 / 尖沙咀）</summary><div class="food-box">
   <span class="food-option light">华嫂冰室🍅：招牌菠萝油/番茄鸡翅面/冬阴功，番茄味浓郁；旺角店顺路，约 HKD 60—120/人</span>
+  <span class="food-option">池记云吞面🍜：旺角老字号，快速解决午餐，约 HKD 60—120/人</span>
+  <span class="food-option light">金华冰厅🧊：菠萝油经典，适合旺角顺路打卡，约 HKD 40—80/人</span>
+  <span class="food-option light">MOKO 商场内粤菜 / 茶餐厅🍽️：环境舒服，适合长辈休息，内有 Sanrio Gift Gate 可顺逛，约 HKD 80—180/人</span>
   <span class="food-option">龙点心（尖沙咀店）🍱：海防道38-40号中大厦1楼，地道港式早茶，乳鸽必点，约 HKD 60—120/人</span>
   <span class="food-option">牛奶冰室（尖沙咀店）🥛：柯士甸道108号耀基大厦，招牌黑糖牛乳红豆冰/拉丝菠萝包，约 HKD 40—80/人</span>
-  <span class="food-option light">金华冰厅：菠萝油经典，适合旺角顺路打卡，约 HKD 40—80/人</span>
-  <span class="food-option">池记云吞面：旺角老字号，快速解决午餐，约 HKD 60—120/人</span>
-  <span class="food-option light">MOKO 商场内粤菜 / 茶餐厅：环境舒服，适合长辈休息，内有 Sanrio Gift Gate 可顺逛，约 HKD 80—180/人</span>
-</div>
-<div class="food-box"><div class="food-title">🍡 Day3 顺路小食 & 饮品（旺角 / 尖沙咀）</div>
-  <span class="food-option">曲奇4重奏🍪：旺角西洋菜南街1号（旺角站E1口直行约10m，朗豪坊对面）；尖沙咀加拿分道16号；机场也有，回程购买也可</span>
-  <span class="food-option light">Omotesando Koffee（表参道咖啡）☕：尖沙咀K11 B2层，亚洲顶级精品咖啡，招牌Iced Cappuccino，⚠️冷热饮分开两张菜单，约 HKD 55—80/杯</span>
-  <span class="food-option">兰芳园（尖沙咀店）🧋：弥敦道36-44号重庆大厦地库WK广场29号铺，丝袜奶茶/猪扒包，约 HKD 24起</span>
-  <span class="food-option light">ChaTraMue 泰奶🧋：旺角/尖沙咀有店，泰式奶茶/奶绿，斑斓珍珠有嚼劲，约 HKD 29</span>
-  <span class="food-option">可不可成熟茶行🧋：台式黑糖珍珠，Q弹不甜腻，约 HKD 39</span>
+</div></details>
+<details class="collapsible food-details"><summary>🍡 Day3 顺路小食 & 饮品（旺角 / 尖沙咀）</summary><div class="food-box">
+  <span class="food-option light">兴记咖啡餐厅☕：尖沙咀区，本地老牌咖啡餐厅，港式奶茶/冻柠茶/多士套餐，约 HKD 30—60/人</span>
+  <span class="food-option">两草🧋：尖沙咀棉登径Shop B，特色饮品，约 HKD 30—50/杯</span>
+  <span class="food-option light">研香 Grindie🍮：尖沙咀厚福街，甜品餐馆，约 HKD 50—100/人</span>
+  <span class="food-option">豪华小食 Oh Wahh🍢：尖沙咀宝勒巷1号地下玫瑰大厦，港式街头小食，约 HKD 50—100/人</span>
+  <span class="food-option light">肥仔记（第三代肥仔）🍢：尖沙咀厚福街3号，米其林驰名小食，墨鱼/生肠/火鸡肾/猪润卤味，招牌蘸酱惹味，约 HKD 30—60/人</span>
+  <span class="food-option">Owl's Choux🥐：尖沙咀摩地道32号，米其林驰名小食，现做泡芙按单填馅，外脆内流心；⚠️周一休息，15:00后才开，约 HKD 30—50/个</span>
+  <span class="food-option light">花斑茶社🧋：尖沙咀/旺角均有分店，传承台湾茶制作工艺，招牌黑糖珍珠/水果冰茶，约 HKD 28—38/杯</span>
+  <span class="food-option">Omotesando Koffee（表参道咖啡）☕：尖沙咀K11 B2层，亚洲顶级精品咖啡，招牌Iced Cappuccino，⚠️冷热饮分开两张菜单，约 HKD 55—80/杯</span>
+  <span class="food-option light">兰芳园（尖沙咀店）🧋：弥敦道36-44号重庆大厦地库WK广场29号铺，丝袜奶茶/猪扒包，约 HKD 24起</span>
+  <span class="food-option">串烧大皇🍡：油麻地庙街33号地铺 / 永星里1号，港式串烧卤水，评价极高，约 HKD 50—100/人</span>
+  <span class="food-option light">辉记车仔面🍜：油麻地文明里附近，本地人爱去的街边车仔面，猪红/猪皮/卤大肠/牛腩任选，约 HKD 40—60/人</span>
+  <span class="food-option">通达食店🐟：油麻地站A2出口即见，18年老店，辣鱼蛋/烧卖Q弹有嚼劲，可窗口买走，入座有低消，约 HKD 30—50/份</span>
+  <span class="food-option light">和顺记🍗：油麻地碧街24号地下，8年老店，强推炸鸡腿煎蛋饭，鸡腿比拳头大现炸皮脆，约 HKD 50—60/人</span>
+  <span class="food-option">嘉多娜餅屋🍞：油麻地碧街54号地下（油麻地站A2出口步行约1分钟），招牌法式布甸包蛋味浓郁流心，另有开心果泡芙/蛋挞，约 HKD 8—25/个</span>
+  <span class="food-option light">人和荳品廠🥛：旺角旺角道28号地铺（旺角站B3口步行约3min），手工豆腐花/鲜豆浆，豆味香醇，约 HKD 10—20/份，顺路解渴消暑</span>
+  <span class="food-option">两草🧋：旺角百布街16号Shop 7，特色饮品，约 HKD 30—50/杯</span>
+  <span class="food-option light">lamlam脷🎂：旺角，西式甜品/蛋糕，价格亲民；⚠️只收现金及八达通，约 HKD 30—60/人</span>
+  <span class="food-option">明华饼家🥮：旺角烟厂街1-3号鸿祥大厦地下D铺，10年老式饼屋，豆沙/奶黄/花生/红豆烧饼，HKD 13/2个；⚠️只收港币</span>
+  <span class="food-option light">曲奇4重奏🍪：旺角西洋菜南街1号（旺角站E1口直行约10m，朗豪坊对面）；尖沙咀加拿分道16号；机场也有，回程购买也可</span>
+  <span class="food-option">ChaTraMue 泰奶🧋：旺角/尖沙咀有店，泰式奶茶/奶绿，斑斓珍珠有嚼劲，约 HKD 29</span>
   <span class="food-option light">老虎堂🐯：旺角有店，人气黑糖珍珠，建议少糖，约 HKD 31</span>
-  <span class="food-option">维记鲜奶🍼：港澳限定玻璃樽，原味/朱古力/低脂三种口味，约 HKD 11</span>
-</div>
-    <li><span class="time-label">14:00—14:45</span>西九龙文化区海滨草坪短停拍照<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 港铁旺角站 → 柯士甸站，约 5 min / HKD 5/人</span>，天气好看海和草坪，天气热只拍照不久留。</li>
-    <li><span class="time-label">14:45—15:30</span>返回 ibis 取行李<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚇 港铁柯士甸站 → 上环站，约 20 min / HKD 9/人</span>，步行至港澳码头办理登船手续。</li>
-    <li><span class="time-label">15:30—16:30</span>港澳码头候船 + 乘 TurboJET 金光飞航赴澳门<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">⛴️ 上环→氹仔客运码头，16:30开船，约 60 min</span>；到澳门后乘免费接驳班车前往上葡京，约17:30—18:00抵达。</li>
-    <li><span class="time-label">17:30—18:30</span>抵达澳门后使用上葡京免费班车或的士前往酒店<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚌 上葡京免费接驳班车，约 20 min</span>；办理入住，确认房间和泳池开放时间。</li>
+  <span class="food-option">可不可成熟茶行🧋：台式黑糖珍珠，Q弹不甜腻，约 HKD 39</span>
+  <span class="food-option light">维记鲜奶🍼：港澳限定玻璃樽，原味/朱古力/低脂三种口味，约 HKD 11</span>
+</div></details>
+    <li><span class="time-label backup-label">备选｜西九龙</span>时间充裕时可坐港铁至西九龙文化区短停拍草坪；若时间紧可跳过，直接从旺角坐港铁回上环取行李。<span class="transport-inline">🚇 港铁旺角站 → 柯士甸站，约 5 min / HKD 5/人</span></li>
+    <li><span class="time-label">15:30—16:00</span>返回 ibis 取行李，步行至港澳码头办理登船手续。<span class="transport-inline">🚇 港铁旺角站 → 上环站，约 20 min / HKD 9/人</span></li>
+    <li><span class="time-label">16:00—16:30</span>港澳码头检票候船，乘金光飞航赴澳门；到澳门后乘免费接驳班车前往上葡京，约17:30—18:00抵达。<span class="transport-inline">⛴️ 上环→氹仔客运码头，16:30开船，约 60 min</span></li>
+    <li><span class="time-label">17:30—18:30</span>抵达澳门后前往上葡京办理入住，确认房间和泳池开放时间。<span class="transport-inline">🚌 上葡京免费接驳班车，约 20 min</span></li>
     <li><span class="time-label">19:00—20:30</span><span class="meal-line"><strong>🍽️ 晚餐</strong>上葡京 / 路氹商场内餐厅，第一晚以轻松、少走路为主。</span></li>
-<div class="food-box"><div class="food-title">🍽️ Day3 晚餐备选（澳门上葡京 / 路氹）</div>
-  <span class="food-option light">上葡京商场粤菜：第一晚最省力，环境舒服，约 MOP 120—250/人</span>
-  <span class="food-option">路氹轻食 / 葡式简餐：适合不想吃太撑的情况，约 MOP 80—180/人</span>
-</div>
+<details class="collapsible food-details"><summary>🍽️ Day3 晚餐备选（澳门上葡京 / 路氹）</summary><div class="food-box">
+  <span class="food-option">MR.K赤辣猪扒包🥪：上葡京2楼，现炸猪扒鲜嫩多汁+面包皮脆香，猪扒包必加蛋！可选辣/不辣，薯条推荐咸蛋味（吃前摇一摇），第一晚不想出门首选，约 MOP 60—100/人</span>
+  <span class="food-option light">荣记牛杂🍢：上葡京2楼，住客无需外出排队，牛杂好吃记得加萝卜，鱼蛋超Q弹，约 MOP 50—80/人</span>
+  <span class="food-option">杨枝金捞甜品店🥭：上葡京内，招牌杨枝甘露，也有鸡脆骨/牛肉温泉拌饭，可点外卖（建议提前1小时下单），约 MOP 50—120/人</span>
+  <span class="food-option light">小麵🍜：上葡京内，猪颈肉叻沙面条微辣超开胃，米粉/面条可选，约 MOP 60—100/人</span>
+  <span class="food-option">路氹轻食 / 葡式简餐🥘：适合不想吃太撑的情况，约 MOP 80—180/人</span>
+</div></details>
   </ul>
-    <div class="note"><strong>📍 景点简介：</strong><br>
-    <strong>九龙公园：</strong>尖沙咀市区里的绿洲，树荫多，适合爸妈慢走和短休息；<br>
-    <strong>海港城：</strong>紧邻九龙公园，穿过商场可直达天星小轮码头，内有维港观景打卡点；<br>
-    <strong>尖沙咀钟楼：</strong>维港边标志建筑，5分钟顺路拍照；<br>
-    <strong>1881 Heritage：</strong>前水警总部改建，欧式建筑室内外都出片；<br>
-    <strong>油麻地警署：</strong>油麻地站C口步行5分钟，港剧复古感十足；<br>
-    <strong>半岛酒店：</strong>尖沙咀站E口，经典港式宫殿建筑，门口拍照即可；<br>
-    <strong>星光大道 / 尖沙咀海滨长廊：</strong>维港沿岸步行道，天气好时景色出片；<br>
-    <strong>钵兰街：</strong>旺角核心区，路牌打卡顺路，与MOKO相距步行约2—3分钟；<br>
-    <strong>旺角站B3口天桥：</strong>网红街景机位，俯拍旺角街道人流；<br>
-    <strong>西九龙文化区：</strong>维港西侧大草坪和海滨空间，适合傍晚坐着看日落；<br>
-    <strong>香港天际线观景点：</strong>西九龙海滨可远眺香港岛天际线，天气好时景色绝佳。
-  </div>
-<div class="photo-grid-box">
-  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
-  <div class="photo-grid">
-      <div class="photo-card"><strong>九龙公园</strong><p>导航“九龙公园 / Kowloon Park”；在尖沙咀区域，适合爸妈慢走和避暑。</p></div>
-      <div class="photo-card"><strong>海港城维港打卡点</strong><p>导航"Harbour City"；从九龙公园穿过海港城至天星小轮码头方向，商场内有维港观景点，顺路不绕路。</p></div>
-      <div class="photo-card"><strong>尖沙咀钟楼</strong><p>导航"尖沙咀钟楼 Tsim Sha Tsui Clock Tower"；维港边标志建筑，5分钟顺路拍照，不额外绕路。</p></div>
-      <div class="photo-card"><strong>1881 Heritage</strong><p>导航"1881 Heritage"；前水警总部改建，欧式建筑室内外都出片，不需消费，适合带爸妈轻松参观。</p></div>
-      <div class="photo-card"><strong>油麻地警署</strong><p>导航"油麻地警署 Yau Ma Tei Police Station"；油麻地站C口步行5分钟，港剧复古感十足。</p></div>
-      <div class="photo-card"><strong>半岛酒店机位</strong><p>导航"香港半岛酒店 The Peninsula"；尖沙咀站E口沿楼梯上行，经典港式宫殿建筑出片稳定。</p></div>
-      <div class="photo-card"><strong>星光大道 / 尖沙咀海滨长廊</strong><p>导航"Avenue of Stars"；沿维港步行道延伸，与西九龙文化区相连，天气好时维港全景很稳。</p></div>
-      <div class="photo-card"><strong>钵兰街路牌</strong><p>导航"钵兰街 Portland Street"；旺角核心区，与MOKO相距步行约2-3分钟，路牌打卡顺路不绕路。</p></div>
-      <div class="photo-card"><strong>旺角站 B3 口上天桥</strong><p>导航“旺角站 B3 出口”；上天桥可拍旺角街景和车流，停留 10—15 分钟即可。</p></div>
-      <div class="photo-card"><strong>西九龙草坪日落</strong><p>导航“西九龙文化区 Art Park”；适合坐草坪看日落，若赶船去澳门则只短暂停留。</p></div>
-      <div class="photo-card"><strong>香港天际线观景点</strong><p>导航“尖沙咀海滨 / Avenue of Stars”或“西九龙文化区海滨”；天气好时看维港最稳。</p></div>
+        <div class="note spot-lines"><strong>📍 景点简介：</strong><br>
+<strong>尖沙咀钟楼：</strong>1916年建成，原为九广铁路总站钟楼，是香港少数保留的爱德华时代建筑，见证香港铁路百年历史；<br>
+<strong>1881 Heritage：</strong>前香港水警总部，建于1881年，维多利亚式建筑群保存完好，2009年改建为精品商场，是香港保育历史建筑的代表项目；<br>
+<strong>星光大道：</strong>沿维港而建的步行长廊，设有香港电影名人手印星光砖和李小龙铜像；夜间"幻彩咏香江"灯光秀在此观看效果最佳；<br>
+<strong>备选｜西九龙文化区：</strong>香港近年最大规模文化项目，M+博物馆、戏曲中心、海滨大草坪向公众免费开放，可远眺香港岛天际线。</div>
+<details class="collapsible photo-details"><summary>📸 本日拍照打卡点｜导航与顺路提示</summary><div class="photo-grid-box"><div class="photo-grid">
+      <div class="photo-card"><strong>✅ 尖沙咀（上午）</strong><p>①九龙公园：港铁尖沙咀站A1口出，树荫多适合爸妈乘凉，顺路散步。②尖沙咀钟楼：导航Clock Tower，广九铁路旧址，红砖钟楼配维港，复古感拉满，整点报时。③1881 Heritage：导航1881 Heritage，维多利亚式建筑群，精品商场融入百年建筑，拍建筑外观极出片。④星光大道/海滨长廊：沿维港步行，李小龙铜像+手印星光砖，夜间幻彩咏香江灯光秀在此观看最佳。⑤半岛酒店门口：顺路拍经典绿色车队+殖民式建筑门廊。</p></div>
+      <div class="photo-card"><strong>✅ 海港城（尖沙咀）</strong><p>导航"海港城 Harbour City"；沿维港海边拍外景，靠窗角度可将维港收入镜头，顺路经过拍几张即可。</p></div>
+      <div class="photo-card"><strong>✅ 油麻地 → 旺角（下午）</strong><p>①油麻地警署：导航Yau Ma Tei Police Station，殖民地建筑，无数港剧取景地。②旺角站B3天桥：B3口直接上天桥，俯瞰弥敦道车流与霓虹招牌，建议下午4点光线最绝，随便拍都是港风大片。③朗豪坊：导航Langham Place，42米通天扶梯极具视觉冲击感，4楼观景台俯瞰旺角全景。</p></div>
+      <div class="photo-card" style="border:1px dashed #d0b88a;background:#fffaf2;"><strong>备选｜西九龙文化区</strong><p>导航"西九龙文化区 West Kowloon Cultural District"；港铁旺角站→柯士甸站约5 min；海滨大草坪免费开放，可远眺香港岛天际线；天气好适合拍草坪+维港背景，天气热只拍照不久留。</p></div>
     </div>
-</div>
-
-  <div class="note spot-lines"><strong>📍景点简介：</strong><br>
-<strong>九龙公园：</strong>尖沙咀市区里的绿洲，树荫多，适合爸妈慢走和短休息；<br>
-<strong>西九龙文化区：</strong>维港西侧的大草坪和海滨空间，适合傍晚坐着看日落；<br>
-<strong>MOKO 旺角新世纪广场：</strong>商场型购物点，适合避暑休息，不受天气影响。</div>
+</div></details>
 
   
 
@@ -619,76 +679,102 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
 
 <section class="day-card">
   <div class="day-num">DAY 4｜2026.06.13 周六</div>
-  <div class="day-theme">澳门半岛历史城区 · 官也街 · 路氹夜景</div>
+  <div class="day-theme">澳门半岛历史城区 · 龙环葡韵 · 官也街 · 路氹夜景</div>
 <ul>
-    <li><span class="time-label">09:00—09:30</span><span class="meal-line"><strong>🥣 早餐</strong>上葡京商场内轻食/咖啡，或简单粥面；酒店不含早餐，早上不建议走太远。</span></li>
-<div class="food-box"><div class="food-title">🥣 上葡京附近早餐备选（酒店不含早餐）</div>
-  <span class="food-option light">上葡京商场轻食/咖啡：最省力，约 MOP 50—100/人</span>
-  <span class="food-option light">路氹商场粥面/粤式简餐：清淡稳妥，约 MOP 60—120/人</span>
-  <span class="food-option">官也街周边茶餐厅：猪扒包、蛋挞、奶茶，约 MOP 50—90/人</span>
-</div>
+    <li><span class="time-label">09:00—10:00</span><span class="meal-line"><strong>🥣 早餐</strong>上葡京内悠闲吃，今天班车12:30才发，不用赶时间。</span></li>
+<details class="collapsible food-details"><summary>🥣 上葡京附近早餐备选（酒店不含早餐）</summary><div class="food-box">
+  <span class="food-option">MR.K赤辣猪扒包🥪：上葡京2楼，猪扒包必加蛋，现炸皮脆肉嫩，早餐吃也很过瘾，约 MOP 60—100/人</span>
+  <span class="food-option light">小麵🍜：上葡京内，猪颈肉叻沙微辣开胃，早上想吃热汤面首选，约 MOP 60—100/人</span>
+  <span class="food-option">上葡京商场轻食/咖啡☕️：最省力，约 MOP 50—100/人</span>
+  <span class="food-option light">路氹商场粥面/粤式简餐🍜：清淡稳妥，约 MOP 60—120/人</span>
+  <span class="food-option">六记粥面🍜：澳门半岛连续14年米其林必比登，招牌虾籽捞面/水蟹粥/米通鲮鱼球，乘班车去半岛后顺路吃，约 MOP 60—120/人</span>
+  <span class="food-option light">盛记白粥🥣：新马路苏雅士医士街1号，70年老字号，白粥绵密，鱼蓉烧卖/炸肠必点，去半岛途中顺路，约 MOP 50—100/人</span>
+  <span class="food-option">黄枝记🍜：议事亭前地17号，云吞面/虾子捞面经典，早餐时段营业，约 MOP 60—120/人</span>
+  <span class="food-option light">雄兴泰咖啡室☕：连胜马路151号B，本地人强推老字号，招牌蚝仔米线蚝肉鲜甜，另有猪润粗面/瑶柱煎蛋，约 MOP 50—90/人</span>
+</div></details>
 
   
 
-    <li><span class="time-label">09:45—11:45</span>前往澳门半岛历史城区<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚌 上葡京免费班车至澳门半岛，约 30 min</span>：先到大三巴牌坊，再顺路走恋爱巷、玫瑰圣母堂、议事亭前地。上午光线好，人流相对可控。</li>
-    <li><span class="time-label">12:00—13:15</span><span class="meal-line"><strong>🍜 午餐</strong>澳门老城区午餐，优先选黄枝记、盛记白粥、番茄屋、中国名粥等坐得舒服的店。</span></li>
+    <li><span class="time-label">09:45—10:30</span>整理好出行物品，步行至上葡京北门B1层候车。</li>
+    <li><span class="time-label">10:40—11:20</span>乘上葡京免费班车前往澳门半岛外港客运码头，下车后步行至附近找早餐餐厅。<span class="transport-inline">🚌 路线9（北门G/F North出发）→ 外港客运码头，每天10:40—21:30，每隔20—30分钟一班，约 30 min</span></li>
+    <li><span class="time-label">11:20—12:00</span><span class="meal-line"><strong>🥣 早餐（半岛）</strong>外港码头附近用餐，六记粥面/盛记白粥/雄兴泰咖啡室任选，平价好吃。</span></li>
+    <li><span class="time-label">12:00—14:30</span>半岛历史城区打卡：议事亭前地 → 玫瑰圣母堂 → 恋爱巷 → 大三巴牌坊 → 大炮台，全程不折返。<span class="transport-inline">🚶 从外港码头往西步行进历史城区，景点间约 5—15 min</span></li>
+    <li><span class="time-label">14:30—15:30</span><span class="meal-line"><strong>🍜 午餐</strong>大三巴/议事亭附近用餐，优先选黄枝记、盛记白粥、津津饭堂等坐得舒服的店。</span></li>
 
-  <div class="food-box"><div class="food-title">🍜 Day4 午餐备选（澳门老城区 / 半岛）</div>
-  <span class="food-option">陈光记烧腊🦆：罗保博士街19-39号，米其林老字号，招牌黑椒烧鸭/烧鹅，建议搭配濑粉，约 MOP 80—150/人</span>
-  <span class="food-option light">津津饭堂（澳门广场一楼）：集合约10家老字号，可一站式高效体验多家澳门美食，适合爸妈不想多走路，约 MOP 60—130/人</span>
+  <details class="collapsible food-details"><summary>🍜 Day4 午餐备选（澳门老城区 / 半岛）</summary><div class="food-box">
+  <span class="food-option">柠檬车露 Gelato🍦：大三巴附近有店，颜值高、口感冰沙清爽，约 MOP 38—65/球</span>
+  <span class="food-option light">津津饭堂（澳门广场一楼）🏪：集合约10家老字号，可一站式高效体验多家澳门美食，适合爸妈不想多走路，约 MOP 60—130/人</span>
   <span class="food-option">黄枝记🍜：议事亭前地17号，云吞面/虾子捞面经典，约 MOP 60—120/人</span>
   <span class="food-option light">盛记白粥🥣：新马路苏雅士医士街1号（半岛店），70年老字号，白粥超绵密，鱼蓉烧卖/炸肠必点，约 MOP 50—100/人</span>
-  <span class="food-option">玛嘉烈蛋挞🥧：酥皮葡挞，蛋香浓郁微焦，约 MOP 12—15/个</span>
+  <span class="food-option">百乐门粉面店🍜：澳门半岛老字号，粉面类港澳经典，价格实惠，约 MOP 40—80/人</span>
+  <span class="food-option">金利食店🍛：澳门本地咖喱饭路线，浓郁香料味，价格亲民，约 MOP 50—90/人</span>
+  <span class="food-option light">牛记咖喱美食🍛：澳门半岛经典咖喱老店，咖喱牛腩/咖喱鱼蛋，约 MOP 40—80/人</span>
+  <span class="food-option">花地玛堂区小食🍽️：澳门半岛花地玛堂区一带，街坊小食集中，适合边走边吃，约 MOP 30—80/人</span>
+  <span class="food-option light">翠园酒家🍱：澳门半岛粤菜酒楼，传统点心/烧味，适合正式午餐，约 MOP 80—180/人</span>
+  <span class="food-option">陈光记烧腊🦆：罗保博士街19-39号，米其林老字号，招牌黑椒烧鸭/烧鹅，建议搭配濑粉，约 MOP 80—150/人</span>
+  <span class="food-option light">中国名粥🦀：海鲜粥路线，适合清淡午餐，约 MOP 60—140/人</span>
+  <span class="food-option">番茄屋🍅：葡式/西式简餐，约 MOP 80—180/人</span>
   <span class="food-option light">义顺牛奶公司🥛：双皮奶/姜汁撞奶，香浓顺滑，适合爸妈饭后甜品，约 MOP 35—60/人</span>
-  <span class="food-option">柠檬车露 Gelato🍦：大三巴附近有店，颜值高、口感冰沙清爽，约 MOP 38—65/球</span>
-  <span class="food-option">中国名粥🦀：海鲜粥路线，适合清淡午餐，约 MOP 60—140/人</span>
-  <span class="food-option light">番茄屋🍅：葡式/西式简餐，约 MOP 80—180/人</span>
-</div>
-    <li><span class="time-label">13:30—15:00</span>从半岛前往氹仔龙环葡韵（拍照）再走官也街。官也街必吃：旺记咖啡（官也街1号，手打奶茶+猪扒包）→ 安德鲁饼店（氹仔总店，葡挞发源地）→ 泽贤记鸡蛋仔（葡挞馅，外脆内爆浆）→ 莫义记（官也街9号，猫山王榴莲雪糕）→ 最香饼家炭烧杏仁饼（⚠️周三休息）<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚕 的士前往氹仔龙环葡韵，约 20 min / MOP 80—130/车</span>：龙环葡韵住宅式博物馆 + 官也街。龙环葡韵相对平坦，适合拍照；官也街适合买小吃但不要久站。</li>
-    <li><span class="time-label">15:30—17:00</span>回上葡京休整或使用泳池<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚕 的士回上葡京，约 10 min / MOP 50—80/车</span>。提醒：带泳衣；若爸妈累，就把下午改为酒店花园 + 大堂慢逛。</li>
-    <li><span class="time-label">17:30—19:00</span><span class="meal-line"><strong>🍽️ 晚餐</strong>官也街葡国菜<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚌 酒店班车或步行，约 10—15 min</span>、路氹酒店餐厅或上葡京内餐厅。</span></li>
+  <span class="food-option">玛嘉烈蛋挞🥧：酥皮葡挞，蛋香浓郁微焦，约 MOP 12—15/个</span>
+</div></details>
+    <li><span class="time-label">15:30—17:30</span>乘的士前往氹仔龙环葡韵，葡式住宅建筑群+小桥湖景，平坦适合爸妈慢走拍照；之后步行至官也街扫街：旺记咖啡 → 安德鲁饼店 → 泽贤记鸡蛋仔 → 莫义记榴莲雪糕 → 最香饼家杏仁饼（⚠️周三休息）。<span class="transport-inline">🚕 的士大三巴 → 龙环葡韵，约 15 min / MOP 60—100/车</span> <span class="transport-inline">🚶 步行至官也街，约 5 min</span></li>
+    <li><span class="time-label">17:30—18:30</span>乘的士前往永利皇宫，免费观光缆车（周六16:00—24:00开放，建议去二楼排队人少）+ 音乐喷泉表演（每20—30分钟一场）。<span class="transport-inline">🚕 的士官也街 → 永利皇宫，约 10 min / MOP 50—80/车</span></li>
+    <li><span class="time-label">18:30—20:00</span><span class="meal-line"><strong>🍽️ 晚餐</strong>路氹酒店群内用餐<span class="transport-inline">🚶 步行至上葡京或威尼斯人/巴黎人商场内餐厅，约 10—15 min</span></span></li>
 
-  <div class="food-box"><div class="food-title">🍽️ Day4 晚餐备选（路氹 / 官也街）</div>
-  <span class="food-option">官也街葡国菜：适合澳门体验感，约 MOP 150—300/人</span>
-  <span class="food-option light">上葡京酒店餐厅：不想暴走时最稳，约 MOP 120—280/人</span>
-  <span class="food-option">威尼斯人 / 巴黎人商场粤菜：环境舒适，约 MOP 100—250/人</span>
-  <span class="food-option light">金悦轩🍤：粤式点心和海鲜路线，约 MOP 180—350/人</span>
-</div>
-<div class="food-box"><div class="food-title">🍡 Day4 顺路小食 & 饮品（半岛 / 官也街）</div>
-  <span class="food-option">旺记咖啡☕：官也街1号老字号，手打奶茶香滑、猪扒包肉扎实面包脆，约 MOP 30—60/人</span>
+  <details class="collapsible food-details"><summary>🍡 Day4 顺路小食 & 饮品（半岛 / 官也街）</summary><div class="food-box">
+  <span class="food-option">世记咖啡☕：官也街附近老牌茶餐厅，冻奶茶茶味浓不涩，另有猪扒包；⚠️只收现金，汇率1:1，约 MOP 30—60/人</span>
+  <span class="food-option light">旺记咖啡☕：官也街1号，奶茶茶味更浓，猪扒包肉扎实面包脆，常有人排队，约 MOP 30—60/人</span>
+  <span class="food-option">喜莲咖啡☕：老牌茶餐厅天花板！猪扒包焦香，牛尾通粉浓郁，爆脆阿华田超好喝，约 MOP 50—100/人</span>
   <span class="food-option light">大利来记咖啡室🥐：官也街区域人气老店，本地人常去，招牌猪扒包配奶茶，约 MOP 30—60/人</span>
-  <span class="food-option">安德鲁饼店（氹仔总店）🥧：葡挞发源地，清甜不腻味道最正宗，约 MOP 12/个</span>
-  <span class="food-option light">泽贤记鸡蛋仔🧇：官也街附近弄堂（近安德鲁饼店），葡挞馅注入鸡蛋仔，外脆内爆浆，趁热吃，约 MOP 25—40/份</span>
+  <span class="food-option">老Day牛杂🍢：官也街老Day牛杂对面区域，小份精选牛杂大块软烂，萝卜入味，咖喱底可加辣，约 MOP 40—80/人</span>
+  <span class="food-option light">咖喱全🍛：氹仔必吃咖喱面！牛腩厚身炖到入口即化，咖喱汁带椰香，偏辣，约 MOP 50—100/人</span>
+  <span class="food-option">明珠面家🍜：招牌生蚝猪腰面汤底极鲜，布拉肠顺滑，氹仔老字号，约 MOP 60—120/人</span>
+  <span class="food-option light">氹仔大排档🦀：官也街两家，水蟹粥香甜，濑尿虾鲜美，晚上氛围感满分，带专车接送，约 MOP 80—200/人</span>
   <span class="food-option">莫义记🍨：官也街9号，90年老字号，猫山王榴莲雪糕/木糠布甸，还有手打奶茶，约 MOP 25—60/份</span>
-  <span class="food-option light">雍记甜品🥭：芒果糯米糍 MOP 8/个、芒果椰子糕，便宜好吃，官也街顺路</span>
-  <span class="food-option">杨枝金捞🥭：经典港式甜品，招牌芒果杨枝甘露，氹仔官也街顺路，约 MOP 30—50/碗</span>
-  <span class="food-option light">何老师窗台咖啡☕：官也街附近，黑色小屋特色咖啡馆，杯子是可食用雪糕筒，帅哥一对一拉花，约 MOP 45—70/杯</span>
-  <span class="food-option">郑世隆泰奶🧋：官也街附近，巨浓郁泰奶带香茅香气，约 MOP 30—50/杯</span>
-  <span class="food-option light">糖朝盛世🥞：澳门超火甜品，榴莲班戟/杨枝甘露/榴莲椰皇，路氹或官也街可找到，约 MOP 35—80/份</span>
-  <span class="food-option">柠檬车露 Gelato🍦：官也街也有店，颜值高冰沙质地，约 MOP 38—65/球</span>
   <span class="food-option light">最香饼家🍪：炭烧现烤杏仁饼，手信首选；⚠️周三休息，约 MOP 40—80/盒</span>
-</div>
-    <li><span class="time-label">19:15—21:00</span>伦敦人、巴黎人铁塔、威尼斯人室内运河夜景；顺路可去美高梅DC——无需办会员直接进，免费鲜奶珍珠真的好喝，内有各种小吃<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行约 10 min（路氹酒店群相连）</span>；若不想走远，就在上葡京绿茵胜境花园与酒店夜景拍照。</li>
+  <span class="food-option">安德鲁饼店（氹仔总店）🥧：蛋挞鼻祖！刚出炉外皮掉渣内馅嫩滑带焦糖香，约 MOP 12/个</span>
+  <span class="food-option light">泽贤记鸡蛋仔🧇：鸡蛋仔顶流！在老Day牛杂对面直走尽头左转小巷，抹茶麻薯外脆内Q，趁热吃，约 MOP 25—40/份</span>
+  <span class="food-option">DINO BURGER🍔：手工牛肉饼爆汁，黑松露烤蘑菇款口感丰富，盛世酒店附近好找，约 MOP 60—120/人</span>
+  <span class="food-option light">长洲糯米糍🍡：手工糯米糍多种口味，软糯香甜，约 MOP 10—20/个</span>
+  <span class="food-option">雍记甜品🥭：芒果糯米糍 MOP 8/个、芒果椰子糕，便宜好吃，官也街顺路</span>
+  <span class="food-option light">杨枝金捞🥭：招牌芒果杨枝甘露，官也街顺路，约 MOP 30—50/碗</span>
+  <span class="food-option">郑世隆泰奶🧋：官也街附近，巨浓郁泰奶带香茅香气，约 MOP 30—50/杯</span>
+  <span class="food-option light">何老师窗台咖啡☕：黑色小屋，杯子是可食用雪糕筒，帅哥一对一拉花，约 MOP 45—70/杯</span>
+  <span class="food-option">柠檬车露 Gelato🍦：官也街也有店，颜值高冰沙质地，约 MOP 38—65/球</span>
+  <span class="food-option">识食记🍮：氹仔飞能便度街643号华南新邨华辉苑地下G铺，甜品餐馆，官也街旧城区附近，约 MOP 40—80/人</span>
+  <span class="food-option light">糖朝盛世🥞：榴莲班戟/杨枝甘露/榴莲椰皇，路氹或官也街可找到，约 MOP 35—80/份</span>
+</div></details>
+<details class="collapsible food-details"><summary>🍽️ Day4 晚餐备选（路氹 / 官也街）</summary><div class="food-box">
+  <span class="food-option">官也街葡国菜🫕：适合澳门体验感，约 MOP 150—300/人</span>
+  <span class="food-option light">巴黎轩🥂：巴黎人酒店内，法式/葡式精致料理，环境浪漫适合晚餐，约 MOP 200—400/人</span>
+  <span class="food-option">丘吉尔餐厅🍽️：伦敦人酒店内，英伦风格西餐，约 MOP 150—350/人</span>
+  <span class="food-option light">誉珑轩🍱：路氹区粤式餐厅，精致粤菜/点心，约 MOP 150—300/人</span>
+  <span class="food-option">永利扒房🥩：永利皇宫内，高端扒房，约 MOP 300—600/人</span>
+  <span class="food-option light">威尼斯人 / 巴黎人商场粤菜🍽️：路氹酒店群内，环境舒适，约 MOP 100—250/人</span>
+  <span class="food-option">金悦轩🍤：粤式点心和海鲜路线，约 MOP 180—350/人</span>
+  <span class="food-option light">上葡京酒店餐厅🍽️：不想暴走时最稳，约 MOP 120—280/人</span>
+</div></details>
+    <li><span class="time-label">20:00—22:00</span>路氹夜游打卡：威尼斯人 → 巴黎人铁塔 → 伦敦人大本钟 → 上葡京绿茵胜境花园。<span class="transport-inline">🚶 路氹酒店群步行相连，约 10—15 min 可走完全程</span></li>
   </ul>
 
-  <div class="note"><strong>📍景点简介：</strong><br>
-    <strong>大三巴牌坊：</strong>澳门最经典地标，适合上午早到避开人潮；<br>
-    <strong>恋爱巷：</strong>就在大三巴旁边，彩色街巷很适合顺路拍照；<br>
-    <strong>议事亭前地：</strong>葡式地砖和南欧建筑很有澳门风情；<br>
-    <strong>龙环葡韵：</strong>绿色葡式建筑群，平坦、清爽，适合爸妈慢慢拍照；<br>
-    <strong>官也街：</strong>小吃和手信集中，但人多时建议买到就走；<br>
-    <strong>伦敦人 / 巴黎人 / 威尼斯人：</strong>路氹夜景代表，适合晚上拍照。</div>
-<div class="photo-grid-box">
-  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
-  <div class="photo-grid">
-      <div class="photo-card"><strong>大三巴牌坊</strong><p>导航“大三巴牌坊 Ruins of St. Paul’s”；建议上午去，避开中午人流和高温。</p></div>
-      <div class="photo-card"><strong>恋爱巷</strong><p>导航“恋爱巷 Travessa da Paixão”；就在大三巴旁边，适合顺路拍彩色街巷。</p></div>
-      <div class="photo-card"><strong>议事亭前地</strong><p>导航“议事亭前地 Senado Square”；从大三巴一路下行可到。</p></div>
-      <div class="photo-card"><strong>龙环葡韵</strong><p>导航“龙环葡韵住宅式博物馆”；相对平坦，适合爸妈拍照和慢走。</p></div>
-      <div class="photo-card"><strong>上葡京绿茵胜境花园</strong><p>就在上葡京酒店内/周边，适合晚饭后不想远走时拍照和散步。</p></div>
-      <div class="photo-card"><strong>伦敦人 / 巴黎人 / 威尼斯人夜景</strong><p>路氹酒店群步行相连；伦敦人大本钟、巴黎人铁塔灯光秀、威尼斯人室内运河——晚饭后沿酒店群步行打卡，约需30—45 min。</p></div>
+    <div class="note"><strong>📍 景点简介：</strong><br>
+    <strong>议事亭前地：</strong>澳门半岛核心广场，四周围绕新古典主义葡式建筑，地面铺有黑白波浪形葡式碎石，是澳门城市历史的缩影，已列入世界文化遗产；<br>
+    <strong>玫瑰圣母堂：</strong>建于1587年的巴洛克风格教堂，黄色外墙醒目，内供玫瑰圣母像，是澳门历史城区中保存最完好的教堂之一；<br>
+    <strong>恋爱巷：</strong>大三巴旁百年小巷，葡式彩色建筑配青石板路，是澳门历史城区保存最完好的旧式街道之一；<br>
+    <strong>大三巴牌坊：</strong>澳门最具代表性的地标，原为圣保禄教堂正面石壁，1835年大火后仅存前壁，石壁上精细浮雕融合东西方宗教文化，已列入世界文化遗产；<br>
+    <strong>大炮台：</strong>建于1617年的军事要塞，位于大三巴旁高地，可俯瞰澳门半岛全景，是观赏老城区天际线的最佳制高点；<br>
+    <strong>龙环葡韵：</strong>氹仔岛上五座建于1921年的葡式住宅建筑群，现改建为博物馆，周边小桥湖景宁静，地势平坦适合拍照慢走；<br>
+    <strong>官也街：</strong>氹仔最著名的步行街，汇聚葡挞、杏仁饼、猪扒包等澳门传统手信和本地小食；<br>
+    <strong>永利皇宫：</strong>路氹城五星级度假村，设有免费观光缆车和音乐喷泉，每20—30分钟一场水舞灯光秀，周六缆车运营至24:00，是路氹下午/傍晚打卡首选；<br>
+    <strong>巴黎人 / 威尼斯人 / 伦敦人：</strong>路氹城三大主题酒店，以巴黎铁塔、威尼斯水城、伦敦大本钟为主题，免费入场，入夜后灯光效果出色，是路氹夜游核心区域。
+  </div>
+<details class="collapsible photo-details"><summary>📸 本日拍照打卡点｜导航与顺路提示</summary><div class="photo-grid-box"><div class="photo-grid">
+      <div class="photo-card"><strong>✅ 澳门半岛历史城区（上午）</strong><p>从外港码头步行进入，按动线一路不折返：①议事亭前地：导航"Senado Square"，黑白波浪地砖+葡式建筑群，适合拍建筑全景。②玫瑰圣母堂：黄色巴洛克教堂，色彩饱和度高，门口石阶是经典机位。③恋爱巷：导航"Travessa da Paixão"，彩色葡式建筑+青石板路，港风写真必冲，建议早点去避开人流。④大三巴牌坊：导航"Ruins of St. Paul's"，正面+右侧恋爱巷拱窗是最佳机位，牌坊背面铁梯可免费攀爬俯瞰老城。⑤大炮台：导航"Mount Fortress"，就在大三巴旁，可俯瞰澳门半岛全景。</p></div>
+      <div class="photo-card"><strong>✅ 龙环葡韵 + 官也街（下午）</strong><p>①龙环葡韵：导航"龙环葡韵住宅式博物馆 Taipa Houses"，五座1921年葡式建筑+小桥湖景，地势平坦适合爸妈慢走，下午光线柔和最出片；建议从湖边正面拍建筑倒影。②官也街入口：大型彩色涂鸦墙是打卡首选机位，街道两侧手信店烟火气足，适合抓拍生活感。</p></div>
+      <div class="photo-card"><strong>✅ 永利皇宫音乐喷泉（16:00后）</strong><p>导航"永利皇宫 Wynn Palace"；免费观光缆车周六16:00开放至24:00，建议去二楼排队人少；缆车从湖面上方滑行，可360°俯瞰音乐喷泉，每20—30分钟一场；不坐缆车也可在湖边C位直接观看，傍晚光线+水柱+灯光效果绝佳。</p></div>
+      <div class="photo-card"><strong>✅ 路氹夜游（晚饭后步行）</strong><p>①威尼斯人室内大运河：导航"The Venetian Macao"，仿真蓝天白云穹顶+贡多拉，免费入场无需购船票，拍照感极强。②巴黎人铁塔：导航"The Parisian Macao"，1:2复刻埃菲尔铁塔，花园长椅是最佳机位，亮灯后氛围感满分。③伦敦人大本钟：红色电话亭+大本钟造型，拍外景即可。④上葡京绿茵胜境花园：回酒店前顺路拍花园夜景。</p></div>
     </div>
-</div>
+</div></details>
 
   
   <div class="hotel-confirmed"><strong>🏨 今晚住宿：</strong>澳门上葡京 Grand Lisboa Palace｜澳门路氹射击路。<br><strong>入住提醒：</strong>15:00后正式入住；酒店不含早餐；泳池需带泳衣；行李可提前寄存大堂。</div>
@@ -696,97 +782,110 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
 
 <section class="day-card">
   <div class="day-num">DAY 5｜2026.06.14 周日</div>
-  <div class="day-theme">上葡京轻松收尾 · 手信采购 · 澳门机场返程</div>
+  <div class="day-theme">上葡京慢游 · 官也街手信 · 澳门机场返程</div>
 <ul>
     <li><span class="time-label">09:00—09:45</span><span class="meal-line"><strong>🥣 早餐</strong>上葡京商场内轻食/咖啡，或路氹商场粥面简餐。</span></li>
-<div class="food-box"><div class="food-title">🥣 上葡京附近早餐备选（酒店不含早餐）</div>
-  <span class="food-option light">上葡京商场轻食/咖啡：最省力，约 MOP 50—100/人</span>
-  <span class="food-option light">路氹商场粥面/粤式简餐：清淡稳妥，约 MOP 60—120/人</span>
-</div>
+<details class="collapsible food-details"><summary>🥣 上葡京附近早餐备选（酒店不含早餐）</summary><div class="food-box">
+  <span class="food-option light">上葡京商场轻食/咖啡☕️：最省力，约 MOP 50—100/人</span>
+  <span class="food-option light">路氹商场粥面/粤式简餐🍜：清淡稳妥，约 MOP 60—120/人</span>
+</div></details>
 
   
 
-    <li><span class="time-label">10:00—11:00</span>上葡京酒店花园/大堂轻松拍照<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 酒店内步行，无需交通</span>，或补拍前一天没拍够的路氹酒店景观。</li>
-    <li><span class="time-label">11:00—11:30</span>回房整理行李，11:30 前退房，行李寄存在酒店。</li>
-    <li><span class="time-label">11:45—13:00</span>官也街或路氹商场采购手信<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚌 酒店免费班车至官也街，约 10 min</span>：蛋卷、杏仁饼、肉干、葡挞等；爸妈累就改在酒店商场轻松买。</li>
-    <li><span class="time-label">13:15—14:15</span><span class="meal-line"><strong>🍜 午餐</strong>上葡京/路氹商场内清淡粤菜<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行至商场内餐厅，约 5 min</span>、茶餐厅或葡式简餐。</span></li>
-<div class="food-box"><div class="food-title">🍜 Day5 午餐备选（上葡京 / 路氹）</div>
-  <span class="food-option">上葡京商场粤菜 / 茶餐厅：退房后最省力，约 MOP 80—180/人</span>
-  <span class="food-option light">官也街简餐：适合买完手信后简单吃，约 MOP 60—150/人</span>
+    <li><span class="time-label">09:45—11:00</span>官也街采购手信：最香饼家杏仁饼、安德鲁葡挞、莫义记榴莲雪糕等；Day4已扫过小食，今天专注买手信。<span class="transport-inline">🚌 路线12免费班车（西门G/F West出发）→ 氹仔旧城区，约 10 min，11:05—20:30每12—25分钟一班</span> <span class="transport-inline">🚌 返程同坐路线12回上葡京，约 10 min；备选：的士约 10 min / MOP 50—80/车</span></li>
+    <li><span class="time-label">11:00—11:30</span>回房整理行李，⚠️ 上葡京退房时间为11:30前，务必准时退房，行李寄存在酒店前台。<span class="transport-inline">🚶 步行回房，约 3 min</span></li>
+    <li><span class="time-label">11:30—13:00</span>退房后行李寄存，上葡京酒店慢游：绿茵胜境花园散步拍照，顺逛大堂及商场。<span class="transport-inline">🚶 酒店内步行，约 5—10 min</span></li>
+    <li><span class="time-label">13:15—14:15</span><span class="meal-line"><strong>🍜 午餐</strong>上葡京/路氹商场内清淡粤菜、茶餐厅或葡式简餐。<span class="transport-inline">🚶 步行至商场内餐厅，约 5 min</span></span></li>
+<details class="collapsible food-details"><summary>🍜 Day5 午餐备选（上葡京 / 路氹）</summary><div class="food-box">
+  <span class="food-option">上葡京商场粤菜 / 茶餐厅🍽️：退房后最省力，约 MOP 80—180/人</span>
+  <span class="food-option light">MOMOKAWA☕️：路氹区，适合退房后喝咖啡休息，轻食路线，约 MOP 50—100/人</span>
+  <span class="food-option">湘川馆🍜 / 酸辣粉🍜：路氹区，吃腻粤菜可换重口味，约 MOP 60—120/人</span>
+  <span class="food-option light">金利食店🍛：澳门本地咖喱饭，浓郁香料味价格亲民，约 MOP 50—90/人</span>
+  <span class="food-option">柠檬车露🍦：澳门经典意式冰淇淋，路氹/官也街均有，约 MOP 35—70/份</span>
+  <span class="food-option light">官也街简餐🍴：适合买完手信后简单吃，约 MOP 60—150/人</span>
   <span class="food-option">洪瑞珍🥪：适合买作飞机前轻食，约 MOP 30—60/人</span>
-  <span class="food-option light">柠檬车露🍦：澳门经典意式冰淇淋，约 MOP 35—70/份</span>
-</div>
+</div></details>
 
   
 
-    <li><span class="time-label">14:30—16:30</span>回酒店取行李前可自由休息<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚶 步行回酒店取寄存行李，约 5 min</span>；若想游泳，需确认退房后是否还能使用泳池/更衣室。</li>
-    <li><span class="time-label">16:45—17:15</span>乘上葡京免费班车或的士前往澳门机场<span style="display:inline-block;background:#e8f4ff;color:#2f5f8a;border:1px solid #a8cce8;border-radius:999px;padding:1px 10px;font-size:.83em;font-weight:600;margin-left:8px;">🚌 酒店免费班车至澳门机场，约 15 min</span>。</li>
+    <li><span class="time-label">14:15—16:30</span>回酒店取寄存行李；若想游泳需确认退房后是否还能使用泳池/更衣室；时间宽裕可在酒店花园或大堂休息。<span class="transport-inline">🚶 步行至前台，约 5 min</span></li>
+    <li><span class="time-label">16:45—17:15</span>乘上葡京免费班车前往澳门机场，直接在北门B1层乘车。<span class="transport-inline">🚌 上葡京→澳门国际机场，每天10:30—22:00，每隔20分钟一班，约 15 min</span></li>
     <li><span class="time-label">17:15—19:20</span>抵达澳门机场，办理值机、托运、安检；机场内可看星巴克限定或麦当劳限定。</li>
     <li><span class="time-label">19:55—22:20</span>乘 FM3049（MU2056）澳门 → 上海虹桥 T1。</li>
   </ul>
 
-  <div class="note"><strong>📍景点简介：</strong><br>
-    <strong>上葡京酒店花园：</strong>适合轻松收尾，不需要额外奔波；<br>
-    <strong>官也街：</strong>澳门手信和小吃集中区域，适合最后补买；<br>
-    <strong>澳门机场：</strong>返程节点，建议留足时间，不为了购物压缩登机时间。</div>
-<div class="photo-grid-box">
-  <div class="photo-grid-title">📸 本日拍照打卡点｜导航与顺路提示</div>
-  <div class="photo-grid">
-      <div class="photo-card"><strong>上葡京酒店花园</strong><p>就在上葡京酒店内/周边，退房前后都可顺路拍照，不额外绕路。</p></div>
-      <div class="photo-card"><strong>官也街手信街景</strong><p>导航“官也街 Rua do Cunha”；适合买手信和小吃，注意人多时不要久站。</p></div>
+<details class="collapsible food-details"><summary>🍡 Day5 顺路小食 & 饮品（路氹 / 机场）</summary><div class="food-box">
+    <span class="food-option light">快乐蜂炸鸡🍟：路氹区快餐，适合赶时间时垫肚子，约 MOP 50—80/人</span>
+    <span class="food-option">星巴克限定🌟 / 麦当劳限定🌟：机场内，候机时最后补买澳门限定</span>
+  </div></details>
+    <div class="note"><strong>📍 景点简介：</strong><br>
+    <strong>上葡京酒店花园（绿茵胜境）：</strong>上葡京 Grand Lisboa Palace 酒店内的户外园林，以葡式庭院设计为主题，绿植丰富、环境清幽，退房前后可在此轻松散步，是路氹区难得的户外休闲空间；<br>
+    <strong>官也街：</strong>澳门氹仔最具人气的手信购物步行街，集中了澳门各类传统伴手礼，包括最香饼家炭烧杏仁饼、安德鲁饼店葡挞、莫义记榴莲雪糕等，是离澳前补购手信的最佳选择。
+  </div>
+<details class="collapsible photo-details"><summary>📸 本日拍照打卡点｜导航与顺路提示</summary><div class="photo-grid-box"><div class="photo-grid">
+      <div class="photo-card"><strong>官也街手信街景（上午）</strong><p>导航"官也街 Rua do Cunha"；入口大型彩色涂鸦墙是首选机位，街道两侧手信店烟火气足；注意人多时不要久站，买完即可返程。</p></div>
+      <div class="photo-card"><strong>上葡京网红洗手间（退房前）</strong><p>导航"上葡京西门"进去右转坐电梯上2F（从G楼往上数两层）；蓝金渐变穹顶+水晶吊灯+金色圆形洗手台；⚠️推开最里面的厕门才能到达最美机位，沿走廊推开几扇门后才是目标洗手间。</p></div>
+      <div class="photo-card"><strong>上葡京酒店花园（绿茵胜境）</strong><p>就在上葡京酒店内/周边，退房前后都可顺路拍照，不额外绕路；白天光线和晚上氛围各有特色。</p></div>
       <div class="photo-card"><strong>澳门机场候机区</strong><p>返程前可拍简单记录照；重点是提前到机场，不压缩登机时间。</p></div>
     </div>
-</div>
+</div></details>
 
-  <div class="food-box"><div class="food-title">🍡 Day5 顺路小食 & 饮品（路氹 / 机场）</div>
-    <span class="food-option">MOMOKAWA☕️：适合休息和咖啡路线</span>
-    <span class="food-option light">快乐蜂炸鸡🍟：快餐路线，适合赶时间时</span>
-    <span class="food-option">湘川馆🍜 / 酸辣粉🍜：如果吃腻粤菜，可以换重口味</span>
-    <span class="food-option light">金利食店🍛：澳门本地咖喱饭路线</span>
-    <span class="food-option">星巴克限定🌟 / 麦当劳限定🌟：适合机场最后补买限定</span>
-  </div>
 </section>
-<h2>🍍 二、推荐购买的特产 / 药品 / 手信</h2>
+<h2>🛍️ 二、购物参考</h2>
 
 <div class="card">
-  <h3>💊 香港万宁推荐购买好物</h3>
-  <p class="small-muted">建议优先在上环/中环万宁购买，不要等到机场临时买；药品类请按个人体质和说明书使用，长辈有基础病或长期用药时先咨询医生。</p>
+  <h3>🇭🇰 香港手信</h3>
+  <p class="small-muted">优先在上环/中环采购，不要等到机场最后一刻。曲奇和蛋卷易碎，建议随身或放行李箱上层。</p>
   <div class="buy-grid">
-    <div class="buy-card"><h4>👨‍👩‍👧 给爸妈/家庭常备</h4>
-      <p>黄道益活络油（缓解肩颈酸痛、肌肉疲劳、扭伤不适）</p>
-      <p>保心安油（缓解头晕、晕车、肚子不舒服、蚊虫叮咬）</p>
-      <p>和兴白花油（提神醒脑、缓解鼻塞、头痛、晕车）</p>
-      <p>双飞人（缓解轻微肠胃不适、晕车、头痛，外用/内服需按说明）</p>
-      <p>京都念慈菴（润喉、缓解嗓子干痛和咳嗽不适）</p>
-      <p>虎标系列（缓解肩颈、腰背和肌肉酸痛）</p>
-      <p>无比滴（缓解蚊虫叮咬后的瘙痒、红肿）</p>
+    <div class="buy-card"><h4>🍪 食品伴手礼</h4>
+      <p>蝴蝶酥（Jenny Bakery/各大饼店）</p>
+      <p>曲奇4重奏（旺角/尖沙咀，机场也有）</p>
+      <p>老婆饼（莲香楼、奇华等老字号）</p>
+      <p>蛋卷（奇华、珍妮）</p>
+      <p>港式奶茶包/冻柠茶包（万宁/超市有售）</p>
+      <p>XO酱（李锦记等品牌，超市购买方便）</p>
     </div>
-    <div class="buy-card"><h4>💊 保健与旅行恢复</h4>
-      <p>the GLOBALab 极低深海鱼油（辅助心血管健康，适合长辈日常保健需求）</p>
-      <p>蒸汽眼罩（缓解旅途眼部疲劳、帮助睡眠）</p>
-      <p>曼秀雷敦薄荷膏（提神、缓解鼻塞和轻微头痛）</p>
-      <p>喉糖/润喉糖（适合空调房、飞机和说话较多时润喉）</p>
+    <div class="buy-card"><h4>💊 万宁必买药品</h4>
+      <p>黄道益活络油（肩颈酸痛、肌肉疲劳）</p>
+      <p>保心安油（头晕、晕车、蚊虫叮咬）</p>
+      <p>和兴白花油（提神、鼻塞、头痛、晕车）</p>
+      <p>双飞人（肠胃不适、晕车、头痛）</p>
+      <p>京都念慈菴（润喉、咳嗽不适）</p>
+      <p>虎标系列（肩颈腰背酸痛）</p>
+      <p>无比滴（蚊虫叮咬瘙痒）</p>
+      <p>保济丸（肠胃不适、消化不良）</p>
     </div>
-    <div class="buy-card"><h4>👩 女生护肤/美容</h4>
-      <p>红颜瓶（美容抗氧化、日常护肤保养类）</p>
-      <p>Mediheal 面膜（补水舒缓，适合旅行后修护）</p>
-      <p>曼丹眼唇卸妆（卸眼妆、唇妆方便，适合旅行装）</p>
-      <p>日系防晒/洗护小样（适合补货，不建议买太重瓶装）</p>
+    <div class="buy-card"><h4>🎁 文创纪念</h4>
+      <p>八达通纪念卡（车站/便利店限定款）</p>
+      <p>香港限定茶包（锦香、英记等）</p>
+      <p>叮叮车/香港主题文创（大馆、各景点周边店）</p>
+      <p>Chiikawa/Sanrio周边（MOKO）</p>
     </div>
   </div>
 
   <div style="border-top:1px solid var(--border);margin:22px 0 18px;"></div>
 
-  <h3>🛍️ 手信纪念品推荐好物</h3>
-  <p class="small-muted">手信优先在官也街、上环、中环等地采购，返程日不要把采购压到最后一刻。</p>
-  <table>
-    <tr><th>类别</th><th>推荐购买</th><th>适合买给谁</th><th>注意事项</th></tr>
-    <tr><td>香港手信</td><td>蝴蝶酥、曲奇、老婆饼、蛋卷、港式奶茶包、XO酱</td><td>同事、朋友、家人</td><td>曲奇和蛋卷易碎，建议随身或放行李箱上层。</td></tr>
-    <tr><td>澳门手信</td><td>杏仁饼、凤凰卷、肉脯、葡挞、花生糖、姜糖</td><td>长辈、亲戚、办公室分享</td><td>肉脯重量大，买少量精品即可；葡挞适合现吃，不适合长途带太多。</td></tr>
-    <tr><td>常备药品</td><td>保济丸、喇叭牌正露丸、黄道益活络油、双飞人、万金油/白花油</td><td>家中常备、爸妈备用</td><td>药品按个人体质购买；慢病用药不要临时替换医生处方。</td></tr>
-    <tr><td>长辈实用</td><td>跌打膏、驱风油、润喉糖、无糖饼干、港式汤包</td><td>爸妈/长辈</td><td>注意成分、糖分和保质期；液体类需托运。</td></tr>
-    <tr><td>自用小物</td><td>八达通纪念卡、香港限定茶包、澳门文创冰箱贴、Chiikawa小物</td><td>自己留念</td><td>控制重量，返程日不要买太多。</td></tr>
-  </table>
+  <h3>🇲🇴 澳门手信</h3>
+  <p class="small-muted">优先在官也街采购；肉脯重量大买少量精品即可；葡挞适合现吃，不适合长途带太多。</p>
+  <div class="buy-grid">
+    <div class="buy-card"><h4>🥮 传统食品</h4>
+      <p>杏仁饼（最香饼家炭烧款最正宗，⚠️周三休息）</p>
+      <p>凤凰卷/蛋卷（官也街各饼家）</p>
+      <p>肉脯/肉干（猪肉/牛肉，买少量精品）</p>
+      <p>花生糖、姜糖（老字号手工制作）</p>
+    </div>
+    <div class="buy-card"><h4>🥧 现买现吃</h4>
+      <p>安德鲁葡挞（氹仔总店/路环本店，出炉现吃最佳）</p>
+      <p>玛嘉烈蛋挞（酥皮款，蛋香浓郁）</p>
+      <p>莫义记榴莲雪糕（官也街9号，猫山王）</p>
+      <p>柠檬车露Gelato（官也街/路氹均有）</p>
+    </div>
+    <div class="buy-card"><h4>🎁 文创纪念</h4>
+      <p>澳门文创冰箱贴（大三巴/叮叮车辦馆风格）</p>
+      <p>葡式瓷砖图案周边（议事亭前地附近文创店）</p>
+      <p>上葡京/威尼斯人酒店限定周边</p>
+    </div>
+  </div>
 </div>
 <h2>🎒 三、开户与出行必备清单</h2>
 <div class="card checklist" style="border-left:6px solid var(--gold);">
@@ -832,20 +931,54 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
   </ul>
 </div>
 
-<h2>💰 四、花费参考（3人，不含购物）</h2>
+<h2>💰 四、花费参考（3人，不含购物手信）</h2>
 <div class="card">
   <table>
-    <tr><th>项目</th><th>已知/预计花费</th><th>说明</th></tr>
-    <tr><td>往返机票</td><td><strong>已付 ¥5304 / 3人</strong></td><td>FM3013（MU721）去程；FM3049（MU2056）返程；东航/上航联运。</td></tr>
-    <tr><td>香港酒店2晚</td><td><strong>已付 ¥2130 / 3人</strong></td><td>ibis Hong Kong Central & Sheung Wan，上环德辅道西28号，不含早餐。</td></tr>
-    <tr><td>澳门酒店2晚</td><td><strong>已付 ¥4502 / 3人</strong></td><td>澳门上葡京 Grand Lisboa Palace，3人2晚，不含早餐，有泳池和免费班车。</td></tr>
-    <tr><td>香港→澳门船票</td><td>约 HKD/MOP 175—230/人</td><td>建议上环港澳码头 → 澳门氹仔码头，方便接驳上葡京。</td></tr>
-    <tr><td>红棉 MIÁN</td><td>约 HKD 500—900/人</td><td>按点菜内容、服务费和是否点海鲜浮动。</td></tr>
-    <tr><td>市内交通</td><td>约 HKD/MOP 500—900/人</td><td>机场快线/的士/轮渡/澳门打车综合估算；澳门多用酒店免费班车可降低花费。</td></tr>
-    <tr><td>门票体验</td><td>约 HKD/MOP 200—600/人</td><td>山顶缆车、观景台、摩天轮等按实际选择。</td></tr>
-    <tr><td>开户备用现金</td><td>建议 HKD 2,000—3,000</td><td>用于初始存款、交通和临时现金需求。</td></tr>
+    <tr><th>项目</th><th>金额（3人合计）</th><th>说明</th></tr>
+    <tr><td>往返机票</td><td><strong>已付 ¥5,304</strong></td><td>去程FM3013，返程FM3049</td></tr>
+    <tr><td>香港 ibis 2晚</td><td><strong>已付 ¥2,130</strong></td><td>上环，不含早餐</td></tr>
+    <tr><td>澳门上葡京 2晚</td><td><strong>已付 ¥4,502</strong></td><td>路氹，不含早餐，含泳池和免费班车</td></tr>
+    <tr><td>红棉 MIÁN 定金</td><td><strong>已付 HKD 500</strong></td><td>Day2午餐定金，到场补差价约HKD 1,600</td></tr>
+    <tr><td>现场消费（餐饮+交通）</td><td>约 HKD 3,700 + MOP 2,840</td><td>折合约 ¥5,997，详见下方明细</td></tr>
   </table>
-<div class="note"><strong>已确定花费合计：</strong>¥11,936（机票 ¥5,304 + 香港 ibis 2晚 ¥2,130 + 澳门上葡京 2晚 ¥4,502）；<strong>人均 ¥3,979</strong>。</div>
+
+  <details style="margin-top:14px;">
+    <summary style="cursor:pointer;font-weight:700;color:var(--blue);padding:10px 0;">📋 每日消费明细（点击展开）</summary>
+    <table style="margin-top:10px;">
+      <tr><th>项目</th><th>预计花费（3人）</th><th>说明</th></tr>
+      <tr><td style="background:var(--soft);font-weight:700;color:var(--blue);">Day1｜香港</td><td style="background:var(--soft);font-weight:700;color:var(--blue);">约 HKD 735（¥684）</td><td style="background:var(--soft);color:var(--muted);font-size:.9em;">人均约 HKD 245</td></tr>
+      <tr><td>机场快线</td><td>约 HKD 315</td><td>HKD 105/人，建议提前买优惠票</td></tr>
+      <tr><td>午餐（上环）</td><td>约 HKD 150</td><td>筷子记/麦奀/生记粥等</td></tr>
+      <tr><td>晚餐（坚尼地城）</td><td>约 HKD 240</td><td>英记/诚记/新兴食家等</td></tr>
+      <tr><td>叮叮车/港铁</td><td>约 HKD 30</td><td>当日交通零散</td></tr>
+      <tr><td style="background:var(--soft);font-weight:700;color:var(--blue);">Day2｜香港</td><td style="background:var(--soft);font-weight:700;color:var(--blue);">约 HKD 2,626（¥2,442）</td><td style="background:var(--soft);color:var(--muted);font-size:.9em;">人均约 HKD 875（含红棉定金）</td></tr>
+      <tr><td>叮叮车+巴士</td><td>约 HKD 40</td><td>叮叮车去缆车站、15号巴士下山</td></tr>
+      <tr><td>山顶缆车（单程）</td><td>约 HKD 246</td><td>HKD 82/人，排队超30分钟可改的士</td></tr>
+      <tr><td>红棉 MIÁN 午餐</td><td>约 HKD 2,100</td><td>含已付定金HKD 500；到场补差价约HKD 1,600</td></tr>
+      <tr><td>晚餐（中环/上环）</td><td>约 HKD 240</td><td>九记/一乐/沾仔记等</td></tr>
+      <tr><td style="background:var(--soft);font-weight:700;color:var(--blue);">Day3｜香港→澳门</td><td style="background:var(--soft);font-weight:700;color:var(--blue);">约 HKD 1,130 + MOP 300（¥1,322）</td><td style="background:var(--soft);color:var(--muted);font-size:.9em;">人均约 HKD 377 + MOP 100</td></tr>
+      <tr><td>港铁（2段）</td><td>约 HKD 90</td><td>上环→尖沙咀、旺角→上环</td></tr>
+      <tr><td>午餐（旺角）</td><td>约 HKD 240</td><td>华嫂/池记/金华等</td></tr>
+      <tr><td>顺路小食</td><td>约 HKD 200</td><td>奶茶/鱼蛋/鸡蛋仔/泡芙等</td></tr>
+      <tr><td>金光飞航船票</td><td>约 HKD 600</td><td>HKD 200/人，建议提前购买</td></tr>
+      <tr><td>晚餐（上葡京）</td><td>约 MOP 300</td><td>MR.K/荣记/小麵等</td></tr>
+      <tr><td style="background:var(--soft);font-weight:700;color:var(--blue);">Day4｜澳门半岛+氹仔+路氹</td><td style="background:var(--soft);font-weight:700;color:var(--blue);">约 MOP 1,560（¥1,404）</td><td style="background:var(--soft);color:var(--muted);font-size:.9em;">人均约 MOP 520</td></tr>
+      <tr><td>早餐（半岛）</td><td>约 MOP 210</td><td>六记/盛记/黄枝记等</td></tr>
+      <tr><td>午餐（半岛老城区）</td><td>约 MOP 300</td><td>黄枝记/陈光记/津津饭堂等</td></tr>
+      <tr><td>的士（3程）</td><td>约 MOP 300</td><td>半岛→龙环葡韵、官也街→永利皇宫</td></tr>
+      <tr><td>官也街小食</td><td>约 MOP 300</td><td>旺记/安德鲁/泽贤记/莫义记等</td></tr>
+      <tr><td>晚餐（路氹）</td><td>约 MOP 450</td><td>威尼斯人/巴黎人商场餐厅等</td></tr>
+      <tr><td style="background:var(--soft);font-weight:700;color:var(--blue);">Day5｜澳门→上海</td><td style="background:var(--soft);font-weight:700;color:var(--blue);">约 MOP 980—1,480（¥882—¥1,332）</td><td style="background:var(--soft);color:var(--muted);font-size:.9em;">人均约 MOP 327—493（含手信）</td></tr>
+      <tr><td>早餐（上葡京）</td><td>约 MOP 180</td><td>上葡京商场内</td></tr>
+      <tr><td>官也街手信</td><td>约 MOP 500—1,000</td><td>杏仁饼/凤凰卷/肉脯等，按实际</td></tr>
+      <tr><td>午餐（路氹）</td><td>约 MOP 300</td><td>上葡京商场附近</td></tr>
+    </table>
+  </details>
+
+  <div style="border-top:1px solid var(--border);margin:18px 0 14px;"></div>
+  <div class="note"><strong>📌 已付合计：</strong>¥11,936 + HKD 500定金（¥465）；<strong>人均已付 ¥4,134</strong><br>
+  <strong>📌 现场消费（3人）：</strong>约 HKD 3,700 × 0.93 ≈ ¥3,441 + MOP 2,840 × 0.90 ≈ ¥2,556，合计约 <strong>¥5,997</strong><br>
+  <strong>📌 5日总花费估算：</strong>约 <strong>¥18,398 / 3人，人均约 ¥6,133</strong>（不含购物手信）</div>
 </div>
 
 <h2>✅ 五、出发前预约清单</h2>
@@ -859,8 +992,6 @@ table{width:100%;border-collapse:collapse;margin:14px 0;background:white;border-
     <li><strong>出发前1天：</strong>所有证件和开户材料放入随身包，不托运。</li>
   </ul>
 </div>
-
-
 
 </div>
 </body>
