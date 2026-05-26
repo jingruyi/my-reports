@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중국 동향 월보 · 2026년 4월 / 中国市场动向月报 · 2026年4月</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface2: #f5f7fa;
+    --border: #dde2ea;
+    --border2: #c5ccd8;
+    --text: #000000;
+    --text-dim: #111111;
+    --text-muted: #444444;
+    --tencent: #1d5fa8;
+    --netease: #c0392b;
+    --others: #16a34a;
+    --accent: #c97a00;
+    --up: #d32f2f;
+    --down: #1565c0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    min-height: 100vh; font-size: 15px;
+  }
+  body.lang-kr { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif !important; }
+  .container { max-width: 100%; width: 100%; margin: 0; padding: 16px 20px; }
+
+  /* ── LANG TOGGLE ── */
+  .lang-toggle {
+    position: fixed; top: 14px; right: 20px; z-index: 999;
+    display: flex; gap: 2px; background: rgba(255,255,255,0.95);
+    border: 1px solid var(--border); border-radius: 6px; padding: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .lang-btn {
+    padding: 4px 12px; border: none; background: transparent;
+    color: var(--text-muted); cursor: pointer; border-radius: 4px;
+    font-size: 12px; font-weight: 700; transition: all 0.15s; letter-spacing: 0.05em; font-family: inherit;
+  }
+  .lang-btn.active { background: var(--accent); color: #fff; }
+  .lang-btn:hover:not(.active) { color: var(--text); background: var(--border); }
+
+  /* ── LANG VISIBILITY ── */
+  .txt-cn { display: inline; }
+  .txt-kr { display: none; }
+  .txt-cn-block { display: block; }
+  .txt-kr-block { display: none; }
+  body.lang-kr .txt-cn  { display: none !important; }
+  body.lang-kr .txt-kr  { display: inline !important; }
+  body.lang-kr .txt-cn-block { display: none !important; }
+  body.lang-kr .txt-kr-block { display: block !important; }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 0;
+    padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;
+  }
+  .report-title { font-size: 22px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .report-title::before { content: ''; display: inline-block; width: 4px; height: 22px; background: var(--accent); border-radius: 2px; }
+  .report-meta { font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+  .report-badge { background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; white-space: nowrap; }
+
+  /* ── SECTION TITLE ── */
+  .section-title { font-size: 17px; font-weight: 700; color: var(--text-dim); margin: 24px 0 12px; display: flex; align-items: center; gap: 8px; }
+
+  /* ── SUMMARY BOX ── */
+  .top-text-section { background: #fffbeb; border: 1px solid #f5d98a; border-left: 4px solid #f0b429; border-radius: 0; padding: 16px 20px; margin-bottom: 20px; }
+  .top-text-title { font-size: 16px; font-weight: 700; color: #92580a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .top-text-body { font-size: 14px; color: #3a2a00; line-height: 1.9; }
+  .top-text-body ul { list-style: none; padding: 0; margin: 0; }
+  .top-text-body li { padding-left: 1.2em; text-indent: -1.2em; margin-bottom: 6px; }
+  .top-text-body li::before { content: "• "; color: #f0b429; font-weight: 700; }
+
+  /* ── TAGS ── */
+  .g-tag { font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 12px; color: #6b7280; background: rgba(107,114,128,0.1); }
+  .g-tag.tc { color: #1d5fa8 !important; background: rgba(29,95,168,0.1) !important; }
+  .g-tag.ne { color: #c0392b !important; background: rgba(192,57,43,0.1) !important; }
+  .g-tag.ot { color: #16a34a !important; background: rgba(22,163,74,0.1) !important; }
+
+  /* ── KPI CARDS ── */
+  .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 8px; }
+  .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 0; padding: 20px 20px 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); border-top: 4px solid transparent; display: flex; flex-direction: column; gap: 0; }
+  .summary-card.c-market { border-top-color: var(--accent); background: linear-gradient(160deg,#fffbf2 0%,#fff 60%); box-shadow:0 2px 12px rgba(201,122,0,.12); }
+  .summary-card.c-pc     { border-top-color: var(--tencent); background: linear-gradient(160deg,#f0f5ff 0%,#fff 60%); box-shadow:0 2px 12px rgba(29,95,168,.10); }
+  .summary-card.c-mobile { border-top-color: var(--netease); background: linear-gradient(160deg,#fff5f5 0%,#fff 60%); box-shadow:0 2px 12px rgba(192,57,43,.10); }
+  .summary-card.c-license{ border-top-color: #7c3aed; background: linear-gradient(160deg,#f5f3ff 0%,#fff 60%); box-shadow:0 2px 12px rgba(124,58,237,.10); }
+  .card-game { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .c-market .card-game { color: var(--accent); }
+  .c-pc     .card-game { color: var(--tencent); }
+  .c-mobile .card-game { color: var(--netease); }
+  .c-license .card-game { color: #7c3aed; }
+  .card-big-val { font-size: 26px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; padding-top: 4px; }
+  .c-market .card-big-val { color: var(--accent); }
+  .c-pc     .card-big-val { color: var(--tencent); }
+  .c-mobile .card-big-val { color: var(--netease); }
+  .c-license .card-big-val { color: #7c3aed; }
+  .card-metric-block { padding: 8px 0; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  .metric-mom { font-size: 11px; font-weight: 600; padding: 2px 5px; border-radius: 4px; display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
+  .metric-mom.up   { color: var(--up);   background: rgba(211,47,47,0.09); }
+  .metric-mom.down { color: var(--down); background: rgba(21,101,192,0.09); }
+
+  /* ── CONTENT CARD ── */
+  .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 0; padding: 20px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 16px; position: relative; overflow: hidden; }
+  .content-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.5; }
+  .sub-title { font-size: 14px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; margin: 18px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .sub-title:first-child { margin-top: 0; }
+  .bullet-list { list-style: none; padding: 0; margin: 0; }
+  .bullet-list li { font-size: 14px; color: var(--text-dim); padding-left: 1.2em; text-indent: -1.2em; margin-bottom: 5px; line-height: 1.85; }
+  .bullet-list li::before { content: "• "; color: var(--text-muted); font-weight: 700; }
+  .sub-bullet { list-style: none; padding: 0; margin: 4px 0 0 1.2em; }
+  .sub-bullet li { font-size: 13px; color: var(--text-dim); padding-left: 1.2em; text-indent: -1.2em; margin-bottom: 3px; line-height: 1.8; }
+  .sub-bullet li::before { content: "– "; color: var(--text-muted); }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; margin: 10px 0 4px; }
+  .stats-table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px; }
+  .stats-table th { background: var(--surface2); color: #6b7280; font-weight: 600; padding: 8px 12px; border: 1px solid var(--border); border-bottom: 2px solid var(--border2); text-align: left; white-space: nowrap; }
+  .stats-table td { padding: 8px 12px; border: 1px solid #e5e7eb; font-size: 13px; vertical-align: middle; line-height: 1.6; }
+  .stats-table tr:hover td { background: #fafafa; }
+  .stats-table tr.hl td { background: #fffbeb; }
+  .mom-up   { color: #c0392b !important; font-weight: 600; }
+  .mom-down { color: #1a56db !important; font-weight: 600; }
+
+  /* ── COMPANY TABS ── */
+  .mkt-tabs { display: flex; gap: 10px; margin-bottom: 0; align-items: flex-end; }
+  .mkt-tab-btn { flex: 1; border: 1px solid var(--border); border-top: 4px solid transparent; border-radius: 0; padding: 14px 16px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; background: var(--surface2); color: var(--text-dim); transition: all 0.15s; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .mkt-tab-btn.active.g1 { background: rgba(29,95,168,0.08);  border-top-color: #1d5fa8; color: #1d5fa8; box-shadow: 0 2px 8px rgba(29,95,168,.12); }
+  .mkt-tab-btn.active.g2 { background: rgba(192,57,43,0.08);  border-top-color: #c0392b; color: #c0392b; box-shadow: 0 2px 8px rgba(192,57,43,.12); }
+  .mkt-tab-btn.active.g3 { background: rgba(22,163,74,0.08);  border-top-color: #16a34a; color: #16a34a; box-shadow: 0 2px 8px rgba(22,163,74,.12); }
+  .mkt-tab-btn:hover:not(.active) { background: var(--border); color: var(--text); }
+  .mkt-panel { display: none; }
+  .mkt-panel.active { display: block; }
+  .mkt-panel-card { background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 10px 0 4px; }
+  .product-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 0; padding: 14px 16px; }
+  .product-name { font-size: 14px; font-weight: 700; color: var(--text-dim); margin-bottom: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .product-desc { font-size: 13px; color: var(--text-dim); line-height: 1.8; }
+  .ext-link { font-size: 11px; color: #1d5fa8; text-decoration: none; }
+  .ext-link:hover { text-decoration: underline; }
+
+  /* ── BADGES ── */
+  .ptag { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; flex-shrink: 0; line-height: normal; }
+  .b-new      { background:#dbeafe; color:#1d4ed8; }
+  .b-event    { background:#dcfce7; color:#166534; }
+  .b-collab   { background:#f3e8ff; color:#7e22ce; }
+  .b-esports  { background:#ffedd5; color:#9a3412; }
+  .b-milestone{ background:#fce7f3; color:#9d174d; }
+  .b-ai       { background:#ede9fe; color:#5b21b6; }
+  .b-finance  { background:#f0fdf4; color:#166534; }
+  .b-policy   { background:#fef9c3; color:#854d0e; }
+  .b-other    { background:#f3f4f6; color:#374151; }
+  .b-global   { background:#cffafe; color:#0e7490; }
+  .b-invest   { background:#fef3c7; color:#92400e; }
+
+  /* ── TREND ITEMS ── */
+  .trend-item { padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .trend-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .trend-title { font-size: 14px; font-weight: 700; color: var(--text-dim); margin-bottom: 8px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+
+  .top-divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  @media (max-width: 900px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="lang-kr">
+
+<!-- ── LANG TOGGLE ── -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('kr')">KR</button>
+  <button class="lang-btn" onclick="setLang('cn')">CN</button>
+</div>
+
+<div class="container">
+
+  <!-- ── HEADER ── -->
+  <div class="report-header">
+    <div>
+      <div class="report-title">
+        <span class="txt-cn">中国市场动向月报 · 2026年4月</span>
+        <span class="txt-kr">중국 동향 월보 · 2026년 4월</span>
+      </div>
+      <div class="report-meta">
+        <span class="txt-cn">담당팀：PUBGM Operation & Coordination Team　|　담당자：Ru Yi Jing（经如一）<br>동향 기간：2026-04-01 ～ 2026-04-30　|　출처：GAMMA 월보 / GameLook / 游信 / 공개 시장 데이터</span>
+        <span class="txt-kr">담당팀：PUBGM Operation & Coordination Team　|　담당자：Ru Yi Jing（经如一）<br>동향 기간：2026-04-01 ～ 2026-04-30　|　출처：GAMMA 월보 / GameLook / 游信 / 공개 시장 데이터</span>
+      </div>
+    </div>
+    <span class="report-badge">
+      <span class="txt-cn">2026年4月</span>
+      <span class="txt-kr">2026년 4월</span>
+    </span>
+  </div>
+
+  <!-- ── SUMMARY BOX ── -->
+  <div class="top-text-section">
+    <div class="top-text-title">⭐
+      <span class="txt-cn">4月市场动向摘要 Summary</span>
+      <span class="txt-kr">4월 시장 동향 요약 Summary</span>
+    </div>
+
+    <div class="top-text-body txt-cn-block">
+      <ul>
+        <li><strong>整体市场：</strong>4月中国游戏市场实际销售收入 <strong>303.69亿元</strong>，环比 <strong>-3.51%</strong>，同比 <strong>+11.04%</strong>。头部产品版本迭代激发付费意愿，次新产品提供增量。</li>
+        <li><strong>客户端游戏：</strong>收入 <strong>68.66亿元</strong>，环比 <strong>-12.77%</strong>，同比 <strong>+18.4%</strong>。双端互通产品（《崩坏：星穹铁道》《三角洲行动》《洛克王国：世界》）及新游（《异环》《王者荣耀世界》）共同拉动同比增长。</li>
+        <li><strong>移动游戏：</strong>收入 <strong>224.3亿元</strong>，环比 <strong>+0.71%</strong>，同比 <strong>+9.83%</strong>。头部产品运营活动+新品次新品（《异环》《王者荣耀世界》《洛克王国：世界》）贡献增量。</li>
+        <li><strong>Tencent：</strong><span class="g-tag" style="color:#92400e;background:rgba(146,64,14,0.12);">投资</span> 投资成都烽炊网络（持股12.5%），罕见布局独立游戏赛道。<span class="g-tag" style="color:#16a34a;background:rgba(22,163,74,0.12);">产品</span> <span class="g-tag">王者荣耀：世界</span>移动端4月17日上线登顶iOS免费榜；<span class="g-tag">失控进化</span>定档7月，预约破3200万；混元3D世界模型2.0开源发布。</li>
+        <li><strong>NetEase：</strong>副总裁王怡调任海外，市场中心→用户增长中心，渠道发行中心→发行中心，组织架构整体调整。</li>
+        <li><strong>其他企业动向：</strong><span class="g-tag">miHoYo</span>《绝区零》Q2登陆Steam，发布AI Agent系统Echo Agent；<span class="g-tag">巨人网络</span>2025财报营收+72.69%，《超自然行动组》累计流水破50亿。</li>
+        <li><strong>其他游戏产品：</strong><span class="g-tag">完美世界《异环》</span>海外上线首日登顶日韩+巴基斯坦iOS免费榜，26国进入TOP10。</li>
+        <li><strong>政策：</strong>五部门出台《AI拟人化互动服务管理暂行办法》，7月15日施行，<strong>全球首部</strong>专门针对AI伴侣、虚拟恋人、智能NPC等情感互动服务的国家级法规；核心禁令：禁止诱导情感依赖/沉迷、情感操纵诱导付费；禁止向未成年人提供虚拟亲属/伴侣服务。</li>
+        <li><strong>热点趋势：</strong>微信小游戏新激励政策（首发累计流水5000万内不抽成，最高获2000万激励金）；摩根士丹利测算AI游戏增利1500亿；上海次元街区元界2.0亮相。</li>
+      </ul>
+    </div>
+
+    <div class="top-text-body txt-kr-block">
+      <ul>
+        <li><strong>전체 시장：</strong>4월 중국 게임 시장 실제 매출 <strong>303.69억 위안</strong>，QoQ <strong>-3.51%</strong>，YoY <strong>+11.04%</strong>. 상위권 타이틀의 버전 업데이트로 결제 의향 자극，신작·준신작이 증분 제공.</li>
+        <li><strong>PC 게임：</strong>매출 <strong>68.66억 위안</strong>，QoQ <strong>-12.77%</strong>，YoY <strong>+18.4%</strong>. 크로스 플랫폼 타이틀（&lt;붕괴: 스타레일&gt;·&lt;Delta Force&gt;·&lt;Roco Kingdom: World&gt;）및 신작（&lt;이환&gt;·&lt;Honor of Kings: World&gt;）이 YoY 성장 견인.</li>
+        <li><strong>모바일 게임：</strong>매출 <strong>224.3억 위안</strong>，QoQ <strong>+0.71%</strong>，YoY <strong>+9.83%</strong>. 상위권 타이틀 운영 + 신작·준신작（&lt;이환&gt;·&lt;Honor of Kings: World&gt;·&lt;Roco Kingdom: World&gt;）이 증분 기여.</li>
+        <li><strong>Tencent：</strong><span class="g-tag" style="color:#92400e;background:rgba(146,64,14,0.12);">투자</span> 청두 펑추이 네트워크에 12.5% 지분 투자，인디게임 분야 이례적 진출. <span class="g-tag" style="color:#16a34a;background:rgba(22,163,74,0.12);">타이틀</span> <span class="g-tag">Honor of Kings: World</span> 모바일 4월 17일 출시 iOS 무료 1위；<span class="g-tag">실콘진화</span> 7월 출시 확정，예약 3,200만 돌파；혼원 3D 월드 모델 2.0 오픈소스 공개.</li>
+        <li><strong>NetEase：</strong>부사장 왕이 해외 발령，마케팅 센터→유저성장 센터，채널 퍼블리싱 센터→퍼블리싱 센터로 조직 개편.</li>
+        <li><strong>기타 기업 동향：</strong><span class="g-tag">miHoYo</span> &lt;제로존&gt; Q2 Steam 출시，AI 에이전트 시스템 Echo Agent 발표；<span class="g-tag">Giant Network</span> 2025 매출 +72.69%，&lt;초자연행동조&gt; 누적 매출 50억 위안 돌파.</li>
+        <li><strong>기타 게임 타이틀：</strong><span class="g-tag">Perfect World &lt;이환&gt;</span> 해외 출시 첫날 일본·한국·파키스탄 iOS 무료 1위，26개국 TOP10 진입.</li>
+        <li><strong>정책：</strong>5개 부처 'AI 의인화 인터랙션 서비스 관리 잠정 방법' 발표，7월 15일 시행，AI 동반자·가상 연인·스마트 NPC 등 감성 인터랙션 서비스를 전담하는 <strong>세계 최초</strong> 국가급 법규；핵심 금지 조항：감정 의존·중독 유도 금지，감정 조작을 통한 결제 유도 금지；미성년자에게 가상 가족·파트너 서비스 제공 금지.</li>
+        <li><strong>핫이슈 트렌드：</strong>위챗 미니게임 신규 인센티브 정책（누적 매출 5,000만 위안 이내 수수료 면제，최대 2,000만 위안 인센티브 지급）；모건스탠리 AI 게임 업계 순이익 1,500억 위안 증가 전망；상하이 서브컬처 스트리트 메타버스 2.0 공개.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── KPI CARDS ── -->
+  <div class="section-title">📊
+    <span class="txt-cn">宏观市场核心数据（4月）</span>
+    <span class="txt-kr">거시적 시장 핵심 데이터 （4월）</span>
+  </div>
+  <div class="summary-grid">
+
+    <div class="summary-card c-market">
+      <div class="card-game">⭐ <span class="txt-cn">整体游戏市场</span><span class="txt-kr">전체 게임 시장</span></div>
+      <div class="card-big-val"><span class="txt-cn">303.69亿</span><span class="txt-kr">303.69억</span></div>
+      <div class="card-metric-block">
+        QoQ <span class="metric-mom down">▼3.51%</span>　YoY <span class="metric-mom up">▲11.04%</span>
+      </div>
+      <div class="card-metric-block">
+        <span class="txt-cn">头部产品版本迭代+次新产品增量</span>
+        <span class="txt-kr">상위권 버전 업데이트 + 준신작 증분</span>
+      </div>
+    </div>
+
+    <div class="summary-card c-pc">
+      <div class="card-game">🖥️ <span class="txt-cn">客户端游戏</span><span class="txt-kr">PC 게임</span></div>
+      <div class="card-big-val"><span class="txt-cn">68.66亿</span><span class="txt-kr">68.66억</span></div>
+      <div class="card-metric-block">
+        QoQ <span class="metric-mom down">▼12.77%</span>　YoY <span class="metric-mom up">▲18.4%</span>
+      </div>
+      <div class="card-metric-block">
+        <span class="txt-cn">双端互通产品+新游共同驱动同比增长</span>
+        <span class="txt-kr">크로스 플랫폼 타이틀 + 신작 YoY 견인</span>
+      </div>
+    </div>
+
+    <div class="summary-card c-mobile">
+      <div class="card-game">📱 <span class="txt-cn">移动游戏</span><span class="txt-kr">모바일 게임</span></div>
+      <div class="card-big-val"><span class="txt-cn">224.3亿</span><span class="txt-kr">224.3억</span></div>
+      <div class="card-metric-block">
+        QoQ <span class="metric-mom up">▲0.71%</span>　YoY <span class="metric-mom up">▲9.83%</span>
+      </div>
+      <div class="card-metric-block">
+        <span class="txt-cn">《异环》《王者荣耀世界》《洛克王国：世界》贡献增量</span>
+        <span class="txt-kr">&lt;이환&gt;·&lt;HoK World&gt;·&lt;Roco Kingdom&gt; 기여</span>
+      </div>
+    </div>
+
+    <div class="summary-card c-license">
+      <div class="card-game">📋 <span class="txt-cn">当月版号发放</span><span class="txt-kr">당월 판호 발급</span></div>
+      <div class="card-big-val"><span class="txt-cn">154款</span><span class="txt-kr">154개</span></div>
+      <div class="card-metric-block">
+        <span class="txt-cn">国产 <strong>147款</strong>　进口 <strong>7款</strong></span>
+        <span class="txt-kr">내자 <strong>147개</strong>　외자 <strong>7개</strong></span>
+      </div>
+      <div class="card-metric-block">
+        <span class="txt-cn">韩国游戏获批 1款：GRAVITY《仙境传说：诸神战场》</span>
+        <span class="txt-kr">한국 게임 1개 획득：GRAVITY《라그나로크：신들의 전장》</span>
+      </div>
+      <div class="card-metric-block" style="font-size:11px;line-height:1.8;">
+        <span class="txt-cn">
+          <span class="g-tag" style="font-size:11px;">洛克王国：精灵牌</span> Tencent国产<br>
+          <span class="g-tag" style="font-size:11px;">弧光猎人</span> Tencent进口（ARC Raiders）<br>
+          <span class="g-tag" style="font-size:11px;">遗忘之海</span> NetEase国产
+        </span>
+        <span class="txt-kr">
+          <span class="g-tag" style="font-size:11px;">Roco Kingdom: Spirit Card</span> Tencent 내자<br>
+          <span class="g-tag" style="font-size:11px;">ARC Raiders</span> Tencent 수입<br>
+          <span class="g-tag" style="font-size:11px;">망각의 바다</span> NetEase 내자
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="top-divider"></div>
+
+  <!-- ── MARKET & POLICY ── -->
+  <div class="section-title">🏛️
+    <span class="txt-cn">宏观市场与政策风向</span>
+    <span class="txt-kr">거시적 시장과 정책 방향</span>
+  </div>
+  <div class="content-card">
+
+    <div class="sub-title">■ <span class="txt-cn">市场数据</span><span class="txt-kr">시장 데이터</span>
+      <a href="https://mp.weixin.qq.com/s/B2i-New3qEltBLxuWFYR0w" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;">
+        <span class="txt-cn">数据来源 ↗</span><span class="txt-kr">데이터 출처 ↗</span>
+      </a>
+    </div>
+
+    <div class="table-wrap">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th><span class="txt-cn">细分市场</span><span class="txt-kr">세부 시장</span></th>
+            <th><span class="txt-cn">2026年4月收入</span><span class="txt-kr">2026년 4월 매출</span></th>
+            <th>QoQ</th>
+            <th>YoY</th>
+            <th><span class="txt-cn">核心驱动</span><span class="txt-kr">핵심 동인</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl">
+            <td><strong><span class="txt-cn">整体市场</span><span class="txt-kr">전체 시장</span></strong></td>
+            <td><strong><span class="txt-cn">303.69亿元</span><span class="txt-kr">303.69억 위안</span></strong></td>
+            <td class="mom-down">▼3.51%</td>
+            <td class="mom-up">▲11.04%</td>
+            <td><span class="txt-cn">头部产品版本迭代+次新产品增量+双端互通协同</span><span class="txt-kr">상위권 버전 업데이트 + 준신작 증분 + 크로스 플랫폼 협업</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">客户端游戏</span><span class="txt-kr">PC 게임</span></strong></td>
+            <td><strong><span class="txt-cn">68.66亿元</span><span class="txt-kr">68.66억 위안</span></strong></td>
+            <td class="mom-down">▼12.77%</td>
+            <td class="mom-up">▲18.4%</td>
+            <td><span class="txt-cn">《崩坏：星穹铁道》《三角洲行动》《洛克王国：世界》版本更新；《异环》《王者荣耀世界》新收入来源</span><span class="txt-kr">&lt;붕괴: 스타레일&gt;·&lt;Delta Force&gt;·&lt;Roco Kingdom: World&gt; 버전 업데이트；&lt;이환&gt;·&lt;HoK World&gt; 신규 매출</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">移动游戏</span><span class="txt-kr">모바일 게임</span></strong></td>
+            <td><strong><span class="txt-cn">224.3亿元</span><span class="txt-kr">224.3억 위안</span></strong></td>
+            <td class="mom-up">▲0.71%</td>
+            <td class="mom-up">▲9.83%</td>
+            <td><span class="txt-cn">头部产品运营活动+《异环》《王者荣耀世界》《洛克王国：世界》新品贡献</span><span class="txt-kr">상위권 운영 이벤트 + &lt;이환&gt;·&lt;HoK World&gt;·&lt;Roco Kingdom: World&gt; 기여</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">4月流水榜亮点</span><span class="txt-kr">4월 매출 랭킹 하이라이트</span></strong></td>
+            <td colspan="3"><span class="txt-cn">移动游戏流水TOP10中射击类游戏达3款；《洛克王国：世界》排名上升幅度最大（3月底上线，4月迎来首个完整结算月），推出S1赛季"暗夜拾光"并与上海美术电影制片厂联动维持热度</span><span class="txt-kr">모바일 매출 TOP10에서 슈팅 장르 3개；&lt;Roco Kingdom: World&gt; 순위 상승폭 최대（3월 말 출시，4월 첫 완전 정산월），S1 시즌 '암야습광' 출시 및 상하이 미술영화촬영소 콜라보로 인기 유지</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">新游流水</span><span class="txt-kr">신작 매출</span></strong></td>
+            <td colspan="3"><span class="txt-cn">移动游戏新游流水TOP5中，仅《异环》预估首月全平台流水超1亿元，其余四款均在1亿元以下，整体较为平淡</span><span class="txt-kr">모바일 신작 매출 TOP5 중 &lt;이환&gt;만 첫 달 전 플랫폼 매출 1억 위안 이상，나머지 4개는 1억 미만으로 전반적으로 평이</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-title" style="margin-top:20px;">■ <span class="txt-cn">监管政策·版号动态</span><span class="txt-kr">규제 정책·판호 동향</span></div>
+
+    <ul class="bullet-list">
+      <li>
+        <span class="txt-cn"><strong>过审数量：</strong>154款（含147款国产游戏，7款进口游戏）</span>
+        <span class="txt-kr"><strong>심사 통과 수량：</strong>154개（내자 147개，외자 7개）</span>
+      </li>
+      <li>
+        <span class="txt-cn"><strong>Tencent：</strong>国产版号《洛克王国：精灵牌》（《洛克王国》IP新游）；进口版号《弧光猎人》（即《ARC Raiders》）</span>
+        <span class="txt-kr"><strong>Tencent：</strong>국산 판호 &lt;Roco Kingdom: Spirit Card&gt;（&lt;Roco Kingdom&gt; IP 신작）；수입 판호 &lt;ARC Raiders&gt;</span>
+      </li>
+      <li>
+        <span class="txt-cn"><strong>NetEase：</strong>国产版号《遗忘之海》（雷火Joker事业部研发海洋开放世界RPG，预计Q3上线）</span>
+        <span class="txt-kr"><strong>NetEase：</strong>국산 판호 &lt;망각의 바다&gt;（Leihuo Joker 사업부 개발 해양 오픈월드 RPG，Q3 출시 예정）</span>
+      </li>
+      <li>
+        <span class="txt-cn"><strong>韩国游戏：</strong>进口游戏中有1款韩国游戏获批——GRAVITY公司MMORPG《仙境传说：诸神战场》</span>
+        <span class="txt-kr"><strong>한국 게임：</strong>수입 게임 중 1개 한국 게임 획득——GRAVITY사 MMORPG &lt;라그나로크：신들의 전장&gt;</span>
+      </li>
+      <li>
+        <span class="txt-cn"><strong>审批变更：</strong>共13款游戏变更审批信息，其中库洛游戏《战双帕弥什》变更运营单位</span>
+        <span class="txt-kr"><strong>심사 변경：</strong>총 13개 게임 심사 정보 변경，Kuro Games &lt;펀치라인&gt; 운영 주체 변경</span>
+      </li>
+    </ul>
+
+    <div class="sub-title" style="margin-top:20px;">■ <span class="txt-cn">重点政策：AI拟人化互动服务管理暂行办法</span><span class="txt-kr">주요 정책：AI 의인화 인터랙션 서비스 관리 잠정 방법</span>
+      <a href="http://www.gamelook.com.cn/2026/04/591904/" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;">↗</a>
+    </div>
+    <ul class="bullet-list">
+      <li>
+        <span class="txt-cn">2026年4月10日，五部门联合发布，<strong>7月15日</strong>正式施行；为<strong>全球首部</strong>专门针对AI伴侣、虚拟恋人、智能NPC等情感互动服务的国家级法规</span>
+        <span class="txt-kr">2026년 4월 10일 5개 부처 공동 발표，<strong>7월 15일</strong> 정식 시행；AI 동반자·가상 연인·스마트 NPC 등 감성 인터랙션 서비스를 전담하는 <strong>세계 최초</strong> 국가급 법규</span>
+      </li>
+      <li>
+        <span class="txt-cn"><strong>核心禁令：</strong>禁止鼓励/美化自残自杀内容；禁止过度迎合用户、诱导情感依赖或沉迷；禁止情感操纵诱导不合理决策（如付费）</span>
+        <span class="txt-kr"><strong>핵심 금지 조항：</strong>자해·자살 조장·미화 콘텐츠 금지；과도한 비위 맞추기·감정 의존·중독 유도 금지；감정 조작을 통한 불합리한 결정（예：결제） 유도 금지</span>
+      </li>
+      <li>
+        <span class="txt-cn"><strong>未成年人保护：</strong>不得向未成年人提供虚拟亲属、虚拟伴侣等亲密关系服务；14岁以下需监护人同意；强制未成年人模式、时长/充值限制</span>
+        <span class="txt-kr"><strong>미성년자 보호：</strong>미성년자에게 가상 가족·가상 파트너 등 친밀 관계 서비스 제공 불가；14세 미만은 보호자 동의 필요；미성년자 모드·이용 시간·충전 제한 의무화</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── COMPANY TRENDS ── -->
+  <div class="section-title">🏢
+    <span class="txt-cn">中国Top游戏企业动向</span>
+    <span class="txt-kr">중국 상위권 게임사 동향</span>
+  </div>
+
+  <div class="mkt-tabs" id="companyTabs">
+    <button class="mkt-tab-btn g1 active" data-tab="1">🔵 Tencent<span class="txt-cn"> 腾讯</span></button>
+    <button class="mkt-tab-btn g2" data-tab="2">🔴 NetEase<span class="txt-cn"> 网易</span></button>
+    <button class="mkt-tab-btn g3" data-tab="3">🟢 <span class="txt-cn">其他企业动向</span><span class="txt-kr">기타 기업 동향</span></button>
+  </div>
+
+  <!-- ── TENCENT ── -->
+  <div class="mkt-panel active" data-company="1">
+    <div class="mkt-panel-card">
+
+      <div class="sub-title"><span class="txt-cn">战略·投资</span><span class="txt-kr">전략·투자</span></div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>投资成都烽炊网络（持股12.5%）：</strong>腾讯通过全资子公司投资国产独立游戏《烽火与炊烟》开发商火娃娃游戏工作室，<strong>罕见布局独立游戏赛道</strong></span>
+          <span class="txt-kr"><strong>청두 펑추이 네트워크 투자（지분 12.5%）：</strong>Tencent가 완전 자회사를 통해 국산 인디게임 &lt;봉화와 밥연기&gt; 개발사 훠와와 게임 스튜디오에 투자，<strong>인디게임 분야 이례적 진출</strong></span>
+          <a href="http://www.gamelook.com.cn/2026/04/592351/" target="_blank" class="ext-link">↗</a>
+        </li>
+      </ul>
+
+      <div class="sub-title" style="margin-top:16px;"><span class="txt-cn">产品动态</span><span class="txt-kr">타이틀 동향</span></div>
+      <div class="product-grid">
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《王者荣耀：世界》</span><span class="txt-kr">&lt;Honor of Kings: World&gt;</span>
+            <span class="ptag b-milestone"><span class="txt-cn">移动端上线</span><span class="txt-kr">모바일 출시</span></span>
+            <a href="http://www.gamelook.com.cn/2026/04/591528/" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">4月17日移动端正式上线，<strong>登顶iOS免费榜</strong>，相关词条刷屏各大社交平台热搜榜单</span>
+            <span class="txt-kr">4월 17일 모바일 정식 출시，<strong>iOS 무료 랭킹 1위</strong>，관련 키워드가 주요 SNS 실시간 트렌드 석권</span>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《失控进化》</span><span class="txt-kr">&lt;실콘 진화&gt;</span>
+            <span class="ptag b-new"><span class="txt-cn">定档7月</span><span class="txt-kr">7월 출시 확정</span></span>
+            <a href="http://www.gamelook.com.cn/2026/04/592333/" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">《Rust》正版玩法授权的生存对抗SOC游戏，定档<strong>2026年7月</strong>全平台上线，全网预约突破<strong>3,200万</strong></span>
+            <span class="txt-kr">&lt;Rust&gt; 공식 라이선스 생존 대전 SOC 게임，<strong>2026년 7월</strong> 전 플랫폼 출시 확정，전체 예약 <strong>3,200만</strong> 돌파</span>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《怪物猎人：旅人》</span><span class="txt-kr">&lt;몬스터헌터: 여행자&gt;</span>
+            <span class="ptag b-event"><span class="txt-cn">启程测试</span><span class="txt-kr">얼리 테스트</span></span>
+            <a href="http://www.gamelook.com.cn/2026/04/590817/" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">Timi工作室研发，4月开启"启程测试"</span>
+            <span class="txt-kr">Timi 스튜디오 개발，4월 '얼리 테스트' 개시</span>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《王者荣耀》×《哪吒之魔童闹海》</span><span class="txt-kr">&lt;왕자영요&gt;×&lt;나타지마동노해&gt;</span>
+            <span class="ptag b-collab"><span class="txt-cn">联动上线</span><span class="txt-kr">콜라보 출시</span></span>
+            <a href="http://www.gamelook.com.cn/2026/04/592392/" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">一年前官宣的《王者荣耀》x《哪吒之魔童闹海》联动正式上线</span>
+            <span class="txt-kr">1년 전 공식 발표된 &lt;왕자영요&gt; × &lt;나타지마동노해&gt; 콜라보 정식 출시</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-title" style="margin-top:16px;"><span class="txt-cn">其他动态</span><span class="txt-kr">기타 동향</span></div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>AI · 混元3D世界模型2.0：</strong>4月16日发布并<strong>开源</strong>，支持文字/图片/视频生成可编辑的3D场景（3DGS/Mesh/点云），可直接导入游戏引擎</span>
+          <span class="txt-kr"><strong>AI · 혼원 3D 월드 모델 2.0：</strong>4월 16일 발표 및 <strong>오픈소스</strong> 공개，텍스트·이미지·영상으로 편집 가능한 3D 장면（3DGS/Mesh/포인트 클라우드）생성 지원，게임 엔진 직접 임포트 가능</span>
+          <a href="http://www.gamelook.com.cn/2026/04/591472/" target="_blank" class="ext-link">↗</a>
+        </li>
+        <li>
+          <span class="txt-cn"><strong>Nexon 移交运营权：</strong>因DNF手游表现低迷，Nexon向腾讯移交3款新游运营权——《ARC Raiders》《终极角逐》《DNF:卡赞》；同期Nexon披露DNF IP扩张计划（5款衍生游戏含开放世界ARPG《阿拉德》及PC/主机新作Project Overkill）</span>
+          <span class="txt-kr"><strong>Nexon 운영권 이전：</strong>DNF 모바일 부진으로 인해 Nexon이 &lt;ARC Raiders&gt;·&lt;The Finals&gt;·&lt;DNF: Kazan&gt; 3개 신작 운영권을 Tencent에 이전；Nexon은 DNF IP 확장 계획（오픈월드 ARPG &lt;아라드&gt; 포함 5개 파생 게임 및 PC/콘솔 신작 Project Overkill）도 공개</span>
+          <a href="http://www.gamelook.com.cn/2026/04/590833/" target="_blank" class="ext-link">↗</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── NETEASE ── -->
+  <div class="mkt-panel" data-company="2">
+    <div class="mkt-panel-card">
+      <div class="sub-title"><span class="txt-cn">战略·组织调整</span><span class="txt-kr">전략·조직 개편</span>
+        <a href="http://www.gamelook.com.cn/2026/04/591366/" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn">副总裁<strong>王怡调任海外</strong>，原市场中心更名为<strong>用户增长中心</strong>，原渠道发行中心更名为<strong>发行中心</strong></span>
+          <span class="txt-kr">부사장 <strong>왕이 해외 발령</strong>，기존 마케팅 센터→<strong>유저성장 센터</strong>，기존 채널 퍼블리싱 센터→<strong>퍼블리싱 센터</strong>로 명칭 변경</span>
+        </li>
+        <li>
+          <span class="txt-cn">各产品营销团队架构调整至产品事业部内，统一更名为<strong>用户增长部</strong></span>
+          <span class="txt-kr">각 프로덕트 마케팅팀 구조가 프로덕트 사업부 내로 편입，<strong>유저성장부</strong>로 통합 개편</span>
+        </li>
+      </ul>
+
+      <div class="sub-title" style="margin-top:16px;"><span class="txt-cn">产品动态</span><span class="txt-kr">타이틀 동향</span></div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>《遗忘之海》：</strong>获得4月国产版号（雷火Joker事业部研发海洋开放世界RPG），预计<strong>2026年Q3</strong>上线</span>
+          <span class="txt-kr"><strong>&lt;망각의 바다&gt;：</strong>4월 국산 판호 획득（Leihuo Joker 사업부 개발 해양 오픈월드 RPG），<strong>2026년 Q3</strong> 출시 예정</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── OTHERS ── -->
+  <div class="mkt-panel" data-company="3">
+    <div class="mkt-panel-card">
+
+      <div class="sub-title">miHoYo（米哈游）</div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>《绝区零》登陆Steam：</strong>将于2026年<strong>Q2</strong>登陆Steam，目前锁国区，已开启测试招募</span>
+          <span class="txt-kr"><strong>&lt;제로존&gt; Steam 출시：</strong>2026년 <strong>Q2</strong> Steam 출시 예정，현재 중국 지역 잠금，테스트 모집 시작</span>
+          <a href="http://www.gamelook.com.cn/2026/04/592238/" target="_blank" class="ext-link">↗</a>
+        </li>
+        <li>
+          <span class="txt-cn"><strong>崩坏IP AI布局 · Echo Agent：</strong>推出专注于研发提效和团队协作的自研AI Agent系统。目标：培养工程师对AI的理解；聚焦游戏垂类场景；内部开源全员共建；帮助策划快速验证游戏创意</span>
+          <span class="txt-kr"><strong>붕괴 IP AI 전략 · Echo Agent：</strong>개발 효율화 및 팀 협업 특화 자체 개발 AI 에이전트 시스템 출시. 목표：엔지니어의 AI 이해도 향상；게임 특화 분야 집중；내부 오픈소스 전원 공동 구축；기획자의 게임 아이디어 빠른 검증 지원</span>
+          <a href="http://www.gamelook.com.cn/2026/04/592144/" target="_blank" class="ext-link">↗</a>
+        </li>
+      </ul>
+
+      <div class="sub-title" style="margin-top:16px;"><span class="txt-cn">巨人网络（Giant Network）</span><span class="txt-kr">거인 네트워크（Giant Network）</span></div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>2025财报：</strong>营收 <strong>50.47亿元（+72.69%）</strong>，净利润 <strong>17.55亿元（+23.13%）</strong>；2026年Q1营收 <strong>23.29亿元（+221.70%）</strong></span>
+          <span class="txt-kr"><strong>2025년 재무보고서：</strong>매출 <strong>50.47억 위안（+72.69%）</strong>，순이익 <strong>17.55억 위안（+23.13%）</strong>；2026년 Q1 매출 <strong>23.29억 위안（+221.70%）</strong></span>
+          <a href="http://www.gamelook.com.cn/2026/04/592192/" target="_blank" class="ext-link">↗</a>
+        </li>
+        <li>
+          <span class="txt-cn">核心驱动：《超自然行动组》<strong>不到两年累计流水破50亿</strong>，DAU突破1,000万，注册用户超2亿，开创"中式摸金"玩法，年轻女性玩家占比高</span>
+          <span class="txt-kr">핵심 동인：&lt;초자연행동조&gt; <strong>2년도 채 안 돼 누적 매출 50억 위안 돌파</strong>，DAU 1,000만 돌파，등록 유저 2억 명 초과，'중국식 묘지 탐험' 플레이 개척，젊은 여성 플레이어 비율 높음</span>
+        </li>
+      </ul>
+
+      <div class="sub-title" style="margin-top:16px;"><span class="txt-cn">三七互娱（37Games）</span><span class="txt-kr">37게임즈（37Games）</span></div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>2026年Q1财报：</strong>营收 <strong>37.20亿元（QoQ +6.15%）</strong>，归母净利润 <strong>8.73亿元（YoY +59.02%）</strong>；主营：存量产品精细化运营+新游《生存33天》《RO仙境传说：世界之旅》《Last Asylum: Plague》表现优异</span>
+          <span class="txt-kr"><strong>2026년 Q1 재무보고서：</strong>매출 <strong>37.20억 위안（QoQ +6.15%）</strong>，지배주주 순이익 <strong>8.73억 위안（YoY +59.02%）</strong>；주력 사업：기존 타이틀 정밀 운영 + 신작 &lt;생존 33일&gt;·&lt;RO 라그나로크: 세계 여행&gt;·&lt;Last Asylum: Plague&gt; 호실적</span>
+          <a href="http://www.gamelook.com.cn/2026/04/592165/" target="_blank" class="ext-link">↗</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- ── PRODUCT OBSERVATIONS ── -->
+  <div class="section-title">🎮
+    <span class="txt-cn">产品观察</span>
+    <span class="txt-kr">타이틀 관찰</span>
+  </div>
+  <div class="content-card">
+
+    <div class="sub-title">■ <span class="txt-cn">重点产品</span><span class="txt-kr">주요 타이틀</span></div>
+    <div class="product-grid">
+      <div class="product-item">
+        <div class="product-name">
+          <span class="txt-cn">完美世界《异环》</span><span class="txt-kr">Perfect World &lt;이환&gt;</span>
+          <span class="ptag b-global"><span class="txt-cn">海外强势上线</span><span class="txt-kr">해외 강세 출시</span></span>
+          <a href="https://www.youxituoluo.com/534350.html" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc">
+          <span class="txt-cn">二次元开放世界新游，海外上线首日<strong>登顶日韩与巴基斯坦iOS免费榜</strong>，在<strong>26个国家/地区</strong>进入免费榜TOP10</span>
+          <span class="txt-kr">2D 오픈월드 신작，해외 출시 첫날 <strong>일본·한국·파키스탄 iOS 무료 1위</strong>，<strong>26개국/지역</strong> 무료 랭킹 TOP10 진입</span>
+        </div>
+      </div>
+      <div class="product-item">
+        <div class="product-name">
+          <span class="txt-cn">4月新游概况</span><span class="txt-kr">4월 신작 현황</span>
+          <span class="ptag b-other"><span class="txt-cn">16款</span><span class="txt-kr">16개</span></span>
+          <a href="http://www.gamelook.com.cn/2026/04/590738/" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc">
+          <span class="txt-cn">2026年4月共<strong>16款</strong>新游正式定档；本月跨端产品数量明显上升，来自大厂/知名厂商的产品更多，品质明显提升；重点产品：腾讯《王者荣耀世界》、完美世界《异环》</span>
+          <span class="txt-kr">2026년 4월 총 <strong>16개</strong> 신작 출시 확정；이번 달 크로스 플랫폼 타이틀 수 눈에 띄게 증가，대형사/유명사 타이틀 증가，퀄리티 뚜렷하게 향상；주요 타이틀：Tencent &lt;Honor of Kings: World&gt;，Perfect World &lt;이환&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INDUSTRY TRENDS ── -->
+  <div class="section-title">🔥
+    <span class="txt-cn">行业热点 / 趋势</span>
+    <span class="txt-kr">업계 이슈 / 트렌드</span>
+  </div>
+  <div class="content-card">
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-finance">📱 <span class="txt-cn">微信小游戏</span><span class="txt-kr">위챗 미니게임</span></span>
+        <span class="txt-cn">4月新激励政策：首发新游累计流水5000万内不抽成，最高获2000万激励金</span>
+        <span class="txt-kr">4월 신규 인센티브 정책：첫 출시 신작 누적 매출 5,000만 위안 이내 수수료 면제，최대 2,000만 위안 인센티브</span>
+        <a href="https://www.youxituoluo.com/534290.html" target="_blank" class="ext-link">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>政策意图：</strong>降低中小开发者风险，扶持中腰部产品壮大；避免原生App手游"倒金字塔"式头部固化，让小游戏生态更健康、新陈代谢更活跃</span>
+          <span class="txt-kr"><strong>정책 의도：</strong>중소 개발사 리스크 감소，중견 타이틀 성장 지원；일반 앱 모바일 게임의 '역 피라미드식' 상위 고착화 방지，미니게임 생태계 건전화 및 신진 대사 활성화</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-ai">🤖 AI</span>
+        <span class="txt-cn">摩根士丹利测算：AI游戏业能增利1500亿，主要来自降本增效</span>
+        <span class="txt-kr">모건스탠리 분석：AI로 게임 업계 순이익 1,500억 위안 증가，주로 비용 절감·효율 향상에서</span>
+        <a href="https://www.youxituoluo.com/534301.html" target="_blank" class="ext-link">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn"><strong>AI对游戏业价值：</strong>摩根士丹利测算AI可为全球游戏业每年释放<strong>220亿美元（约1500亿人民币）</strong>利润，主要来自降本增效</span>
+          <span class="txt-kr"><strong>AI의 게임 업계 가치：</strong>모건스탠리는 AI가 글로벌 게임 업계에 연간 <strong>220억 달러（약 1,500억 위안）</strong> 이익을 창출할 수 있다고 분석，주로 비용 절감·효율 향상에서 기인</span>
+        </li>
+        <li>
+          <span class="txt-cn"><strong>休闲/小游戏：</strong>AI主战场，可大幅压缩成本、快速迭代；<strong>头部重度手游/3A大作：</strong>只能选择性使用AI，玩家对"手工感"有执念，过度使用会引发舆论反噬</span>
+          <span class="txt-kr"><strong>캐주얼·미니게임：</strong>AI 주 전장，비용 대폭 절감·빠른 반복 가능；<strong>상위권 하드코어 모바일·3A 대작：</strong>AI 선택적 사용만 가능，플레이어가 '수작업 감성'에 집착，과도한 사용은 여론 역풍 초래</span>
+        </li>
+        <li>
+          <span class="txt-cn"><strong>最被低估的价值：</strong>AI让长尾老游戏"续命"成为可能——极小团队+AI维持运营，盘活原本该砍掉的项目</span>
+          <span class="txt-kr"><strong>가장 저평가된 가치：</strong>AI로 롱테일 구작 '연명' 가능——소규모 팀 + AI로 운영 유지，원래 종료했을 프로젝트 재활용</span>
+        </li>
+        <li>
+          <span class="txt-cn"><strong>中国市场特殊变量：</strong>版号总量调控与AI产能膨胀形成错配，但规则在松动（多平台共用版号）；UGC平台（元梦之星、蛋仔派对等）平台自律成新护城河</span>
+          <span class="txt-kr"><strong>중국 시장 특수 변수：</strong>판호 총량 조절과 AI 생산량 팽창의 불일치，단 규칙은 완화 중（멀티 플랫폼 판호 공유）；UGC 플랫폼（원몽지성·단자파이파이 등）자율 규제가 새 해자로 부상</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-other">🌐 OpenAI</span>
+        <span class="txt-cn">就业研究报告：AI不会引发失业潮，反而可能创造更多岗位</span>
+        <span class="txt-kr">고용 연구 보고서：AI는 실업 대란을 일으키지 않고 오히려 더 많은 일자리 창출 가능</span>
+        <a href="http://www.gamelook.com.cn/2026/04/592380/" target="_blank" class="ext-link">↗</a>
+      </div>
+    </div>
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-event">🏙️ <span class="txt-cn">上海</span><span class="txt-kr">상하이</span></span>
+        <span class="txt-cn">首个次元友好街区元界2.0亮相</span>
+        <span class="txt-kr">첫 번째 서브컬처 친화 스트리트 메타버스 2.0 공개</span>
+        <a href="http://www.gamelook.com.cn/2026/04/592245/" target="_blank" class="ext-link">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li>
+          <span class="txt-cn">上海徐汇"元界Neo World 2.0"升级，落地上海<strong>首个长期运营的次元友好街区</strong></span>
+          <span class="txt-kr">상하이 쉬후이 '메타버스 Neo World 2.0' 업그레이드，상하이 <strong>첫 장기 운영 서브컬처 친화 스트리트</strong> 구현</span>
+        </li>
+        <li>
+          <span class="txt-cn">打破"限时快闪"模式，IP场景变为城市基础设施，探索"文商旅融合"的城市更新模式</span>
+          <span class="txt-kr">'한정 팝업' 방식 탈피，IP 공간이 도시 인프라로 변모，문화·상업·관광 융합형 도시 재생 모델 탐구</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div><!-- /container -->
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-kr', lang === 'kr');
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase());
+  });
+}
+document.addEventListener('DOMContentLoaded', function () {
+  var tabsWrap = document.getElementById('companyTabs');
+  var panels   = document.querySelectorAll('[data-company]');
+  tabsWrap.querySelectorAll('.mkt-tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var n = Number(btn.dataset.tab);
+      tabsWrap.querySelectorAll('.mkt-tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      panels.forEach(function (p) { p.classList.toggle('active', Number(p.dataset.company) === n); });
+    });
+  });
+});
+</script>
+</body>
+</html>
