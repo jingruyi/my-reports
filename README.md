@@ -5,6 +5,7 @@
 | 文件名 | 说明 | 链接 |
 | ------ | ---- | ---- |
 | HongKong_Macau_Travel_Guide_2026.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/HongKong_Macau_Travel_Guide_2026.html) |
+| HongKong_Macau_Travel_Guide_2026_Enhanced.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/HongKong_Macau_Travel_Guide_2026_Enhanced.html) |
 | competitive_game_dashboard.html | 竞品大盘 | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard.html) |
 | competitive_game_dashboard_kr.html | 韩服竞品大盘 | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard_kr.html) |
 | competitive_game_dashboard_kr_light.html | 韩服竞品大盘（精简版） | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard_kr_light.html) |
