@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPARK 2026 Tencent Games Showcase · Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff; --surface: #ffffff; --surface2: #f5f7fa;
+  --border: #dde2ea; --border2: #c5ccd8;
+  --text: #0f1117; --text-dim: #2a2f3d; --text-muted: #5a6274;
+  --primary: #1d5fa8; --primary-light: #dbeafe;
+  --spark: #e8500a; --spark-light: #fff3ed;
+  --positive: #15803d; --positive-bg: #f0fdf4;
+  --negative: #b91c1c; --negative-bg: #fef2f2;
+  --purple: #6d28d9; --purple-bg: #f5f3ff;
+  --teal: #0e7490; --teal-bg: #ecfeff;
+  --amber: #b45309; --amber-bg: #fffbeb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.7;padding:32px 28px 64px;max-width:1060px;margin:0 auto;}
+body.lang-kr{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;}
+
+/* LANG TOGGLE */
+.lang-toggle{position:fixed;top:16px;right:24px;z-index:999;display:flex;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);border:1.5px solid var(--border);}
+.lang-toggle button{padding:7px 16px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all 0.15s;font-family:inherit;}
+#btn-cn{background:var(--spark);color:#fff;}
+#btn-kr{background:#fff;color:var(--text-muted);}
+body.lang-kr #btn-cn{background:#fff;color:var(--text-muted);}
+body.lang-kr #btn-kr{background:var(--spark);color:#fff;}
+.txt-kr{display:none !important;}.txt-cn{display:inline;}
+.badge.txt-cn, .meta-pill.txt-cn{display:inline-block;}
+.blk-kr{display:none !important;}.blk-cn{display:block;}
+body.lang-kr .txt-cn{display:none !important;}
+body.lang-kr .txt-kr{display:inline !important;}
+body.lang-kr .badge.txt-kr, body.lang-kr .meta-pill.txt-kr{display:inline-block !important;}
+body.lang-kr .blk-cn{display:none !important;}body.lang-kr .blk-kr{display:block !important;}
+
+/* HEADER */
+.report-header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#0f3460 75%,#1d5fa8 100%);border-radius:var(--radius);padding:30px 36px 26px;color:#fff;margin-bottom:24px;position:relative;overflow:hidden;}
+.report-header::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(232,80,10,0.3),transparent 70%);}
+.report-header::after{content:'';position:absolute;bottom:-80px;left:20%;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,0.03);}
+.header-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:8px;}
+.header-spark{display:inline-block;background:var(--spark);color:#fff;font-size:22px;font-weight:900;padding:2px 14px 4px;border-radius:6px;margin-right:12px;letter-spacing:0.05em;vertical-align:middle;}
+.header-title{font-size:26px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:6px;position:relative;}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.7);font-weight:300;}
+.header-stats{display:flex;gap:28px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.15);flex-wrap:wrap;position:relative;}
+.hstat{display:flex;flex-direction:column;gap:2px;}
+.hstat-val{font-size:22px;font-weight:800;color:#fff;line-height:1;}
+.hstat-val span{font-size:13px;font-weight:400;color:rgba(255,255,255,0.6);margin-left:2px;}
+.hstat-label{font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:0.04em;}
+
+/* SUMMARY BOX */
+.summary-box{background:var(--spark-light);border:1px solid #f5c4a8;border-left:4px solid var(--spark);border-radius:var(--radius);padding:14px 20px;margin-bottom:24px;}
+.summary-box-title{font-size:13px;font-weight:700;color:var(--spark);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.summary-box ul{list-style:none;padding:0;}
+.summary-box li{font-size:13px;color:#4a2510;padding-left:1.2em;text-indent:-1.2em;margin-bottom:4px;line-height:1.8;}
+.summary-box li::before{content:"▸ ";color:var(--spark);font-weight:700;}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px;}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);border-top:3px solid;}
+.kpi-card.c1{border-top-color:var(--spark);background:linear-gradient(160deg,#fff8f5 0%,#fff 60%);}
+.kpi-card.c2{border-top-color:var(--primary);background:linear-gradient(160deg,#f0f6ff 0%,#fff 60%);}
+.kpi-card.c3{border-top-color:var(--purple);background:linear-gradient(160deg,#f9f7ff 0%,#fff 60%);}
+.kpi-card.c4{border-top-color:var(--positive);background:linear-gradient(160deg,#f2fff6 0%,#fff 60%);}
+.kpi-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:5px;}
+.c1 .kpi-label{color:var(--spark);}.c2 .kpi-label{color:var(--primary);}
+.c3 .kpi-label{color:var(--purple);}.c4 .kpi-label{color:var(--positive);}
+.kpi-val{font-size:26px;font-weight:800;line-height:1.1;}
+.c1 .kpi-val{color:var(--spark);}.c2 .kpi-val{color:var(--primary);}
+.c3 .kpi-val{color:var(--purple);}.c4 .kpi-val{color:var(--positive);}
+.kpi-desc{font-size:12px;color:var(--text-muted);margin-top:5px;line-height:1.5;}
+
+/* SECTION TITLE */
+.section-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--text);margin:28px 0 14px;}
+.section-icon{width:30px;height:30px;border-radius:8px;background:var(--spark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.section-icon.blue{background:var(--primary);}
+.section-icon.purple{background:var(--purple);}
+.section-icon.green{background:var(--positive);}
+.section-line{flex:1;height:1px;background:var(--border);}
+
+/* STRATEGY CARDS */
+.strategy-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:6px;}
+.strategy-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden;font-size:12px;}
+.strategy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.s1::before{background:var(--spark);}
+.s2::before{background:var(--primary);}
+.s3::before{background:var(--purple);}
+.strategy-num{font-size:32px;font-weight:900;margin-bottom:4px;opacity:0.12;line-height:1;position:absolute;top:12px;right:14px;}
+.s1 .strategy-num{color:var(--spark);}
+.s2 .strategy-num{color:var(--primary);}
+.s3 .strategy-num{color:var(--purple);}
+.strategy-icon{font-size:20px;display:inline;margin-right:6px;}
+.strategy-title{font-size:14px;font-weight:800;margin-bottom:10px;display:inline;}
+.s1 .strategy-title{color:var(--spark);}
+.s2 .strategy-title{color:var(--primary);}
+.s3 .strategy-title{color:var(--purple);}
+.strategy-body{font-size:13px;color:var(--text-dim);line-height:1.8;}
+.strategy-body ul{list-style:none;padding:0;margin-top:6px;}
+.strategy-body li{padding-left:1.1em;text-indent:-1.1em;margin-bottom:5px;}
+.strategy-body li::before{content:"• ";color:var(--text-muted);}
+
+/* TABS */
+.tab-bar{display:flex;gap:8px;margin-bottom:0;align-items:flex-end;}
+.tab-btn{flex:1;border:1px solid var(--border);border-top:3px solid transparent;border-radius:var(--radius) var(--radius) 0 0;padding:11px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--surface2);color:var(--text-muted);transition:all 0.15s;}
+.tab-btn.active.t0{background:rgba(232,80,10,0.07);border-top-color:var(--spark);color:var(--spark);}
+.tab-btn.active.t1{background:rgba(29,95,168,0.07);border-top-color:var(--primary);color:var(--primary);}
+.tab-btn.active.t2{background:rgba(109,40,217,0.07);border-top-color:var(--purple);color:var(--purple);}
+.tab-btn.active.t3{background:rgba(14,116,144,0.07);border-top-color:var(--teal);color:var(--teal);}
+.tab-btn:hover:not(.active){background:var(--border);color:var(--text);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* CONTENT CARD */
+.content-card{background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--radius) var(--radius);padding:20px 24px;box-shadow:var(--shadow);margin-bottom:24px;}
+
+/* GAME ITEM — with image */
+.game-item{padding:16px 0;border-bottom:1px solid #f0f2f5;}
+.game-item:last-child{border-bottom:none;padding-bottom:0;}
+.game-item:first-child{padding-top:0;}
+
+
+.game-body{}
+.game-header{display:flex;align-items:center;gap:7px;margin-bottom:6px;flex-wrap:wrap;}
+.game-name{font-size:14px;font-weight:800;color:var(--text-dim);}
+.game-sub{font-size:12px;color:var(--text-muted);font-weight:400;}
+.bullet-list{list-style:none;padding:0;margin:0;}
+.bullet-list li{font-size:13px;color:var(--text-dim);padding-left:1.2em;text-indent:-1.2em;margin-bottom:4px;line-height:1.8;}
+.bullet-list li::before{content:"• ";color:var(--text-muted);font-weight:700;}
+
+/* GAME DETAIL TABLE — full grid per game */
+.game-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px;}
+.meta-pill{font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;border:1px solid;}
+.mp-type{background:#f0f6ff;color:var(--primary);border-color:#bfdbfe;}
+.mp-plat{background:#f5f3ff;color:var(--purple);border-color:#c4b5fd;}
+.mp-studio{background:#f0fdf4;color:var(--positive);border-color:#86efac;}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:11px;font-weight:700;white-space:nowrap;}
+.b-new{background:#fff0e8;color:var(--spark);border:1px solid #f5c4a8;}
+.b-update{background:var(--primary-light);color:var(--primary);border:1px solid #93c5fd;}
+.b-collab{background:var(--purple-bg);color:var(--purple);border:1px solid #c4b5fd;}
+.b-esport{background:var(--teal-bg);color:var(--teal);border:1px solid #67e8f9;}
+.b-ai{background:#fdf4ff;color:#7e22ce;border:1px solid #d8b4fe;}
+.b-culture{background:var(--amber-bg);color:var(--amber);border:1px solid #fde047;}
+.b-global{background:var(--positive-bg);color:var(--positive);border:1px solid #86efac;}
+
+/* AI SECTION */
+.ai-card{background:linear-gradient(135deg,#1a0a3e 0%,#0f1e3a 50%,#0a2a1e 100%);border-radius:var(--radius);padding:22px 26px;margin-bottom:20px;position:relative;overflow:hidden;}
+.ai-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(109,40,217,0.4),transparent 70%);}
+.ai-card-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px;position:relative;}
+.ai-items{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;}
+.ai-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:14px 16px;}
+.ai-item-tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:4px;margin-bottom:6px;background:rgba(109,40,217,0.5);color:#ddd6fe;border:1px solid #7c3aed;}
+.ai-item-title{font-size:13px;font-weight:700;color:#e2e8f0;margin-bottom:6px;}
+.ai-item-desc{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.7;}
+
+/* TIMELINE TABLE */
+.tl-wrap{overflow-x:auto;margin-bottom:24px;}
+.tl-table{width:100%;border-collapse:collapse;font-size:13px;}
+.tl-table th{background:var(--surface2);color:var(--text-muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:9px 14px;text-align:left;border:1px solid var(--border);border-bottom:2px solid var(--border2);}
+.tl-table td{padding:10px 14px;border:1px solid #edf0f4;vertical-align:middle;line-height:1.65;}
+.tl-table tr:hover td{background:#fafbfc;}
+.tl-table tr.hl td{background:#fff8f5;}
+.td-date{white-space:nowrap;font-weight:700;color:var(--spark);}
+.td-game{color:var(--text-dim);}
+
+/* COMPARISON TABLE */
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.cmp-table th{background:var(--surface2);color:var(--text-muted);font-weight:600;font-size:11px;letter-spacing:0.04em;padding:9px 14px;text-align:left;border:1px solid var(--border);border-bottom:2px solid var(--border2);}
+.cmp-table td{padding:9px 14px;border:1px solid #edf0f4;vertical-align:top;font-size:13px;line-height:1.6;}
+.cmp-table tr:hover td{background:#fafbfc;}
+.row-live td:first-child{border-left:3px solid var(--positive);}
+.row-upcoming td:first-child{border-left:3px solid var(--primary);}
+
+.report-footer{text-align:center;margin-top:40px;font-size:12px;color:var(--text-muted);padding-top:16px;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-kr" onclick="setLang('kr')">KR</button>
+  <button id="btn-cn" onclick="setLang('cn')">CN</button>
+</div>
+
+<!-- ══ HEADER ══ -->
+<div class="report-header">
+  <div class="header-eyebrow">Tencent Games · Annual Games Showcase · <span class="txt-cn">综合情报报告</span><span class="txt-kr">2026 텐센트 연 계획 컨퍼런스 발표 내용</span></div>
+  <div class="header-title">
+    <span class="header-spark">SPARK</span>
+    <span class="txt-cn">2026 腾讯游戏年度发布会</span>
+    <span class="txt-kr">2026 텐센트 연 계획 컨퍼런스 발표 내용</span>
+  </div>
+  <div class="header-sub">
+    <span class="txt-cn">2026年5月27日（周二）20:00 · 线上直播 · 全程约2小时</span>
+    <span class="txt-kr">2026년 5월 27일 20:00 · 온라인 생방송 · 약 2시간</span>
+  </div>
+  <div class="header-stats">
+    <div class="hstat">
+      <div class="hstat-val">42<span class="txt-cn">款</span><span class="txt-kr">개</span></div>
+      <div class="hstat-label txt-cn">游戏参展</div><div class="hstat-label txt-kr">게임 참가</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">45<span class="txt-cn">项</span><span class="txt-kr">건</span></div>
+      <div class="hstat-label txt-cn">重磅更新</div><div class="hstat-label txt-kr">주요 업데이트</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">29<span class="txt-cn">位</span><span class="txt-kr">명</span></div>
+      <div class="hstat-label txt-cn">开发者（含16位外籍）</div><div class="hstat-label txt-kr">개발자（외국인 16명 포함）</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">15<span class="txt-cn">款</span><span class="txt-kr">개</span></div>
+      <div class="hstat-label txt-cn">新品首曝</div><div class="hstat-label txt-kr">신작 첫 공개</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">3<span class="txt-cn">大</span><span class="txt-kr">대</span></div>
+      <div class="hstat-label txt-cn">篇章：制作·发行·投资</div><div class="hstat-label txt-kr">섹션: 제작·배급·투자</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUMMARY ══ -->
+<div class="summary-box">
+  <div class="summary-box-title">📋 <span class="txt-cn">发布会概述</span><span class="txt-kr">발표회 개요</span></div>
+  <ul>
+    <li>
+      <span class="txt-cn">5月27日晚8点，SPARK 2026腾讯游戏年度发布会线上举行，分"制作""发行""投资"三大篇章，并首设"One More Thing"环节，共42款海内外游戏公布最新动态，29位游戏开发者参与。</span>
+      <span class="txt-kr">5월 27일 저녁 8시, SPARK 2026 연례 발표회 온라인 개최. '제작·배급·투자' 3대 섹션과 신설 'One More Thing' 코너로 구성, 42개 게임 최신 동향 발표.</span>
+    </li>
+    <li>
+      <span class="txt-cn">本次发布会有三条主线：深度挖掘IP价值、加速全球化布局、将AI真正用进游戏里。</span>
+      <span class="txt-kr">이번 발표회의 3대 핵심 방향: IP 가치 심화, 글로벌화 가속, AI를 게임에 실제 적용.</span>
+    </li>
+    <li>
+      <span class="txt-cn">2026年Q1财报显示，腾讯国内游戏流水同比增长近6%，国际市场收入188亿元（+13%）；长青游戏阵容从2022年6款增至2025年15款。</span>
+      <span class="txt-kr">2026년 Q1 실적: 국내 게임 매출 YoY +6%, 국제 시장 수익 188억 위안(+13%); 장수 게임 라인업 2022년 6개→2025년 15개.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ══ KPI ══ -->
+<div class="kpi-grid">
+  <div class="kpi-card c1">
+    <div class="kpi-label txt-cn">制作篇</div><div class="kpi-label txt-kr">Production</div>
+    <div class="kpi-val">16<span style="font-size:16px;font-weight:600;" class="txt-cn">款</span><span style="font-size:16px;font-weight:600;" class="txt-kr">개</span></div>
+    <div class="kpi-desc txt-cn">天美/光子/魔方/北极光/拳头/CDD</div>
+    <div class="kpi-desc txt-kr">개 게임 · TiMi/Photon/Morefun/NExT/Riot/CDD</div>
+  </div>
+  <div class="kpi-card c2">
+    <div class="kpi-label txt-cn">发行篇</div><div class="kpi-label txt-kr">Publishing</div>
+    <div class="kpi-val">17<span style="font-size:16px;font-weight:600;" class="txt-cn">款</span><span style="font-size:16px;font-weight:600;" class="txt-kr">개</span></div>
+    <div class="kpi-desc txt-cn">含8款新品首曝</div>
+    <div class="kpi-desc txt-kr">8개 신작 첫 공개 포함</div>
+  </div>
+  <div class="kpi-card c3">
+    <div class="kpi-label txt-cn">投资篇</div><div class="kpi-label txt-kr">Investment</div>
+    <div class="kpi-val">9<span style="font-size:16px;font-weight:600;" class="txt-cn">款</span><span style="font-size:16px;font-weight:600;" class="txt-kr">개</span></div>
+    <div class="kpi-desc txt-cn">6家海内外工作室·16位外籍开发者</div>
+    <div class="kpi-desc txt-kr">6개 국내외 스튜디오·외국인 개발자 16명</div>
+  </div>
+  <div class="kpi-card c4">
+    <div class="kpi-label txt-cn">One More Thing</div><div class="kpi-label txt-kr">One More Thing</div>
+    <div class="kpi-val">3<span style="font-size:16px;font-weight:600;" class="txt-cn">项</span><span style="font-size:16px;font-weight:600;" class="txt-kr">개</span></div>
+    <div class="kpi-desc txt-cn">NDGI全球光照开源·代号Craft·数字景德镇</div>
+    <div class="kpi-desc txt-kr">NDGI 조명 오픈소스·코드명 Craft·디지털 징더전</div>
+  </div>
+</div>
+
+<!-- ══ STRATEGY ══ -->
+<div class="section-title">
+  <div class="section-icon blue">🧭</div>
+  <span class="txt-cn">从发布会看腾讯游戏战略方向</span>
+  <span class="txt-kr">텐센트 게임 전략 방향 · Tencent Game Strategy Takeaways</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- Strategy grid: 2x2 layout -->
+<div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:6px;">
+  <!-- S1 -->
+  <div class="strategy-card s1">
+    <div class="strategy-num">01</div>
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+      <span style="font-size:20px;">🏆</span>
+      <span class="strategy-title txt-cn" style="margin-bottom:0;">深挖IP价值·长青游戏战略</span>
+      <span class="strategy-title txt-kr" style="margin-bottom:0;">IP 가치 심화·장수 게임 전략</span>
+    </div>
+    <div class="strategy-body">
+      <span class="txt-cn">腾讯正将IP从"单一产品标识"升级为"可跨媒介、跨场景持续产生价值的战略资产"。长青游戏从2022年6款增至2025年15款，Q1《王者荣耀》《和平精英》《三角洲行动》流水均创新高。</span>
+      <span class="txt-kr">텐센트는 IP를 '단일 제품 식별자'에서 '전략 자산'으로 격상. 장수 게임 2022년 6개→2025년 15개; Q1 주요 타이틀 매출 신기록.</span>
+      <ul>
+        <li><span class="txt-cn"><strong>影视+线下IP化：</strong>《和平精英》推出真人电影/动画/真人剧计划；《英雄联盟》IP沉浸式音乐秀《双城之战》登陆上海长期驻演，将数字IP转化为线下文旅消费场景。</span><span class="txt-kr"><strong>영상+오프라인 IP화:</strong> 화평정영 실사 영화·애니메이션·드라마 계획 발표; LoL IP 몰입형 뮤직쇼 아케인 상하이 장기 공연 시작, 디지털 IP→오프라인 문화 소비 공간으로 전환.</span></li>
+        <li><span class="txt-cn"><strong>IP联名扩展：</strong>《三角洲行动》×景德镇御窑博物院、《英雄联盟手游》×NBA China等文化IP跨界；育碧多款IP通过腾讯K9合作部深度运营（《刺客信条：黑旗重置》《彩虹六号》《舞力全开》）。</span><span class="txt-kr"><strong>IP 크로스오버:</strong> 삼각주행동×징더전 어요박물관, LoL Mobile×NBA China 등 문화 IP 협업; 유비소프트 다수 IP를 텐센트 K9 협력부를 통해 심화 운영.</span></li>
+        <li><span class="txt-cn"><strong>布局新品类：</strong>《粒粒的小人国》布局生活模拟赛道；《虚环》开创V圈（虚拟偶像）策略养成垂类；《异人之下》国漫IP改编真3D格斗，预约突破3000万；《归环》首创多周目循环剧情二次元GaaS（长线运营游戏）产品。</span><span class="txt-kr"><strong>신규 트랙 개척:</strong> Tiny World 생활 시뮬; VirtuRing (虚环) 버추얼 아이돌 육성; Under One Person (异人之下) 3D 격투 3천만 예약; Guihuan 멀티 루프 GaaS.</span></li>
+        <li><span class="txt-cn"><strong>产品梯队策略：</strong>成熟产品持续迭代守住基本盘，测试中的产品逐步打磨推向市场，研发中的新产品则在射击、国漫IP、细分垂类三个方向同时布局。长青游戏持续供血→充足试错预算→新游跑出长青产品，形成正循环。</span><span class="txt-kr"><strong>제품 계층 전략:</strong> 성숙 제품 지속 업데이트로 기반 유지, 테스트 중인 제품 순차 출시, 신작은 슈팅·국산 애니 IP·세분화 버티컬 세 방향 동시 포진. 장수 게임 공급→실험 예산→신작 성장의 선순환.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="strategy-card s2">
+    <div class="strategy-num">02</div>
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+      <span style="font-size:20px;">🌍</span>
+      <span class="strategy-title txt-cn" style="margin-bottom:0;">全球化布局·从投资到参与研发</span>
+      <span class="strategy-title txt-kr" style="margin-bottom:0;">글로벌화 · 투자에서 공동 개발 참여로</span>
+    </div>
+    <div class="strategy-body">
+      <span class="txt-cn">发布会上全球上线产品占比<strong>69%</strong>（2024年61%→2025年63%→2026年69%），稳步提升；2026 Q1国际游戏收入188亿元（+13%）。</span>
+      <span class="txt-kr">글로벌 출시 제품 비율 <strong>69%</strong>(2024년 61%→2025년 63%→2026년 69%) 꾸준히 상승; Q1 국제 게임 수익 188억 위안(+13%).</span>
+      <ul>
+        <li><span class="txt-cn"><strong>研发深度介入：</strong>《控制：共振》因腾讯参与成为Remedy史上本地化程度最高作品；《彩虹六号：攻势》国服底层反作弊和匹配系统由腾讯负责；《星际战甲》获得英国腾讯工作室协助研发。</span><span class="txt-kr"><strong>개발 심화 참여:</strong> 'Control: Resonance' Remedy 역대 최고 현지화; 'Rainbow Six: Siege' 국내 서버 안티치트·매칭 시스템 텐센트 담당; Warframe 영국 텐센트 스튜디오 지원.</span></li>
+        <li><span class="txt-cn"><strong>育碧K9合作模式：</strong>腾讯成立K9合作部负责育碧IP在中国市场的运营，同时协助育碧成立子公司做长期IP管理，本次发布会亮相3款育碧IP产品。</span><span class="txt-kr"><strong>유비소프트 K9 협력 모델:</strong> 텐센트 K9 협력부가 유비소프트 IP 중국 시장 운영 담당, 동시에 유비소프트 장기 IP 관리를 위한 자회사 설립 지원, 이번 발표회에 유비소프트 IP 3개 등장.</span></li>
+        <li><span class="txt-cn"><strong>投资生态成熟：</strong>近年投资成绩包括《博德之门3》TGA年度游戏、《POE2》连续5周登顶Steam畅销榜、《消逝的光芒：困兽》预购破百万；Miniclip通过腾讯支持成长为全球休闲游戏巨头。</span><span class="txt-kr"><strong>투자 생태 성숙:</strong> 최근 성과: 발더스게이트3 TGA GOTY, PoE2 Steam 5주 연속 1위, 다잉라이트 더비스트 예약 100만 돌파; Miniclip 글로벌 캐주얼 게임 거인으로 성장.</span></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="strategy-card s3">
+    <div class="strategy-num">03</div>
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+      <span style="font-size:20px;">🤖</span>
+      <span class="strategy-title txt-cn" style="margin-bottom:0;">AI战略：以"体验提升"为第一性原理</span>
+      <span class="strategy-title txt-kr" style="margin-bottom:0;">AI 전략: '체험 향상'을 제1원칙으로</span>
+    </div>
+    <div class="strategy-body">
+      <span class="txt-cn">本次发布会共有<strong>9款</strong>游戏更新了AI进展；腾讯将AI定位为"提升玩家体验"而非单纯"降本提效"，与国外厂商AIGC资产生产的思路形成明显差异。</span>
+      <span class="txt-kr">이번 발표에서 <strong>9개</strong> 게임이 AI 진전 업데이트(글로벌 주요 발표회 중 이례적); 텐센트는 AI를 '플레이어 체험 향상'으로 포지셔닝, 해외 업체의 AIGC 자산 생산 방향과 명확히 차별화.</span>
+      <ul>
+        <li><span class="txt-cn"><strong>AI NPC情感化：</strong>《和平精英》AI队友"小田"实现工具型→情感型升级，具备独立故事背景与记忆功能；AI NPC累计体验用户1.1亿。《王者荣耀》AI灵宝支持局内实时操作建议+局外互动。</span><span class="txt-kr"><strong>AI NPC 감성화:</strong> 화평정영 AI 동반자 '샤오톈' 도구형→감성형 업그레이드, 독립 스토리 배경·기억 기능 탑재; AI NPC 누적 체험 1.1억 명. 왕자영요 AI 링바오, 게임 내 실시간 조작 조언 및 게임 외 상호작용 지원.</span></li>
+        <li><span class="txt-cn"><strong>AI助手赋能游戏运营：</strong>《流放之路：降临》上线国服WeGame AI助手"蛋蛋君"，提供BD智能推荐、市集装备实时分析、深度收益拆解，将复杂硬核内容门槛大幅降低。</span><span class="txt-kr"><strong>AI 어시스턴트로 운영 강화:</strong> '유배의 길: 강림' WeGame AI 어시스턴트 '단단쥔' 출시, BD 추천·장비 실시간 분석·수익 해석으로 하드코어 콘텐츠 진입 장벽 대폭 낮춤.</span></li>
+        <li><span class="txt-cn"><strong>AI反作弊：</strong>《彩虹六号：攻势》等竞技游戏引入AI实时监测作弊，提升竞技公平性与玩家体验；腾讯将AI反作弊能力作为向外输出的技术支持之一。</span><span class="txt-kr"><strong>AI 안티치트:</strong> '레인보우식스' 등 경쟁 게임에 AI 실시간 치트 감지 도입, 경쟁 공정성 향상; 텐센트의 외부 기술 지원 역량 중 하나로 자리잡음.</span></li>
+        <li><span class="txt-cn"><strong>NDGI全面开源：</strong>腾讯旗下MagicDawn发布全球首个跨平台神经动态全局光照方案，让游戏画面光影效果更真实、更动态，并将这套技术完全免费开放给全行业开发者使用。</span><span class="txt-kr"><strong>NDGI 전면 오픈소스:</strong> 텐센트 MagicDawn, 세계 최초 크로스 플랫폼 신경 동적 전역 조명 솔루션 발표 및 전면 오픈소스화, 전 업계 개발자에게 무료 제공.</span></li>
+        <li><span class="txt-cn"><strong>代号Craft AI创作平台：</strong>腾讯自研AI游戏创作工具，用户只需输入文字描述，AI便能自动生成可以玩的游戏雏形，同时提供超过一万种免费游戏美术素材，近期开启首测。</span><span class="txt-kr"><strong>코드명 Craft AI 창작 플랫폼:</strong> 텐센트 자체개발 AI 게임 창작 도구, 텍스트 입력만으로 플레이 가능한 게임 프로토타입 자동 생성, 1만종+ 무료 아트 에셋 제공, 곧 첫 테스트 개시.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ GAME DETAILS TABS ══ -->
+<div class="section-title">
+  <div class="section-icon">🎮</div>
+  <span class="txt-cn">重点游戏详情</span>
+  <span class="txt-kr">주요 게임 상세 · Key Game Details</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="tab-bar" id="gameTabs">
+  <button class="tab-btn t0 active" data-tab="0">
+    <span class="txt-cn">🛠 制作篇</span><span class="txt-kr">🛠 Production</span>
+  </button>
+  <button class="tab-btn t1" data-tab="1">
+    <span class="txt-cn">📦 发行篇</span><span class="txt-kr">📦 Publishing</span>
+  </button>
+  <button class="tab-btn t2" data-tab="2">
+    <span class="txt-cn">💼 投资篇</span><span class="txt-kr">💼 Investment</span>
+  </button>
+  <button class="tab-btn t3" data-tab="3">
+    <span class="txt-cn">✨ One More Thing</span><span class="txt-kr">✨ One More Thing</span>
+  </button>
+</div>
+
+<!-- ════ PANEL 0: 制作篇 ════ -->
+<div class="tab-panel content-card active" data-panel="0">
+
+  <!-- 王者荣耀 -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《王者荣耀》</span><span class="game-name txt-kr">왕자영요</span>
+        <span class="game-sub txt-cn">Honor of Kings</span><span class="game-sub txt-kr">왕자영요</span>
+        <span class="badge b-culture txt-cn">文创皮肤</span><span class="badge b-culture txt-kr">Cultural Skin</span>
+        <span class="badge b-update txt-cn">AI赋能</span><span class="badge b-update txt-kr">AI</span>
+        <span class="badge b-esport txt-cn">电竞赛事</span><span class="badge b-esport txt-kr">E-Sports</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">MOBA</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">天美工作室</span><span class="meta-pill mp-studio txt-kr">TiMi 스튜디오</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">将上线以中国古建筑为设计灵感的文创皮肤；宣布与阅文集团继续战略合作，知名IP角色将有机会进入游戏。</span><span class="txt-kr">중국 고건축 영감의 문화 창작 스킨 출시; 웨원그룹과의 전략적 협력 지속, IP 캐릭터 게임 등장 예정.</span></li>
+        <li><span class="txt-cn"><strong>AI赋能：</strong>AI陪伴"灵宝"将实现局内外全天候沉浸式陪伴，支持对局互动聊天，限时推出达人定制款；AI解说已上线，通过"腾讯开悟"人工智能全球公开赛探索科研新领域。</span><span class="txt-kr"><strong>AI 강화:</strong> AI 동반자 '링바오' 24시간 몰입형 동반자로 진화, 대화형 인터랙션 지원; AI 해설 온라인 출시; '텐센트 개오' AI 글로벌 공개 대회를 통해 과학 연구 새 분야 탐색.</span></li>
+        <li><span class="txt-cn"><strong>赛事布局：</strong>周年庆嘉年华落地大湾区，2026 KPL年度总决赛落地成都，举办首个十周年特展。</span><span class="txt-kr"><strong>이벤트:</strong> 주년 기념 축제·가니발 광둥-홍콩-마카오 대만구 개최, 2026 KPL 연간 결승전 청두 개최, 10주년 특별 전시회 진행.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 和平精英 -->
+  <div class="game-item" style="border-left:4px solid var(--spark);background:linear-gradient(90deg,#fff7ed 0%,#fff 60%);border-radius:0 var(--radius) var(--radius) 0;">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《和平精英》</span><span class="game-name txt-kr">화평정영</span>
+        <span class="game-sub txt-cn">PUBG Mobile CN</span><span class="game-sub txt-kr">화평정영</span>
+        <span class="badge b-ai txt-cn">AI NPC 1.1亿</span><span class="badge b-ai txt-kr">AI NPC 1.1억</span>
+        <span class="badge b-update txt-cn">暑期革新</span><span class="badge b-update txt-kr">Summer Update</span>
+        <span class="badge b-collab txt-cn">IP影视化</span><span class="badge b-collab txt-kr">IP Media</span>
+        <span class="badge b-new txt-cn">UGC AI创作</span><span class="badge b-new txt-kr">UGC AI</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Shooting / BR</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">光子工作室</span><span class="meta-pill mp-studio txt-kr">Photon 스튜디오</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">披露2026暑期版本革新计划：暑期玩法升级、绿洲启元创作生态、AI明星队友、重磅IP联动、IP影视计划（真人电影+动画+真人剧）、刺激之夜城市官宣等。</span><span class="txt-kr">2026년 여름 혁신 계획 공개: 게임플레이 업그레이드, 오아시스 창작 생태계, AI 스타 동반자, IP 영상화 계획(실사영화+애니+드라마), 도시 관련 발표.</span></li>
+        <li><span class="txt-cn"><strong>AI里程碑：</strong>推出行业内首个由策略大模型驱动的AI明星队友"小田"，AI功能从工具型→情感型升级，已具备独立故事背景与记忆功能；AI NPC玩法累计体验用户已达<strong>1.1亿</strong>。</span><span class="txt-kr"><strong>AI 이정표:</strong> 업계 최초 전략 대형 모델 기반 AI 스타 동반자 '샤오톈' 출시, 도구형→감성형 업그레이드, 누적 체험 유저 <strong>1.1억 명</strong>.</span></li>
+        <li><span class="txt-cn"><strong>UGC创作：</strong>绿洲启元已实装业内首个UGC全链路AI创作助手，从场景生成到玩法配置仅需<strong>15分钟</strong>。</span><span class="txt-kr"><strong>UGC 창작:</strong> 오아시스, 업계 최초 UGC 풀체인 AI 창작 어시스턴트 탑재, 씬→게임플레이→납품 전 과정 <strong>15분</strong>.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 三角洲行动 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《三角洲行动》</span><span class="game-name txt-kr">Delta Force</span>
+        <span class="game-sub txt-cn">Delta Force</span><span class="game-sub txt-kr">Delta Force</span>
+        <span class="badge b-culture txt-cn">文化联动</span><span class="badge b-culture txt-kr">Cultural Collab</span>
+        <span class="badge b-new txt-cn">数字文创首项目</span><span class="badge b-new txt-kr">First Digital Culture Project</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">Shooting / 搜打撤</span><span class="meta-pill mp-type txt-kr">Shooting / Extraction</span>
+        <span class="meta-pill mp-plat txt-cn">移动端/PC端</span><span class="meta-pill mp-plat txt-kr">Mobile/PC</span>
+        <span class="meta-pill mp-studio txt-cn">天美J3工作室</span><span class="meta-pill mp-studio txt-kr">TiMi J3 스튜디오</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">正式官宣与景德镇御窑博物院联动，作为《三角洲行动》<strong>首个数字文创跨界项目</strong>，以游戏为载体开展馆藏珍品"数字活化"，将传统瓷器文化以年轻化语境创新传播。</span><span class="txt-kr">징더전 어요박물관과의 컬래버 공식 발표, 삼각주행동의 <strong>첫 번째 디지털 문화 크로스오버 프로젝트</strong>로 게임을 매개로 소장품 '디지털 활성화' 실천, 전통 도자기 문화를 젊은 세대 언어로 혁신 전파.</span></li>
+        <li><span class="txt-cn">首期内容将高精度复刻"大明成化素三彩鸭形香熏"（"岁岁鸭"）等馆藏珍品，于游戏"宝藏月"主题活动期间正式上线。</span><span class="txt-kr">첫 콘텐츠: '대명 성화 소삼채 오리 향훈기'('세세압') 등 고정밀 복제, '보물의 달' 이벤트 기간 출시.</span></li>
+        <li><span class="txt-cn">此次文创联动是腾讯将"游戏+传统文化"纳入IP活化策略的典型体现。</span><span class="txt-kr">이번 문화 창작 협업은 텐센트가 '게임+전통문화'를 IP 활성화 전략에 편입시킨 전형적 사례.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 暗区突围 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《暗区突围》/ 《暗区突围：无限》</span><span class="game-name txt-kr">Arena Breakout / Arena Breakout: Infinite</span>
+        <span class="game-sub txt-cn">Arena Breakout / Infinite</span><span class="game-sub txt-kr">Arena Breakout / Infinite</span>
+        <span class="badge b-update txt-cn">S18 新版本</span><span class="badge b-update txt-kr">S18 New Season</span>
+        <span class="badge b-new txt-cn">新地图 湾区</span><span class="badge b-new txt-kr">New Map: Bay Area</span>
+        <span class="badge b-collab txt-cn">生化模式</span><span class="badge b-collab txt-kr">Bio Mode</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">Shooting / 搜打撤</span>
+        <span class="meta-pill mp-plat txt-cn">移动端/PC端</span><span class="meta-pill mp-plat txt-kr">Mobile/PC</span>
+        <span class="meta-pill mp-studio txt-cn">魔方工作室</span><span class="meta-pill mp-studio txt-kr">모팡 스튜디오</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>手游S18"原爆点"：</strong>公布全新双模式地图"湾区"，团队赴全球多地实地取景，是游戏上线以来玩法最多样、生态最包容的地图；S18赛季PV中生化病毒泄露，老角色德尔文回归。</span><span class="txt-kr"><strong>Mobile S18 '원폭점':</strong> 신규 듀얼모드 맵 '베이 에어리어' 공개, 전 세계 현지 촬영 진행, 역대 가장 다양한 전술 선택 가능.</span></li>
+        <li><span class="txt-cn"><strong>端游S5"异变"：</strong>《暗区突围：无限》首款射击端游发布S5超自然主题玩法，全新异变山谷地图上线，玩家可获得无敌、陷阱、致盲等特殊异能；战神锦标赛同期举办。</span><span class="txt-kr"><strong>PC S5 '이변':</strong> S5 초자연 테마 신규 게임플레이, 신규 이변 협곡 맵, 무적·함정·실명 등 특수 능력 획득 가능.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 英雄联盟系列 -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《英雄联盟》IP系列</span><span class="game-name txt-kr">League of Legends IP Series</span>
+        <span class="game-sub txt-cn">League of Legends / LoL Mobile / TFT / 双城音乐秀</span><span class="game-sub txt-kr">LoL / LoL Mobile / TFT / 아케인 뮤직쇼</span>
+        <span class="badge b-esport txt-cn">电竞</span><span class="badge b-esport txt-kr">E-Sports</span>
+        <span class="badge b-new txt-cn">上海驻演</span><span class="badge b-new txt-kr">Shanghai Residency</span>
+        <span class="badge b-collab txt-cn">NBA联动</span><span class="badge b-collab txt-kr">NBA Collab</span>
+        <span class="badge b-update txt-cn">7周年TFT</span><span class="badge b-update txt-kr">TFT 7th Anniv.</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">MOBA / IP</span>
+        <span class="meta-pill mp-plat txt-cn">PC+移动端</span><span class="meta-pill mp-plat txt-kr">PC+Mobile</span>
+        <span class="meta-pill mp-studio">Riot Games</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>LoL端游：</strong>2026年第二赛季对海克斯大乱斗进行重要更新（技能强化机制与成长系统）；BLG拿下2026全球先锋赛冠军，LPL两队直通季中赛淘汰赛；全球总决赛年末在美国举行。</span><span class="txt-kr"><strong>LoL PC:</strong> 2026년 시즌2 우르프 모드 주요 업데이트(스킬 강화 메커니즘·성장 시스템 추가); BLG 2026 글로벌 파이오니어 우승, LPL 2팀 미드시즌 토너먼트 직행; 월드 챔피언십 연말 미국 개최.</span></li>
+        <li><span class="txt-cn"><strong>LoL手游：</strong>携手NBA China、景德镇青花瓷跨界联动，推出湖人/凯尔特人/勇士球队限定皮肤；全新"变猫彩蛋"限时开启；5月29日超级联赛常规赛重回线下。</span><span class="txt-kr"><strong>LoL Mobile:</strong> NBA China·청화 도자기 컬래버, 팀 한정 스킨 출시; 5월 29일 슈퍼 리그 오프라인 복귀.</span></li>
+        <li><span class="txt-cn"><strong>云顶之弈/金铲铲：</strong>云顶7周年"时光机"模式回归，S16"恭喜发财"模式上线；金铲铲6月17日"怪兽入侵"赛季重返，七城全民赛事开启。</span><span class="txt-kr"><strong>TFT/금삽삽:</strong> TFT 7주년 '타임머신' 귀환, S16 '공희발재' 출시; 금삽삽 6/17 '몬스터 침공' 시즌, 7개 도시 리그.</span></li>
+        <li><span class="txt-cn"><strong>《双城之战》沉浸式音乐秀：</strong>全球首部LoL IP沉浸式互动音乐秀，已登陆上海长期驻演，暑期迎来百场狂欢；120分钟体验，1:1复刻皮城街道；现场真唱30余首原声（含《孤勇者》《Enemy》）；由拳头监修，Punchdrunk联合创制。</span><span class="txt-kr"><strong>'아케인' 몰입형 뮤직쇼:</strong> LoL IP 세계 최초 몰입형 인터랙티브 뮤직쇼, 상하이 장기 공연 시작; 120분, 1:1 필트오버 거리 복제; 30곡+ 라이브.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 无畏契约 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《无畏契约》系列</span><span class="game-name txt-kr">Valorant Series</span>
+        <span class="game-sub txt-cn">Valorant PC + Valorant Mobile</span><span class="game-sub txt-kr">Valorant PC + Valorant Mobile</span>
+        <span class="badge b-esport txt-cn">伦敦大师赛</span><span class="badge b-esport txt-kr">London Masters</span>
+        <span class="badge b-update txt-cn">6/11 手游新版本</span><span class="badge b-update txt-kr">6/11 Mobile Update</span>
+        <span class="badge b-global txt-cn">公益行动</span><span class="badge b-global txt-kr">Public Welfare</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Tactical Shooting</span>
+        <span class="meta-pill mp-plat txt-cn">PC+移动端</span><span class="meta-pill mp-plat txt-kr">PC+Mobile</span>
+        <span class="meta-pill mp-studio">Riot Games</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>端游：</strong>公布全新皮肤套装"逆命中队"；6月6日开启伦敦大师赛观赛及竞猜活动；发布2026公益行动回响计划"听见回响"，关注听障群体。</span><span class="txt-kr"><strong>PC:</strong> 신규 스킨 세트 '역명 중대'; 6/6 런던 마스터즈 관전 이벤트; 청각장애인 공익 캠페인 '소리를 듣다' 발표.</span></li>
+        <li><span class="txt-cn"><strong>手游：</strong>6月11日开启全新版本，推出<strong>新英雄"幻棱"、新地图"幽邃地窟"</strong>，上线智能助手提升用户体验。</span><span class="txt-kr"><strong>Mobile:</strong> 6/11 신버전, 신규 요원 '환링', 신규 맵 '유수지굴', 스마트 어시스턴트 탑재.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 使命召唤手游 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《使命召唤手游》</span><span class="game-name txt-kr">Call of Duty Mobile</span>
+        <span class="game-sub txt-cn">Call of Duty Mobile</span><span class="game-sub txt-kr">Call of Duty Mobile</span>
+        <span class="badge b-collab txt-cn">P5R联动 7月</span><span class="badge b-collab txt-kr">P5R Collab July</span>
+        <span class="badge b-update txt-cn">暑期线下活动</span><span class="badge b-update txt-kr">Summer Offline Events</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">FPS</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">天美J3·动视</span><span class="meta-pill mp-studio txt-kr">TiMi J3·Activision</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">项目组承诺多人对战、使命战场、DMZ禁区三大玩法持续更新，持续优化匹配系统和操作手感。</span><span class="txt-kr">멀티플레이어·워존·DMZ 세 모드 지속 업데이트, 매칭 시스템 및 조작감 최적화 약속.</span></li>
+        <li><span class="txt-cn">首次曝光即将在<strong>7月</strong>上线的《女神异闻录5皇家版》联动；7月、8月将举办多场线下活动。</span><span class="txt-kr"><strong>7월</strong> '페르소나 5 로얄' 컬래버 최초 공개; 7~8월 오프라인 이벤트 다수 예정.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 逆战：未来 / 异人之下 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《逆战：未来》</span><span class="game-name txt-kr">Ni Zhan: Future (逆战：未来)</span>
+        <span class="badge b-collab txt-cn">浪浪山联动</span><span class="badge b-collab txt-kr">Langlanshan Collab</span>
+        <span class="badge b-collab txt-cn">无主之地 S3</span><span class="badge b-collab txt-kr">Borderlands S3</span>
+        <span class="badge b-new txt-cn">太空战概念</span><span class="badge b-new txt-kr">Space Battle Concept</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">PVE Shooting</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">天美J3</span><span class="meta-pill mp-studio txt-kr">TiMi J3</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">公布即将上线的"浪浪山"联动内容，以及S3赛季与《无主之地》的联动（除经典角色外还将开启局内外循环玩法机制）；太空战概念设计首次亮相。</span><span class="txt-kr">'랑랑산' 컬래버 및 S3 '보더랜드' 컬래버(국내외 순환 게임플레이 메커니즘 포함); 우주 전투 컨셉 디자인 최초 공개.</span></li>
+      </ul>
+
+      <div class="game-header" style="margin-top:12px;">
+        <span class="game-name txt-cn">《异人之下》</span><span class="game-name txt-kr">Under One Person (异人之下)</span>
+        <span class="badge b-new txt-cn">预约破3000万</span><span class="badge b-new txt-kr">30M Pre-reg</span>
+        <span class="badge b-update txt-cn">3D格斗</span><span class="badge b-update txt-kr">3D Fighting</span>
+        <span class="badge b-collab txt-cn">国漫IP改编</span><span class="badge b-collab txt-kr">CN Anime IP</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">3D Action</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">魔方工作室·动漫IP</span><span class="meta-pill mp-studio txt-kr">Morefun · Anime IP</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">改编自现象级国漫IP《一人之下》的3D格斗竞技新游，首次曝光"全性攻山"核心剧情（动漫中全性四张狂突袭龙虎山）；全网预约用户已突破<strong>3000万</strong>，预约可获六重奖励。</span><span class="txt-kr">국산 애니 IP Under One Person(异人之下)을 원작으로 한 3D 격투 신작, '전성공산' 핵심 스토리 최초 공개(전성 사장광이 룽후산 기습하는 장면); 전 네트워크 사전 예약 <strong>3천만 명</strong> 돌파, 예약 시 6중 보상 제공.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /panel 0 -->
+
+<!-- ════ PANEL 1: 发行篇 ════ -->
+<div class="tab-panel content-card" data-panel="1">
+
+  <!-- 卡厄思梦境 -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《卡厄思梦境》</span><span class="game-name txt-kr">Caos Dream (卡厄思梦境)</span>
+        <span class="badge b-new txt-cn">5月28日正式公测</span><span class="badge b-new txt-kr">5/28 출시</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">Roguelite 卡牌</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">Smilegate SUPER CREATIVE开发/腾讯发行</span><span class="meta-pill mp-studio txt-kr">Smilegate SUPER CREATIVE/텐센트 배급</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">黑暗幻想题材Roguelite卡牌构筑游戏，5月28日正式公测上线。国服玩家可抢先体验具有东方神秘色彩的限定角色"绯"，构筑专属强力牌组，众多全新玩法内容同步上线。</span><span class="txt-kr">다크 판타지 로그라이트 카드 빌딩 게임, 5월 28일 정식 출시. 중국 서버 전용 동양 신비 캐릭터 '비' 선체험 가능.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 弧光猎人 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《弧光猎人》（ARC Raiders）</span><span class="game-name txt-kr">ARC Raiders</span>
+        <span class="badge b-new txt-cn">国服预约开启</span><span class="badge b-new txt-kr">CN 사전예약 중 Open</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">3rd Person PVPVE / 搜打撤</span><span class="meta-pill mp-type txt-kr">3rd Person PVPVE / Extraction</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio txt-cn">Embark Studios开发/腾讯代理</span><span class="meta-pill mp-studio txt-kr">Embark Studios/텐센트 대리</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">Embark Studios研发的第三人称PVPVE射击游戏，5月27日正式开启国服预约。玩家扮演Raiders（奇袭者），在极端末日环境中搜物资、做任务，并在与ARC机器势力的对抗中存活——典型<strong>搜打撤结构</strong>，强调高压环境下的战场决策与随机事件博弈，具备强烈的系统驱动型射击特征。展示了国服全新定制内容。</span><span class="txt-kr">Embark Studios 개발 3인칭 PVPVE 슈터, 5/27 국내 서버 사전예약 시작. 플레이어가 레이더가 되어 극한 말일 환경에서 자원 수집·임무 수행·ARC와의 전투로 생존하는 <strong>서치·킬·탈출 구조</strong>. 강력한 시스템 기반 슈팅 특성, 국내 전용 콘텐츠 공개.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DNF端游 & 手游 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《地下城与勇士：创新世纪》/ 《地下城与勇士：起源》</span><span class="game-name txt-kr">DNF: New Era / DNF: Origin</span>
+        <span class="badge b-update txt-cn">DNF双端更新</span><span class="badge b-update txt-kr">DNF Dual Update</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">ARPG / MMO</span>
+        <span class="meta-pill mp-plat txt-cn">PC端/移动端</span><span class="meta-pill mp-plat txt-kr">PC/Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">Neople/腾讯·亿级用户IP</span><span class="meta-pill mp-studio txt-kr">Neople/Tencent·억급 유저 IP</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>端游《创新世纪》：</strong>运营超18年的经典端游，本次公布全新军团本《末世录》于<strong>5月28日</strong>上线，持续强化高端战斗内容与长期挑战深度，是老牌端游长青能力的典型体现。</span><span class="txt-kr"><strong>PC DNF 창신세기:</strong> 18년 이상 서비스 중인 클래식 PC 게임, 신규 레이드 '말세록' <strong>5월 28일</strong> 출시, 고급 전투 콘텐츠·장기 챌린지 지속 강화.</span></li>
+        <li><span class="txt-cn"><strong>手游《起源》：</strong>公布下半年三大结构性调整——①<strong>乐趣体验刷新</strong>（提升核心战斗趣味性）；②<strong>更自由的交易和经济流通体系</strong>（优化游戏内经济生态）；③<strong>玩家体验改善和场景拓展</strong>（扩展可探索内容）。</span><span class="txt-kr"><strong>모바일 기원:</strong> 하반기 3대 구조적 조정 발표 — ①<strong>재미 체험 리뉴얼</strong> ②<strong>더 자유로운 거래·경제 유통 체계</strong> ③<strong>플레이어 체험 개선·씬 확장</strong>.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 战术小队 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《战术小队：破晓攻势》（Squad: Dawn Offensive）</span><span class="game-name txt-kr">Squad: Dawn Offensive</span>
+        <span class="badge b-new txt-cn">国服预约+测试招募</span><span class="badge b-new txt-kr">국내 사전Pre-order + Beta</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">拟真军事射击</span><span class="meta-pill mp-type txt-kr">밀리터리 슈터</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio txt-cn">Offworld Industries（加拿大）/腾讯代理</span><span class="meta-pill mp-studio txt-kr">Offworld Industries(캐나다)/텐센트 대리</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">由加拿大Offworld Industries开发、腾讯代理运营的多兵种协同专业军事射击游戏，主打高度拟真战场体验、团队协作机制与<strong>50v50大规模战场</strong>玩法，强化信息组织与军团协作深度，国服预约正式开启，同步开放测试招募。</span><span class="txt-kr">캐나다 Offworld Industries 개발, 텐센트 대리 운영. 다병종 협동 밀리터리 슈터, <strong>50v50 대규모 전장</strong>, 정보 조직·군단 협력 심화. 중국 서버 사전예약 시작, 테스트 모집 동시 오픈.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 失控进化 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《失控进化》</span><span class="game-name txt-kr">Rust Mobile (失控进化)</span>
+        <span class="badge b-update txt-cn">7月9日全平台</span><span class="badge b-update txt-kr">7/9 출시 전 플랫폼</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">生存对抗 SOC</span>
+        <span class="meta-pill mp-plat txt-cn">移动端/PC端</span><span class="meta-pill mp-plat txt-kr">Mobile/PC</span>
+        <span class="meta-pill mp-studio txt-cn">无端科技/腾讯·《Rust》正版授权</span><span class="meta-pill mp-studio txt-kr">무단과기/텐센트·Rust 라이선스</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">腾讯发行、《Rust》玩法正版授权的多端互通生存对抗游戏，将于<strong>7月9日</strong>全平台上线；具备跨端互通能力，在手游主导的中国市场尝试延伸PC端生存竞技玩法。</span><span class="txt-kr">Rust 게임플레이 정식 라이선스의 생존 대전 게임, <strong>7월 9일</strong> 전 플랫폼 출시; 크로스 플랫폼 호환.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 舞力全开 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《舞力全开：派对》</span><span class="game-name txt-kr">Just Dance: Party</span>
+        <span class="badge b-new txt-cn">7月2日上线</span><span class="badge b-new txt-kr">7/2 출시</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Music / Dance</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">育碧/腾讯·官方授权</span><span class="meta-pill mp-studio txt-kr">Ubisoft/Tencent·공식 라이선스</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">育碧《舞力全开》系列IP官方授权移动端新作，<strong>7月2日</strong>正式上线；无需外设，仅凭手机即可体感舞蹈；引入AI共创编舞功能；卡路里计算功能全新升级。</span><span class="txt-kr">유비소프트 저스트댄스 IP 공식 라이선스 모바일 신작, <strong>7/2</strong> 출시; 외부 장비 불필요; AI 공동 창작 안무 기능 도입.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DNF卡赞 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《地下城与勇士：卡赞》</span><span class="game-name txt-kr">The First Berserker: Khazan</span>
+        <span class="game-sub txt-cn">The First Berserker: Khazan</span><span class="game-sub txt-kr">The First Berserker: Khazan</span>
+        <span class="badge b-new txt-cn">首次亮相</span><span class="badge b-new txt-kr">첫 등장</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">3D单机 ARPG</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio txt-cn">Neople/Nexon/腾讯·DNF首款单机</span><span class="meta-pill mp-studio txt-kr">Neople/Nexon/Tencent·DNF 최초 싱글</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">DNF IP首款3D动作单机游戏，故事设定在DNF主线800年前的阿拉德大陆，讲述大将军卡赞的复仇史诗；全3D化阿拉德中高强度动作战斗，支持完美闪避、精准格挡和多流派套装构筑。</span><span class="txt-kr">DNF IP 최초 3D 액션 싱글 게임, DNF 메인 스토리 <strong>800년 전</strong> 배경, 카잔의 복수 서사; 완벽 회피·정밀 가드·다양한 빌드 지원.</span></li>
+        <li><span class="txt-cn">（备注：该作2025年3月海外先行上线，Steam 90%好评率，上线首日登全球畅销榜TOP3，发布会公布了国服动态。）</span><span class="txt-kr">(참고: 2025년 3월 해외 선출시, Steam 90% 호평, 출시 첫날 전 세계 판매 TOP3; 이번 발표회에서 국내 서버 동향 발표.)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 彩虹六号 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《彩虹六号：攻势》（Rainbow Six: Siege）</span><span class="game-name txt-kr">Rainbow Six: Siege</span>
+        <span class="badge b-new txt-cn">国服首测6月17日</span><span class="badge b-new txt-kr">CN First Test 6/17</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Tactical Shooting</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio txt-cn">育碧开发/腾讯代理·深度技术介入</span><span class="meta-pill mp-studio txt-kr">Ubisoft 개발/텐센트 대리·기술 심화 참여</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">国服定名《彩虹六号：攻势》，将于6月17日开启国服首测。育碧将国服底层反作弊系统和匹配系统重组均交由腾讯负责，AI反作弊实时监测，是腾讯技术能力输出的典型案例。</span><span class="txt-kr">국내 서버명 'Rainbow Six: Siege', 6/17 국내 첫 테스트. 유비소프트가 <strong>국내 서버 핵심 안티치트 및 매칭 시스템</strong>을 텐센트에 위임, AI 안티치트 실시간 감지.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 流放之路：降临 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《流放之路：降临》（Path of Exile 2）</span><span class="game-name txt-kr">Path of Exile 2</span>
+        <span class="badge b-update txt-cn">年底转免+AI助手</span><span class="badge b-update txt-kr">F2P Year-end + AI Assist</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">ARPG</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio txt-cn">GGG研发/WeGame发行</span><span class="meta-pill mp-studio txt-kr">GGG / WeGame</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">正式宣告<strong>年底开启全面转免</strong>，本次更新为游戏有史以来最大力度版本迭代，打造超过50小时的全新生态内容。</span><span class="txt-kr"><strong>연말 완전 무료화</strong> 공식 발표, 역대 최대 규모 버전 업데이트, 50시간 이상 신규 생태 콘텐츠 제공.</span></li>
+        <li><span class="txt-cn">推出国服专属WeGame AI助手<strong>"蛋蛋君"</strong>：提供千人千面BD智能推荐、市集装备实时分析、深度收益拆解，将复杂ARPG策略内容转化为直观体验，大幅降低硬核玩法门槛。</span><span class="txt-kr">국내 전용 WeGame AI 어시스턴트 <strong>'단단쥔'</strong> 출시: 개인화 BD 추천·장비 실시간 분석·수익 해석으로 하드코어 ARPG 진입 장벽 대폭 낮춤.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 穿越火线系列 -->
+  <div class="game-item" style="border-left:3px solid #fed7aa;background:linear-gradient(90deg,#fffbf7 0%,#fff 50%);border-radius:0 var(--radius) var(--radius) 0;">
+    <div style="display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:2px 8px;margin-bottom:6px;"><span class="txt-cn">⚔️ 和平精英同赛道竞品</span><span class="txt-kr">⚔️ 화평정영 Competitor</span></div>
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《穿越火线》系列（CrossFire / CF Mobile）</span><span class="game-name txt-kr">CrossFire Series</span>
+        <span class="badge b-update txt-cn">暑期重磅更新</span><span class="badge b-update txt-kr">Summer Major Update</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Shooting</span>
+        <span class="meta-pill mp-plat txt-cn">PC端/移动端</span><span class="meta-pill mp-plat txt-kr">PC/Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">Smilegate/腾讯</span><span class="meta-pill mp-studio txt-kr">Smilegate/텐센트</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>CF端游：</strong>生化模式新增每回合自选随机Buff系统；怀旧模式生化更新（救世主模式+30人终结者模式）；竞技优化：5张地图投掷训练、"新沙漠灰"/"新黑色城镇"进驻排位池、全新竞技信息辅助系统暑期上线；新增英雄级AK103。</span><span class="txt-kr"><strong>CF PC:</strong> 생화학 모드 매 라운드 랜덤 버프 자유 선택; 레트로 생화학 업데이트(구세주 모드·30인 터미네이터 복귀); 경쟁 최적화 다수; 영웅급 AK103 추가.</span></li>
+        <li><span class="txt-cn"><strong>CF高清大区：</strong>新挑战地图《失落之城》+生化地图《蒸汽城》上线；全新原创女角色艾娃+神秘新武器登场。</span><span class="txt-kr"><strong>CF HD:</strong> 신규 챌린지 맵 '로스트 시티'+생화학 맵 '스팀 시티'; 신규 여성 캐릭터 에바+신무기.</span></li>
+        <li><span class="txt-cn"><strong>《穿越火线：枪战王者》：</strong>5月21日《灵笼》联动上线；《环太平洋》×《鬼吹灯》分别于8、9月上线；11月新生计划引擎升级带来全新品质。</span><span class="txt-kr"><strong>CF Mobile '건전왕자':</strong> 5/21 '케이지' 컬래버; 8·9월 '퍼시픽 림'·'귀취등'; 11월 리뉴얼(엔진 업그레이드).</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FC足球 & 虚环 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《FC足球世界》/ 《FC Online》</span><span class="game-name txt-kr">EA FC Mobile / FC Online</span>
+        <span class="badge b-update txt-cn">「世界之巅」年度版本</span><span class="badge b-update txt-kr">'월드 서밋' 연간 버전</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Sports / Football</span>
+        <span class="meta-pill mp-plat txt-cn">移动端/PC端</span><span class="meta-pill mp-plat txt-kr">Mobile/PC</span>
+        <span class="meta-pill mp-studio txt-cn">EA/腾讯</span><span class="meta-pill mp-studio txt-kr">EA/텐센트</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">推出「世界之巅」年度版本；双端新增快速匹配模式（无需养成直接开赛）；《FC Online》更新顶级球队球星与建模；《FC足球世界》推出秒级对战；2026年电竞全民大众赛开启。</span><span class="txt-kr">'월드 서밋' 연간 테마 버전; 양 플랫폼 빠른 매칭 모드 동시 출시; FC Online 국가대표·선수 업그레이드; FC Mobile 초고속 매치; 2026년 내 e스포츠 대중 대회 개막.</span></li>
+      </ul>
+
+      <div class="game-header" style="margin-top:12px;">
+        <span class="game-name txt-cn">《虚环》</span><span class="game-name txt-kr">VirtuRing (虚环)</span>
+        <span class="badge b-new txt-cn">首款V圈垂类游戏</span><span class="badge b-new txt-kr">최초 Virtual Idol Vertical</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type txt-cn">策略养成</span><span class="meta-pill mp-type txt-kr">전략 육성</span>
+        <span class="meta-pill mp-plat txt-cn">移动端</span><span class="meta-pill mp-plat txt-kr">Mobile</span>
+        <span class="meta-pill mp-studio txt-cn">腾讯CDD工作室</span><span class="meta-pill mp-studio txt-kr">Tencent CDD Studio</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">专属V圈（虚拟偶像）的强战斗演出策略养成游戏，游戏角色在真实世界中都是V圈主播，在平行世界"虚环"中是改变世界的战斗偶像；宣发策略与端内文案处处彰显V圈抽象文化，是业内<strong>首次聚焦V圈文化的游戏产品</strong>，完成首次小范围测试获好评，今年将开启新测试与线下试玩活动。</span><span class="txt-kr">버추얼 아이돌 전용 전략 육성 게임, 캐릭터가 현실의 V튜버이자 평행 세계 전투 아이돌; 홍보·게임 내 텍스트 전면에 버츄얼 문화 반영, 업계 <strong>최초 V튜버 문화 게임</strong>; 첫 테스트 호평 후 올해 신규 테스트·오프라인 체험 예정.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /panel 1 -->
+
+<!-- ════ PANEL 2: 投资篇 ════ -->
+<div class="tab-panel content-card" data-panel="2">
+
+  <!-- 控制共振 -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《控制：共振》（Control: Resonance）</span><span class="game-name txt-kr">Control: Resonance</span>
+        <span class="badge b-global txt-cn">完整简中配音</span><span class="badge b-global txt-kr">완전 CN Dub</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Action RPG</span>
+        <span class="meta-pill mp-plat txt-cn">PC端/主机端</span><span class="meta-pill mp-plat txt-kr">PC/Console</span>
+        <span class="meta-pill mp-studio txt-cn">Remedy Entertainment（芬兰）</span><span class="meta-pill mp-studio txt-kr">Remedy Entertainment(핀란드)</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">Remedy Entertainment开发的动作RPG，2026年PC及主机发售。玩家化身迪伦·法登，探索现实法则被扭曲的异变曼哈顿，掌握超自然能力与形态变幻武器"异变体"。</span><span class="txt-kr">Remedy 개발 액션 RPG, 2026년 내 PC 및 콘솔 발매. 플레이어가 딜런 파든이 되어 현실 법칙이 뒤틀린 맨해튼을 탐험, 초자연 능력 구사.</span></li>
+        <li><span class="txt-cn">成为Remedy<strong>本地化程度最高</strong>的作品，提供完整简体中文配音、界面及字幕支持——得益于腾讯在研发过程中的深度参与。</span><span class="txt-kr">Remedy <strong>역대 최고 현지화 수준</strong> 달성, 완전 간체자 더빙·UI·자막 지원 — 텐센트의 개발 과정 심화 참여 덕분.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 刺客信条 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《刺客信条：黑旗 记忆重置》</span><span class="game-name txt-kr">Assassin's Creed: Black Flag Memory Reset</span>
+        <span class="badge b-global txt-cn">全面重制</span><span class="badge b-global txt-kr">Full Remaster</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Action Adventure</span>
+        <span class="meta-pill mp-plat txt-cn">PC端/主机端</span><span class="meta-pill mp-plat txt-kr">PC/Console</span>
+        <span class="meta-pill mp-studio txt-cn">育碧（法国）/腾讯参与</span><span class="meta-pill mp-studio txt-kr">Ubisoft(프랑스)/텐센트 참여</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">经典之作《刺客信条：黑旗》全面重制游戏正式亮相，大幅提升游戏画质，包含简体中文字幕及全程中文配音。本次腾讯参与中国区发行与本地化工作。</span><span class="txt-kr">어쌔신 크리드: 블랙 플래그 풀 리마스터 공식 공개, 그래픽 대폭 향상, 간체자 자막 및 전체 중국어 더빙 포함.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DayZ -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《DayZ》— "Badlands"资料片</span><span class="game-name txt-kr">DayZ — "Badlands" DLC</span>
+        <span class="badge b-update txt-cn">267㎢史上最大地图</span><span class="badge b-update txt-kr">267km² Largest Map</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Open World Survival</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio">Bohemia Interactive</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">宣布推出全新资料片"Badlands"，带来《DayZ》迄今规模最大的地图，总面积达<strong>267平方公里</strong>，提供全新边境荒野环境，为PvP与PvE玩法提供更多战术场景变化。</span><span class="txt-kr">신규 확장팩 'Badlands' 발표, DayZ 역대 최대 맵 <strong>267㎢</strong>, 새로운 국경 황야 환경, PvP/PvE 전술 다양화.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Arma Reforger -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《Arma Reforger》1.6版本</span><span class="game-name txt-kr">Arma Reforger v1.6</span>
+        <span class="badge b-update txt-cn">新战役+新地图</span><span class="badge b-update txt-kr">New Campaign + Map</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Military Sim Sandbox</span>
+        <span class="meta-pill mp-plat txt-cn">PC端</span><span class="meta-pill mp-plat txt-kr">PC</span>
+        <span class="meta-pill mp-studio">Bohemia Interactive</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">1.6版本带来专属单人战役"Omega行动"及免费新地图"Kolguyev"（崎岖地形，PvP/PvE战术多变）；即将推出的1.7版本将加入FIA抵抗军为全新可游玩阵营。</span><span class="txt-kr">1.6: 단독 캠페인 'Omega 작전', 무료 신규 맵 'Kolguyev'; 1.7: FIA 저항군 신규 진영 추가.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Cosmo Tales / 流放之路 -->
+  <div class="game-item">
+    
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《Cosmo Tales》/ 《流放之路：降临》/ 《沙丘：觉醒》</span><span class="game-name txt-kr">Cosmo Tales / Path of Exile 2 / Dune: Awakening</span>
+        <span class="badge b-global txt-cn">多国工作室参展</span><span class="badge b-global txt-kr">Multinational Studios</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>《Cosmo Tales》：</strong>复古科幻射击游戏，<strong>9月</strong>Steam抢先体验；驾驶灵感源自斯柯达1203的载具探索宇宙世界。</span><span class="txt-kr"><strong>Cosmo Tales:</strong> 레트로 SF 슈터, <strong>9월</strong> Steam 얼리 액세스; 스코다 1203 영감의 차량으로 우주 탐험.</span></li>
+        <li><span class="txt-cn"><strong>《流放之路：降临》（PoE 2）：</strong>Grinding Gear Games（新西兰）研发，2026年内开启先锋测试，WeGame发行。</span><span class="txt-kr"><strong>Path of Exile 2:</strong> Grinding Gear Games(뉴질랜드) 개발, 2026년 내 선봉 테스트, WeGame 배급.</span></li>
+        <li><span class="txt-cn"><strong>《沙丘：觉醒》：</strong>Funcom（挪威）开发，科幻开放世界多人在线生存游戏。已于5月19日推出1.4免费版本更新，带来<strong>两片全新大世界区域</strong>（含一座可自由探索的试验站）及兰兹拉德议会主题新系列任务；PVP已调整为完全可选模式，玩家可在PVP/PVE间自主切换，不参与对战也能完整体验全部终局内容。今年12月随沙丘3电影上线，IP矩阵将迎来爆发，更多重磅消息即将公布。</span><span class="txt-kr"><strong>Dune: Awakening:</strong> Funcom(노르웨이) 개발, SF 오픈월드 멀티 생존. 5/19 1.4 무료 업데이트 출시, <strong>신규 대형 월드 2개</strong>(탐험 가능 실험소 포함) 및 란즈라드 의회 신규 퀘스트 추가; PVP 완전 선택제로 전환, 참여 안 해도 모든 엔드게임 콘텐츠 이용 가능. 12월 Dune 3 개봉과 함께 IP 매트릭스 폭발적 성장 예고.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 湮灭之潮 -->
+  <div class="game-item">
+    <div class="game-body">
+      <div class="game-header">
+        <span class="game-name txt-cn">《湮灭之潮》</span><span class="game-name txt-kr">Eclipse Tide (湮灭之潮)</span>
+        <span class="badge b-new txt-cn">国产单机潜力股</span><span class="badge b-new txt-kr">CN Single-player Hotlist</span>
+      </div>
+      <div class="game-meta">
+        <span class="meta-pill mp-type">Action Adventure</span>
+        <span class="meta-pill mp-plat txt-cn">PC端/主机端</span><span class="meta-pill mp-plat txt-kr">PC/Console</span>
+        <span class="meta-pill mp-studio txt-cn">腾讯投资·国产大投资单机</span><span class="meta-pill mp-studio txt-kr">Tencent Investment·국산 대형 싱글 게임</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">Eclipse Glow Games研发的单机动作冒险游戏，制作人付坤披露正与各大芯片厂商及Epic在虚幻引擎底层、图形技术方面攻坚；TA负责人袁凯介绍了与英伟达驱动层联合优化的深度合作，腾讯提供技术支持。</span><span class="txt-kr">Eclipse Glow Games 개발·배급 싱글 액션 어드벤처, 제작자 푸쿤이 언리얼 엔진 기반·그래픽 기술·하드웨어 최적화 분야 기술 파트너십 공개; TA 위안카이가 엔비디아와의 드라이버 레벨 최적화 협력과 텐센트 기술 지원 언급.</span></li>
+        <li><span class="txt-cn">重磅消息：<strong>今年夏天将举办首次线下试玩活动</strong>，面向全体玩家开放报名，具体时间、地点与报名方式将通过官方渠道陆续公布。被业界视为国产单机游戏重要潜力股。</span><span class="txt-kr">핵심 발표: <strong>올여름 첫 번째 오프라인 시연 이벤트 개최</strong>, 모든 플레이어 대상 신청 접수 예정, 세부 일정·장소·신청 방법은 공식 채널을 통해 순차 공개. 국산 싱글 게임의 주요 기대작.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /panel 2 -->
+
+<!-- ════ PANEL 3: One More Thing ════ -->
+<div class="tab-panel" data-panel="3">
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;">
+    <div style="font-size:15px;font-weight:800;color:var(--text-dim);margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+      🤖 <span class="txt-cn">游戏AI技术 · 两大重磅产品</span><span class="txt-kr">Game AI Tech · 2 Key Products</span>
+      <span class="badge b-global txt-cn">全球首创</span><span class="badge b-global txt-kr">World First</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <!-- NDGI -->
+      <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--purple);border-radius:8px;padding:16px 18px;">
+        <span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;background:#ede9fe;color:#6d28d9;border:1px solid #c4b5fd;" class="txt-cn">图形技术 · 全面开源</span>
+        <span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;background:#ede9fe;color:#6d28d9;border:1px solid #c4b5fd;" class="txt-kr">Graphics · Open Source</span>
+        <div style="font-size:13px;font-weight:700;color:var(--text-dim);margin-bottom:8px;">
+          <span class="txt-cn">NDGI — 神经动态全局光照</span><span class="txt-kr">NDGI — 신경 동적 전역 조명 (Neural Dynamic Global Illumination)</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;" class="txt-cn">由MagicDawn发布，<strong>全球首个</strong>跨平台神经动态全局光照方案。将光照从固定规则升级为可学习模型，基于场景语义动态推断光照分布；收窄高低端设备画质差距；宣布<strong>全面开源</strong>，联合Arm深度适配2026最新一代Arm GPU，开启移动端AI渲染新时代。</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;" class="txt-kr">MagicDawn 발표, <strong>세계 최초</strong> 크로스 플랫폼 신경 동적 전역 조명. 조명을 고정 규칙에서 학습 가능 모델로 전환, 씬 시맨틱 기반 동적 분포 추론; 고·저사양 기기 간 화질 격차 축소; <strong>전면 오픈소스</strong>, Arm 협력 최신 GPU 적용, Mobile AI 렌더링 신시대.</div>
+      </div>
+      <!-- 代号Craft -->
+      <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--spark);border-radius:8px;padding:16px 18px;">
+        <span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;" class="txt-cn">AI创作平台 · 首测即将开启</span>
+        <span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;" class="txt-kr">AI 창작 플랫폼 · 첫 테스트 임박</span>
+        <div style="font-size:13px;font-weight:700;color:var(--text-dim);margin-bottom:8px;">
+          <span class="txt-cn">"代号Craft" — AI游戏创作平台</span><span class="txt-kr">"코드명 Craft" — AI 게임 창작 플랫폼</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;" class="txt-cn">腾讯生态发展部自研，用户仅需输入简单文字指令，AI便能快速搭建2D与3D多品类游戏雏形；平台内置完整AIGC工具，<strong>免费开放超万种预制美术资产</strong>；近期将开启官方首测。目标是将游戏开发门槛从专业工程师拉低至普通创作者。</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;" class="txt-kr">텐센트 생태 개발부 자체 개발, 간단한 텍스트 명령으로 2D/3D 게임 프로토타입 빠르게 구현; 완전한 AIGC 도구 내장, <strong>1만종+ 무료 아트 에셋</strong> 제공; 곧 첫 공식 테스트 개시. 게임 개발 장벽을 전문 엔지니어에서 일반 창작자로 낮추는 것이 목표.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-card" style="margin-top:0;border-radius:var(--radius);">
+    <div class="game-item" style="padding-top:0;">
+      
+      <div class="game-body">
+        <div class="game-header">
+          <span class="game-name txt-cn">《数字景德镇·瓷都小匠》</span><span class="game-name txt-kr">디지털 징더전 (数字景德镇·瓷都小匠)</span>
+          <span class="badge b-culture txt-cn">AI+文化遗产</span><span class="badge b-culture txt-kr">AI + Cultural Heritage</span>
+          <span class="badge b-new txt-cn">今夏上线</span><span class="badge b-new txt-kr">올여름 출시</span>
+        </div>
+        <div class="game-meta">
+          <span class="meta-pill mp-type txt-cn">模拟经营 小游戏</span><span class="meta-pill mp-type txt-kr">경영 시뮬 미니게임</span>
+          <span class="meta-pill mp-studio txt-cn">腾讯游戏+腾讯SSV+景德镇市官方</span><span class="meta-pill mp-studio txt-kr">텐센트 + SSV + 징더전 공식</span>
+        </div>
+        <ul class="bullet-list">
+          <li><span class="txt-cn">由腾讯游戏、腾讯SSV数字文化实验室联合景德镇市文旅局、景德镇御窑博物院、景德镇市申遗办共同打造，是<strong>官方首款瓷业经营小游戏</strong>。</span><span class="txt-kr">텐센트 게임·SSV 디지털 문화 연구소·징더전시 문화관광국·어요박물관·세계유산 신청 사무소 공동 제작, <strong>공식 최초 도자기 경영 미니게임</strong>.</span></li>
+          <li><span class="txt-cn">以模拟经营玩法为核心，玩家从学徒成长为窑主，收集近百款历代名瓷，沉浸式体验千年瓷业发展历程；结合"景德镇瓷业文化遗存"多模态AI数据集，应用AI数字人、AI 3D生成等技术。</span><span class="txt-kr">도제에서 가마 주인으로 성장, 역대 명도자기 100여 점 수집; 멀티모달 AI 데이터셋 활용, AI 디지털 인간·AI 3D 생성 기술 적용.</span></li>
+          <li><span class="txt-cn">这款游戏是腾讯将"游戏+传统文化数字化"作为公司社会责任与IP活化双重战略的典型落地案例。</span><span class="txt-kr">이 게임은 텐센트가 '게임+전통문화 디지털화'를 사회적 책임과 IP 활성화의 이중 전략으로 추진하는 전형적 사례.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div><!-- /panel 3 -->
+
+<!-- ══ TIMELINE ══ -->
+<div class="section-title">
+  <div class="section-icon green">📅</div>
+  <span class="txt-cn">同类竞品上线计划</span>
+  <span class="txt-kr">동류 경쟁작 출시 계획 · Competitor Release Schedule</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="tl-wrap">
+<p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-style:italic;">
+  <span class="txt-cn">以下为SPARK 2026发布会（5月27日）上公布的、与《和平精英》同赛道射击/BR/搜打撤竞品的后续内容与上线计划，时间均为2026年。</span>
+  <span class="txt-kr">SPARK 2026 발표회(2026년 5월 27일)에서 공개된 화평정영 동일 장르 경쟁작(슈팅/BR/서치킬탈출)의 출시 및 업데이트 계획입니다. 날짜는 모두 2026년 기준입니다.</span>
+</p>
+<table class="tl-table">
+  <thead>
+    <tr>
+      <th style="width:110px"><span class="txt-cn">时间</span><span class="txt-kr">Date</span></th>
+      <th><span class="txt-cn">游戏</span><span class="txt-kr">Game</span></th>
+      <th><span class="txt-cn">内容</span><span class="txt-kr">Content</span></th>
+      <th style="width:88px"><span class="txt-cn">类型</span><span class="txt-kr">Type</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 和平精英：第一位，橙色高亮 -->
+    <tr class="hl" style="border-left:3px solid var(--spark);">
+      <td class="td-date" style="color:var(--spark);font-weight:700;"><span class="txt-cn">暑期</span><span class="txt-kr">Summer</span></td>
+      <td class="td-game"><strong style="color:var(--spark);"><span class="txt-cn">《和平精英》</span><span class="txt-kr">화평정영</span></strong></td>
+      <td><span class="txt-cn">暑期版本革新：AI明星队友"小田"（策略大模型驱动，工具型→情感型）、绿洲启元UGC全链路AI创作助手（15分钟交付）、重磅IP联动、IP影视计划、刺激之夜城市官宣</span><span class="txt-kr">여름 버전 혁신: AI 동반자 '샤오톈'(전략 대형 모델 기반, 도구형→감성형), 오아시스 UGC 풀체인 AI 창작 도우미(15분 납품), 대형 IP 컬래버, IP 영상화 계획, 자극의 밤 도시 행사 발표</span></td>
+      <td><span class="badge b-ai txt-cn">暑期革新</span><span class="badge b-ai txt-kr">Summer Update</span></td>
+    </tr>
+    <!-- 三角洲行动：第二位 -->
+    <tr>
+      <td class="td-date"><span class="txt-cn">暑期（宝藏月）</span><span class="txt-kr">Summer (Treasure Month)</span></td>
+      <td class="td-game"><span class="txt-cn">《三角洲行动》</span><span class="txt-kr">Delta Force</span></td>
+      <td><span class="txt-cn">首个数字文创项目×景德镇御窑博物院上线：高精度复刻"大明成化素三彩鸭形香熏"（岁岁鸭）等馆藏珍品</span><span class="txt-kr">첫 번째 디지털 문화 크로스오버 프로젝트 × 징더전 어요박물관: '명나라 오리 향로' 등 소장품 고정밀 복원 아이템 게임 내 출시</span></td>
+      <td><span class="badge b-culture txt-cn">文化联动</span><span class="badge b-culture txt-kr">Cultural Collab</span></td>
+    </tr>
+    <!-- 以下按时间排序 -->
+    <tr class="hl">
+      <td class="td-date">5/27</td>
+      <td class="td-game"><span class="txt-cn">《弧光猎人》</span><span class="txt-kr">ARC Raiders</span></td>
+      <td><span class="txt-cn">国服正式开启预约，展示国服定制内容；PVPVE搜打撤射击游戏</span><span class="txt-kr">중국 서버 사전예약 시작, 중국 서버 전용 콘텐츠 공개; PVPVE 서치·킬·탈출 슈터</span></td>
+      <td><span class="badge b-new txt-cn">国服预约</span><span class="badge b-new txt-kr">CN 사전예약 중</span></td>
+    </tr>
+    <tr>
+      <td class="td-date">6/5</td>
+      <td class="td-game"><span class="txt-cn">《暗区突围》</span><span class="txt-kr">Arena Breakout</span></td>
+      <td><span class="txt-cn">S18"原爆点"体验服开启：全新双模式地图"湾区"，生化病毒泄露剧情；端游S5超自然主题新玩法同步</span><span class="txt-kr">S18 '원폭점' 체험 서버 오픈: 신규 듀얼 모드 맵 '베이 에어리어', 생화학 바이러스 스토리; PC S5 초자연 테마 신규 콘텐츠 동시 업데이트</span></td>
+      <td><span class="badge b-update txt-cn">新赛季</span><span class="badge b-update txt-kr">New Season</span></td>
+    </tr>
+    <tr class="hl">
+      <td class="td-date">6/6</td>
+      <td class="td-game"><span class="txt-cn">《无畏契约》</span><span class="txt-kr">Valorant</span></td>
+      <td><span class="txt-cn">伦敦大师赛观赛及竞猜活动开启；公布公益行动"听见回响"（关注听障群体）</span><span class="txt-kr">런던 마스터즈 관전 및 예측 이벤트 시작; 청각 장애인 위한 공익 캠페인 '회향을 듣다' 발표</span></td>
+      <td><span class="badge b-esport">E-Sport</span></td>
+    </tr>
+    <tr>
+      <td class="td-date">6/11</td>
+      <td class="td-game"><span class="txt-cn">《无畏契约》手游</span><span class="txt-kr">Valorant Mobile</span></td>
+      <td><span class="txt-cn">全新版本：新英雄"幻棱"、新地图"幽邃地窟"、智能助手上线</span><span class="txt-kr">신규 버전: 신규 요원 '환링', 신규 맵 '유수지굴', 스마트 어시스턴트 출시</span></td>
+      <td><span class="badge b-update txt-cn">版本更新</span><span class="badge b-update txt-kr">Update</span></td>
+    </tr>
+    <tr class="hl">
+      <td class="td-date">6/17</td>
+      <td class="td-game"><span class="txt-cn">《彩虹六号：攻势》</span><span class="txt-kr">Rainbow Six: Siege</span></td>
+      <td><span class="txt-cn">国服首测开启；腾讯负责底层反作弊与匹配系统</span><span class="txt-kr">중국 서버 첫 번째 베타 시작; 텐센트가 안티치트 및 매칭 시스템 담당</span></td>
+      <td><span class="badge b-new txt-cn">首次测试</span><span class="badge b-new txt-kr">First Beta</span></td>
+    </tr>
+    <tr>
+      <td class="td-date"><span class="txt-cn">7/（计划）</span><span class="txt-kr">July (est.)</span></td>
+      <td class="td-game"><span class="txt-cn">《使命召唤手游》</span><span class="txt-kr">Call of Duty Mobile</span></td>
+      <td><span class="txt-cn">《女神异闻录5皇家版》联动上线；7~8月举办多场线下活动</span><span class="txt-kr"><페르소나 5 로얄> 컬래버 출시; 7~8월 다수 오프라인 행사 개최</span></td>
+      <td><span class="badge b-collab txt-cn">联动</span><span class="badge b-collab txt-kr">Collab</span></td>
+    </tr>
+    <tr class="hl">
+      <td class="td-date">7/9</td>
+      <td class="td-game"><span class="txt-cn">《失控进化》</span><span class="txt-kr">Rust Mobile</span></td>
+      <td><span class="txt-cn">《Rust》玩法授权多端互通生存对抗游戏全平台上线</span><span class="txt-kr"><Rust> Rust 게임플레이 정식 라이선스 멀티 플랫폼 생존 대전 게임 전 플랫폼 출시</span></td>
+      <td><span class="badge b-new txt-cn">新游上线</span><span class="badge b-new txt-kr">New Launch</span></td>
+    </tr>
+    <tr class="hl">
+      <td class="td-date"><span class="txt-cn">持续更新</span><span class="txt-kr">Ongoing</span></td>
+      <td class="td-game"><span class="txt-cn">《穿越火线》系列</span><span class="txt-kr">CrossFire Series</span></td>
+      <td><span class="txt-cn">暑期重磅更新：CF端游生化模式新增每回合自选随机Buff、怀旧生化更新（救世主+30人终结者）、新排位地图；CFHD新地图《失落之城》+生化地图《蒸汽城》；CF手游《枪战王者》5月21日《灵笼》联动上线</span><span class="txt-kr">여름 대규모 업데이트: CF PC 생화학 모드 랜덤 버프 시스템 추가, 레트로 생화학 업데이트(구세주+30인 터미네이터), 신규 랭크 맵; CFHD 신규 맵; CF 모바일 5/21 '케이지' 컬래버 출시</span></td>
+      <td><span class="badge b-update txt-cn">暑期更新</span><span class="badge b-update txt-kr">Summer Update</span></td>
+    </tr>
+    <tr class="hl">
+      <td class="td-date"><span class="txt-cn">持续更新</span><span class="txt-kr">Ongoing</span></td>
+      <td class="td-game"><span class="txt-cn">《逆战：未来》</span><span class="txt-kr">Ni Zhan: Future</span></td>
+      <td><span class="txt-cn">即将上线"浪浪山"联动内容；S3赛季与《无主之地》联动（局内外循环玩法）；太空战概念设计首次亮相</span><span class="txt-kr">'랑랑산' 컬래버 콘텐츠 곧 출시; S3 시즌 보더랜드 컬래버(게임 내외 순환 플레이); 우주 전투 컨셉 디자인 최초 공개</span></td>
+      <td><span class="badge b-collab txt-cn">多联动</span><span class="badge b-collab txt-kr">Multi-Collab</span></td>
+    </tr>
+    <tr>
+      <td class="td-date"><span class="txt-cn">预约+测试招募中</span><span class="txt-kr">Pre-order + Beta</span></td>
+      <td class="td-game"><span class="txt-cn">《战术小队：破晓攻势》</span><span class="txt-kr">Squad: Dawn Offensive</span></td>
+      <td><span class="txt-cn">加拿大Offworld Industries开发，多兵种协同专业军事射击，50v50大规模战场；国服预约与测试招募同步开启</span><span class="txt-kr">Offworld Industries(캐나다) 개발, 다병종 협동 전문 밀리터리 슈터, 50v50 대규모 전장; 중국 서버 사전예약 및 테스트 모집 동시 시작</span></td>
+      <td><span class="badge b-new txt-cn">国服预约</span><span class="badge b-new txt-kr">CN 사전예약 중</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══ FULL GAME TABLE ══ -->
+<div class="section-title">
+  <div class="section-icon purple">📊</div>
+  <span class="txt-cn">全部参展游戏一览</span>
+  <span class="txt-kr">전체 참가 게임 일람 · Full Game Lineup</span>
+  <div class="section-line"></div>
+</div>
+
+<p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;font-style:italic;">
+  <span class="txt-cn">"加粗"为与《和平精英》同赛道的射击/BR/搜打撤竞品游戏。</span>
+  <span class="txt-kr">"굵게 표시" = 화평정영 동일 장르 경쟁작 (슈팅 / BR / 서치킬탈출).</span>
+</p>
+
+<div class="tab-nav" id="gameTableTabs" style="margin-bottom:0;">
+  <button class="tab-btn active" data-gtab="0">
+    <span class="txt-cn">🛠 制作篇</span><span class="txt-kr">🛠 Production</span>
+  </button>
+  <button class="tab-btn" data-gtab="1">
+    <span class="txt-cn">📦 发行篇</span><span class="txt-kr">📦 Publishing</span>
+  </button>
+  <button class="tab-btn" data-gtab="2">
+    <span class="txt-cn">💼 投资篇</span><span class="txt-kr">💼 Investment</span>
+  </button>
+</div>
+
+<!-- 制作篇 table -->
+<div class="tab-panel content-card" data-gtabpanel="0" style="active;border-radius:0 var(--radius) var(--radius) var(--radius);overflow-x:auto;">
+<table class="cmp-table">
+  <thead><tr>
+    <th><span class="txt-cn">游戏名称</span><span class="txt-kr">Game</span></th>
+    <th><span class="txt-cn">状态</span><span class="txt-kr">Status</span></th>
+    <th><span class="txt-cn">类型</span><span class="txt-kr">Type</span></th>
+    <th><span class="txt-cn">平台</span><span class="txt-kr">Platform</span></th>
+    <th><span class="txt-cn">研发</span><span class="txt-kr">Developer</span></th>
+  </tr></thead>
+  <tbody>
+    <!-- 已上线 -->
+    <tr class="row-live"><td><span class="txt-cn">王者荣耀</span><span class="txt-kr">왕자영요</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>MOBA</td><td><span class="txt-cn">移动端</span><span class="txt-kr">모바일</span></td><td><span class="txt-cn">腾讯天美</span><span class="txt-kr">Tencent TiMi</span></td></tr>
+    <tr class="row-live"><td><strong><span class="txt-cn">和平精英</span><span class="txt-kr">화평정영</span></strong></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Battle Royale</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">腾讯光子</span><span class="txt-kr">Tencent Photon</span></td></tr>
+    <tr class="row-live"><td><strong><span class="txt-cn">三角洲行动</span><span class="txt-kr">Delta Force</span></strong></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Shooting / Extraction</td><td><span class="txt-cn">移动端/PC</span><span class="txt-kr">Mobile/PC</span></td><td><span class="txt-cn">腾讯天美J3</span><span class="txt-kr">Tencent TiMi J3</span></td></tr>
+    <tr class="row-live"><td><strong><span class="txt-cn">使命召唤手游</span><span class="txt-kr">Call of Duty Mobile</span></strong></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>FPS</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">天美J3/动视</span><span class="txt-kr">TiMi J3/Activision</span></td></tr>
+    <tr class="row-live"><td><span class="txt-cn">逆战：未来</span><span class="txt-kr">Ni Zhan: Future</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>PVE Shooting</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">腾讯天美J3</span><span class="txt-kr">Tencent TiMi J3</span></td></tr>
+    <tr class="row-live"><td><strong><span class="txt-cn">暗区突围</span><span class="txt-kr">Arena Breakout</span></strong></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Extraction Shooter</td><td><span class="txt-cn">移动端/PC</span><span class="txt-kr">Mobile/PC</span></td><td><span class="txt-cn">腾讯魔方</span><span class="txt-kr">Tencent Morefun</span></td></tr>
+    <tr class="row-live"><td><span class="txt-cn">英雄联盟</span><span class="txt-kr">League of Legends</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>MOBA</td><td>PC</td><td>Riot Games</td></tr>
+    <tr class="row-live"><td><span class="txt-cn">英雄联盟手游</span><span class="txt-kr">LoL Mobile</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>MOBA</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td>Riot Games</td></tr>
+    <tr class="row-live"><td><strong><span class="txt-cn">无畏契约</span><span class="txt-kr">Valorant</span></strong></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Tactical Shooter</td><td>PC</td><td>Riot Games</td></tr>
+    <tr class="row-live"><td><span class="txt-cn">云顶之弈 / 金铲铲之战</span><span class="txt-kr">TFT / TFT Mobile</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Auto Chess</td><td><span class="txt-cn">PC/移动端</span><span class="txt-kr">PC/Mobile</span></td><td>Riot Games</td></tr>
+    <tr class="row-live"><td><span class="txt-cn">光与夜之恋</span><span class="txt-kr">Light and Night</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td><span class="txt-cn">女性向恋爱</span><span class="txt-kr">Otome</span></td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">腾讯北极光</span><span class="txt-kr">Tencent NExT Studios</span></td></tr>
+    <!-- 未上线 / 测试中 -->
+    <tr class="row-upcoming"><td><span class="txt-cn">粒粒的小人国</span><span class="txt-kr">Tiny World</span></td><td><span class="badge b-new txt-cn">测试中</span><span class="badge b-new txt-kr">In Testing</span></td><td><span class="txt-cn">生活模拟</span><span class="txt-kr">Life Sim</span></td><td><span class="txt-cn">移动端/Mac</span><span class="txt-kr">Mobile/Mac</span></td><td><span class="txt-cn">腾讯北极光</span><span class="txt-kr">Tencent NExT Studios</span></td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">虚环</span><span class="txt-kr">VirtuRing</span></td><td><span class="badge b-new txt-cn">测试中</span><span class="badge b-new txt-kr">In Testing</span></td><td><span class="txt-cn">策略养成</span><span class="txt-kr">Strategy RPG</span></td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">腾讯CDD</span><span class="txt-kr">Tencent CDD</span></td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">异人之下</span><span class="txt-kr">Under One Person</span></td><td><span class="badge b-new txt-cn">未上线</span><span class="badge b-new txt-kr">Upcoming</span></td><td>3D Action</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">腾讯魔方</span><span class="txt-kr">Tencent Morefun</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 发行篇 table -->
+<div class="tab-panel content-card" data-gtabpanel="1" style="border-radius:0 var(--radius) var(--radius) var(--radius);overflow-x:auto;">
+<table class="cmp-table">
+  <thead><tr>
+    <th><span class="txt-cn">游戏名称</span><span class="txt-kr">Game</span></th>
+    <th><span class="txt-cn">状态</span><span class="txt-kr">Status</span></th>
+    <th><span class="txt-cn">类型</span><span class="txt-kr">Type</span></th>
+    <th><span class="txt-cn">平台</span><span class="txt-kr">Platform</span></th>
+    <th><span class="txt-cn">研发/发行</span><span class="txt-kr">Dev / Publisher</span></th>
+  </tr></thead>
+  <tbody>
+    <!-- 已上线 -->
+    <tr class="row-live"><td><span class="txt-cn">地下城与勇士：创新世纪</span><span class="txt-kr">DNF: New Era</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>ARPG</td><td>PC</td><td><span class="txt-cn">Neople/腾讯</span><span class="txt-kr">Neople/Tencent</span></td></tr>
+    <tr class="row-live"><td><span class="txt-cn">地下城与勇士：起源</span><span class="txt-kr">DNF: Origin</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>ARPG Mobile</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">Neople/腾讯</span><span class="txt-kr">Neople/Tencent</span></td></tr>
+    <tr class="row-live"><td><span class="txt-cn">穿越火线系列</span><span class="txt-kr">CrossFire Series</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Shooting</td><td><span class="txt-cn">PC/移动端</span><span class="txt-kr">PC/Mobile</span></td><td><span class="txt-cn">Smilegate/腾讯</span><span class="txt-kr">Smilegate/Tencent</span></td></tr>
+    <tr class="row-live"><td><span class="txt-cn">FC足球世界 / FC Online</span><span class="txt-kr">EA FC Mobile / FC Online</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Sports</td><td><span class="txt-cn">移动端/PC</span><span class="txt-kr">Mobile/PC</span></td><td><span class="txt-cn">EA/腾讯</span><span class="txt-kr">EA/Tencent</span></td></tr>
+    <tr class="row-live"><td><span class="txt-cn">流放之路：降临 (PoE 2)</span><span class="txt-kr">Path of Exile 2</span></td><td><span class="badge b-update txt-cn">抢先体验</span><span class="badge b-update txt-kr">Early Access</span></td><td>ARPG</td><td>PC</td><td>GGG / WeGame</td></tr>
+    <!-- 有明确日期：按日期排序 -->
+    <tr class="row-upcoming"><td><span class="txt-cn">卡厄思梦境</span><span class="txt-kr">Caos Dream</span></td><td><span class="badge b-new txt-cn">5/28上线</span><span class="badge b-new txt-kr">Launch 5/28</span></td><td>Roguelite Card</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">Smilegate/腾讯</span><span class="txt-kr">Smilegate/Tencent</span></td></tr>
+    <tr class="row-upcoming"><td><strong><span class="txt-cn">彩虹六号：攻势</span><span class="txt-kr">Rainbow Six: Siege</span></strong></td><td><span class="badge b-new txt-cn">6/17首测</span><span class="badge b-new txt-kr">6/17 Beta</span></td><td>Tactical Shooter</td><td>PC</td><td><span class="txt-cn">育碧/腾讯</span><span class="txt-kr">Ubisoft/Tencent</span></td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">舞力全开：派对</span><span class="txt-kr">Just Dance: Party</span></td><td><span class="badge b-new txt-cn">7/2上线</span><span class="badge b-new txt-kr">7/2 Launch</span></td><td>Music Dance</td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">育碧/腾讯</span><span class="txt-kr">Ubisoft/Tencent</span></td></tr>
+    <tr class="row-upcoming"><td><strong><span class="txt-cn">失控进化</span><span class="txt-kr">Rust Mobile</span></strong></td><td><span class="badge b-new txt-cn">7/9上线</span><span class="badge b-new txt-kr">7/9 Launch</span></td><td>SOC Survival</td><td><span class="txt-cn">移动端/PC</span><span class="txt-kr">Mobile/PC</span></td><td><span class="txt-cn">无端科技/腾讯</span><span class="txt-kr">Wudan/Tencent</span></td></tr>
+    <!-- 无明确日期 -->
+    <tr class="row-upcoming"><td><strong><span class="txt-cn">弧光猎人 (ARC Raiders)</span><span class="txt-kr">ARC Raiders</span></strong></td><td><span class="badge b-new txt-cn">预约中</span><span class="badge b-new txt-kr">Pre-order</span></td><td>PVPVE Shooter</td><td>PC</td><td><span class="txt-cn">Embark/腾讯</span><span class="txt-kr">Embark/Tencent</span></td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">地下城与勇士：卡赞</span><span class="txt-kr">The First Berserker: Khazan</span></td><td><span class="badge b-new txt-cn">国服待定</span><span class="badge b-new txt-kr">CN TBD</span></td><td>ARPG Single</td><td>PC</td><td><span class="txt-cn">Neople/Nexon/腾讯</span><span class="txt-kr">Neople/Nexon/Tencent</span></td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">战术小队：破晓攻势</span><span class="txt-kr">Squad: Dawn Offensive</span></td><td><span class="badge b-new txt-cn">预约+测试</span><span class="badge b-new txt-kr">Pre-order + Beta</span></td><td><span class="txt-cn">拟真军事射击</span><span class="txt-kr">Military Sim</span></td><td>PC</td><td><span class="txt-cn">Offworld/腾讯</span><span class="txt-kr">Offworld/Tencent</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 投资篇 table -->
+<div class="tab-panel content-card" data-gtabpanel="2" style="border-radius:0 var(--radius) var(--radius) var(--radius);overflow-x:auto;">
+<table class="cmp-table">
+  <thead><tr>
+    <th><span class="txt-cn">游戏名称</span><span class="txt-kr">Game</span></th>
+    <th><span class="txt-cn">状态</span><span class="txt-kr">Status</span></th>
+    <th><span class="txt-cn">类型</span><span class="txt-kr">Type</span></th>
+    <th><span class="txt-cn">平台</span><span class="txt-kr">Platform</span></th>
+    <th><span class="txt-cn">研发商</span><span class="txt-kr">Developer</span></th>
+  </tr></thead>
+  <tbody>
+    <!-- 已上线 -->
+    <tr class="row-live"><td>DayZ</td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Survival</td><td>PC</td><td>Bohemia Interactive</td></tr>
+    <tr class="row-live"><td>Arma Reforger</td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Military Sim</td><td>PC</td><td>Bohemia Interactive</td></tr>
+    <tr class="row-live"><td><span class="txt-cn">星际战甲</span><span class="txt-kr">Warframe</span></td><td><span class="badge b-update txt-cn">已上线</span><span class="badge b-update txt-kr">Live</span></td><td>Shooting RPG</td><td>PC</td><td>Digital Extremes</td></tr>
+    <tr class="row-live"><td><span class="txt-cn">风屿奇航 (Everwind)</span><span class="txt-kr">Everwind</span></td><td><span class="badge b-update txt-cn">抢先体验</span><span class="badge b-update txt-kr">Early Access</span></td><td>Pixel Sandbox</td><td>PC</td><td>—</td></tr>
+    <!-- 有明确日期：按时间先后 -->
+    <tr class="row-upcoming"><td><span class="txt-cn">刺客信条：黑旗 记忆重置</span><span class="txt-kr">AC: Black Flag Memory Reset</span></td><td><span class="badge b-new txt-cn">7/9发售</span><span class="badge b-new txt-kr">7/9 Launch</span></td><td>Action Adventure</td><td><span class="txt-cn">PC/主机</span><span class="txt-kr">PC/Console</span></td><td>Ubisoft</td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">数字景德镇·瓷都小匠</span><span class="txt-kr">Digital Jingdezhen</span></td><td><span class="badge b-new txt-cn">今夏上线</span><span class="badge b-new txt-kr">Summer 2026</span></td><td><span class="txt-cn">模拟经营</span><span class="txt-kr">Sim</span></td><td><span class="txt-cn">移动端</span><span class="txt-kr">Mobile</span></td><td><span class="txt-cn">腾讯+景德镇官方</span><span class="txt-kr">Tencent + Jingdezhen</span></td></tr>
+    <tr class="row-upcoming"><td>Cosmo Tales</td><td><span class="badge b-new txt-cn">9月抢先体验</span><span class="badge b-new txt-kr">Sept. Early Access</span></td><td>Sci-Fi Shooter</td><td>PC</td><td>—</td></tr>
+    <!-- 无明确日期 -->
+    <tr class="row-upcoming"><td><span class="txt-cn">控制：共振</span><span class="txt-kr">Control: Resonance</span></td><td><span class="badge b-new txt-cn">2026年内</span><span class="badge b-new txt-kr">2026</span></td><td>Action RPG</td><td><span class="txt-cn">PC/主机</span><span class="txt-kr">PC/Console</span></td><td>Remedy Entertainment</td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">修仙时代</span><span class="txt-kr">Xiu Xian Era</span></td><td><span class="badge b-new txt-cn">暑期测试</span><span class="badge b-new txt-kr">Summer Test</span></td><td>Open World RPG</td><td><span class="txt-cn">移动端/PC</span><span class="txt-kr">Mobile/PC</span></td><td><span class="txt-cn">电魂/腾讯</span><span class="txt-kr">Dianhun/Tencent</span></td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">沙丘：觉醒</span><span class="txt-kr">Dune: Awakening</span></td><td><span class="badge b-new txt-cn">发布中</span><span class="badge b-new txt-kr">Upcoming</span></td><td>Open World Survival MMO</td><td>PC</td><td>Funcom</td></tr>
+    <tr class="row-upcoming"><td><span class="txt-cn">湮灭之潮</span><span class="txt-kr">Eclipse Tide</span></td><td><span class="badge b-new txt-cn">开发中</span><span class="badge b-new txt-kr">In Dev</span></td><td>Action Adventure</td><td><span class="txt-cn">PC/主机</span><span class="txt-kr">PC/Console</span></td><td>Eclipse Glow Games</td></tr>
+  </tbody>
+</table>
+</div>
+
+<script>
+(function(){
+  var tabs = document.getElementById('gameTableTabs');
+  var panels = document.querySelectorAll('[data-gtabpanel]');
+  // init: show first panel
+  panels.forEach(function(p,i){ p.classList.toggle('active', i===0); });
+  tabs.querySelectorAll('.tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var n = Number(btn.dataset.gtab);
+      tabs.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      panels.forEach(function(p){ p.classList.toggle('active', Number(p.dataset.gtabpanel)===n); });
+    });
+  });
+})();
+</script>
+
+<div class="report-footer">
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-kr', lang === 'kr');
+}
+document.addEventListener('DOMContentLoaded', function () {
+  // Default language: KR
+  setLang('kr');
+
+  var tabs = document.getElementById('gameTabs');
+  var panels = document.querySelectorAll('[data-panel]');
+  tabs.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var n = Number(btn.dataset.tab);
+      tabs.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      panels.forEach(function (p) { p.classList.toggle('active', Number(p.dataset.panel) === n); });
+    });
+  });
+});
+</script>
+</body>
+</html>
