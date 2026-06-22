@@ -704,6 +704,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toEl) { toEl.value = LAST_COMPLETE_MONTH.to; toEl.max = MAX_DATE; }
   const fromEl = document.getElementById('dateFrom');
   if (fromEl) { fromEl.value = LAST_COMPLETE_MONTH.from; fromEl.max = MAX_DATE; }
+  // Update header subtitle to reflect the actual default date range
+  if (typeof updateHeaderSub === 'function') updateHeaderSub();
   // 更新"2026년"和"전체"预设按钮的结束日期
   document.querySelectorAll('.preset-btn').forEach(btn => {
     const m = btn.getAttribute('onclick');
