@@ -396,15 +396,19 @@
 
   /* Hover panel */
   .hover-panel {
-    position: absolute; top: 0; right: 0;
-    background: #ffffff;
+    position: absolute; top: 8px; right: 8px; left: auto;
+    background: rgba(255,255,255,0.97);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 12px 14px;
-    min-width: 200px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    opacity: 0; transition: opacity 0.2s;
+    padding: 10px 13px;
+    min-width: 190px; max-width: 230px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    opacity: 0; transition: opacity 0.15s;
     pointer-events: none; z-index: 50;
+    backdrop-filter: blur(4px);
+  }
+  .hover-panel.panel-left {
+    right: auto; left: 8px;
   }
   .hover-panel.visible { opacity: 1; }
   .hover-date { font-size: 11px; color: var(--text-dim); margin-bottom: 8px; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); padding-bottom: 7px; }
@@ -1307,6 +1311,31 @@ function findPeakReason(gameKey, dateStr) {
   return searchEventsInRange(gameKey, fromDate, toDate);
 }
 
+
+// ── Vertical crosshair line at hovered position ────────────────────
+const crosshairPlugin = {
+  id: 'crosshairPlugin',
+  _hoverIdx: -1,
+  afterDraw(chart) {
+    const idx = crosshairPlugin._hoverIdx;
+    if (idx < 0) return;
+    const meta = chart.getDatasetMeta(0);
+    if (!meta || !meta.data || !meta.data[idx]) return;
+    const x = meta.data[idx].x;
+    const { ctx, chartArea: { top, bottom } } = chart;
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([4, 3]);
+    ctx.strokeStyle = 'rgba(100,100,100,0.35)';
+    ctx.lineWidth = 1;
+    ctx.moveTo(x, top);
+    ctx.lineTo(x, bottom);
+    ctx.stroke();
+    ctx.restore();
+  }
+};
+Chart.register(crosshairPlugin);
+
 const peakPlugin = {
   id: 'peakPlugin',
   afterDraw(chart) {
@@ -1430,6 +1459,7 @@ function buildChart() {
         if (!elements.length) { hideHoverPanel(); return; }
         showHoverPanel(elements[0].index);
       },
+      layout: { padding: { left: 0, right: 0, top: 8, bottom: 0 } },
       scales: {
         x: {
           grid: { color: 'rgba(0,0,0,0.07)', drawTicks: false },
@@ -1486,6 +1516,13 @@ function buildChart() {
 
 // ── HOVER PANEL ──────────────────────────────────────────────────────
 function showHoverPanel(idx) {
+  crosshairPlugin._hoverIdx = idx;
+  // Dynamic left/right: if hovering in right half → panel on LEFT, else on RIGHT
+  const panel = document.getElementById('hoverPanel');
+  if (panel && lastLabels.length > 0) {
+    const isRightHalf = idx >= lastLabels.length * 0.55;
+    panel.classList.toggle('panel-left', isRightHalf);
+  }
   const label = lastLabels[idx];
   if (!label) return;
   document.getElementById('hoverDate').textContent = formatLabelDate(label);
@@ -1521,6 +1558,8 @@ function showHoverPanel(idx) {
   document.getElementById('hoverPanel').classList.add('visible');
 }
 function hideHoverPanel() {
+  crosshairPlugin._hoverIdx = -1;
+  if (chart) chart.draw();
   document.getElementById('hoverPanel').classList.remove('visible');
 }
 // Hide panel when mouse leaves the entire chart card
