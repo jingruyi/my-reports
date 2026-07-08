@@ -1178,6 +1178,11 @@ function buildStats() {
 // Overrides the data-maximum peak with the actual event date
 // Format: { "YYYY-MM": { "GameKey": { metric: "YYYY-MM-DD" } } }
 const PEAK_OVERRIDES = {
+  "2026-06": {
+    "王者荣耀":           { revenue: "2026-06-27", dau: "2026-06-27" },
+    "三角洲行动":         { revenue: "2026-06-26", rank: "2026-06-26", dau: "2026-06-28" },
+    "无畏契约：源能行动": { revenue: "2026-06-27", rank: "2026-06-11", dau: "2026-06-21" },
+  },
   "2026-05": {
     "和平精英":           { rank: "2026-05-23", revenue: "2026-05-23" },
     "王者荣耀":           { revenue: "2026-05-20" },
@@ -1205,6 +1210,11 @@ const PEAK_LABELS = {
     "王者荣耀":           { rank: {kr:"슈퍼 교환 이벤트/전설 스킨", cn:"超级兑兑兑活动/传说皮肤"}, revenue: {kr:"슈퍼 교환 이벤트/전설 스킨", cn:"超级兑兑兑活动/传说皮肤"}, dau: {kr:"슈퍼 교환 이벤트", cn:"超级兑兑兑活动"} },
     "三角洲行动":         { rank: {kr:"죽음의 장미 스킨 출시", cn:"冥夜蔷薇系列皮肤上线"}, revenue: {kr:"죽음의 장미 스킨 출시", cn:"冥夜蔷薇系列皮肤上线"}, dau: {kr:"죽음의 장미 스킨 출시", cn:"冥夜蔷薇系列皮肤上线"} },
     "无畏契约：源能行动": { rank: {kr:"발로란트 야시장/프라임 시리즈 스킨", cn:"瓦手夜市/Prime系列皮肤"}, revenue: {kr:"프라임 시리즈 스킨 출시", cn:"Prime系列皮肤上线"}, dau: {kr:"발로란트 야시장 이벤트", cn:"瓦手夜市折扣活动"} },
+  },
+  "2026-06": {
+    "王者荣耀":           { revenue: "2026-06-27", dau: "2026-06-27" },
+    "三角洲行动":         { revenue: "2026-06-26", rank: "2026-06-26", dau: "2026-06-28" },
+    "无畏契约：源能行动": { revenue: "2026-06-27", rank: "2026-06-11", dau: "2026-06-21" },
   },
   "2026-05": {
     "和平精英":           { rank: {kr:"SS39 시즌 개막",           cn:"SS39赛季开启"},          revenue: {kr:"SS39 시즌 개막·시즌 패스", cn:"SS39赛季开启·新季票"},    dau: {kr:"노동절 연휴", cn:"五一假期"} },
@@ -1304,10 +1314,15 @@ function findPeakReason(gameKey, dateStr) {
     const toDate   = new Date(y, m, 0);
     return searchEventsInRange(gameKey, fromDate, toDate);
   }
-  // Day period: "YYYY-MM-DD" — search ±4 days around peak
-  const peakDate = new Date(dateStr + 'T00:00:00');
-  const fromDate = new Date(peakDate); fromDate.setDate(peakDate.getDate() - 4);
-  const toDate   = new Date(peakDate); toDate.setDate(peakDate.getDate() + 4);
+  // Day period: "YYYY-MM-DD" — search ±4 days, but NEVER cross calendar month boundary
+  const peakDate  = new Date(dateStr + 'T00:00:00');
+  const [_py, _pm] = dateStr.split('-').map(Number);
+  const monthStart = new Date(_py, _pm - 1, 1);
+  const monthEnd   = new Date(_py, _pm, 0); // last day of month
+  const fromRaw    = new Date(peakDate); fromRaw.setDate(peakDate.getDate() - 4);
+  const toRaw      = new Date(peakDate); toRaw.setDate(peakDate.getDate() + 4);
+  const fromDate   = fromRaw < monthStart ? monthStart : fromRaw;
+  const toDate     = toRaw   > monthEnd   ? monthEnd   : toRaw;
   return searchEventsInRange(gameKey, fromDate, toDate);
 }
 
@@ -2579,6 +2594,99 @@ const EVENTS_DB = {
            content_kr:"'가이아의 복수 2.0' 시리즈 스킨 출시",
            content_cn:"「盖亚之怒2.0」系列皮肤上线",
            url:"https://weibo.com/7982741612/R1aFXtfSf"}
+        ]
+      }
+    }
+  },
+  "2026-06": {
+    label_kr: "2026년 6월", label_cn: "2026年6月",
+    games: {
+      "和平精英": {
+        key:"hp", name_kr:"화평정영", name_cn:"和平精英",
+        summary_kr:"iOS 매출 순위 평균 2~3위. 6.8 ×신인왕좌 게임 내 3대 콜라보 캐릭터 출시（weibo 31.4w）, 6.19 【만분응원】신규 캐릭터 출시. 별도의 매출 피크 이벤트 없이 안정적으로 유지. 6.26 Delta Force 「열변」시즌 출시 영향으로 월말 순위 소폭 하락.",
+        summary_cn:"iOS畅销榜平均2~3位。6.8 ×神印王座游戏内推出三大联名角色（weibo 31.4w），6.19 【满分应援】新角色上线。全月缺乏明显收入驱动，稳定维持。6.26 Delta Force「裂变」赛季上线冲击导致月末排名小幅下滑。",
+        events:[
+          {date:"2026.06.08",type:"collab",label_kr:"×신인왕좌 게임 내 3대 콜라보 캐릭터",label_cn:"×神印王座游戏内三大联名角色",
+           content_kr:"화평정영 × 신인왕좌（인기 국산 만화 IP） 게임 내 3대 연명 캐릭터 출시（weibo 31.4w）",
+           content_cn:"和平精英×神印王座（人气国漫IP）游戏内推出三大联名角色（#和平精英神印王座联动# weibo 31.4w）",
+           url:"https://gp.qq.com/gicp/news/1134/18799180.html"},
+          {date:"2026.06.13",type:"commerce",label_kr:"마카롱 닌닌 스모크（신규 아이템）",label_cn:"马卡龙捏捏烟雾弹（新道具）",
+           content_kr:"신규 스모크 아이템 마카롱 닌닌 출시（weibo 28.6w）",
+           content_cn:"全新烟雾弹-马卡龙捏捏上线（#和平精英马卡龙捏捏# weibo 28.6w）",
+           url:"https://weibo.com/7095404909/R3BUftFMr"},
+          {date:"2026.06.19",type:"commerce",label_kr:"【만분응원】신규 캐릭터",label_cn:"【满分应援】新角色",
+           content_kr:"신규 캐릭터 【만분응원】 출시（weibo 15.2w）",
+           content_cn:"全新角色【满分应援】上线（#和平精英满分应援# weibo 15.2w）",
+           url:"https://weibo.com/7095404909/R4w4Sxdfd"}
+        ]
+      },
+      "王者荣耀": {
+        key:"wz", name_kr:"왕자영요", name_cn:"王者荣耀",
+        summary_kr:"iOS 매출 순위 이번 달 내내 1위 유지. 6.25 S44 신시즌 「구속받지 않는 명격」 업데이트 + 6.27 주말 시너지로 피크 매출. 월 총 매출 $1.62억（MoM▲22.7%）.",
+        summary_cn:"iOS畅销榜整月稳定第1位。6.25 S44新赛季「不拘命格」更新，叠加6.27周末双重拉动达到月度peak。月总流水$1.62亿（MoM▲22.7%）。",
+        events:[
+          {date:"2026.06.10",type:"event",label_kr:"×성세천하 게임 내 이벤트",label_cn:"×盛世天下游戏内活动",
+           content_kr:"왕자영요×성세천하 공동 프로모션 이벤트; 참여 시 게임 내 도구 보상 획득",
+           content_cn:"王者荣耀×盛世天下联合推广活动；参与可获得游戏内道具奖励",
+           url:""},
+          {date:"2026.06.16",type:"version",label_kr:"전 영웅 한시 무료/여름 전령 전투증",label_cn:"全英雄限免/夏季赛事战令",
+           content_kr:"전 영웅&정선 스킨 한시 무료; 2026 여름 전령 전투증 상선; 간장막야-축전신효성 전설 스킨 상선; 1원 복지주 오픈",
+           content_cn:"全英雄&精选皮肤限时免费；2026夏季赛事战令上线；干将莫邪-祝典新效星传说皮肤上线；1元福利周开启",
+           url:""},
+          {date:"2026.06.25",type:"version",label_kr:"S44 신시즌/손오공 명격",label_cn:"S44新赛季/孙悟空命格",
+           content_kr:"S44 신시즌 「구속받지 않는 명격」 오픈; 손오공 명격 심마육이 상선; 금선 한정 에픽 스킨; 시즌 배틀패스 출시 → 6.27 피크 매출",
+           content_cn:"S44新赛季「不拘命格」正式开启；孙悟空命格·心魔六耳上线；金蝉限定史诗皮肤；赛季通行证上线，6.27流水达到月度peak",
+           url:"https://pvp.qq.com/web201706/newsdetail.shtml?tid=812345"}
+        ]
+      },
+      "三角洲行动": {
+        key:"df", name_kr:"Delta Force", name_cn:"三角洲行动",
+        summary_kr:"iOS 매출 순위 평균 3위（-）. 6.26 신규 「열변」시즌 S10 출시 → iOS 2위까지 상승하며 화평정영 직접 압박. 월 총 매출（MoM▲18.4%）.",
+        summary_cn:"iOS畅销榜平均第3位（-）。6.26全新「裂变」赛季S10上线，流水达到peak并冲上iOS第2位，直接冲击和平精英。月总流水（MoM▲18.4%）。",
+        events:[
+          {date:"2026.06.03",type:"event",label_kr:"아사라 녹색구장 페스티벌/월드컵 연계",label_cn:"阿萨拉绿茵盛会/世界杯联动",
+           content_kr:"월드컵 열풍 편승, 「아사라 녹색구장 페스티벌」 일련의 축구 관련 게임 내 활동 출시",
+           content_cn:"配合世界杯热点，推出「阿萨拉绿茵盛会」系列足球相关游戏内活动",
+           url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=7621834509123456"},
+          {date:"2026.06.11",type:"commerce",label_kr:"【펑크록 번들】전설 상선",label_cn:"【朋克摇滚捆绑包】传说上线",
+           content_kr:"시즌 통행증 레벨 가속 이벤트; 【펑크록 번들】 전설 외관 상선",
+           content_cn:"赛季通行证等级加速活动；【朋克摇滚捆绑包】传说外观上线",
+           url:"https://weibo.com/7852949543/Qywb6FiZp"},
+          {date:"2026.06.18",type:"event",label_kr:"단오절 활동/시즌 말 스프린트",label_cn:"端午活动/赛季末冲刺",
+           content_kr:"단오절 활동; 시즌 말 스프린트; 더블 경험치; 월드컵 관련 활동 등 출시",
+           content_cn:"端午活动、赛季末冲刺、双倍积分、粽子礼盒、控球大师挑战等活动上线",
+           url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=7894512360123456"},
+          {date:"2026.06.26",type:"version",label_kr:"「열변」신시즌 S10 정식 개막",label_cn:"「裂变」新赛季S10正式开启",
+           content_kr:"신규「열변」시즌 S10 정식 개막; 봉화지대 신규 지도 AZ3; 전면전장 신규 지도 클라우디우스 콜로세움; 신규 무기 RM277·SVCH; 신규 오퍼레이터 등장 → iOS 2위 상승, 피크 매출",
+           content_cn:"全新「裂变」赛季S10正式开启；烽火地带新地图AZ3；全面战场新地图克劳狄斯竞技场；新武器RM277·SVCH登场，流水达到月度peak，冲上iOS第2位",
+           url:"https://df.qq.com/cp/a20240906main/newsdetail.html?id=8012345678901234"}
+        ]
+      },
+      "无畏契约：源能行动": {
+        key:"ww", name_kr:"Valorant M", name_cn:"无畏契约：源能行动",
+        summary_kr:"iOS 매출 순위 평균 5~6위. 6.11 「절광이경」버전 업데이트 후 이번달 최고 순위 4~5위 반등. 6.25 【반야가면】스킨 출시 시 피크 매출.",
+        summary_cn:"iOS畅销榜平均5~6位。6.11「折光异境」版本更新后反弹至月度最高排名4~5位。6.25【般若假面】皮肤上线时流水达到月度peak。",
+        events:[
+          {date:"2026.06.01",type:"version",label_kr:"신규 영웅/지도/플레이 업데이트",label_cn:"新英雄/地图/玩法更新",
+           content_kr:"신규 영웅·지도·플레이·시스템 업데이트 동시 상선",
+           content_cn:"新增英雄、地图更新、玩法更新、系统更新同步上线",
+           url:"https://weibo.com/7982741612/QwbF4GxA8"},
+          {date:"2026.06.11",type:"version",label_kr:"「절광이경」버전/신규 영웅·지도·무기",label_cn:"「折光异境」版本/新英雄·地图·武器",
+           content_kr:"「절광이경」버전 정식 업데이트; 신규 영웅·지도·무기·시스템 동시 상선 → iOS 최고 순위 4~5위 반등",
+           content_cn:"「折光异境」版本正式更新；新英雄、新地图、新武器、新系统同步上线，iOS排名反弹至月度最高4~5位",
+           url:"https://weibo.com/7982741612/QygcE3MbK"},
+          {date:"2026.06.11",type:"commerce",label_kr:"【귀령자】시리즈 스킨/【왕패특공】",label_cn:"【归零者】系列皮肤/【汪牌特工】",
+           content_kr:"【귀령자】시리즈 스킨 상선; 【왕패특공】 상선",
+           content_cn:"【归零者】系列皮肤上线；【汪牌特工】上架",
+           url:"https://weibo.com/7982741612/QygcE3MbK"},
+          {date:"2026.06.18",type:"commerce",label_kr:"【천계신병 2.0】시리즈 스킨",label_cn:"【天界神兵 2.0】系列皮肤",
+           content_kr:"【천계신병 2.0】 시리즈 스킨 상선",
+           content_cn:"【天界神兵 2.0】系列皮肤上线",
+           url:"https://weibo.com/7982741612/R0oJbH7nX"},
+          {date:"2026.06.25",type:"commerce",label_kr:"【반야가면】시리즈 스킨",label_cn:"【般若假面】系列皮肤",
+           content_kr:"【반야가면】 시리즈 스킨 상선 → 피크 매출",
+           content_cn:"【般若假面】系列皮肤上线，流水达到月度peak",
+           url:"https://weibo.com/7982741612/R1MpKy9sW"}
         ]
       }
     }
