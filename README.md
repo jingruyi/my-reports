@@ -4,7 +4,6 @@
 
 | 文件名 | 说明 | 链接 |
 | ------ | ---- | ---- |
-| 202607W3_weekly_report.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/202607W3_weekly_report.html) |
 | HongKong_Macau_Travel_Guide_2026.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/HongKong_Macau_Travel_Guide_2026.html) |
 | SPARK2026_tencent_games_report.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/SPARK2026_tencent_games_report.html) |
 | competitive_game_dashboard.html | 竞品大盘 | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard.html) |
