@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중국 동향 월보 · 2026년 6월 / 中国市场动向月报 · 2026年6月</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#ffffff;--surface:#ffffff;--surface2:#f5f7fa;
+    --border:#dde2ea;--border2:#c5ccd8;
+    --text:#000000;--text-dim:#111111;--text-muted:#444444;
+    --tencent:#1d5fa8;--netease:#c0392b;--others:#16a34a;
+    --accent:#c97a00;--up:#d32f2f;--down:#1565c0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;min-height:100vh;font-size:15px;}
+  body.lang-kr{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif!important;}
+  .container{max-width:100%;width:100%;margin:0;padding:16px 20px;}
+
+  .lang-toggle{position:fixed;top:14px;right:20px;z-index:999;display:flex;gap:2px;background:rgba(255,255,255,0.95);border:1px solid var(--border);border-radius:6px;padding:2px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+  .lang-btn{padding:4px 12px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-radius:4px;font-size:12px;font-weight:700;transition:all .15s;letter-spacing:.05em;font-family:inherit;}
+  .lang-btn.active{background:var(--accent);color:#fff;}
+  .lang-btn:hover:not(.active){color:var(--text);background:var(--border);}
+
+  .txt-cn{display:inline;}.txt-kr{display:none;}
+  .txt-cn-block{display:block;}.txt-kr-block{display:none;}
+  body.lang-kr .txt-cn{display:none!important;}body.lang-kr .txt-kr{display:inline!important;}
+  body.lang-kr .txt-cn-block{display:none!important;}body.lang-kr .txt-kr-block{display:block!important;}
+
+  .report-header{background:var(--surface);border:1px solid var(--border);border-radius:0;padding:24px 28px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
+  .report-title{font-size:22px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .report-title::before{content:'';display:inline-block;width:4px;height:22px;background:var(--accent);border-radius:2px;}
+  .report-meta{font-size:12px;color:var(--text-muted);line-height:1.8;}
+  .report-badge{background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;white-space:nowrap;}
+
+  .section-title{font-size:17px;font-weight:700;color:var(--text-dim);margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+
+  .top-text-section{background:#fffbeb;border:1px solid #f5d98a;border-left:4px solid #f0b429;border-radius:0;padding:16px 20px;margin-bottom:20px;}
+  .top-text-title{font-size:16px;font-weight:700;color:#92580a;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+  .top-text-body{font-size:14px;color:#3a2a00;line-height:1.9;}
+  .top-text-body ul{list-style:none;padding:0;margin:0;}
+  .top-text-body li{padding-left:1.2em;text-indent:-1.2em;margin-bottom:6px;}
+  .top-text-body li::before{content:"• ";color:#f0b429;font-weight:700;}
+
+  /* 数据暂缺提示 */
+  .data-pending{background:#f0f4ff;border:1px solid #c7d7f5;border-left:4px solid #1d5fa8;border-radius:0;padding:14px 18px;margin-bottom:20px;font-size:14px;color:#1d3a6b;line-height:1.8;}
+  .data-pending strong{color:#1d5fa8;}
+
+  .g-tag{font-weight:700;padding:1px 6px;border-radius:4px;font-size:12px;color:#6b7280;background:rgba(107,114,128,0.1);}
+  .g-tag.tc{color:#1d5fa8!important;background:rgba(29,95,168,.1)!important;}
+  .g-tag.ne{color:#c0392b!important;background:rgba(192,57,43,.1)!important;}
+  .g-tag.ot{color:#16a34a!important;background:rgba(22,163,74,.1)!important;}
+
+  .content-card{background:var(--surface);border:1px solid var(--border);border-radius:0;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px;position:relative;overflow:hidden;}
+  .content-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.5;}
+  .sub-title{font-size:14px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+  .sub-title:first-child{margin-top:0;}
+  .bullet-list{list-style:none;padding:0;margin:0;}
+  .bullet-list li{font-size:14px;color:var(--text-dim);padding-left:1.2em;text-indent:-1.2em;margin-bottom:5px;line-height:1.85;}
+  .bullet-list li::before{content:"• ";color:var(--text-muted);font-weight:700;}
+  .sub-bullet{list-style:none;padding:0;margin:4px 0 0 1.2em;}
+  .sub-bullet li{font-size:13px;color:var(--text-dim);padding-left:1.2em;text-indent:-1.2em;margin-bottom:3px;line-height:1.8;}
+  .sub-bullet li::before{content:"– ";color:var(--text-muted);}
+
+  .table-wrap{overflow-x:auto;margin:10px 0 4px;}
+  .stats-table{width:100%;min-width:500px;border-collapse:collapse;font-size:13px;}
+  .stats-table th{background:var(--surface2);color:#6b7280;font-weight:600;padding:8px 12px;border:1px solid var(--border);border-bottom:2px solid var(--border2);text-align:left;white-space:nowrap;}
+  .stats-table td{padding:8px 12px;border:1px solid #e5e7eb;font-size:13px;vertical-align:middle;line-height:1.6;}
+  .stats-table tr:hover td{background:#fafafa;}
+  .stats-table tr.hl td{background:#fffbeb;}
+  .mom-up{color:#c0392b!important;font-weight:600;}.mom-down{color:#1a56db!important;font-weight:600;}
+
+  .mkt-tabs{display:flex;gap:10px;margin-bottom:0;align-items:flex-end;}
+  .mkt-tab-btn{flex:1;border:1px solid var(--border);border-top:4px solid transparent;border-radius:0;padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--surface2);color:var(--text-dim);transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+  .mkt-tab-btn.active.g1{background:rgba(29,95,168,.08);border-top-color:#1d5fa8;color:#1d5fa8;box-shadow:0 2px 8px rgba(29,95,168,.12);}
+  .mkt-tab-btn.active.g2{background:rgba(192,57,43,.08);border-top-color:#c0392b;color:#c0392b;box-shadow:0 2px 8px rgba(192,57,43,.12);}
+  .mkt-tab-btn.active.g3{background:rgba(22,163,74,.08);border-top-color:#16a34a;color:#16a34a;box-shadow:0 2px 8px rgba(22,163,74,.12);}
+  .mkt-tab-btn:hover:not(.active){background:var(--border);color:var(--text);}
+  .mkt-panel{display:none;}.mkt-panel.active{display:block;}
+  .mkt-panel-card{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+
+  .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:10px 0 4px;}
+  .product-item{background:var(--surface2);border:1px solid var(--border);border-radius:0;padding:14px 16px;}
+  .product-name{font-size:14px;font-weight:700;color:var(--text-dim);margin-bottom:6px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+  .product-desc{font-size:13px;color:var(--text-dim);line-height:1.8;}
+  .ext-link{font-size:11px;color:#1d5fa8;text-decoration:none;}
+  .ext-link:hover{text-decoration:underline;}
+
+  .ptag{display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:700;flex-shrink:0;line-height:normal;}
+  .b-new{background:#dbeafe;color:#1d4ed8;}.b-event{background:#dcfce7;color:#166534;}
+  .b-collab{background:#f3e8ff;color:#7e22ce;}.b-esports{background:#ffedd5;color:#9a3412;}
+  .b-milestone{background:#fce7f3;color:#9d174d;}.b-ai{background:#ede9fe;color:#5b21b6;}
+  .b-finance{background:#f0fdf4;color:#166534;}.b-policy{background:#fef9c3;color:#854d0e;}
+  .b-other{background:#f3f4f6;color:#374151;}.b-global{background:#cffafe;color:#0e7490;}
+  .b-invest{background:#fef3c7;color:#92400e;}.b-warn{background:#fee2e2;color:#991b1b;}
+
+  .trend-item{padding:16px 0;border-bottom:1px solid var(--border);}
+  .trend-item:last-child{border-bottom:none;padding-bottom:0;}
+  .trend-title{font-size:14px;font-weight:700;color:var(--text-dim);margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+
+  .top-divider{height:1px;background:var(--border);margin:20px 0;}
+
+  @media(max-width:900px){.product-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body class="lang-kr">
+
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('kr')">KR</button>
+  <button class="lang-btn" onclick="setLang('cn')">CN</button>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div>
+      <div class="report-title">
+        <span class="txt-cn">中国市场动向月报 · 2026年6月</span>
+        <span class="txt-kr">중국 동향 월보 · 2026년 6월</span>
+      </div>
+      <div class="report-meta">
+        담당팀：PUBGM Operation &amp; Coordination Team　|　담당자：Ru Yi Jing（经如一）<br>
+        <span class="txt-cn">동향 기간：2026-06-01 ～ 2026-06-30　|　출처：GameLook / 游信 / 国家新闻出版署 / 公开市场数据</span>
+        <span class="txt-kr">동향 기간：2026-06-01 ～ 2026-06-30　|　출처：GameLook / 游信 / 국가신문출판서 / 공개 시장 데이터</span>
+      </div>
+    </div>
+    <span class="report-badge">
+      <span class="txt-cn">2026年6月</span><span class="txt-kr">2026년 6월</span>
+    </span>
+  </div>
+
+  <!-- SUMMARY BOX -->
+  <div class="top-text-section">
+    <div class="top-text-title">⭐
+      <span class="txt-cn">6月市场动向摘要 Summary</span>
+      <span class="txt-kr">6월 시장 동향 요약 Summary</span>
+    </div>
+
+    <div class="top-text-body txt-cn-block">
+      <ul>
+        <li><strong>版号：</strong>6月共163款国产+8款进口获批（171款），较5月增加13款；进口FPS <span class="g-tag">对峙：交锋时刻</span>（Standoff 2国服）过审；6款游戏审批变更。</li>
+        <li><strong>资本市场：</strong>阿里拟以<strong>70-90亿元</strong>出售灵犀互娱，潜在买家含三七互娱、巨人网络、世纪华通等，标的包含《三国志·战略版》等长线产品及完整研发发行能力。</li>
+        <li><strong>Tencent：</strong>射击产品线升级为矩阵化竞争。<span class="g-tag">三角洲行动</span>"裂变"赛季6月26日上线+赛事+灰产治理；<span class="g-tag">暗区突围无限</span> PC S6赛季6月30日；<span class="g-tag">穿越火线：潜伏</span>首曝（单人战术潜行，全平台）；<span class="g-tag">失控进化</span>定档7月9日。</li>
+        <li><strong>NetEase：</strong><span class="g-tag">遗忘之海</span> PC端7月9日公测、移动端7月内上线；联动Alan Walker/张韶涵/《第五人格》/《海绵宝宝》预热。</li>
+        <li><strong>其他企业动向：</strong>灵犀互娱出售传闻（见资本市场）；<span class="g-tag">盛世天下</span>女帝篇上线12天全球销量突破<strong>200万套</strong>。</li>
+        <li><strong>其他游戏产品：</strong><span class="g-tag">《雾影猎人》</span>等动作/奇幻产品开始复用搜打撤玩法结构，搜打撤赛道边界持续外扩。</li>
+        <li><strong>政策：</strong>《AI拟人化互动服务管理暂行办法》<strong>7月15日</strong>正式施行。</li>
+        <li><strong>热点趋势：</strong>射击竞争矩阵化；PC/跨端价值持续提升；AI价值判断从"是否使用"转向"是否创造用户可感知价值"；反作弊/账号安全成长线产品核心竞争力。</li>
+      </ul>
+    </div>
+
+    <div class="top-text-body txt-kr-block">
+      <ul>
+        <li><strong>판호：</strong>6월 내자 163개+외자 8개（총 171개），5월 대비 13개 증가；수입 FPS <span class="g-tag">대치：교전의 순간</span>（Standoff 2 중국 서버）심사 통과；6개 게임 심사 정보 변경.</li>
+        <li><strong>자본 시장：</strong>알리바바가 링시인터랙티브를 <strong>70-90억 위안</strong>에 매각 추진，잠재 매수자 37Games·Giant Network·세기화통 등，거래 대상은 &lt;삼국지：전략판&gt; 등 장수 타이틀 및 개발·퍼블리싱 역량 포함.</li>
+        <li><strong>Tencent：</strong>슈팅 라인업 매트릭스형 경쟁으로 고도화. <span class="g-tag">Delta Force</span> '핵분열' 시즌 6월 26일+이벤트+불법 거래 단속；<span class="g-tag">암구돌파 인피니트</span> PC S6 6월 30일；<span class="g-tag">크로스파이어：잠복</span> 최초 공개（싱글 전술 스텔스，전 플랫폼）；<span class="g-tag">실콘 진화</span> 7월 9일 확정.</li>
+        <li><strong>NetEase：</strong><span class="g-tag">망각의 바다</span> PC 7월 9일 공개 베타，모바일 7월 내 출시；Alan Walker·장소함·&lt;제5인격&gt;·&lt;스폰지밥&gt; 콜라보 사전 홍보.</li>
+        <li><strong>기타 기업 동향：</strong>링시인터랙티브 매각설（자본 시장 참조）；<span class="g-tag">성세천하</span> 여황제 편 출시 12일 만에 글로벌 <strong>200만 세트</strong> 돌파.</li>
+        <li><strong>기타 게임 타이틀：</strong><span class="g-tag">&lt;무영사냥꾼&gt;</span> 등 액션·판타지 타이틀이 Extract Shooter 플레이 구조 복용，장르 경계 지속 확장.</li>
+        <li><strong>정책：</strong>'AI 의인화 인터랙션 서비스 관리 잠정 방법' <strong>7월 15일</strong> 정식 시행.</li>
+        <li><strong>핫이슈 트렌드：</strong>슈팅 경쟁 매트릭스화；PC/크로스 플랫폼 가치 지속 상승；AI 가치 판단 '사용 여부'→'사용자 체감 가치 창출 여부' 전환；반치트·계정 보안이 장수 타이틀 핵심 경쟁력으로 부상.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 版号 & 정책 -->
+  <div class="section-title">🏛️
+    <span class="txt-cn">政策风向</span>
+    <span class="txt-kr">정책 방향</span>
+  </div>
+  <div class="content-card">
+
+    <!-- 数据待发布提示 -->
+    <div class="data-pending">
+      📊 <strong><span class="txt-cn">6月市场收入数据暂未发布</span><span class="txt-kr">6월 시장 매출 데이터 미발표</span></strong><br>
+      <span class="txt-cn">截至报告发布时，伽马数据《2026年6月中国游戏产业月度报告》尚未公开发布，本月报告不使用估算值替代官方口径。<br>参考基线（5月）：整体 <strong>308.75亿元</strong> YoY+10.07%　|　客户端 <strong>70.80亿元</strong> YoY+21.69%　|　移动 <strong>226.63亿元</strong> YoY+7.02%</span>
+      <span class="txt-kr">보고서 발행 시점 기준 Gamma Data의 '2026년 6월 중국 게임 산업 월보'가 아직 공개되지 않아 추정치를 공식 수치 대신 사용하지 않습니다.<br>참고 기준선（5월）：전체 <strong>308.75억 위안</strong> YoY+10.07%　|　PC <strong>70.80억 위안</strong> YoY+21.69%　|　모바일 <strong>226.63억 위안</strong> YoY+7.02%</span>
+    </div>
+
+    <div class="sub-title">■ <span class="txt-cn">版号动态（6月）</span><span class="txt-kr">판호 동향（6월）</span>
+      <a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/202606/t20260630_996870.html" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;"><span class="txt-cn">国家新闻出版署 ↗</span><span class="txt-kr">국가신문출판서 ↗</span></a>
+    </div>
+    <div class="table-wrap">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th><span class="txt-cn">类别</span><span class="txt-kr">구분</span></th>
+            <th><span class="txt-cn">数量</span><span class="txt-kr">수량</span></th>
+            <th><span class="txt-cn">与5月对比</span><span class="txt-kr">5월 대비</span></th>
+            <th><span class="txt-cn">备注</span><span class="txt-kr">비고</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl">
+            <td><strong><span class="txt-cn">总计</span><span class="txt-kr">합계</span></strong></td>
+            <td><strong><span class="txt-cn">171款</span><span class="txt-kr">171개</span></strong></td>
+            <td class="mom-up">▲13<span class="txt-cn">款</span><span class="txt-kr">개</span></td>
+            <td><span class="txt-cn">审批节奏持续高位</span><span class="txt-kr">심사 속도 지속 고위 유지</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt-cn">国产游戏</span><span class="txt-kr">내자 게임</span></td>
+            <td><span class="txt-cn">163款</span><span class="txt-kr">163개</span></td>
+            <td class="mom-up">▲9<span class="txt-cn">款</span><span class="txt-kr">개</span></td>
+            <td><span class="txt-cn">Tencent《奥星热浪》获批</span><span class="txt-kr">Tencent &lt;오성열랑&gt; 획득</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt-cn">进口游戏</span><span class="txt-kr">수입 게임</span></td>
+            <td><span class="txt-cn">8款</span><span class="txt-kr">8개</span></td>
+            <td class="mom-up">▲4<span class="txt-cn">款</span><span class="txt-kr">개</span></td>
+            <td><span class="txt-cn">《对峙：交锋时刻》（Standoff 2）FPS进口过审</span><span class="txt-kr">&lt;대치：교전의 순간&gt;（Standoff 2）FPS 수입 통과</span></td>
+          </tr>
+          <tr>
+            <td><span class="txt-cn">审批变更</span><span class="txt-kr">심사 변경</span></td>
+            <td><span class="txt-cn">6款</span><span class="txt-kr">6개</span></td>
+            <td>▲1</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-title" style="margin-top:20px;">■ <span class="txt-cn">资本市场：阿里拟出售灵犀互娱（70-90亿元）</span><span class="txt-kr">자본 시장：알리바바 링시인터랙티브 매각 추진（70-90억 위안）</span>
+      <a href="https://www.eeo.com.cn/2026/0623/927109.shtml" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;">↗</a>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="txt-cn">多家媒体报道称，阿里拟整体出售灵犀互娱，报价区间为<strong>70亿至90亿元</strong></span><span class="txt-kr">복수 매체 보도에 따르면 알리바바가 링시인터랙티브 전체 매각 추진，희망 거래가 <strong>70억~90억 위안</strong></span></li>
+      <li><span class="txt-cn"><strong>潜在买家：</strong>三七互娱、中国儒意、世纪华通、巨人网络及私募联合体</span><span class="txt-kr"><strong>잠재 매수자：</strong>37Games·중국유의·세기화통·Giant Network 및 PEF 컨소시엄</span></li>
+      <li><span class="txt-cn"><strong>交易价值：</strong>灵犀互娱持有《三国志·战略版》等长线产品，交易标的包含成熟流水、用户资产、研发人才和发行体系的综合组合，反映成熟IP与长线运营能力的市场价值</span><span class="txt-kr"><strong>거래 가치：</strong>링시는 &lt;삼국지：전략판&gt; 등 장수 타이틀 보유，거래 대상은 안정적 매출·유저 자산·개발 인재·퍼블리싱 시스템의 종합 패키지로，성숙 IP 및 장기 운영 역량의 시장 가치를 반영</span></li>
+    </ul>
+
+    <div class="sub-title" style="margin-top:20px;">■ <span class="txt-cn">政策提醒：《AI拟人化互动服务管理暂行办法》7月15日施行</span><span class="txt-kr">정책 알림：'AI 의인화 인터랙션 서비스 관리 잠정 방법' 7월 15일 시행</span></div>
+    <ul class="bullet-list">
+      <li><span class="txt-cn">4月10日发布，<strong>7月15日</strong>正式施行；为全球首部专门规范AI伴侣/虚拟恋人/智能NPC等情感互动服务的国家级法规；禁止诱导情感依赖、情感操纵付费及向未成年人提供虚拟亲属/伴侣服务</span><span class="txt-kr">4월 10일 발표，<strong>7월 15일</strong> 정식 시행；AI 동반자·가상 연인·스마트 NPC 등 감성 인터랙션 서비스를 전담하는 세계 최초 국가급 법규；감정 의존 유도·감정 조작 결제·미성년자 가상 관계 서비스 제공 금지</span></li>
+    </ul>
+  </div>
+
+  <!-- COMPANY TRENDS -->
+  <div class="section-title">🏢
+    <span class="txt-cn">中国Top游戏企业动向</span>
+    <span class="txt-kr">중국 상위권 게임사 동향</span>
+  </div>
+
+  <div class="mkt-tabs" id="companyTabs">
+    <button class="mkt-tab-btn g1 active" data-tab="1">🔵 Tencent<span class="txt-cn"> 腾讯</span></button>
+    <button class="mkt-tab-btn g2" data-tab="2">🔴 NetEase<span class="txt-cn"> 网易</span></button>
+    <button class="mkt-tab-btn g3" data-tab="3">🟢 <span class="txt-cn">其他企业动向</span><span class="txt-kr">기타 기업 동향</span></button>
+  </div>
+
+  <!-- TENCENT -->
+  <div class="mkt-panel active" data-company="1">
+    <div class="mkt-panel-card">
+      <div class="sub-title"><span class="txt-cn">射击产品矩阵</span><span class="txt-kr">슈팅 타이틀 매트릭스</span>
+        <a href="https://www.gamersky.com/news/202606/2163732.shtml" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">四款产品各司其职，共同构成<strong>移动·PC·主机·生存建造·叙事内容</strong>的组合竞争矩阵：</span><span class="txt-kr">4개 타이틀이 역할 분담，<strong>모바일·PC·콘솔·생존 건설·스토리 콘텐츠</strong> 커버 매트릭스 구성：</span></li>
+      </ul>
+      <div class="product-grid" style="margin-top:10px;">
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《三角洲行动》</span><span class="txt-kr">&lt;Delta Force&gt;</span>
+            <span class="ptag b-event"><span class="txt-cn">裂变赛季</span><span class="txt-kr">핵분열 시즌</span></span>
+            <a href="https://mp.weixin.qq.com/s/Y0nXNl8DXsrR0zmVXPLveg" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">6月26日上线"裂变"赛季，配合赛事、线下活动扩大社区影响力；针对商行、账号交易、护航陪玩等<strong>灰产进行专项治理</strong>，保护经济系统公平性
+              <a href="http://www.gamelook.com.cn/2026/06/596346/" target="_blank" class="ext-link"> ↗</a>
+              <a href="https://club.gamersky.com/activity/1572075?club=163" target="_blank" class="ext-link"> 灰产↗</a>
+            </span>
+            <span class="txt-kr">6월 26일 '핵분열' 시즌 출시，이벤트·오프라인 활동으로 커뮤니티 영향력 확대；브로커·계정 거래·페이투윈 대행 등 <strong>불법 거래 집중 단속</strong>으로 경제 시스템 공정성 보호</span>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《暗区突围无限》</span><span class="txt-kr">&lt;암구돌파 인피니트&gt;</span>
+            <span class="ptag b-new">S6</span>
+            <a href="https://mp.weixin.qq.com/s/wZSUH5YLvaLHjMAERd7gPQ" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">PC端S6赛季于<strong>6月30日</strong>上线，强化腾讯在PC硬核搜打撤市场的持续覆盖</span>
+            <span class="txt-kr">PC S6 시즌 <strong>6월 30일</strong> 출시，PC 하드코어 Extract Shooter 시장 내 Tencent의 지속적 커버리지 강화</span>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《穿越火线：潜伏》</span><span class="txt-kr">&lt;크로스파이어：잠복&gt;</span>
+            <span class="ptag b-other"><span class="txt-cn">首曝</span><span class="txt-kr">최초 공개</span></span>
+            <a href="http://www.gamelook.com.cn/2026/06/594953/" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">腾讯与Smilegate联合发行，<strong>单人第三人称战术潜行游戏</strong>首曝；计划登陆WeGame/Steam/Epic/PlayStation/Xbox全平台，代表经典PVP IP向PC/主机叙事内容扩张</span>
+            <span class="txt-kr">Tencent×Smilegate 공동 퍼블리싱，<strong>싱글 3인칭 전술 스텔스 게임</strong> 최초 공개；WeGame/Steam/Epic/PlayStation/Xbox 전 플랫폼 출시 예정，클래식 PVP IP의 PC/콘솔 스토리 콘텐츠 확장</span>
+          </div>
+        </div>
+        <div class="product-item">
+          <div class="product-name">
+            <span class="txt-cn">《失控进化》</span><span class="txt-kr">&lt;실콘 진화&gt;</span>
+            <span class="ptag b-milestone"><span class="txt-cn">定档7月9日</span><span class="txt-kr">7월 9일 출시 확정</span></span>
+            <a href="https://mp.weixin.qq.com/s/wjnUf4kz84xlZ5bq_RMiMA" target="_blank" class="ext-link">↗</a>
+          </div>
+          <div class="product-desc">
+            <span class="txt-cn">《Rust》正版授权，强调<strong>PC+移动互通</strong>，以射击、生存、建造和社交对抗争夺复合用户群；全网预约突破3,200万</span>
+            <span class="txt-kr">&lt;Rust&gt; 공식 라이선스，<strong>PC+모바일 크로스 플랫폼</strong> 강조，슈팅·생존·건설·소셜 대전으로 복합 유저 공략；전체 예약 3,200만 돌파</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NETEASE -->
+  <div class="mkt-panel" data-company="2">
+    <div class="mkt-panel-card">
+      <div class="sub-title"><span class="txt-cn">重点新品：《遗忘之海》公测定档</span><span class="txt-kr">주요 신작：&lt;망각의 바다&gt; 공개 베타 일정 확정</span></div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>上线节点：</strong>PC端<strong>7月9日</strong>公测；移动端<strong>7月内</strong>上线</span><span class="txt-kr"><strong>출시 일정：</strong>PC <strong>7월 9일</strong> 공개 베타；모바일 <strong>7월 내</strong> 출시</span></li>
+        <li><span class="txt-cn"><strong>预热联动：</strong>Alan Walker（国际音乐人）、张韶涵（流行歌手）、《第五人格》（网易自有IP）、《海绵宝宝》（国际IP）多维度聚合外部流量</span><span class="txt-kr"><strong>사전 홍보 콜라보：</strong>Alan Walker（국제 음악인）·장韶涵（팝 가수）·&lt;제5인격&gt;（NetEase 자체 IP）·&lt;스폰지밥&gt;（글로벌 IP）로 다차원 외부 트래픽 결집</span></li>
+        <li><span class="txt-cn"><strong>发行策略：</strong>"PC建立品质认知+移动扩大覆盖+整合营销降低冷启动风险"，正成为中国大型跨端新游标配打法</span><span class="txt-kr"><strong>퍼블리싱 전략：</strong>'PC 품질 인식 구축+모바일 커버리지 확대+통합 마케팅 냉 스타트 리스크 감소'，중국 대형 크로스 플랫폼 신작의 표준 전략으로 자리매김 중</span></li>
+        <li><span class="txt-cn"><strong>产品定位：</strong>"无限流开放世界"海洋RPG；已获版号；预约超2,200万</span><span class="txt-kr"><strong>타이틀 포지셔닝：</strong>'무한류 오픈월드' 해양 RPG；판호 획득；예약 2,200만 초과</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OTHERS -->
+  <div class="mkt-panel" data-company="3">
+    <div class="mkt-panel-card">
+      <div class="sub-title"><span class="txt-cn">阿里/灵犀互娱（Lingxi Games）</span><span class="txt-kr">알리바바/링시인터랙티브（Lingxi Games）</span>
+        <a href="https://www.eeo.com.cn/2026/0623/927109.shtml" target="_blank" class="ext-link" style="text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px;">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">阿里拟整体出售灵犀互娱，报价<strong>70-90亿元</strong>，潜在买家涵盖三七互娱、中国儒意、世纪华通、巨人网络及私募联合体，交易尚未官方确认</span><span class="txt-kr">알리바바 링시인터랙티브 전체 매각 추진，희망가 <strong>70-90억 위안</strong>，잠재 매수자 37Games·중국유의·세기화통·Giant Network 및 PEF 컨소시엄，거래 공식 미확인</span></li>
+        <li><span class="txt-cn"><strong>行业意义：</strong>互联网平台对非核心游戏资产更强调回报与战略协同；《三国志·战略版》等成熟IP和研发发行能力仍具较高交易价值</span><span class="txt-kr"><strong>업계 의미：</strong>인터넷 플랫폼이 비핵심 게임 자산에 대해 수익성과 전략적 시너지를 강조；&lt;삼국지：전략판&gt; 등 성숙 IP와 개발·퍼블리싱 역량은 여전히 높은 거래 가치 보유</span></li>
+      </ul>
+
+      <div class="sub-title" style="margin-top:16px;"><span class="txt-cn">盛世天下（Shengshi Tianxia）</span><span class="txt-kr">성세천하（Shengshi Tianxia）</span></div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn"><strong>《盛世天下》女帝篇：</strong>上线<strong>12天</strong>全球销量突破<strong>200万套</strong>，说明中国内容型买断产品正在形成更稳定的规模化市场</span><span class="txt-kr"><strong>&lt;성세천하&gt; 여황제 편：</strong>출시 <strong>12일</strong> 만에 글로벌 판매량 <strong>200만 세트</strong> 돌파，중국 콘텐츠형 패키지 게임의 안정적 규모화 시장 형성 확인</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRODUCT OBSERVATIONS -->
+  <div class="section-title">🎮
+    <span class="txt-cn">产品观察</span>
+    <span class="txt-kr">타이틀 관찰</span>
+  </div>
+  <div class="content-card">
+    <div class="sub-title">■ <span class="txt-cn">射击/搜打撤重大事件</span><span class="txt-kr">슈팅 / Extract Shooter 주요 동향</span></div>
+    <ul class="bullet-list">
+      <li><span class="txt-cn"><strong>进口FPS《对峙：交锋时刻》过审：</strong>Standoff 2国服版本获进口版号，说明海外射击产品在满足内容合规与本地发行条件后，仍有进入中国市场的机会；后续重点观察运营方、上线平台与商业化策略</span><span class="txt-kr"><strong>수입 FPS &lt;대치：교전의 순간&gt; 심사 통과：</strong>Standoff 2 중국 서버가 수입 판호 획득，해외 슈팅 타이틀이 콘텐츠 규정 준수 및 현지 퍼블리싱 조건 충족 시 여전히 중국 시장 진입 기회 존재；향후 운영사·출시 플랫폼·상업화 전략 주목</span></li>
+      <li><span class="txt-cn"><strong>腾讯射击矩阵：</strong>《三角洲行动》赛季+赛事+线下+灰产治理形成头部运营范式；《暗区突围无限》+《穿越火线：潜伏》+《失控进化》分别覆盖PC硬核搜打撤、单机叙事、跨端生存建造方向</span><span class="txt-kr"><strong>Tencent 슈팅 매트릭스：</strong>&lt;Delta Force&gt; 시즌+이벤트+오프라인+불법 거래 단속이 상위권 운영 패러다임 형성；&lt;암구돌파 인피니트&gt;+&lt;크로스파이어：잠복&gt;+&lt;실콘 진화&gt;가 각각 PC 하드코어 Extract Shooter·싱글 스토리·크로스 플랫폼 생존 건설 방향 커버</span></li>
+      <li><span class="txt-cn"><strong>搜打撤赛道外扩：</strong>《雾影猎人》等动作/奇幻产品开始复用资源搜集、风险博弈和撤离收益循环，"搜打撤"正从军事射击子品类演变为可跨题材复用的玩法结构
+        <a href="https://www.3dmgame.com/news/202606/3946388.html" target="_blank" class="ext-link"> ↗</a>
+      </span><span class="txt-kr"><strong>Extract Shooter 장르 확장：</strong>&lt;무영사냥꾼&gt; 등 액션·판타지 타이틀이 자원 수집·리스크 베팅·탈출 수익 루프를 복용하기 시작，'Extract Shooter'가 밀리터리 슈팅 하위 장르에서 장르 횡단 가능한 플레이 구조로 진화 중</span></li>
+    </ul>
+
+    <div class="sub-title" style="margin-top:16px;">■ <span class="txt-cn">6月新游</span><span class="txt-kr">6월 신작</span></div>
+    <ul class="bullet-list">
+      <li><span class="txt-cn">本月新游重心集中在<strong>卡牌、模拟经营与小体量创意向</strong>品类；跨端与PC新品数量较上月稳定；6月最受关注的跨端新品为《遗忘之海》（7月公测）与《失控进化》（7月9日）</span><span class="txt-kr">이번 달 신작 중심은 <strong>카드·경영 시뮬레이션·소규모 크리에이티브</strong> 장르；크로스 플랫폼 및 PC 신작 수는 전월과 유사；6월 가장 주목받은 크로스 플랫폼 신작은 &lt;망각의 바다&gt;（7월 공개 베타）와 &lt;실콘 진화&gt;（7월 9일）</span></li>
+    </ul>
+  </div>
+
+  <!-- INDUSTRY TRENDS -->
+  <div class="section-title">🔥
+    <span class="txt-cn">行业热点 / 趋势</span>
+    <span class="txt-kr">업계 이슈 / 트렌드</span>
+  </div>
+  <div class="content-card">
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-esports">🎯 <span class="txt-cn">射击竞争矩阵化</span><span class="txt-kr">슈팅 경쟁 매트릭스화</span></span>
+        <span class="txt-cn">竞品评估需从"版本对版本"升级为"生态对生态"</span>
+        <span class="txt-kr">경쟁 제품 평가를 '버전 vs 버전'에서 '생태계 vs 생태계'로 업그레이드 필요</span>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">中国射击市场竞争已从单款PK升级为<strong>同时争夺用户时间、直播内容、创作者、赛事和多端渠道</strong>的生态竞争；单版本评估无法反映整体竞争格局</span><span class="txt-kr">중국 슈팅 시장 경쟁이 단일 타이틀 맞대결에서 <strong>유저 시간·스트리밍·크리에이터·이벤트·멀티 플랫폼</strong>을 동시에 쟁탈하는 생태계 경쟁으로 전환；단일 버전 평가만으로는 전체 구도 파악 불가</span></li>
+        <li><span class="txt-cn">建议将竞品分析视角升级为<strong>生态健康度+多端活跃+赛事影响力+创作者生态</strong>的综合评估框架</span><span class="txt-kr">경쟁 분석 관점을 <strong>생태계 건전성+멀티 플랫폼 활성도+이벤트 영향력+크리에이터 생태계</strong>의 종합 프레임워크로 업그레이드 권장</span></li>
+      </ul>
+    </div>
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-new">🖥️ <span class="txt-cn">PC/跨端价值持续提升</span><span class="txt-kr">PC/크로스 플랫폼 가치 지속 상승</span></span>
+        <a href="http://www.gamelook.com.cn/2026/06/595449/" target="_blank" class="ext-link">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">5月客户端游戏收入同比增长<strong>21.69%</strong>，显著高于移动端的<strong>7.02%</strong>；6月《穿越火线：潜伏》《失控进化》《遗忘之海》《暗区突围无限》均强调PC、Steam、主机或多端互通</span><span class="txt-kr">5월 PC 게임 매출 YoY <strong>+21.69%</strong>，모바일 <strong>+7.02%</strong>를 크게 상회；6월 &lt;크로스파이어：잠복&gt;·&lt;실콘 진화&gt;·&lt;망각의 바다&gt;·&lt;암구돌파 인피니트&gt; 모두 PC·Steam·콘솔·크로스 플랫폼 강조</span></li>
+        <li><span class="txt-cn">中国市场观察不应只看移动端流水，还需同步关注<strong>多端活跃、直播热度和跨端付费迁移</strong></span><span class="txt-kr">중국 시장 분석 시 모바일 매출만 볼 것이 아니라 <strong>멀티 플랫폼 활성도·스트리밍 열기·크로스 플랫폼 결제 전환</strong>도 함께 모니터링 필요</span></li>
+      </ul>
+    </div>
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-ai">🤖 AI</span>
+        <span class="txt-cn">价值判断从"是否使用"转向"是否创造用户可感知价值"</span>
+        <span class="txt-kr">가치 판단이 '사용 여부'에서 '사용자 체감 가치 창출 여부'로 전환</span>
+        <a href="http://www.gamelook.com.cn/2026/06/596076/" target="_blank" class="ext-link">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">国内厂商持续探索AI研发提效、角色互动与内容生产；海外Steam用户对AI标注产品的接受度仍存在明显分化，AI≠品质保障，需与玩法、美术和运营深度整合才能转化为实际留存</span><span class="txt-kr">국내 업체들은 AI 개발 효율화·캐릭터 인터랙션·콘텐츠 생산을 지속 탐색；해외 Steam 유저의 AI 표기 제품 수용도는 여전히 뚜렷이 양극화，AI ≠ 품질 보장，플레이·아트·운영과의 심층 통합이 되어야 실제 리텐션으로 전환 가능</span></li>
+      </ul>
+    </div>
+
+    <div class="trend-item">
+      <div class="trend-title">
+        <span class="ptag b-warn">🔒 <span class="txt-cn">信任基础设施</span><span class="txt-kr">신뢰 인프라</span></span>
+        <span class="txt-cn">反作弊、账号安全与交易治理成为长线产品核心竞争力</span>
+        <span class="txt-kr">반치트·계정 보안·거래 건전성이 장수 타이틀 핵심 경쟁력으로 부상</span>
+        <a href="https://club.gamersky.com/activity/1572075?club=163" target="_blank" class="ext-link">↗</a>
+      </div>
+      <ul class="bullet-list">
+        <li><span class="txt-cn">《三角洲行动》针对商行、账号交易、护航陪玩等灰产专项治理；经济系统越成熟，灰产侵蚀越明显——反作弊与账号安全应与内容更新并重</span><span class="txt-kr">&lt;Delta Force&gt; 브로커·계정 거래·페이투윈 대행 집중 단속；경제 시스템이 성숙할수록 불법 거래 침식이 심각해짐——반치트·계정 보안은 콘텐츠 업데이트와 동등하게 관리해야 함</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function setLang(lang){
+  document.body.classList.toggle('lang-kr',lang==='kr');
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.textContent.trim()===lang.toUpperCase());
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var tabsWrap=document.getElementById('companyTabs');
+  var panels=document.querySelectorAll('[data-company]');
+  tabsWrap.querySelectorAll('.mkt-tab-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var n=Number(btn.dataset.tab);
+      tabsWrap.querySelectorAll('.mkt-tab-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      panels.forEach(function(p){p.classList.toggle('active',Number(p.dataset.company)===n);});
+    });
+  });
+});
+</script>
+</body>
+</html>
