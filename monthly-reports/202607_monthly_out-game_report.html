@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026.04 CP Out-Game Monthly Review · KR / CN</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#ffffff; --surface:#fff; --surface2:#f7f8fa; --border:#e4e7ed;
+  --text:#1c1f2e; --text-dim:#6b7280; --text-muted:#9ca3af;
+  --primary:#1d5fa8; --primary-light:#dbeafe;
+  --positive:#15803d; --positive-bg:#f0fdf4; --positive-border:#86efac;
+  --negative:#b91c1c; --negative-bg:#fef2f2; --negative-border:#fca5a5;
+  --orange:#c2410c; --orange-bg:#fff7ed;
+  --purple:#6d28d9; --purple-bg:#f5f3ff;
+  --teal:#0e7490; --teal-bg:#ecfeff;
+  --pink:#be185d; --pink-bg:#fdf2f8;
+  --radius:12px; --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Microsoft YaHei","微软雅黑","PingFang SC","DM Sans","Malgun Gothic",sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;padding:32px 28px 60px;max-width:1060px;margin:0 auto;}
+
+/* ── Language Toggle ──────────────────────────────────────────── */
+.lang-toggle{position:fixed;top:20px;right:24px;display:flex;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.12);z-index:999;border:1.5px solid #e4e7ed;}
+.lang-toggle button{padding:7px 16px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all 0.15s;font-family:inherit;}
+#btn-kr{background:#1d5fa8;color:#fff;}
+#btn-cn{background:#fff;color:#9ca3af;}
+body.lang-cn #btn-kr{background:#fff;color:#9ca3af;}
+body.lang-cn #btn-cn{background:#1d5fa8;color:#fff;}
+.txt-cn{display:none;}
+body.lang-cn .txt-kr{display:none;}
+body.lang-cn .txt-cn{display:inline;}
+.blk-cn{display:none;}
+body.lang-cn .blk-kr{display:none;}
+body.lang-cn .blk-cn{display:block;}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.report-header{background:linear-gradient(135deg,#1c3a6e 0%,#1d5fa8 55%,#2980d4 100%);border-radius:var(--radius);padding:28px 32px 24px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden;}
+.report-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.report-header::after{content:'';position:absolute;bottom:-60px;left:30%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:relative;}
+.header-game{font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px;}
+.header-title{font-family:"DM Serif Display",serif;font-size:28px;font-weight:400;line-height:1.2;color:#fff;margin-bottom:4px;}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.75);font-weight:300;}
+.header-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:8px 16px;text-align:center;flex-shrink:0;}
+.header-badge-label{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.05em;}
+.header-badge-value{font-size:20px;font-weight:700;color:#fff;margin-top:2px;}
+.header-meta{display:flex;gap:24px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.15);position:relative;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:6px;}
+.meta-label{font-size:12px;color:rgba(255,255,255,0.55);}
+.meta-value{font-size:13px;color:rgba(255,255,255,0.9);font-weight:500;}
+
+/* ── Section Titles ───────────────────────────────────────────── */
+.section-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--text);margin:28px 0 14px;}
+.section-title .icon{width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.section-line{flex:1;height:1px;background:var(--border);}
+
+/* ── Summary Cards ────────────────────────────────────────────── */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;}
+.summary-card{background:var(--surface);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);border-top:3px solid;}
+.summary-card.trend{border-color:var(--primary);}
+.summary-card.strategy{border-color:var(--positive);}
+.summary-card-title{font-size:15px;font-weight:700;letter-spacing:0.01em;color:var(--text);margin-bottom:12px;}
+.summary-card p,.summary-card li{font-size:13px;color:var(--text);line-height:1.75;}
+.summary-card ul{padding-left:18px;}
+.summary-card li{margin-bottom:6px;}
+.highlight{font-weight:700;color:var(--primary);}
+
+/* ── Info Table ───────────────────────────────────────────────── */
+.info-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px;box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;}
+.info-table th{background:var(--surface2);color:var(--text-dim);font-weight:600;font-size:12px;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);width:160px;}
+.info-table td{padding:10px 14px;border-bottom:1px solid #f3f4f6;vertical-align:top;color:var(--text);}
+.info-table tr:last-child th,.info-table tr:last-child td{border-bottom:none;}
+
+/* ── Event Tables ─────────────────────────────────────────────── */
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px;}
+.event-table{width:100%;border-collapse:collapse;font-size:13px;}
+.event-table th{background:var(--surface2);color:var(--text-dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;padding:11px 16px;text-align:left;border-bottom:1px solid var(--border);}
+.event-table td{padding:12px 16px;border-bottom:1px solid #f3f4f6;vertical-align:top;color:var(--text);line-height:1.65;font-size:13px;}
+.event-table tr:last-child td{border-bottom:none;}
+.event-table tr:hover td{background:#fafbfc;}
+.td-date{white-space:nowrap;color:var(--text-dim);font-size:12px;min-width:130px;}
+.td-link a{color:var(--primary);text-decoration:none;font-weight:500;font-size:12px;display:inline-block;margin:2px 0;}
+.td-link a:hover{text-decoration:underline;}
+.td-effect{font-size:12.5px;color:var(--text-dim);line-height:1.6;}
+.td-type{width:108px;vertical-align:top;}
+.td-content{min-width:220px;}
+.td-location{min-width:80px;white-space:nowrap;color:var(--text-dim);font-size:12.5px;}
+.topic-link{display:inline;color:var(--primary);font-size:inherit;text-decoration:none;font-weight:600;}
+.topic-link:hover{text-decoration:underline;}
+.effect-num{color:#dc2626;font-weight:700;}
+.b-commerce{background:var(--orange-bg);color:var(--orange);}
+.b-event{background:var(--teal-bg);color:var(--teal);}
+.b-esports{background:#ede9fe;color:#5b21b6;}
+.b-ugc{background:var(--purple-bg);color:var(--purple);}
+.b-welfare{background:#f0fdf4;color:#166534;}
+.b-music{background:#eef2ff;color:#4338ca;}
+.b-merch{background:var(--pink-bg);color:var(--pink);}
+.b-seasonal{background:#ecfdf5;color:#065f46;}
+.b-collab-c{background:#fdf4ff;color:#7e22ce;}
+
+/* ── Badge ─────────────────────────────────────────────────────── */
+.badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap;}
+.b-version{background:var(--primary-light);color:var(--primary);}
+.b-collab{background:var(--purple-bg);color:var(--purple);}
+.b-live{background:#fdf4ff;color:#7e22ce;}
+.b-offline{background:#f0fdf4;color:#166534;}
+.b-online{background:#dbeafe;color:#1e40af;}
+.b-brand{background:var(--orange-bg);color:var(--orange);}
+.b-celeb{background:var(--pink-bg);color:var(--pink);}
+
+/* ── Trend image placeholder ───────────────────────────────────── */
+.img-placeholder{background:var(--surface2);border:1px dashed var(--border);border-radius:8px;height:160px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:12px;text-align:center;line-height:1.5;}
+.trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.trend-label{font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:6px;text-align:center;}
+
+/* ── Section divider ───────────────────────────────────────────── */
+.section-div{border:none;border-top:1px solid var(--border);margin:6px 0 14px;}
+
+/* ── Sub section ───────────────────────────────────────────────── */
+.sub-section{font-size:14px;font-weight:700;color:var(--text);margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.sub-section::before{content:'';display:inline-block;width:4px;height:16px;background:var(--primary);border-radius:2px;}
+
+/* ── Calendar ──────────────────────────────────────────────────── */
+.calendar-section{margin-top:30px;}
+.cal-cur{background:#dbeafe !important;color:#1d5fa8 !important;font-weight:700;}
+
+.cal-table{width:100%;border-collapse:collapse;font-size:11.5px;box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;}
+.cal-table th{background:var(--primary);color:#fff;font-weight:600;padding:9px 10px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);}
+.cal-table th:last-child{border-right:none;}
+.cal-table td{padding:8px 10px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;color:var(--text);font-size:11px;line-height:1.5;}
+.cal-table td:last-child{border-right:none;}
+.cal-table tr:last-child td{border-bottom:none;}
+.cal-table tr:nth-child(even) td{background:var(--surface2);}
+.cal-row-label{background:var(--surface2)!important;font-weight:700;color:var(--text-dim);text-align:center;white-space:nowrap;}
+
+/* ── Footnote ──────────────────────────────────────────────────── */
+.footnote{font-size:11.5px;color:var(--text-dim);line-height:1.8;margin-top:16px;padding:14px 16px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--border);}
+.report-footer{text-align:center;margin-top:36px;font-size:12px;color:var(--text-muted);}
+
+/* ── Charts ────────────────────────────────────────────────────── */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+.chart-card{
+  background:#ffffff;
+  border:1px solid #dde2ea;
+  border-radius:16px;
+  padding:20px 24px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,0.07);
+}
+.chart-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#1d5fa8,transparent);
+  opacity:0.6;
+}
+.chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.chart-card-title{font-size:13px;font-weight:700;color:#374151;letter-spacing:0.04em;}
+.chart-card-sub{font-size:11px;color:#9ca3af;margin-top:3px;}
+/* Legend */
+.clegend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+.clegend-item{display:flex;align-items:center;gap:6px;cursor:pointer;opacity:1;transition:opacity 0.2s;user-select:none;}
+.clegend-item.dimmed{opacity:0.28;}
+.clegend-line{width:20px;height:3px;border-radius:2px;flex-shrink:0;}
+.clegend-label{font-size:12px;font-weight:600;color:#374151;}
+/* Chart wrapper + hover panel */
+.chart-wrapper{position:relative;height:280px;}
+.hover-panel{
+  position:absolute;top:0;right:0;
+  background:#ffffff;border:1px solid #dde2ea;border-radius:10px;
+  padding:11px 13px;min-width:180px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.12);
+  opacity:0;transition:opacity 0.18s;pointer-events:none;z-index:50;
+}
+.hover-panel.visible{opacity:1;}
+.hover-date{font-size:11px;color:#6b7280;margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid #e5e7eb;letter-spacing:0.04em;}
+.hover-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 0;}
+.hover-game{display:flex;align-items:center;gap:6px;font-size:11px;color:#6b7280;}
+.hover-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.hover-val{font-size:12px;color:#111827;font-weight:600;}
+/* Stat strip — Image-2 style cards */
+.stat-strip{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.stat-card2{background:#ffffff;border:1px solid #e4e7ed;border-radius:10px;padding:11px 16px;min-width:110px;flex:1;}
+.sc2-header{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.sc2-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.sc2-label{font-size:11px;font-weight:600;color:#6b7280;letter-spacing:0.02em;font-family:"Microsoft YaHei","微软雅黑",sans-serif;}
+.sc2-main{display:flex;align-items:baseline;gap:3px;margin-bottom:1px;}
+.sc2-rank{font-size:26px;font-weight:800;color:#111827;line-height:1;}
+.sc2-unit{font-size:13px;font-weight:600;color:#374151;}
+.sc2-badge{font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px;}
+.sc2-badge.up{color:#ef4444;background:rgba(239,68,68,0.1);}
+.sc2-badge.down{color:#3b82f6;background:rgba(59,130,246,0.1);}
+.sc2-badge.flat{color:#9ca3af;background:#f3f4f6;}
+.sc2-sub{font-size:10px;color:#9ca3af;margin-bottom:5px;}
+.sc2-best{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;color:#374151;padding-top:5px;border-top:1px solid #e4e7ed;}
+.sc2-star{font-size:13px;color:#f59e0b;line-height:1;font-style:normal;}
+.sc2-bdate{font-size:10px;color:#9ca3af;margin-left:2px;font-weight:400;}
+canvas{display:block;width:100%!important;}
+@media(max-width:700px){.charts-grid{grid-template-columns:1fr;}.chart-wrapper{height:220px;}}
+
+/* ── Key-number chips in summary ─────────────────────────────── */
+.plat-tag{display:inline-block;background:#f1f5f9;color:#64748b;font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px;margin:0 2px 0 0;white-space:nowrap;letter-spacing:0.01em;}
+.evt-mark{display:inline;background:#fef3c7;color:#92400e;padding:1px 5px;
+border-radius:3px;font-weight:600;font-size:12.5px;}
+.num-chip{display:inline-block;font-weight:700;font-size:12px;padding:1px 7px;border-radius:5px;line-height:1.6;white-space:nowrap;}
+.num-chip.blue{background:#dbeafe;color:#1d5fa8;}
+.num-chip.red{background:#fee2e2;color:#dc2626;}
+.num-chip.green{background:#d1fae5;color:#065f46;}
+.summary-card li{margin-bottom:8px;font-size:13px;line-height:1.75;}
+.summary-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.summary-kv{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text-dim);}
+.summary-kv .lbl{font-weight:600;color:var(--text);}
+/* ── Lightbox ──────────────────────────────────────────────────── */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lb-overlay.open{display:flex;}
+.lb-overlay img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);}
+.lb-close{position:fixed;top:20px;right:28px;font-size:32px;color:#fff;cursor:pointer;line-height:1;opacity:0.8;}
+.lb-close:hover{opacity:1;}
+
+@media(max-width:700px){
+  .summary-grid{grid-template-columns:1fr;}
+  .trend-grid{grid-template-columns:1fr;}
+  body{padding:20px 14px 48px;}
+  .event-table th,.event-table td{padding:8px 12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Language Toggle ─────────────────────────────────────────── -->
+<div class="lang-toggle">
+  <button id="btn-kr" onclick="setLang('kr')">KR</button>
+  <button id="btn-cn" onclick="setLang('cn')">CN</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════════════ -->
+<div class="report-header">
+  <div class="header-top">
+    <div>
+      <div class="header-game">화평정영 PUBG Mobile · PUBGM Operations &amp; Coordination Team</div>
+      <div class="header-title">
+        <span class="txt-kr">CP Out-Game Monthly Review</span>
+        <span class="txt-cn">CP Out-Game Monthly Review</span>
+      </div>
+      <div class="header-sub">
+        <span class="txt-kr">2026년 7월　|　2026.07.01 — 2026.07.31</span>
+        <span class="txt-cn">2026年 7月　|　2026.07.01 — 2026.07.31</span>
+      </div>
+    </div>
+    <div class="header-badge">
+      <div class="header-badge-label">PERIOD</div>
+      <div class="header-badge-value">2026.07</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">📋 <span class="txt-kr">담당팀</span><span class="txt-cn">负责团队</span></span>
+      <span class="meta-value">PUBGM Operation &amp; Coordination Team</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">👤 <span class="txt-kr">담당자</span><span class="txt-cn">负责人</span></span>
+      <span class="meta-value">Ru Yi Jing (经如一)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">📅 <span class="txt-kr">조사 기간</span><span class="txt-cn">调查期间</span></span>
+      <span class="meta-value">2026.07.01 ~ 2026.07.31</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">📡 <span class="txt-kr">홍보 플랫폼</span><span class="txt-cn">调查平台</span></span>
+      <span class="meta-value"><span class="txt-kr">화평캠프, 웨이보, 틱톡, 샤오홍슈, Kwai, Bilibili 등</span><span class="txt-cn">和平营地、weibo、抖音、小红书、快手、Bilibili等</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SUMMARY
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📊</div>
+  <span class="txt-kr">Summary</span>
+  <span class="txt-cn">Summary</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR Summary -->
+<div class="blk-kr">
+  <div class="summary-grid">
+    <div class="summary-card trend">
+      <div class="summary-card-title">📈 인기도 상승 시점</div>
+      <ul>
+        <li><span class="highlight">iOS 랭킹:</span> 월평균 다운로드 <span class="num-chip blue">6위↓</span> · 월평균 매출 <span class="num-chip blue">2위↑</span> &nbsp;|&nbsp; 다운로드 최고 <span class="num-chip blue">2위</span>（7/1）· 7.17 Delta Force 업데이트 직후 잠시 역전됨</li>
+        <li><span class="highlight">위챗/바이두 지수:</span> <span class="evt-mark">월말 스파이더맨 콜라보+연예인 라인업 예열</span> 시 관심도 상승<br><span style="font-size:12px;color:var(--text-muted)">※ 본월 微博 지수 데이터 없음</span></li>
+      </ul>
+    </div>
+    <div class="summary-card strategy">
+      <div class="summary-card-title">🎯 마케팅 동향</div>
+      <ul>
+        <li><strong>버전 홍보:</strong> 월초~중순 <strong>「하일탐험」</strong> 지속 홍보+콜라보·유료화로 화제성 유지, 하순부터 <strong>SS40·보급페스티벌</strong> 예열.<br>
+          &nbsp;&nbsp;📌 <em>상순</em>: 하일탐험 메인 홍보 → weibo <span class="num-chip red">1469만</span> / 하일항해 <span class="num-chip red">206.7만</span><br>
+          &nbsp;&nbsp;📌 <em>하순</em>: SS40·메트로 로얄 CH.13·초체 레저 아일랜드·8월 공투절 예열</li>
+        <li><strong>유료화:</strong> 본월 유료화 항목 <span class="num-chip blue">11건</span>（콜라보 군수/차량/신장/버디/스킨/캐릭터/세트 등），최고성과 B.DUCK <span class="num-chip red">2.9억</span> · 환음구미 <span class="num-chip red">790.2만</span></li>
+        <li><strong>Seasonal Marketing:</strong> 하일탐험 커뮤니티 복지·쌍방향 소통으로 화제성 유지, 보급페스티벌 공모전으로 8월 예열</li>
+        <li><strong>IP 콜라보:</strong> 브랜드 <span class="num-chip blue">6건</span>（오황묘/Formula E/NICEFUN/Slay The Gods/레이드 무림학교/스파이더맨）+ 연예인 <span class="num-chip blue">1건</span>（구리나자）= 총 <span class="num-chip blue">7건</span> ｜ 구리나자 환음구미 weibo <span class="num-chip red">797.6만</span> · 스파이더맨 <span class="num-chip red">239.2만</span></li>
+        <li><strong>IP 파생:</strong> <span style="background:#e2e8f0;color:#475569;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;display:inline-block;white-space:nowrap">온라인</span> 굿즈 상점 업그레이드 오픈 ｜ <span style="background:#e2e8f0;color:#475569;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;display:inline-block;white-space:nowrap">오프라인</span> 선전·지린·상하이·충칭·청두 多지역</li>
+        <li><strong>라이브:</strong> 이스포츠 <span class="num-chip green">1건</span>（마카오 초청전 weibo <span class="num-chip red">3168만</span>）+ 커머스 <span class="num-chip green">1건</span>（315.06w）+ 자극의 밤 예열</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CN Summary -->
+<div class="blk-cn">
+  <div class="summary-grid">
+    <div class="summary-card trend">
+      <div class="summary-card-title">📈 热度较高时间点</div>
+      <ul>
+        <li><span class="highlight">iOS排名:</span> 月均下载 <span class="num-chip blue">6位↓</span> · 月均畅销 <span class="num-chip blue">2位↑</span> &nbsp;|&nbsp; 下载最高 <span class="num-chip blue">2位</span>（7/1）· 7.17 Delta Force版本更新后被短暂超越</li>
+        <li><span class="highlight">微信/百度指数:</span> <span class="evt-mark">月末蜘蛛侠联动+明星阵容预热曝光</span> 时关注度显著提升<br><span style="font-size:12px;color:var(--text-muted)">※ 本月微博指数数据缺失</span></li>
+      </ul>
+    </div>
+    <div class="summary-card strategy">
+      <div class="summary-card-title">🎯 市场动态</div>
+      <ul>
+        <li><strong>版本宣推:</strong> 月初~中旬持续延伸<strong>「夏日探险」</strong>主轴并结合联动/商业化维持声量，下旬开始预热 <strong>SS40·刺激空投节</strong>。<br>
+          &nbsp;&nbsp;📌 <em>上旬</em>：夏日探险版本持续传播 → weibo <span class="num-chip red">1469w</span> / 夏日航海 <span class="num-chip red">206.7w</span><br>
+          &nbsp;&nbsp;📌 <em>下旬</em>：SS40·地铁逃生CH.13·超体度假岛·8月刺激空投节/返场内容预热</li>
+        <li><strong>商业化:</strong> 本月商业化内容 <span class="num-chip blue">11项</span>（联名军需/联名载具/神装/伙伴累计充值/联动皮肤/角色/运输机皮肤/套装等），表现最好为小黄鸭 <span class="num-chip red">2.9亿</span> · 幻音九尾 <span class="num-chip red">790.2w</span></li>
+        <li><strong>Seasonal Marketing:</strong> 夏日探险社群福利互动维持热度，空投节主题征稿及预告活动为8月蓄力</li>
+        <li><strong>IP合作联动:</strong> 品牌 <span class="num-chip blue">6件</span>（吾皇猫/Formula E/NICEFUN/斩神/吞噬星空/蜘蛛侠）+ 明星 <span class="num-chip blue">1件</span>（古力娜扎）= 合计 <span class="num-chip blue">7件</span> ｜ 娜扎cos weibo <span class="num-chip red">797.6w</span> · 蜘蛛侠 <span class="num-chip red">239.2w</span></li>
+        <li><strong>IP衍生:</strong> <span style="background:#e2e8f0;color:#475569;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;display:inline-block;white-space:nowrap">线上</span> 官方授权周边商城升级开业 ｜ <span style="background:#e2e8f0;color:#475569;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;display:inline-block;white-space:nowrap">线下</span> 深圳·吉林·上海·重庆·成都多地</li>
+        <li><strong>直播活动:</strong> 赛事 <span class="num-chip green">1场</span>（澳门邀请赛 weibo <span class="num-chip red">3168w</span>）+ 带货 <span class="num-chip green">1场</span>（峰值315.06w）+ 刺激之夜全平台预热</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TREND
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📈</div>
+  <span class="txt-kr">트렌드 추이</span>
+  <span class="txt-cn">热度趋势</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="charts-grid">
+
+  <!-- ── iOS Ranking Chart ── -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-card-title">
+          <span class="txt-kr">🏆 iOS 게임 순위 추세</span>
+          <span class="txt-cn">🏆 iOS 游戏排名趋势</span>
+        </div>
+        <div class="chart-card-sub">CN App Store · Games · 2026.07 · Sensor Tower</div>
+      </div>
+    </div>
+    <!-- Image-2 style stat cards -->
+    <div class="stat-strip">
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#1d5fa8"></span><span class="sc2-label"><span class="txt-kr">다운로드 랭킹</span><span class="txt-cn">下载榜</span></span></div>
+        <div class="sc2-main">
+          <span class="sc2-rank" id="iosAvgFree">—</span>
+          <span class="sc2-unit"><span class="txt-kr">위</span><span class="txt-cn">位</span></span>
+          <span class="sc2-badge" id="iosFreeBadge"></span>
+        </div>
+        <div class="sc2-sub"><span class="txt-kr">2026.07 · 월평균</span><span class="txt-cn">2026.07 · 月均</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="iosBestFree">—</span><span class="sc2-bdate" id="iosBestFreeDate"></span></div>
+      </div>
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#d97706"></span><span class="sc2-label"><span class="txt-kr">인기 랭킹</span><span class="txt-cn">畅销榜</span></span></div>
+        <div class="sc2-main">
+          <span class="sc2-rank" id="iosAvgGross">—</span>
+          <span class="sc2-unit"><span class="txt-kr">위</span><span class="txt-cn">位</span></span>
+          <span class="sc2-badge" id="iosGrossBadge"></span>
+        </div>
+        <div class="sc2-sub"><span class="txt-kr">2026.07 · 월평균</span><span class="txt-cn">2026.07 · 月均</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="iosBestGross">—</span><span class="sc2-bdate" id="iosBestGrossDate"></span></div>
+      </div>
+    </div>
+    <div class="clegend" id="iosLegend"></div>
+    <div class="chart-wrapper" onmouseleave="hidePanel('iosHover')">
+      <canvas id="chartIOS"></canvas>
+      <div class="hover-panel" id="iosHover">
+        <div class="hover-date" id="iosHoverDate">—</div>
+        <div id="iosHoverRows"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Heat Index Chart ── -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-card-title">
+          <span class="txt-kr">🔥 플랫폼 인기도 지수</span>
+          <span class="txt-cn">🔥 平台热度指数</span>
+        </div>
+        <div class="chart-card-sub"><span class="txt-kr">wechat · baidu · 귀일화지수(각 피크값=100%) · 2026.07</span><span class="txt-cn">微信 · 百度 · 归一化指数(各自峰值=100%) · 2026.07</span></div>
+      </div>
+    </div>
+    <div class="stat-strip">
+      
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#16a34a"></span><span class="sc2-label"><span class="txt-kr">wechat 지수</span><span class="txt-cn">微信指数</span></span></div>
+        <div class="sc2-main"><span class="sc2-rank" id="wxPeak">—</span></div>
+        <div class="sc2-sub"><span class="txt-kr">피크 원시값</span><span class="txt-cn">峰值原始数据</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="wxPeakDate">—</span></div>
+      </div>
+      <div class="stat-card2">
+        <div class="sc2-header"><span class="sc2-dot" style="background:#2563eb"></span><span class="sc2-label"><span class="txt-kr">baidu 지수</span><span class="txt-cn">百度指数</span></span></div>
+        <div class="sc2-main"><span class="sc2-rank" id="bdPeak">—</span></div>
+        <div class="sc2-sub"><span class="txt-kr">피크 원시값</span><span class="txt-cn">峰值原始数据</span></div>
+        <div class="sc2-best"><span class="sc2-star">★</span><span id="bdPeakDate">—</span></div>
+      </div>
+    </div>
+    <div class="clegend" id="heatLegend"></div>
+    <div class="chart-wrapper" onmouseleave="hidePanel('heatHover')">
+      <canvas id="chartHeat"></canvas>
+      <div class="hover-panel" id="heatHover">
+        <div class="hover-date" id="heatHoverDate">—</div>
+        <div id="heatHoverRows"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     1. VERSION PROMO
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📣</div>
+  <span class="txt-kr">1. 버전 홍보</span>
+  <span class="txt-cn">1. 版本宣推</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;">주요 홍보 플랫폼: 화평캠프, 웨이보, 틱톡, 샤오홍슈, Kwai, Bilibili 등</p>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026년 7월 초~중순에는 <strong>「하일탐험」</strong> 여름 버전을 중심으로 환음구미·참신·탄식성공 등 콜라보/신규 유료화 콘텐츠와 결합하여 대외 화제성을 유지하였으며, <strong>하순부터 SS40·메트로 로얄 CH.13·초체 레저 아일랜드 업데이트 및 8월 보급페스티벌/재출시 콘텐츠 예열</strong> 시작</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">기간</th><th class="td-type">홍보 내용</th><th class="td-content">홍보 활동</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="td-date">2026.07 상순</td>
+          <td class="td-type"><span class="badge b-version">여름 버전</span><div style="font-weight:700;font-size:12px;margin-top:5px;color:#1e40af;background:#dbeafe;padding:3px 8px;border-radius:5px;display:inline-block;line-height:1.4">하일탐험 지속 홍보</div><div style="font-size:11px;color:#374151;margin-top:4px;line-height:1.5">（*하일항해/고분탐험/메트로 로얄 확산）</div></td>
+          <td class="td-content">6.30 「하일탐험」 출시 직후의 메인 홍보를 이어받아 하일항해·고분탐험·메트로 로얄 등을 계속 홍보</td>
+          <td class="td-effect"><span class="topic-link">#CP하일탐험#</span> weibo <span class="effect-num">1469만</span><br><span class="topic-link">#CP하일항해#</span> weibo <span class="effect-num">206.7만</span></td>
+          <td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18809639.html" target="_blank">Link ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td-date">2026.07 중순</td>
+          <td class="td-type"><span class="badge b-version">모드 업데이트</span><div style="font-weight:700;font-size:12px;margin-top:5px;color:#1e40af;background:#dbeafe;padding:3px 8px;border-radius:5px;display:inline-block;line-height:1.4">여름 버전 2차 업데이트</div><div style="font-size:11px;color:#374151;margin-top:4px;line-height:1.5">（*초체대항 랜디/메트로 로얄 데스매치 모드）</div></td>
+          <td class="td-content">여름 버전의 두 번째 업데이트로 초체대항-랜디, 메트로 로얄 데스매치 등 모드 업데이트 집중 홍보</td>
+          <td class="td-effect">—</td>
+          <td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18816766.html" target="_blank">Link ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td-date">2026.07 하순</td>
+          <td class="td-type"><span class="badge b-version">SS40+8월 예열</span><div style="font-weight:700;font-size:12px;margin-top:5px;color:#1e40af;background:#dbeafe;padding:3px 8px;border-radius:5px;display:inline-block;line-height:1.4">시즌 업데이트+8월 예열</div><div style="font-size:11px;color:#374151;margin-top:4px;line-height:1.5">（*SS40 시즌/메트로 로얄 CH.13/초체 레저 아일랜드/공투절 예열）</div></td>
+          <td class="td-content">SS40 시즌 오픈, 메트로 로얄 CH.13/2주년 동시 홍보, 초체진화-레저 아일랜드 모드 업데이트, 화평캠프 공모전 개시, 월말 8.5 서머 비치/Mutant Crisis 재출시 예열 및 콘텐츠 공모전 개시</td>
+          <td class="td-effect"><span class="topic-link">#화평초체대항레저아일랜드#</span> weibo 75.1만</td>
+          <td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18823528.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/Ras8Bqi8z" target="_blank">Link 2 ↗</a><br><a href="https://weibo.com/7095404909/RarKg43c2" target="_blank">Link 3 ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;">宣推平台集中在和平营地、weibo、抖音、小红书、快手、Bilibili等</p>
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026年7月，版本宣推前中期围绕<strong>「夏日探险」</strong>暑期版本持续展开，并结合幻音九尾、斩神、吞噬星空等联动/新商业化内容维持外部声量；<strong>下旬开始为SS40、地铁逃生CH.13、超体度假岛更新及8月刺激空投节/返场内容预热</strong></p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">期间</th><th class="td-type">宣推内容</th><th class="td-content">宣推活动</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="td-date">2026.07 上旬</td>
+          <td class="td-type"><span class="badge b-version">夏日版本</span><div style="font-weight:700;font-size:12px;margin-top:5px;color:#1e40af;background:#dbeafe;padding:3px 8px;border-radius:5px;display:inline-block;line-height:1.4">夏日探险版本持续传播</div><div style="font-size:11px;color:#374151;margin-top:4px;line-height:1.5">（*夏日航海/古墓迷途/地铁逃生扩散）</div></td>
+          <td class="td-content">承接6.30「夏日探险」暑期版本上线后的主轴传播，围绕夏日航海、古墓迷途、地铁逃生继续扩散</td>
+          <td class="td-effect"><span class="topic-link">#和平精英夏日探险#</span> weibo <span class="effect-num">1469w</span><br><span class="topic-link">#和平精英夏日航海#</span> weibo <span class="effect-num">206.7w</span></td>
+          <td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18809639.html" target="_blank">Link ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td-date">2026.07 中旬</td>
+          <td class="td-type"><span class="badge b-version">玩法更新</span><div style="font-weight:700;font-size:12px;margin-top:5px;color:#1e40af;background:#dbeafe;padding:3px 8px;border-radius:5px;display:inline-block;line-height:1.4">夏日版本二段更新</div><div style="font-size:11px;color:#374151;margin-top:4px;line-height:1.5">（*超体对抗兰蒂/地铁逃生死斗竞技）</div></td>
+          <td class="td-content">夏日版本二段承接，重点推进超体对抗兰蒂、地铁逃生死斗竞技等玩法更新</td>
+          <td class="td-effect">—</td>
+          <td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18816766.html" target="_blank">Link ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td-date">2026.07 下旬</td>
+          <td class="td-type"><span class="badge b-version">SS40+8月预热</span><div style="font-weight:700;font-size:12px;margin-top:5px;color:#1e40af;background:#dbeafe;padding:3px 8px;border-radius:5px;display:inline-block;line-height:1.4">赛季更新与8月预热</div><div style="font-size:11px;color:#374151;margin-top:4px;line-height:1.5">（*SS40赛季/地铁逃生CH.13/超体度假岛/刺激空投节预热）</div></td>
+          <td class="td-content">SS40赛季开启，地铁逃生CH.13/两周年内容同步推进；超体进化-度假岛玩法更新；和平营地开启征稿活动；月末预热8.5 夏日海滩/异变危机返场，并启动内容征稿活动</td>
+          <td class="td-effect"><span class="topic-link">#和平超体对抗度假岛#</span> weibo 75.1w</td>
+          <td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18823528.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/Ras8Bqi8z" target="_blank">Link 2 ↗</a><br><a href="https://weibo.com/7095404909/RarKg43c2" target="_blank">Link 3 ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     2. COMMERCIALIZATION
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">💰</div>
+  <span class="txt-kr">2. 유료화</span>
+  <span class="txt-cn">2. 商业化</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">7월 유료화는 콜라보 군수·차량·신장·버디·콜라보 스킨·캐릭터/수송기 스킨·세트 등 다양한 유형을 출시. 이 중 <span class="topic-link">#CPB.DUCK#</span>（weibo 조회수 <span class="effect-num">2.9억</span>）와 <span class="topic-link">#CP환음구미#</span>（weibo <span class="effect-num">790.2만</span>）가 높은 홍보 효과를 보임</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th class="td-content">내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03</td><td class="td-type"><span class="badge b-collab">콜라보 군수품</span></td><td>CP × 오황묘 2차 콜라보 개시, 콜라보 군수품 출시</td><td class="td-effect"><span class="topic-link">#CP오황묘콜라보#</span> weibo 42.2만</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Nul5Tp8" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18805483.html" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.04</td><td class="td-type"><span class="badge b-version">콜라보 차량</span></td><td>CP × Formula E 2차 콜라보 개시, 콜라보 차량 스킨 4종 출시</td><td class="td-effect"><span class="topic-link">#CPFormula E콜라보#</span> weibo 31.4만</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Q2CDIPt" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18807784.html" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.10</td><td class="td-type"><span class="badge b-version">신장</span></td><td>신규 신장【환음구미】출시, 공식 이슈에 맞춰 홍보 진행</td><td class="td-effect"><span class="topic-link">#CP환음구미#</span> weibo <span class="effect-num">790.2만</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R81PXiYSs" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.10</td><td class="td-type"><span class="badge b-merch">버디/누적충전</span></td><td>신규 버디-B.DUCK 출시, 누적 충전 달성 시 B.DUCK 이모트 패키지와 버디 획득</td><td class="td-effect"><span class="topic-link">#CPB.DUCK#</span> weibo <span class="effect-num">2.9억</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R80Uir8t1" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.17</td><td class="td-type"><span class="badge b-version">세트/무기 외형</span></td><td>상점 직판 업데이트, 신규 세트-【절인쌍도】출시</td><td class="td-effect"><span class="topic-link">#CP절인쌍도#</span> weibo 11만</td><td class="td-link"><a href="https://weibo.com/7095404909/R8MeXjWQS" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.17</td><td class="td-type"><span class="badge b-collab">콜라보 캐릭터 스킨</span></td><td>CP × Slay The Gods 애니메이션 콜라보, 한정판 스킨 4종 출시</td><td class="td-effect"><span class="topic-link">#CPSlay The Gods콜라보#</span> weibo 40.5만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18816837.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/R8M2N13AG" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.24</td><td class="td-type"><span class="badge b-collab">콜라보 메카+차량</span></td><td>CP × 레이드 무림학교 콜라보, 전 시리즈 메카 외형/콜라보 차량 출시</td><td class="td-effect"><span class="topic-link">#CP레이드 무림학교콜라보#</span> weibo 48.3만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/736/18822452.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/R9Rpv631I" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.25</td><td class="td-type"><span class="badge b-version">캐릭터/수송기</span></td><td>신규 시리즈 캐릭터【모색지하】및 수송기 스킨【성하낙원】출시（이벤트 보상, UC 구매 가능）</td><td class="td-effect"><span class="topic-link">#CP모색지하#</span> weibo 15.8만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/736/18822420.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/R9QOXBZPa" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.28</td><td class="td-type"><span class="badge b-version">세트</span></td><td>신규 세트【파점포포】출시</td><td class="td-effect"><span class="topic-link">#CP파점포포#</span> weibo 14만</td><td class="td-link"><a href="https://weibo.com/7095404909/Rau6nwbii" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.28</td><td class="td-type"><span class="badge b-version">세트</span></td><td>신규 세트【고가풍폭】·【단녕광조】출시</td><td class="td-effect"><span class="topic-link">#CP단녕광조#</span> weibo 22.2만<br><span class="topic-link">#CP고가풍폭#</span> weibo 22.3만</td><td class="td-link"><a href="https://weibo.com/7095404909/RaDd6yqKS" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.30</td><td class="td-type"><span class="badge b-merch">캐릭터</span></td><td>신규 시리즈 스킨-【스위트 펑크】출시</td><td class="td-effect"><span class="topic-link">#CP스위트펑크#</span> weibo 32.1만</td><td class="td-link"><a href="https://weibo.com/7095404909/RaVCo7c71" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18825977.html" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">7月商业化覆盖联名军需、联名载具、神装、伙伴累计充值、联动皮肤、角色/运输机皮肤等类型；其中 <span class="topic-link">#和平精英小黄鸭#</span> weibo话题阅读量 <span class="effect-num">2.9亿</span> 与 <span class="topic-link">#和平精英幻音九尾#</span> weibo话题阅读量 <span class="effect-num">790.2w</span> 获得了较好的宣传效果</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">商业化类型</th><th class="td-content">内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03</td><td class="td-type"><span class="badge b-collab">联名军需</span></td><td>和平精英 × 吾皇猫开启二期联动，推出联动军需</td><td class="td-effect"><span class="topic-link">#和平精英吾皇猫联动#</span> weibo 42.2w</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Nul5Tp8" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18805483.html" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.04</td><td class="td-type"><span class="badge b-version">联名载具</span></td><td>和平精英 × Formula E 开启二期联动，推出四款联名载具皮肤</td><td class="td-effect"><span class="topic-link">#和平精英Formula E联动#</span> weibo 31.4w</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Q2CDIPt" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18807784.html" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.10</td><td class="td-type"><span class="badge b-version">神装/角色</span></td><td>全新神装【幻音九尾】上线，并配合官方话题传播</td><td class="td-effect"><span class="topic-link">#和平精英幻音九尾#</span> weibo <span class="effect-num">790.2w</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R81PXiYSs" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.10</td><td class="td-type"><span class="badge b-merch">伙伴/累计充值</span></td><td>全新伙伴-小黄鸭上线；累计充值指定点券可领取小黄鸭表情包宝箱与伙伴-小黄鸭</td><td class="td-effect"><span class="topic-link">#和平精英小黄鸭#</span> weibo <span class="effect-num">2.9亿</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R80Uir8t1" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.17</td><td class="td-type"><span class="badge b-version">套装/武器</span></td><td>商城直售上新，全新套装-绝刃双刀上线</td><td class="td-effect"><span class="topic-link">#和平精英绝刃双刀#</span> weibo 11w</td><td class="td-link"><a href="https://weibo.com/7095404909/R8MeXjWQS" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.17</td><td class="td-type"><span class="badge b-collab">联动角色皮肤</span></td><td>《和平精英》x《斩神》动画联动，推出四套限定皮肤</td><td class="td-effect"><span class="topic-link">#和平精英斩神联动#</span> weibo 40.5w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18816837.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/R8M2N13AG" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.24</td><td class="td-type"><span class="badge b-collab">联动机甲+载具</span></td><td>《和平精英》x《吞噬星空》联动全系列机甲外观/联动载具上线</td><td class="td-effect"><span class="topic-link">#和平精英吞噬星空联动#</span> weibo 48.3w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/736/18822452.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/R9Rpv631I" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.25</td><td class="td-type"><span class="badge b-version">角色/运输机</span></td><td>全新系列角色"暮色之下"和运输机皮肤"盛夏乐园"上线（*活动奖励道具，可UC补购）</td><td class="td-effect"><span class="topic-link">#和平精英暮色之下#</span> weibo 15.8w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/736/18822420.html" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/R9QOXBZPa" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.28</td><td class="td-type"><span class="badge b-version">套装</span></td><td>全新套装【波点泡泡】上线</td><td class="td-effect"><span class="topic-link">#和平精英波点泡泡#</span> weibo 14w</td><td class="td-link"><a href="https://weibo.com/7095404909/Rau6nwbii" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.28</td><td class="td-type"><span class="badge b-version">套装</span></td><td>全新套装【高街风暴】·【丹宁狂潮】上线</td><td class="td-effect"><span class="topic-link">#和平精英丹宁狂潮#</span> weibo 22.2w<br><span class="topic-link">#和平精英高街风暴#</span> weibo 22.3w</td><td class="td-link"><a href="https://weibo.com/7095404909/RaDd6yqKS" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.30</td><td class="td-type"><span class="badge b-merch">角色</span></td><td>全新系列角色-【甜心朋克】上线</td><td class="td-effect"><span class="topic-link">#和平精英甜心朋克#</span> weibo 32.1w</td><td class="td-link"><a href="https://weibo.com/7095404909/RaVCo7c71" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18825977.html" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     3. SEASONAL MARKETING
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">🗓️</div>
+  <span>3. Seasonal Marketing</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:12px;">2026년 7월의 Seasonal Marketing은 여름철을 중심으로 진행, 커뮤니티 내 보너스 및 쌍방향 소통 이벤트를 통해 「하일탐험」 화제성을 유지하고 보급페스티벌 공모전으로 8월 이벤트 예열</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th class="td-content">이벤트 내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03~2026.07.08</td><td class="td-type"><span class="badge b-seasonal">커뮤니티</span></td><td><span class="plat-tag">웨이보</span> 하일탐험 복지 이벤트, 태그 달린 댓글 중 추첨 보상 배포</td><td class="td-effect"><span class="topic-link">#화평하일탐험가#</span> weibo 7.6만</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Wwt82ow" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.25~2026.07.30</td><td class="td-type"><span class="badge b-seasonal">보급페스티벌 예열</span></td><td><span class="plat-tag">웨이보</span> 공식 계정 통해 익사이팅 나이트 및 연예인 관련 내용 수일 간 예고</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/Rah8GlKcj" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/RaTPz3IAl" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.31~2026.08.31</td><td class="td-type"><span class="badge b-seasonal">공모전</span></td><td><span class="plat-tag">화평캠프</span> CP 보급페스티벌 테마 영상 공모전 개시（주제: 보급페스티벌/익사이팅 나이트/메트로 로얄 2주년/녹주기원 1주년/서머 비치 재출시 등）</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18827004.html" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:12px;">2026年7月，Seasonal Marketing主要围绕暑期节点展开，进行一些社群福利、话题互动活动，维持「夏日探险」版本热度，并通过「刺激空投节」主题征稿和福利活动为8月活动预热</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">类型</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03~2026.07.08</td><td class="td-type"><span class="badge b-seasonal">社群互动</span></td><td><span class="plat-tag">weibo</span> 夏日探险福利，邀请用户带话题评论互动并抽奖</td><td class="td-effect"><span class="topic-link">#和平夏日探险家#</span> weibo 7.6w</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Wwt82ow" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.25~2026.07.30</td><td class="td-type"><span class="badge b-seasonal">空投节预热</span></td><td><span class="plat-tag">weibo</span> 官方微博连续多日预告刺激之夜以及明星相关内容</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/Rah8GlKcj" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/RaTPz3IAl" target="_blank">Link 2 ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.31~2026.08.31</td><td class="td-type"><span class="badge b-seasonal">征稿活动</span></td><td><span class="plat-tag">和平营地</span> 和平精英空投节主题视频征稿活动开启，内容主题覆盖空投节/刺激之夜/地铁两周年庆/绿洲启元周年庆/夏日海滩返场等</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18827004.html" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     4. COLLABORATION
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">🤝</div>
+  <span class="txt-kr">4. 콜라보</span>
+  <span class="txt-cn">4. 合作联动</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026년 7월 브랜드 콜라보 <span class="num-chip blue">6건</span>（오황묘/Formula E/NICEFUN/Slay The Gods/레이드 무림학교/스파이더맨: 브랜드 뉴 데이）+ 연예인 콜라보 <span class="num-chip blue">1건</span>（구리나자）= 총 <span class="num-chip blue">7건</span>. 이 중 <span class="topic-link">#나자CP구미대사#</span>（weibo <span class="effect-num">797.6만</span>）와 <span class="topic-link">#CP스파이더맨콜라보#</span>（weibo <span class="effect-num">239.2만</span>）가 높은 홍보 효과를 보임</p>
+  <div class="sub-section">브랜드 콜라보 <span class="badge b-brand">Brand</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th>브랜드/IP</th><th class="td-type">유형</th><th class="td-content">내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03</td><td><strong>오황묘</strong></td><td class="td-type"><span class="badge b-collab">만화</span></td><td>CP × 오황묘 2차 콜라보 개시, 콜라보 군수품 출시</td><td class="td-effect"><span class="topic-link">#CP오황묘콜라보#</span> weibo 42.2만</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Nul5Tp8" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.04</td><td><strong>Formula E</strong></td><td class="td-type"><span class="badge b-esports">레이싱</span></td><td>CP × FE 2차 콜라보, 콜라보 차량 스킨 4종 출시</td><td class="td-effect"><span class="topic-link">#CPFormula E콜라보#</span> weibo 31.4만</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Q2CDIPt" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.10</td><td><strong>NICEFUN</strong></td><td class="td-type"><span class="badge b-merch">트렌디 토이</span></td><td>CP × NICEFUN 초체 교관 FUN 콩 시리즈 랜덤박스 2탄</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/R83QXbeCA" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.17</td><td><strong>Slay The Gods</strong></td><td class="td-type"><span class="badge b-collab">중국 애니메이션</span></td><td>CP × Slay The Gods 애니메이션 콜라보, 한정판 스킨 4종 출시</td><td class="td-effect"><span class="topic-link">#CPSlay The Gods콜라보#</span> weibo 40.5만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18816837.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.24</td><td><strong>레이드 무림학교</strong></td><td class="td-type"><span class="badge b-collab">중국 애니메이션</span></td><td>CP × 레이드 무림학교 콜라보 전 시리즈 메카 외형/콜라보 차량 출시</td><td class="td-effect"><span class="topic-link">#CP레이드 무림학교콜라보#</span> weibo 48.3만</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/736/18822452.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.29</td><td><strong>스파이더맨: 브랜드 뉴 데이</strong></td><td class="td-type"><span class="badge b-event">영화</span></td><td>CP × 영화《스파이더맨: 브랜드 뉴 데이》콜라보. 인게임 '기억의 수집' 이벤트 오픈（슈트/보이스팩/범용 이모트 무료획득）; 7.30~8.2 청두 PMWC 출정식 이벤트와 스파이더맨 테마 공간 마련</td><td class="td-effect"><span class="topic-link">#CP스파이더맨브랜드뉴데이콜라보#</span> weibo <span class="effect-num">239.2만</span></td><td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18822461.html" target="_blank">티저 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18824879.html" target="_blank">출시 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">유명인/연예인 콜라보 <span class="badge b-celeb">Celebrity</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th>인물</th><th class="td-type">유형</th><th class="td-content">내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.10</td><td><strong>구리나자</strong></td><td class="td-type"><span class="badge b-celeb">연예인</span></td><td>연예인 구리나자 섭외 → 환음구미 신장 코스프레, '구미대사'로서 신장 홍보</td><td class="td-effect"><span class="topic-link">#나자CP구미대사#</span> weibo <span class="effect-num">797.6만</span></td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18812596.html" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">7月，共进行了 <span class="num-chip blue">7个</span>合作，包括6个品牌合作（吾皇猫/Formula E/NICEFUN/斩神/吞噬星空/蜘蛛侠：崭新之日）与1个明星合作（古力娜扎）。合作联动覆盖动漫IP、赛车、潮玩、电影与明星cos。其中 <span class="topic-link">#娜扎和平精英九尾大使#</span>（weibo <span class="effect-num">797.6w</span>）与 <span class="topic-link">#和平精英蜘蛛侠崭新之日联动#</span>（weibo <span class="effect-num">239.2w</span>）获得了较好的宣传效果</p>
+  <div class="sub-section">品牌合作 <span class="badge b-brand">Brand</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th>品牌/IP</th><th class="td-type">类型</th><th class="td-content">内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03</td><td><strong>吾皇猫</strong></td><td class="td-type"><span class="badge b-collab">漫画</span></td><td>和平精英 × 吾皇猫开启二期联动，推出联动军需</td><td class="td-effect"><span class="topic-link">#和平精英吾皇猫联动#</span> weibo 42.2w</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Nul5Tp8" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.04</td><td><strong>Formula E</strong></td><td class="td-type"><span class="badge b-esports">赛车</span></td><td>和平精英 × FE 二期联动，推出四款联名载具皮肤</td><td class="td-effect"><span class="topic-link">#和平精英Formula E联动#</span> weibo 31.4w</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Q2CDIPt" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.10</td><td><strong>NICEFUN</strong></td><td class="td-type"><span class="badge b-merch">潮玩</span></td><td>和平精英 × NICEFUN 超体导师 FUN 小豆系列毛绒盲盒第2弹</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/R83QXbeCA" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.17</td><td><strong>斩神</strong></td><td class="td-type"><span class="badge b-collab">动画</span></td><td>《和平精英》x《斩神》动画联动，推出四套限定皮肤</td><td class="td-effect"><span class="topic-link">#和平精英斩神联动#</span> weibo 40.5w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18816837.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.24</td><td><strong>吞噬星空</strong></td><td class="td-type"><span class="badge b-collab">动画</span></td><td>《和平精英》x《吞噬星空》联动全系列机甲外观/联动载具上线</td><td class="td-effect"><span class="topic-link">#和平精英吞噬星空联动#</span> weibo 48.3w</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/736/18822452.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.29</td><td><strong>蜘蛛侠：崭新之日</strong></td><td class="td-type"><span class="badge b-event">电影</span></td><td>《和平精英》x 电影《蜘蛛侠：崭新之日》联合推广；正式上线游戏内「收集记忆」活动，参与可免费领取痛衣套装、语音包与通用动作；7.30~8.2在成都落地PMWC出征主题周暨蜘蛛侠联动主题空间</td><td class="td-effect"><span class="topic-link">#和平精英蜘蛛侠崭新之日联动#</span> weibo <span class="effect-num">239.2w</span></td><td class="td-link"><a href="https://gp.qq.com/gicp/news/684/18822461.html" target="_blank">预热 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18824879.html" target="_blank">上线 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">名人/明星合作 <span class="badge b-celeb">Celebrity</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th>人物</th><th class="td-type">类型</th><th class="td-content">内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.10</td><td><strong>古力娜扎</strong></td><td class="td-type"><span class="badge b-celeb">明星</span></td><td>邀请明星古力娜扎 cos 神装幻音九尾，并作为"九尾大使"承接神装传播</td><td class="td-effect"><span class="topic-link">#娜扎和平精英九尾大使#</span> weibo <span class="effect-num">797.6w</span></td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18812596.html" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     5. IP DERIVATIVE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">🎪</div>
+  <span class="txt-kr">5. IP 파생</span>
+  <span class="txt-cn">5. IP衍生</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <div class="sub-section">온라인 <span class="badge b-online">Online</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th class="td-content">이벤트 내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03~2026.08.03</td><td class="td-type"><span class="badge b-merch">공식 굿즈 상점</span></td><td>CP 굿즈 상점 업그레이드 진행, 7.10 공식 라이선스 굿즈 상점의 업그레이드 오픈과 기간 한정 세일 이벤트 발표</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/R6W87orj0" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18813477.html" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">오프라인 <span class="badge b-offline">Offline</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-location">장소</th><th class="td-content">이벤트 내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.04~2026.08.10</td><td class="td-location"><span class="badge b-event">선전</span></td><td>CP 하일탐험 파티·선전</td><td class="td-effect"><span class="topic-link">#CP하일항해#</span> weibo <span class="effect-num">206.5만</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R7eZ6vZm0" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.08</td><td class="td-location"><span class="badge b-event">지린</span></td><td>CP 하일탐험 파티-지린, 하일탐험 버전의 오프라인 접점 연장</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/R7K14yryL" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.15~2026.07.17</td><td class="td-location"><span class="badge b-event">상하이</span></td><td>LEC 글로벌 라이선싱 전시회·상하이에 CP 참여 티징</td><td class="td-effect"><span class="topic-link">#CPLEC언팩#</span> weibo 19.7만</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Xjbi4IO" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.27~2026.08.31</td><td class="td-location"><span class="badge b-event">충칭</span></td><td>충칭 Maya Beach 워터파크 콜라보, '하일항해 어드벤처'를 중심으로 복지 구역·오프라인 상호작용·표 구매 혜택·인게임 인증 미션 진행</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18823724.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.29~2026.08.02</td><td class="td-location"><span class="badge b-event">청두</span></td><td>스파이더맨 콜라보와 함께 2026 PMWC 출정 주간 및《스파이더맨: 브랜드 뉴 데이》전용 콜라보 테마 공간 오픈</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18824879.html" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <div class="sub-section">线上活动 <span class="badge b-online">Online</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">类型</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.03~2026.08.03</td><td class="td-type"><span class="badge b-merch">官方授权商城</span></td><td>和平精英周边商城升级优惠月上线；7.10进一步发布官方授权周边商城升级开业与限时福利购</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/R6W87orj0" target="_blank">Link 1 ↗</a><br><a href="https://gp.qq.com/gicp/news/1134/18813477.html" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub-section">线下活动 <span class="badge b-offline">Offline</span></div>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-location">活动地点</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.04~2026.08.10</td><td class="td-location"><span class="badge b-event">深圳</span></td><td>和平精英夏日探险派对·深圳站</td><td class="td-effect"><span class="topic-link">#和平精英夏日航海#</span> weibo <span class="effect-num">206.5w</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R7eZ6vZm0" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.08</td><td class="td-location"><span class="badge b-event">吉林</span></td><td>和平精英夏日探险派对-吉林站打卡，延续夏日探险版本线下触点</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/R7K14yryL" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.15~2026.07.17</td><td class="td-location"><span class="badge b-event">上海</span></td><td>LEC全球授权展·上海站和平精英参展预热</td><td class="td-effect"><span class="topic-link">#和平精英亮相LEC#</span> weibo 19.7w</td><td class="td-link"><a href="https://weibo.com/7095404909/R6Xjbi4IO" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.27~2026.08.31</td><td class="td-location"><span class="badge b-event">重庆</span></td><td>重庆玛雅水公园联动，围绕"夏日航海冒险"设置园区福利、线下互动、购票权益与游戏内打卡任务</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18823724.html" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.29~2026.08.02</td><td class="td-location"><span class="badge b-event">成都</span></td><td>蜘蛛侠联动同步推进2026和平精英PMWC出征主题周暨《蜘蛛侠：崭新之日》专属联动主题空间</td><td class="td-effect">—</td><td class="td-link"><a href="https://gp.qq.com/gicp/news/1134/18824879.html" target="_blank">Link ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     6. LIVE PLATFORM
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title">
+  <div class="icon">📡</div>
+  <span class="txt-kr">6. 라이브 플랫폼 이벤트</span>
+  <span class="txt-cn">6. 直播平台活动</span>
+  <div class="section-line"></div>
+</div>
+
+<!-- KR -->
+<div class="blk-kr">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">2026년 7월 라이브 이벤트는 이스포츠와 라이브 커머스 위주로 진행. <span class="topic-link">#2026CP마카오인비테이션#</span>이 weibo 조회수 <span class="effect-num">3168만</span> 기록. 월말에는 화평마켓 커머스와 함께 8.8 전 플랫폼 동시 라이브 티징 진행</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">일자</th><th class="td-type">유형</th><th>플랫폼</th><th class="td-content">이벤트 내용</th><th>효과 데이터</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.01<br>2026.07.03~07.05</td><td class="td-type"><span class="badge b-esports">이스포츠</span></td><td>전 플랫폼 공식 직播간</td><td>2026 CP 마카오 인비테이션 7월 대회</td><td class="td-effect"><span class="topic-link">#2026CP마카오인비테이션#</span> weibo <span class="effect-num">3168만</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R6PQs27R8" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.09</td><td class="td-type"><span class="badge b-commerce">라이브 커머스</span></td><td>Douyu</td><td>화평마켓-럭키 스핀 복지 페스티벌</td><td class="td-effect">관련 스트리머 "若若跑的贼快" 7.9 라이브 피크 315.06만</td><td class="td-link"><a href="https://weibo.com/7095404909/R7I3jkFVg" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.29~2026.07.30</td><td class="td-type"><span class="badge b-event">라이브 예고</span></td><td>웨이보/전 플랫폼</td><td>수일 간 '익사이팅 나이트 전 플랫폼 동시 라이브' 및 스킨 100종 재출시/연예인 코스프레 라인업 예고</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/RaTPz3IAl" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/Rb2RHBJkH" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CN -->
+<div class="blk-cn">
+  <p style="font-size:13px;color:var(--text);line-height:1.75;margin-bottom:14px;">7月直播活动以赛事和带货为主，<span class="topic-link">#2026和平精英澳门邀请赛#</span> weibo话题阅读量 <span class="effect-num">3168w</span>。并在月底为和平集市直播带货和 8.8 全平台同步直播进行预热</p>
+  <div class="card">
+    <table class="event-table">
+      <thead><tr><th class="td-date">日期</th><th class="td-type">类型</th><th>活动平台</th><th class="td-content">活动内容</th><th>效果数据</th><th style="width:64px">LINK</th></tr></thead>
+      <tbody>
+        <tr><td class="td-date">2026.07.01<br>2026.07.03~07.05</td><td class="td-type"><span class="badge b-esports">电竞赛事</span></td><td>和平精英全平台官方直播间</td><td>2026和平精英澳门邀请赛7月赛段</td><td class="td-effect"><span class="topic-link">#2026和平精英澳门邀请赛#</span> weibo <span class="effect-num">3168w</span></td><td class="td-link"><a href="https://weibo.com/7095404909/R6PQs27R8" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.09</td><td class="td-type"><span class="badge b-commerce">带货直播</span></td><td>斗鱼</td><td>和平集市-幸运夺宝福利节</td><td class="td-effect">相关主播"若若跑的贼快"7.9直播热度峰值315.06w</td><td class="td-link"><a href="https://weibo.com/7095404909/R7I3jkFVg" target="_blank">Link ↗</a></td></tr>
+        <tr><td class="td-date">2026.07.29~2026.07.30</td><td class="td-type"><span class="badge b-event">直播预告</span></td><td>weibo/全平台</td><td>多日连续预告"刺激之夜全平台同步直播"以及百套皮肤返场/上新、全明星COS阵容等内容</td><td class="td-effect">—</td><td class="td-link"><a href="https://weibo.com/7095404909/RaTPz3IAl" target="_blank">Link 1 ↗</a><br><a href="https://weibo.com/7095404909/Rb2RHBJkH" target="_blank">Link 2 ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CALENDAR / INDEX NOTE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section-title" style="margin-top:32px;">
+  <div class="icon">📅</div>
+  <span class="txt-kr">연간 캘린더</span>
+  <span class="txt-cn">年度日历</span>
+  <div class="section-line"></div>
+</div>
+
+<div style="overflow-x:auto;">
+  <table class="cal-table">
+    <thead>
+      <tr>
+        <th style="min-width:70px;">月份</th>
+        <th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th>
+        <th class="cal-cur">7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cal-row-label">节日</td>
+        <td>元旦/新年<br>春节(农历除夕至初六)<br>元宵节(正月十五)</td>
+        <td>情人节(2.14)<br>复活节</td>
+        <td>植树节(3.12)</td>
+        <td>清明节(4.4-4.6)</td>
+        <td>五一劳动节(5.1-5.5)<br>网络情人节(5.20)<br>端午节(农历五月初五)</td>
+        <td>儿童节(6.1)<br>端午节(农历五月初五)</td>
+        <td>—</td>
+        <td class="cal-cur">七夕节(七月初七)</td>
+        <td>开学季 新学期活动<br>正月十五 中秋节</td>
+        <td>国庆节(10.1-10.7)<br>万圣节(10.31)</td>
+        <td>双十一(11.11)<br>感恩节</td>
+        <td>双十二(12.12)<br>圣诞节(12.25)<br>跨年(12.31)</td>
+      </tr>
+      <tr>
+        <td class="cal-row-label">季节</td>
+        <td colspan="2">寒假/冬季活动</td>
+        <td colspan="3">春季主题活动</td>
+        <td class="cal-cur" colspan="3">暑假/夏季活动</td>
+        <td colspan="2">秋季活动</td>
+        <td colspan="2">冬季活动</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Footnote -->
+<div class="footnote">
+  <strong>*说明：</strong><br>
+  <strong>weibo指数：</strong>综合测算品牌在weibo平台上的社交声量、社交用户、与社交口碑三大维度数据，衡量品牌在平台上的社交资产经营表现，反应行业品牌格局变化；<br>
+  <strong>微信指数：</strong>基于微信大数据的移动端指数产品，能反映关键词在微信内的热度变化，来源于对微信搜索、公众号文章以及朋友圈公开转发文章形成的综合分析；<br>
+  <strong>百度指数：</strong>显示互联网用户对关键词搜索关注程度及持续变化情况，以网民在百度的搜索量为数据基础；
+</div>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────── -->
+<div class="report-footer">
+  <p>PUBGM Operations &amp; Coordination Team　·　2026.04.01 – 2026.04.31</p>
+  <p style="margin-top:6px;">
+    <a href="https://krafton.atlassian.net/wiki/x/04jvR" target="_blank" style="color:var(--primary);text-decoration:none;font-size:12px;">CN Version (Confluence) ↗</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://krafton.atlassian.net/wiki/x/04jvR" target="_blank" style="color:var(--primary);text-decoration:none;font-size:12px;">KR Version (Confluence) ↗</a>
+  </p>
+</div>
+
+<!-- ── LIGHTBOX ────────────────────────────────────────────────── -->
+<div class="lb-overlay" id="lbOverlay" onclick="closeLB()">
+  <span class="lb-close" onclick="closeLB()">✕</span>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ★ 2026.07 MONTHLY DATA
+// ═══════════════════════════════════════════════════════════════
+const DATES=['7/1','7/2','7/3','7/4','7/5','7/6','7/7','7/8','7/9','7/10',
+             '7/11','7/12','7/13','7/14','7/15','7/16','7/17','7/18','7/19','7/20',
+             '7/21','7/22','7/23','7/24','7/25','7/26','7/27','7/28','7/29','7/30','7/31'];
+
+const iosData={
+  dates:DATES,
+  download:[2,6,6,5,5,4,4,5,5,6,6,6,6,6,7,7,6,6,6,7,8,7,7,7,6,5,4,4,4,4,5],
+  revenue: [4,5,2,3,2,3,3,3,2,2,2,2,2,2,2,3,3,3,2,2,2,2,2,2,2,2,2,2,3,2,2]
+};
+
+const heatData={
+  dates:DATES,
+  weibo: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+  wechat:[226936815,230288223,243569630,272248803,271609057,255847261,262331425,264498322,261413155,263205155,270170806,180772426,261527328,264476954,270325026,268360855,275822180,281780943,279575655,269442808,269465525,266389117,266702643,267756663,270335423,281472372,288270156,292932856,292287020,280048615,276784347],
+  baidu: [18497,18897,19750,22162,20789,17973,18042,17467,18166,18874,20300,20431,20666,20782,20007,20147,20433,20397,20407,19810,19383,19601,20253,19194,20749,20427,19888,19354,18548,18377,18846]
+};
+
+const KEY_EVENTS={
+  '7/1': {kr:'마카오 초청전 7월 대회',      cn:'澳门邀请赛7月赛段'},
+  '7/10':{kr:'환음구미+B.DUCK 출시',        cn:'幻音九尾+小黄鸭上线'},
+  '7/29':{kr:'스파이더맨 콜라보+연예인 예열', cn:'蜘蛛侠联动+明星阵容预热'},
+};
+
+const HEAT_PEAK_LABELS=[
+  {kr:'스파이더맨 콜라보+연예인 예열', cn:'蜘蛛侠联动+明星阵容预热'}, // wechat 7/28
+  {kr:'Formula E+하일탐험 지속',      cn:'Formula E联动+夏日航海持续'}, // baidu 7/4
+];
+
+// ─── Utilities ─────────────────────────────────────────────────
+function fmt(v,d=1){if(v==null)return'—';if(v>=1e8)return(v/1e8).toFixed(d)+'亿';if(v>=1e4)return(v/1e4).toFixed(d)+'w';return v.toLocaleString();}
+function avg(a){const v=a.filter(x=>x!=null);return v.length?Math.round(v.reduce((s,x)=>s+x,0)/v.length):0;}
+function minIdx(a){let m=Infinity,r=0;a.forEach((v,i)=>{if(v!=null&&v<m){m=v;r=i;}});return r;}
+function maxIdx(a){let m=-Infinity,r=0;a.forEach((v,i)=>{if(v!=null&&v>m){m=v;r=i;}});return r;}
+function normalize(a){const vals=a.filter(x=>x!=null);if(!vals.length)return a.map(()=>null);const mx=Math.max(...vals);return a.map(v=>v==null?null:+(v/mx*100).toFixed(1));}
+function hidePanel(id){document.getElementById(id).classList.remove('visible');}
+function el(id){return document.getElementById(id);}
+function setText(id,v){const e=el(id);if(e)e.textContent=v;}
+function isKR(){return!document.body.classList.contains('lang-cn');}
+function getLabel(lbl){return typeof lbl==='object'&&lbl!==null?(isKR()?lbl.kr:lbl.cn):lbl;}
+function fmtLang(v,d=1){if(v==null)return'—';const u=isKR()?'억':'亿';if(v>=1e8)return(v/1e8).toFixed(d)+u;if(v>=1e4)return(v/1e4).toFixed(d)+'w';return v.toLocaleString();}
+
+const _rawPeaks={};
+function refreshPeakDisplay(){
+  if(_rawPeaks.wx!==undefined) setText('wxPeak',fmtLang(_rawPeaks.wx));
+  if(_rawPeaks.bd!==undefined) setText('bdPeak',fmtLang(_rawPeaks.bd,0));
+}
+const _charts=[];
+
+// ─── Star plugin ──────────────────────────────────────────────
+function makeStarPlugin(markers,peakLabels){
+  return{id:'starMarkers',afterDraw(chart){
+    const{ctx,scales,chartArea}=chart;if(!chartArea)return;
+    const{top:topY,bottom:bottomY,left:leftX,right:rightX}=chartArea;
+    const drawnX=[];
+    markers.forEach(({dsIdx,ptIdx,color},mi)=>{
+      if(ptIdx==null)return;
+      const meta=chart.getDatasetMeta(dsIdx);if(meta.hidden)return;
+      const pt=meta.data[ptIdx];if(!pt)return;
+      const cx=pt.x,cy=pt.y,outerR=10,innerR=4,spikes=5;
+      ctx.save();
+      ctx.setLineDash([4,4]);ctx.strokeStyle=color+'77';ctx.lineWidth=1.2;
+      ctx.beginPath();ctx.moveTo(cx,topY);ctx.lineTo(cx,bottomY);ctx.stroke();ctx.setLineDash([]);
+      ctx.beginPath();
+      for(let s=0;s<spikes*2;s++){const angle=(s*Math.PI/spikes)-Math.PI/2,r=s%2===0?outerR:innerR;ctx.lineTo(cx+Math.cos(angle)*r,cy+Math.sin(angle)*r);}
+      ctx.closePath();
+      ctx.shadowColor='rgba(0,0,0,0.25)';ctx.shadowBlur=8;ctx.shadowOffsetX=1;ctx.shadowOffsetY=2;
+      ctx.fillStyle=color;ctx.fill();ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
+      ctx.strokeStyle='#ffffff';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+      const lblObj=peakLabels?peakLabels[mi]:null;
+      if(lblObj){
+        const label=getLabel(lblObj);
+        ctx.font='bold 9px "Microsoft YaHei","微软雅黑","DM Sans",sans-serif';
+        ctx.textAlign='center';ctx.textBaseline='top';
+        const tw=ctx.measureText(label).width,bw=tw+20,bh=17;
+        let bx=cx-bw/2;bx=Math.max(leftX+2,Math.min(bx,rightX-bw-2));
+        let by=3;drawnX.forEach(px=>{if(Math.abs(px-cx)<bw+8)by=22;});drawnX.push(cx);
+        ctx.fillStyle=color;ctx.fillText(label,bx+bw/2,by+4);
+      }
+      ctx.restore();
+    });
+  }};
+}
+
+const eventLinesPlugin={id:'eventLines',afterDraw(chart){
+  if(!chart._eventDates)return;
+  const{ctx,chartArea,scales:{x}}=chart;if(!chartArea)return;
+  const{top,bottom,left,right}=chartArea;const drawnX=[];
+  Object.entries(chart._eventDates).forEach(([date,lbl])=>{
+    const label=getLabel(lbl),idx=DATES.indexOf(date);if(idx<0)return;
+    const xPos=x.getPixelForValue(idx);
+    ctx.save();ctx.font='bold 9px "Microsoft YaHei","微软雅黑","DM Sans",sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='top';
+    const tw=ctx.measureText(label).width,bw=tw+20,bh=17;
+    let bx=xPos-bw/2;bx=Math.max(left+2,Math.min(bx,right-bw-2));
+    let by=3;drawnX.forEach(px=>{if(Math.abs(px-xPos)<bw+8)by=22;});drawnX.push(xPos);
+    ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(100,116,139,0.42)';ctx.lineWidth=1.3;
+    ctx.beginPath();ctx.moveTo(xPos,by+bh+2);ctx.lineTo(xPos,bottom);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#374151';ctx.fillText(label,bx+bw/2,by+4);ctx.restore();
+  });
+}};
+Chart.register(eventLinesPlugin);
+
+function buildLegend(id,datasets,chart){
+  const wrap=el(id);if(!wrap)return;wrap.innerHTML='';
+  datasets.forEach((ds,i)=>{
+    const item=document.createElement('div');item.className='clegend-item';
+    item.innerHTML=`<div class="clegend-line" style="background:${ds.borderColor}"></div><span class="clegend-label">${ds.label}</span>`;
+    item.onclick=()=>{const m=chart.getDatasetMeta(i);m.hidden=!m.hidden;item.classList.toggle('dimmed',m.hidden);chart.update();};
+    wrap.appendChild(item);
+  });
+}
+
+const dsBase={borderWidth:2.2,tension:0.4,fill:false,backgroundColor:'transparent',
+  pointRadius:0,pointHoverRadius:5,pointHoverBackgroundColor:'#fff',pointHoverBorderWidth:2,spanGaps:true};
+
+// ═══ iOS RANKING CHART ════════════════════════════════════════
+(function(){
+  const canvas=el('chartIOS');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const bfI=minIdx(iosData.download),bgI=minIdx(iosData.revenue);
+  setText('iosAvgFree',avg(iosData.download));
+  setText('iosBestFree',`${iosData.download[bfI]}위`);setText('iosBestFreeDate','· '+DATES[bfI]);
+  setText('iosAvgGross',avg(iosData.revenue));
+  setText('iosBestGross',`${iosData.revenue[bgI]}위`);setText('iosBestGrossDate','· '+DATES[bgI]);
+  const BLUE='#1d5fa8',GOLD='#d97706';
+  const datasets=[
+    {label:'iOS 다운로드 랭킹',data:iosData.download,borderColor:BLUE,pointHoverBorderColor:BLUE,...dsBase},
+    {label:'iOS 인기 랭킹',data:iosData.revenue,borderColor:GOLD,pointHoverBorderColor:GOLD,...dsBase},
+  ];
+  const chart=new Chart(ctx,{type:'line',data:{labels:DATES,datasets},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:700,easing:'easeInOutQuart'},
+      interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{enabled:false}},
+      layout:{padding:{top:52}},
+      onHover:(e,items)=>{
+        const panel=el('iosHover');
+        if(!items.length){panel.classList.remove('visible');return;}
+        const i=items[0].index;if(i==null){panel.classList.remove('visible');return;}
+        setText('iosHoverDate',`📅 ${DATES[i]}`);
+        el('iosHoverRows').innerHTML=datasets.map(ds=>`<div class="hover-row"><span class="hover-game"><span class="hover-dot" style="background:${ds.borderColor}"></span>${ds.label}</span><span class="hover-val" style="color:${ds.borderColor}">${ds.data[i]!=null?ds.data[i]+'위':'—'}</span></div>`).join('');
+        panel.classList.add('visible');
+      },
+      scales:{
+        x:{grid:{color:'#f0f2f5'},ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',maxTicksLimit:12}},
+        y:{reverse:true,min:1,grid:{color:'#f0f2f5'},
+          ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',callback:v=>`${v}위`},
+          title:{display:true,text:'↑ 낮을수록 순위 높음',font:{size:9},color:'#9ca3af'}}
+      }
+    },
+    plugins:[makeStarPlugin([{dsIdx:0,ptIdx:bfI,color:BLUE},{dsIdx:1,ptIdx:bgI,color:GOLD}])]
+  });
+  chart._eventDates=KEY_EVENTS;_charts.push(chart);
+  buildLegend('iosLegend',datasets,chart);
+})();
+
+// ═══ HEAT INDEX CHART (weibo=null 전월 결측 동일) ════════════
+(function(){
+  const canvas=el('chartHeat');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const wxN=normalize(heatData.wechat),bdN=normalize(heatData.baidu);
+  const wxI=maxIdx(heatData.wechat),bdI=maxIdx(heatData.baidu);
+  _rawPeaks.wx=heatData.wechat[wxI];setText('wxPeak',fmtLang(_rawPeaks.wx));setText('wxPeakDate',DATES[wxI]);
+  _rawPeaks.bd=heatData.baidu[bdI]; setText('bdPeak',fmtLang(_rawPeaks.bd,0));setText('bdPeakDate',DATES[bdI]);
+  const GREEN='#16a34a',BLUE='#2563eb';
+  const hDs={...dsBase,tension:0.38};
+  const datasets=[
+    {label:'wechat',data:wxN,raw:heatData.wechat,borderColor:GREEN,pointHoverBorderColor:GREEN,...hDs},
+    {label:'baidu',data:bdN,raw:heatData.baidu,borderColor:BLUE,pointHoverBorderColor:BLUE,...hDs},
+  ];
+  const chart=new Chart(ctx,{type:'line',data:{labels:DATES,datasets},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:700,easing:'easeInOutQuart'},
+      interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{enabled:false}},
+      layout:{padding:{top:52}},
+      onHover:(e,items)=>{
+        const panel=el('heatHover');
+        if(!items.length){panel.classList.remove('visible');return;}
+        const i=items[0].index;if(i==null){panel.classList.remove('visible');return;}
+        setText('heatHoverDate',`📅 ${DATES[i]}`);
+        el('heatHoverRows').innerHTML=datasets.map(ds=>`<div class="hover-row"><span class="hover-game"><span class="hover-dot" style="background:${ds.borderColor}"></span>${ds.label}</span><span class="hover-val" style="color:${ds.borderColor}">${ds.raw[i]!=null?fmtLang(ds.raw[i]):'—'}<span style="font-size:10px;opacity:0.5;margin-left:3px">${ds.data[i]!=null?'('+ds.data[i]+'%)':''}</span></span></div>`).join('');
+        panel.classList.add('visible');
+      },
+      scales:{
+        x:{grid:{color:'#f0f2f5'},ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',maxTicksLimit:12}},
+        y:{min:0,max:108,grid:{color:'#f0f2f5'},
+          ticks:{font:{size:10,family:'"Microsoft YaHei",sans-serif'},color:'#9ca3af',stepSize:25,callback:v=>v+'%'},
+          title:{display:true,text:'귀일화지수 (각 피크값=100%)',font:{size:9},color:'#9ca3af'}}
+      }
+    },
+    plugins:[makeStarPlugin([{dsIdx:0,ptIdx:wxI,color:GREEN},{dsIdx:1,ptIdx:bdI,color:BLUE}],HEAT_PEAK_LABELS)]
+  });
+  _charts.push(chart);buildLegend('heatLegend',datasets,chart);
+})();
+
+// ── Language + Lightbox ────────────────────────────────────────
+function setLang(lang){
+  document.body.classList.toggle('lang-cn',lang==='cn');
+  localStorage.setItem('reportLang',lang);
+  refreshPeakDisplay();
+  _charts.forEach(c=>{try{c.update();}catch(e){}});
+}
+function closeLB(){document.getElementById('lbOverlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+(function(){const saved=localStorage.getItem('reportLang');if(saved==='cn')setLang('cn');})();
+</script>
+</body>
+</html>
