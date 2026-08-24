@@ -21,3 +21,4 @@
 | 202607W5_weekly_report.html | 2026年第7周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202607W5_weekly_report.html) |
 | 202608W1_weekly_report.html | 2026年第8周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202608W1_weekly_report.html) |
 | 202608W2_weekly_report.html | 2026年第8周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202608W2_weekly_report.html) |
+| 202608W3_weekly_report.html | 2026年第8周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202608W3_weekly_report.html) |
