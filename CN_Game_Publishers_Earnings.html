@@ -7,15 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#ffffff;--surface:#ffffff;--surface2:#f5f7fa;--border:#dde2ea;--border2:#c5ccd8;
-  --text:#000000;--text-dim:#111111;--text-muted:#444444;--text-soft:#6b7280;
-  --tc:#1d5fa8;--ne:#a0201b;--acc:#c97a00;--grn:#007a47;--pur:#7e22ce;--cyn:#0e7490;
-  --up:#d32f2f;--down:#1565c0;--muted:#d6dae1;
-  --accent:var(--tc);--accent-t:rgba(29,95,168,.08);--accent-hl:rgba(29,95,168,.13);
-  --f:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif;
+  --bg:#ffffff;--surface:#ffffff;--surface2:#f2f2f2;--border:#d9d9d9;--border2:#bdbdbd;
+  --text:#1a1a1a;--text-dim:#1a1a1a;--text-muted:#5c5c5c;--text-soft:#8a8a8a;
+  --tc:#111111;--ne:#111111;--acc:#5c5c5c;--grn:#1a1a1a;--pur:#5c5c5c;--cyn:#8a8a8a;
+  --brand-red:#111111;--brand-black:#111111;--brand-amber:#5c5c5c;
+  --up:#d60710;--down:#2563eb;--muted:#e6e6e6;
+  --accent:var(--tc);--accent-t:#f2f2f2;--accent-hl:#fee8e9;
+  --f:'Noto Sans KR','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:var(--f);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+html,body,button,input,select,textarea{font-family:var(--f);}
+body{background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
 a{color:inherit;}
 .num{font-variant-numeric:tabular-nums;}
 .container{max-width:1280px;margin:0 auto;padding:16px 20px 60px;}
@@ -26,7 +28,7 @@ a{color:inherit;}
   box-shadow:0 3px 14px rgba(0,0,0,.14);padding:3px;backdrop-filter:saturate(180%) blur(8px);}
 .seg button{border:0;background:transparent;color:var(--text-muted);font-family:var(--f);font-weight:700;
   font-size:12.5px;line-height:1;padding:8px 15px;cursor:pointer;border-radius:6px;transition:.15s;letter-spacing:.03em;}
-.seg button.active{background:var(--acc);color:#fff;box-shadow:0 1px 4px rgba(201,122,0,.35);}
+.seg button.active{background:var(--brand-black);color:#fff;box-shadow:none;}
 .seg button:hover:not(.active){background:var(--surface2);color:var(--text);}
 @media(max-width:900px){
   .tools{top:8px;right:8px;}
@@ -38,19 +40,19 @@ a{color:inherit;}
   box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
 .rh-l{min-width:0;}
 .report-title{font-size:22px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;margin-bottom:7px;}
-.report-title::before{content:'';display:inline-block;width:4px;height:22px;background:var(--acc);border-radius:2px;flex-shrink:0;}
+.report-title::before{content:'';display:inline-block;width:4px;height:22px;background:var(--brand-red);border-radius:2px;flex-shrink:0;}
 .report-meta{font-size:12px;color:var(--text-muted);line-height:1.9;}
 .report-meta b{color:var(--text-dim);font-weight:700;}
 .rh-r{display:flex;flex-direction:row;align-items:center;gap:12px;flex-wrap:wrap;}
-.btn-x{display:inline-flex;align-items:center;gap:7px;background:#107c41;color:#fff;border:none;border-radius:8px;
+.btn-x{display:inline-flex;align-items:center;gap:7px;background:var(--brand-black);color:#fff;border:none;border-radius:4px;
   padding:9px 16px;font-family:var(--f);font-size:12.5px;font-weight:700;cursor:pointer;transition:.15s;
-  box-shadow:0 2px 8px rgba(16,124,65,.22);white-space:nowrap;}
-.btn-x:hover{background:#0d6a37;box-shadow:0 3px 12px rgba(16,124,65,.32);}
+  box-shadow:none;white-space:nowrap;}
+.btn-x:hover{background:#000;box-shadow:none;}
 .btn-x:disabled{opacity:.6;cursor:default;}
-.rate-bar{background:#f8fafd;border:1px solid var(--border);border-left:4px solid var(--down);padding:9px 16px;
-  margin-bottom:18px;font-size:12.5px;color:#1c4a86;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.rate-bar{background:#fafafa;border:1px solid var(--border);border-left:4px solid var(--brand-red);padding:9px 16px;
+  margin-bottom:18px;font-size:12.5px;color:var(--brand-black);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .rate-bar b{font-weight:700;font-size:13.5px;}
-.rate-bar b.rate-v{background:var(--down);color:#fff;padding:3px 11px;border-radius:20px;font-size:12.5px;font-variant-numeric:tabular-nums;}
+.rate-bar b.rate-v{background:var(--brand-red);color:#fff;padding:3px 11px;border-radius:4px;font-size:12.5px;font-variant-numeric:tabular-nums;}
 .usdv{font-size:.86em;color:var(--text-soft);font-weight:400;font-variant-numeric:tabular-nums;white-space:nowrap;}
 .rate-bar span.note{color:var(--text-muted);font-weight:400;font-size:11.5px;}
 
@@ -62,13 +64,13 @@ a{color:inherit;}
 .tab-nm{display:flex;align-items:center;gap:8px;font-size:15.5px;font-weight:700;line-height:1.3;}
 .tab .dot{width:9px;height:9px;border-radius:50%;background:#b6bcc6;flex-shrink:0;transition:.15s;}
 .tab:hover:not(.active){background:var(--border);color:var(--text);}
-.tab.t1.active{background:rgba(29,95,168,.08);border-top-color:var(--tc);color:var(--tc);box-shadow:0 2px 8px rgba(29,95,168,.12);}
+.tab.t1.active{background:#f2f2f2;border-top-color:var(--brand-black);color:var(--brand-black);box-shadow:none;}
 .tab.t1.active .dot{background:var(--tc);}
-.tab.t2.active{background:rgba(160,32,27,.08);border-top-color:var(--ne);color:var(--ne);box-shadow:0 2px 8px rgba(160,32,27,.12);}
+.tab.t2.active{background:#fee8e9;border-top-color:var(--brand-red);color:var(--brand-red);box-shadow:none;}
 .tab.t2.active .dot{background:var(--ne);}
 .panel{display:none;} .panel.active{display:block;}
-.panel[data-co="1"]{--accent:var(--tc);--accent-t:rgba(29,95,168,.08);--accent-hl:rgba(29,95,168,.13);}
-.panel[data-co="2"]{--accent:var(--ne);--accent-t:rgba(160,32,27,.08);--accent-hl:rgba(160,32,27,.12);}
+.panel[data-co="1"]{--accent:var(--brand-black);--accent-t:#f2f2f2;--accent-hl:#e6e6e6;--brand-red:var(--brand-black);}
+.panel[data-co="2"]{--accent:var(--brand-black);--accent-t:#f2f2f2;--accent-hl:#e6e6e6;}
 
 /* ── KPI ── */
 .kpi-band{background:var(--surface);border:1px solid var(--border);border-top:none;padding:20px 22px 22px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:18px;}
@@ -100,6 +102,9 @@ a{color:inherit;}
 .kpill.up{background:rgba(211,47,47,.09);color:var(--up);}
 .kpill.dn{background:rgba(21,101,192,.09);color:var(--down);}
 .kpill.neu{background:var(--surface2);color:var(--text-muted);border:1px solid var(--border);}
+/* Upper revenue KPI: semantic YoY colors. */
+.kpi-band .kpill.up{background:rgba(214,7,16,.09);color:#d60710;}
+.kpi-band .kpill.dn{background:rgba(37,99,235,.10);color:#2563eb;}
 
 /* ── SECTION ── */
 .sec{font-size:17px;font-weight:700;color:var(--text-dim);margin:26px 0 13px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
@@ -112,7 +117,7 @@ a{color:inherit;}
 /* ── CARD ── */
 .card{background:var(--surface);border:1px solid var(--border);padding:20px 24px;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.5;}
+  background:var(--accent);opacity:.5;}
 .ct{font-size:15px;font-weight:700;color:var(--text-dim);display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;}
 .ct .cu{font-size:11px;font-weight:400;color:var(--text-muted);}
 .cd{font-size:12.5px;color:var(--text-muted);margin:3px 0 13px;line-height:1.65;}
@@ -145,29 +150,103 @@ a{color:inherit;}
 .sec.sec-plain i{background:transparent;font-size:16px;padding:0;}
 
 /* ── SUMMARY ── */
-.sum{border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;margin-bottom:14px;overflow:hidden;}
-.sum-h{display:flex;align-items:center;gap:11px;padding:13px 18px;background:var(--accent-t);font-size:15.5px;font-weight:700;color:var(--accent);cursor:pointer;user-select:none;}
-.qhint{font-size:11.5px;font-weight:400;color:var(--text-muted);}
-.sum-h .qbadge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.04em;}
+.sum{--accent:var(--brand-red);--accent-t:rgba(246,20,30,.08);--accent-hl:rgba(246,20,30,.14);border:1px solid var(--border);border-left:4px solid var(--brand-red);border-radius:0 10px 10px 0;margin-bottom:14px;overflow:hidden;}
+.sum{box-shadow:0 2px 8px rgba(0,0,0,.05);transition:box-shadow .18s,border-color .18s;}
+.sum:not(.closed){box-shadow:0 5px 16px rgba(0,0,0,.09);border-color:var(--accent);}
+.sum-h{display:flex;align-items:center;gap:11px;min-height:55px;padding:12px 18px;background:#FEE8E9;font-size:15.5px;font-weight:700;color:var(--accent);cursor:pointer;user-select:none;}
+.sum-h .qbadge{background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px;letter-spacing:.04em;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.12);}
+.sum-h .sum-t{flex:1;min-width:180px;line-height:1.45;}
 .sum-h .arw{margin-left:auto;font-size:12px;opacity:.55;transition:.2s;}
 .sum.closed .sum-h .arw{transform:rotate(-90deg);}
 .sum.closed .sum-b{display:none;}
-.sum-b{padding:16px 20px 18px;background:var(--surface);}
+.sum-b{padding:20px 22px 22px;background:var(--surface);}
+.sum-b>.sub:first-child{margin-top:0;padding:9px 12px;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;background:var(--surface2);}
+.sum-b>.sub:first-child+ul.bl{margin:0 0 16px;padding:11px 14px;border:1px solid var(--border);border-top:0;border-radius:0 0 7px 7px;background:#fbfcfe;}
+.sum-b>.sub:first-child+ul.bl>li:first-child{font-size:15px;line-height:1.85;}
+.sum-b>.sub:not(:first-child){margin-top:20px;}
+.sum-b>.ins{margin-top:5px;padding-top:3px;}
+.sum-b>.ins .ic{box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.sum-b{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:16px;background:#f8fafc;}
+.sum-kicker{grid-column:1/-1;grid-row:1;order:-2;display:flex;align-items:center;gap:8px;color:var(--text-soft);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:2px 2px 0;}
+.sum-kicker::before{content:none;background:none;padding:0;}
+.sum-block{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;box-shadow:none;}
+.sum-block[data-sum-block="1"]{grid-column:1/-1;order:-1;}
+.sum-block[data-sum-block="2"]{grid-column:1/-1;order:1;}
+.sum-block-metric:not([data-sum-block="1"]):not([data-sum-block="2"]){grid-column:1/-1;order:2;}
+.sum-block .sub{margin:0!important;padding:10px 14px 9px;border:0;border-bottom:1px solid var(--border);background:#F2F2F2;font-size:12.5px;line-height:1.45;}
+.sum-block .sub::before{width:3px;height:13px;}
+.sum-block>ul.bl{display:grid;grid-template-columns:1fr;gap:8px;margin:0;padding:12px 15px 13px;background:var(--surface);}
+.sum-block>ul.bl>li{min-width:0;font-size:14px;line-height:1.8;margin:0;padding:8px 10px;background:#FAFAFA;border:1px solid #E6E6E6;border-left:4px solid var(--brand-black);text-indent:0;overflow-wrap:anywhere;word-break:keep-all;}
+.sum-block>ul.bl>li::before{color:var(--brand-red);}
+.sum-block>ul.bl>li:first-child{grid-column:1/-1;font-size:14px;font-weight:700;line-height:1.8;padding:12px 13px;background:#FEE8E9;border:0;border-left:4px solid var(--brand-red);}
+.sum-block>ul.bl>li:first-child{font-weight:400;}
+.sum-block>ul.bl>li:first-child b{font-weight:700;}
+.sum-b b.hl{font-weight:800;}
+.sum-b .tagv{font-weight:700;}
+.sum-block>ul.bl>li:first-child::before{content:'• ';font-size:inherit;letter-spacing:normal;vertical-align:baseline;}
+.sum-block>ul.bl>li>ul{margin-top:7px;}
+.sum-block>ul.bl ul li{font-size:14px;line-height:1.8;overflow-wrap:anywhere;word-break:keep-all;}
+.sum-block>ul.bl>li:last-child{margin-bottom:0;}
+.sum-block-insight{grid-column:1/-1;order:0;background:transparent;border:0;box-shadow:none;overflow:visible;}
+.sum-block-insight>.sub{background:transparent;color:var(--text-dim);border:0;border-bottom:1px solid var(--border);padding:0 0 7px;}
+.sum-block-insight>.sub::before{background:var(--accent);}
+.sum-block-insight>.ins{margin:10px 0 0;padding:0;}
+.sum-block-insight .ic{height:100%;background:var(--surface);border-color:var(--border);box-shadow:0 1px 6px rgba(0,0,0,.05);}
+.sum-block-insight .ic h4{color:var(--icc,var(--accent));}
+.sum-block-insight .ic p{color:var(--text-dim);}
+/* Tencent: keep the title-performance block at full width and use a neutral black palette. */
+.panel[data-co="1"] #sumTcH1 [data-i18n="t157"],
+.panel[data-co="1"] #sumTcH1 .sum-block[data-sum-block="2"] > ul.bl > li:nth-child(4){grid-column:1 / -1 !important;width:100% !important;justify-self:stretch;}
+.panel[data-co="1"] #sumTcH1 .sum-block[data-sum-block="2"] > ul.bl > li[data-i18n="t157"]{display:block !important;grid-column:1 / -1 !important;}
+.panel[data-co="1"] .sum{--accent:var(--brand-black);--accent-t:#f2f2f2;--accent-hl:#e6e6e6;border-left-color:var(--brand-black) !important;}
+.panel[data-co="1"] .sum-h{background:#f2f2f2 !important;color:var(--brand-black) !important;}
+.panel[data-co="1"] .sum-block>ul.bl>li::before{color:var(--brand-black) !important;}
+.panel[data-co="1"] .sum-block>ul.bl>li:first-child{background:#f2f2f2 !important;border-left-color:var(--brand-black) !important;}
+.panel[data-co="1"] .p-mo,.panel[data-co="1"] .b-hi{background:#f2f2f2 !important;color:var(--text-dim) !important;border-color:var(--border) !important;}
+.panel[data-co="1"] .sum-block[data-sum-block="2"] > ul.bl > li[data-i18n="t157"] > ul{width:100%;}
+/* NetEase: replace every red background with neutral black/gray tones. Keep red text and borders. */
+.tab.t2.active{background:#f2f2f2 !important;}
+.panel[data-co="2"] .sum-h{background:#f2f2f2 !important;}
+.panel[data-co="2"] .sum{--accent:var(--brand-black);--accent-t:#f2f2f2;--accent-hl:#e6e6e6;border-left-color:var(--brand-black) !important;}
+.panel[data-co="2"] .sum-block>ul.bl>li:first-child{background:#f2f2f2 !important;}
+.panel[data-co="2"] .sum-block>ul.bl>li:first-child{border-left-color:var(--brand-black) !important;}
+.panel[data-co="2"] .tagv{background:#e6e6e6 !important;}
+.panel[data-co="2"] .p-mo,.panel[data-co="2"] .b-hi{background:#f2f2f2 !important;border-color:var(--border) !important;}
+.panel[data-co="2"] .pi.v2{--pc:var(--brand-black);}
+.panel[data-co="2"] .ic.i1{--icc:var(--brand-black);}
+.panel[data-co="2"] details.tb[open]>summary{background:#f2f2f2 !important;}
+.panel[data-co="2"] table.ht tr.r-cur .rlbl{background:#f2f2f2 !important;}
+.panel[data-co="2"] .ptab.active,
+.panel[data-co="2"] .cur-seg button.active,
+.panel[data-co="2"] .ytab.active,
+.panel[data-co="2"] .ychip,
+.panel[data-co="2"] .sec i,
+.panel[data-co="2"] .sum-h .qbadge{background:var(--brand-black) !important;}
+@media(max-width:900px){
+  .sum-block>ul.bl{grid-template-columns:1fr;}
+  .sum-block>ul.bl>li:first-child{grid-column:auto;}
+}
+@media(max-width:900px){
+  .sum-b{grid-template-columns:1fr;}
+  .sum-block,.sum-block-insight{grid-column:1/-1;}
+  .sum-h{align-items:flex-start;flex-wrap:wrap;}
+  .sum-h .arw{margin-left:auto;}
+}
 ul.bl{list-style:none;}
 ul.bl>li{font-size:14px;padding-left:1.3em;text-indent:-1.3em;margin-bottom:6px;line-height:1.9;color:var(--text-dim);}
 ul.bl>li::before{content:"• ";color:var(--accent);font-weight:700;}
-ul.bl ul{list-style:none;margin:8px 0 9px 2px;background:#fffbeb;border:1px solid #f5d98a;
-  border-left:3px solid #f0b429;border-radius:0 6px 6px 0;padding:9px 14px 9px 15px;}
-ul.bl ul li{font-size:13px;padding-left:1.35em;text-indent:-1.35em;margin-bottom:5px;line-height:1.85;color:#4a3500;}
+ul.bl ul{list-style:none;margin:8px 0 0 0;background:transparent;border:0;border-left:0;
+  border-radius:0;padding:0;}
+ul.bl ul li{font-size:14px;padding-left:1.35em;text-indent:-1.35em;margin-bottom:5px;line-height:1.8;color:#5c5c5c;}
 ul.bl ul li:last-child{margin-bottom:0;}
-ul.bl ul li::before{content:"↳ ";color:#c97a00;font-weight:700;}
-ul.bl ul li b{color:#92580a;}
+ul.bl ul li::before{content:"↳ ";color:#8a8a8a;font-weight:700;}
+ul.bl ul li b{color:#1a1a1a;}
 .sub{font-size:13px;font-weight:700;color:var(--text-dim);margin:18px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
 .sub::before{content:'';width:3px;height:14px;background:var(--accent);border-radius:2px;}
 .sub:first-child{margin-top:0;}
 b.hl{color:var(--accent);font-weight:700;}
 .pct{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
-.pct.up{color:var(--up);} .pct.dn{color:var(--down);}
+.pct.up{color:#d60710;} .pct.dn{color:#2563eb;}
 .tagv{font-weight:700;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums;
   padding:.1em .34em;border-radius:4px;background:var(--accent-hl);
   -webkit-box-decoration-break:clone;box-decoration-break:clone;}
@@ -175,28 +254,26 @@ b.hl{color:var(--accent);font-weight:700;}
 /* ── PRODUCT GRID ── */
 .pg{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .pi{border:1px solid var(--border);border-left:3px solid var(--pc,var(--accent));border-radius:0 10px 10px 0;padding:13px 16px;background:var(--surface);}
-.pi.v1{--pc:#1d5fa8;} .pi.v2{--pc:#007a47;} .pi.v3{--pc:#a0201b;}
-.pi.v4{--pc:#7e22ce;} .pi.v5{--pc:#c97a00;} .pi.v6{--pc:#0e7490;}
+.pi.v1{--pc:var(--brand-black);} .pi.v2{--pc:var(--brand-red);} .pi.v3,.pi.v4,.pi.v5,.pi.v6{--pc:#5c5c5c;}
 .pn{font-size:14.5px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--pc,var(--accent));}
 .pd{font-size:13.5px;line-height:1.9;color:var(--text-dim);}
 .pd b{color:var(--pc,var(--accent));font-weight:700;}
 .plat{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;font-size:10.5px;font-weight:700;
   line-height:1.5;border-radius:4px;flex-shrink:0;letter-spacing:.01em;font-variant-numeric:tabular-nums;}
-.p-pc{background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;}
-.p-mo{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;}
-.p-pm{background:#fdf4ff;color:#86198f;border:1px solid #f0abfc;}
-.p-mx{background:#f3f4f6;color:#374151;border:1px solid #d1d5db;}
+.p-pc{background:#f2f2f2;color:#1a1a1a;border:1px solid #d9d9d9;}
+.p-mo{background:#f2f2f2;color:#1a1a1a;border:1px solid #d9d9d9;}
+.p-pm{background:#fff6d6;color:#8a6500;border:1px solid #fcd66b;}
+.p-mx{background:#fafafa;color:#5c5c5c;border:1px solid #d9d9d9;}
 .ptag{display:inline-block;padding:2px 8px;font-size:11px;font-weight:700;line-height:1.5;border-radius:4px;flex-shrink:0;}
-.b-new{background:#dbeafe;color:#1d4ed8;}.b-hi{background:#fee2e2;color:#a11a12;}.b-ip{background:#f3e8ff;color:#7e22ce;}
-.b-ug{background:#dcfce7;color:#166534;}.b-gl{background:#cffafe;color:#0e7490;}.b-op{background:#fef3c7;color:#92400e;}
+.b-new{background:#f2f2f2;color:#1a1a1a;}.b-hi{background:#f2f2f2;color:#1a1a1a;}.b-ip{background:#f2f2f2;color:#1a1a1a;}
+.b-ug,.b-gl{background:#f2f2f2;color:#5c5c5c;}.b-op{background:#fff6d6;color:#8a6500;}
 
 /* ── INSIGHT ── */
 .ins{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .ic{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--icc,var(--accent));border-radius:12px;padding:15px 18px;box-shadow:0 1px 6px rgba(0,0,0,.05);}
-.ic.i1{--icc:#1d5fa8;} .ic.i2{--icc:#007a47;} .ic.i3{--icc:#7e22ce;}
-.ic.i4{--icc:#c97a00;} .ic.i5{--icc:#a0201b;} .ic.i6{--icc:#0e7490;}
+.ic.i1{--icc:var(--brand-red);} .ic.i2{--icc:var(--brand-black);} .ic.i3,.ic.i4,.ic.i5,.ic.i6{--icc:#5c5c5c;}
 .ic h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--icc,var(--accent));line-height:1.55;}
-.ic p{font-size:13.5px;line-height:1.9;color:var(--text-dim);}
+.ic p{font-size:14px;line-height:1.8;color:var(--text-dim);}
 
 /* ── REFERENCE / ATTACHMENTS ── */
 .ref{background:var(--surface2);border:1px solid var(--border);border-left:4px solid var(--accent);padding:15px 20px;margin-bottom:16px;}
@@ -236,8 +313,8 @@ table.ht td{padding:7px 9px;border:1px solid #e8ebf0;text-align:center;color:var
 table.ht th.rlbl,table.ht td.rlbl{text-align:left;width:124px;font-weight:700;color:#374151;background:var(--surface2);}
 table.ht tr.r-cur td{font-weight:700;}
 table.ht tr.r-cur .rlbl{background:var(--accent-t);color:var(--accent);}
-table.ht tr.r-yoy{background:#f7fdf9;} table.ht tr.r-qoq{background:#fffdf0;}
-table.ht tr.r-sh{background:#f7f9fc;} table.ht tr.r-sh td{color:#374151;font-weight:600;}
+table.ht tr.r-yoy{background:#f2f2f2;} table.ht tr.r-qoq{background:#fff6d6;}
+table.ht tr.r-sh{background:#fafafa;} table.ht tr.r-sh td{color:#5c5c5c;font-weight:600;}
 table.ht tr.r-yoy td,table.ht tr.r-qoq+tr.r-sh td{border-top:2px solid var(--border2);}
 table.ht .yr{font-weight:400;color:#9aa1ab;font-size:10.5px;}
 table.ht td.up{color:var(--up);font-weight:700;} table.ht td.dn{color:var(--down);font-weight:700;}
@@ -276,6 +353,18 @@ table.dt td.na{color:#b9bec7;}
 .common h3{font-size:16.5px;font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:9px;color:var(--text-dim);}
 .common ul.bl>li::before{color:var(--acc);}
 .common b{color:#92580a;}
+.evidence-wrap{margin-top:24px;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--brand-black);padding:18px 20px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.evidence-title{font-size:16px;font-weight:700;color:var(--text-dim);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.evidence-title::before{content:'';width:3px;height:16px;background:var(--brand-black);border-radius:2px;}
+.evidence-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.evidence{width:100%;min-width:900px;border-collapse:collapse;table-layout:fixed;font-size:12.5px;line-height:1.55;}
+table.evidence th{background:#1a1a1a;color:#fff;font-weight:700;padding:8px 9px;text-align:center;border:1px solid #1a1a1a;}
+table.evidence td{padding:7px 9px;border:1px solid var(--border);color:var(--text-dim);vertical-align:middle;text-align:center;word-break:keep-all;}
+table.evidence tbody tr:nth-child(even){background:#f7f7f7;}
+table.evidence td.game-cell{font-weight:700;background:#f2f2f2;}
+table.evidence td:nth-child(2){white-space:nowrap;}
+table.evidence td:nth-child(3){font-weight:700;font-variant-numeric:tabular-nums;}
+table.evidence td:nth-child(5){text-align:center;color:var(--text-muted);font-weight:400;}
 .ftr{border-top:1px solid var(--border);padding-top:14px;margin-top:24px;font-size:11.5px;color:var(--text-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;line-height:1.8;}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(14px);background:#111;color:#fff;
   padding:11px 20px;border-radius:24px;font-size:13px;font-weight:500;opacity:0;pointer-events:none;transition:.22s;z-index:99;box-shadow:0 6px 22px rgba(0,0,0,.22);}
@@ -307,7 +396,7 @@ table.dt td.na{color:#b9bec7;}
 <div class="rh-l">
 <h1 class="report-title" data-i18n="t001">中国头部游戏公司财报整理</h1>
 <div class="report-meta" data-i18n="t002">
-<b>Tencent 腾讯</b> · <b>NetEase 网易</b>　|　数据区间 <b>2024Q1 – 2026Q2</b><br/>
+<b>Tencent</b> · <b>NetEase</b>　|　数据区间 <b>2024Q1 – 2026Q2</b><br/>
       担当团队 <b>PUBGM Operation &amp; Coordination Team</b>　|　担当者 <b>Ru Yi Jing（经如一）</b>
     </div>
 </div>
@@ -316,16 +405,16 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="rate-bar">
-<span>💱 计价口径</span><b data-i18n="t003">人民币为主 · 美元为辅</b><b class="rate-v" data-i18n="t004">图表统一折算 1 USD = 6.8109 CNY</b>
+<span data-i18n="t006">💱 计价口径</span><b data-i18n="t003">人民币为主 · 美元为辅</b><b class="rate-v" data-i18n="t004">图表统一折算 1 USD = 6.8109 CNY</b>
 <span class="note" data-i18n="t005">财报原始口径为人民币，季度对比（YoY／QoQ／占比）一律直接使用人民币计算，美元不参与任何增长率计算。<b>正文</b>括号内的美元金额沿用各期财报公告原值（按当期汇率折算，各期汇率不同）；<b>KPI／图表／热力表／Excel 导出</b>的美元金额则按 Tencent 2026 H1 业绩演示报告的便利折算汇率 <b>1 USD = 6.8109 CNY</b> 统一换算，以保证跨季度、跨公司可比。两者口径不同，金额存在约 4–5% 差异，均仅供量级参考。</span>
 </div>
 <!-- ══ COMPANY TABS ══ -->
 <div class="tabs" id="tabbar">
 <button class="tab t1 active" data-tab="1" type="button">
-<span class="tab-nm" data-i18n="t008"><span class="dot"></span>Tencent 腾讯</span>
+<span class="tab-nm" data-i18n="t008"><span class="dot"></span>Tencent</span>
 </button>
 <button class="tab t2" data-tab="2" type="button">
-<span class="tab-nm" data-i18n="t009"><span class="dot"></span>NetEase 网易</span>
+<span class="tab-nm" data-i18n="t009"><span class="dot"></span>NetEase</span>
 </button>
 </div>
 <div class="panel active" data-co="1">
@@ -346,9 +435,9 @@ table.dt td.na{color:#b9bec7;}
 <span class="ys-note" data-i18n="t014">财报摘要 / 产品动向 随年度切换 · 总营收与游戏业务图表为跨年度连续数据</span>
 </div>
 <div class="ypanel active" data-y="2026" data-yg="1">
-<div class="sec"><i>01</i><span class="sec-t" data-i18n="t016">财报摘要</span> <span class="sec-sub">Summary</span> <span class="ychip" data-ychip="">2026</span></div>
+<div class="sec"><i>01</i><span class="sec-t" data-i18n="t016">财报摘要</span> <span class="ychip" data-ychip="">2026</span></div>
 <div class="sum" id="sumTcH1">
-<div class="sum-h" data-toggle="sumTcH1"><span class="qbadge" data-i18n="t030">2026 H1（含 Q2）</span><span class="sum-t" data-i18n="t027">'26.H1 Tencent 财报摘要 </span><span class="qhint" data-i18n="t033">Q1 + Q2 合计，含 Q2 单季数据</span><span class="arw">▾</span></div>
+<div class="sum-h" data-toggle="sumTcH1"><span class="qbadge" data-i18n="t030">2026 H1（含 Q2）</span><span class="sum-t" data-i18n="t027">Tencent</span><span class="arw">▾</span></div>
 <div class="sum-b">
 <div class="sub" data-i18n="t034">总营收 Total Revenue</div>
 <ul class="bl">
@@ -367,7 +456,7 @@ table.dt td.na{color:#b9bec7;}
 <li>QoQ ▼0.7% 主要因为部分 Supercell 游戏下滑抵消了《鸣潮》与《VALORANT》的增长</li><li>腾讯子公司 Miniclip 的休闲解谜手游《Arrows – Puzzle Escape》成为 <b>2026 Q2 全球下载量最高的手游</b>，国际市场的突破点出现在<b>休闲品类</b>而非重度赛道</li>
 </ul>
 </li>
-<li data-i18n="t157"><b>产品表现：</b>
+<li data-i18n="t157" style="grid-column:1 / -1; width:100%;"><b>产品表现：</b>
 <ul><li>Q2《三角洲行动》和《无畏契约》平均日活跃账户数均<b>创下历史新高</b>（全时段最高，非同期口径）</li><li>《洛克王国：世界》在 2026 年中国新上线手游中平均 DAU 和流水均<b>排名第一</b></li></ul>
 </li>
 </ul>
@@ -394,7 +483,7 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="sum closed" id="sumTcQ1">
-<div class="sum-h" data-toggle="sumTcQ1"><span class="qbadge" data-i18n="t031">2026 Q1</span><span class="sum-t" data-i18n="t028">'26.Q1 Tencent 财报摘要</span><span class="arw">▾</span></div>
+<div class="sum-h" data-toggle="sumTcQ1"><span class="qbadge" data-i18n="t031">2026 Q1</span><span class="sum-t" data-i18n="t028">Tencent</span><span class="arw">▾</span></div>
 <div class="sum-b">
 <div class="sub" data-i18n="t038">总营收 Total Revenue</div>
 <ul class="bl">
@@ -432,9 +521,9 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="ypanel" data-yg="1" data-y="2025">
-<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1079">财报摘要</span> <span class="sec-sub">Summary</span> <span class="ychip" data-ychip>2025</span></div>
+<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1079">财报摘要</span> <span class="ychip" data-ychip>2025</span></div>
 <div class="sum" id="sumTc25Q4">
-  <div class="sum-h" data-toggle="sumTc25Q4"><span class="qbadge" data-i18n="t918">2025 Q4 & 全年</span><span class="sum-t" data-i18n="t919">'25.Q4 & 全年 Tencent 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumTc25Q4"><span class="qbadge" data-i18n="t918">2025 Q4 & 全年</span><span class="sum-t" data-i18n="t919">Tencent</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t920">总营收 Total Revenue</div><ul class="bl"><li data-i18n="t901">全年总收入人民币 <b class="hl">7,517.66 亿元</b><span class="usdv">（约 1,087 亿美元）</span>，YoY ▲13.9%。</li><li data-i18n="t902">Q4 总收入人民币 <b class="hl">1,943.71 亿元</b><span class="usdv">（约 281 亿美元）</span>，YoY ▲12.7%、QoQ ▲0.8%。</li></ul><div class="sub" data-i18n="t921">游戏业务 Games</div><ul class="bl"><li data-i18n="t903"><b>整体：</b>Q4 游戏收入人民币 <b class="hl">593 亿元</b><span class="usdv">（约 86 亿美元）</span>，YoY ▲20.5%、QoQ ▼6.8%；全年游戏收入约占总收入 <span class="tagv">32.1%</span>。</li><li data-i18n="t904"><b>国内市场：</b>全年 <b class="hl">1,642 亿元</b><span class="usdv">（约 238 亿美元）</span>，YoY ▲17.6%；Q4 381 亿元<span class="usdv">（约 55 亿美元）</span>，YoY ▲14.8%、QoQ ▼11%。<ul><li>增长主要来自《三角洲行动》的出色表现，以及《王者荣耀》《和平精英》等长青游戏和《无畏契约》系列（PC + 移动端）的收入增长</li></ul></li><li data-i18n="t905"><b>国际市场：</b>全年 <b class="hl">774 亿元</b><span class="usdv">（约 112 亿美元）</span>，YoY ▲33.4%，<b>创历史新高</b>；Q4 212 亿元<span class="usdv">（约 31 亿美元）</span>，YoY ▲32.5%、QoQ ▲1.9%。<ul><li>主要得益于 Supercell 旗下游戏及《PUBG MOBILE》的收入增长，以及《鸣潮》的增量收入贡献</li></ul></li></ul><div class="sub" data-i18n="t922">其他 Others</div><ul class="bl"><li data-i18n="t906"><b>AI 战略：</b>去年在 AI 新产品上投入 180 亿元，今年将至少翻倍；游戏侧已用于加速内容制作、改善体验与提升营销效益。<ul><li>《和平精英》AI 队友累计体验用户 1.1 亿，单日最高活跃 1,770 万，单局平均互动 70 轮，麦克风开启率近 75%</li><li>《王者荣耀》智能陪伴「灵宝」可语音购买装备、生成对局漫画；新赛季「指挥官模式」支持语音指挥 AI 队友</li><li>《洛克王国：世界》以自研光照方案在移动端实现 3A 级画质；《异人之下》首创实时 AI 武术动作生成技术，训练时长由小时级压缩至分钟级</li></ul></li><li data-i18n="t907"><b>营销服务：</b>2025 年度收入 1,450 亿元，YoY ▲19%，增速持续领跑行业。</li><li data-i18n="t908"><b>资本支出与研发：</b>全年资本开支 792 亿元、研发投入 857.5 亿元，均创历史新高，AI 投入持续增加。</li><li data-i18n="t909"><b>人力：</b>2025 年底员工 11.58 万人（2024 年 11.06 万人），总薪酬成本 1,307 亿元，YoY ▲15.9%，人均年薪成本约 112.8 万元。</li></ul><div class="sub" data-i18n="t923">洞察 Insight</div><div class="ins">
     <div class="ic i1"><h4 data-i18n="t910">App Store 降佣的直接利好</h4><p data-i18n="t911">2026 年 3 月 15 日起苹果下调中国区 App Store 佣金（应用类降 5%、小游戏降 3%，标准费率由 30% 降至 25%）。腾讯作为第三方发行商，佣金下调的收益将直接转化为利润。</p></div>
     <div class="ic i2"><h4 data-i18n="t912">投资者对 AI 高投入的担忧</h4><p data-i18n="t913">财报当日腾讯美股 ADR 快速下跌，投资者担忧 AI 高投入对利润的侵蚀，期待看到加大投入后对收入利润的正向反馈。</p></div>
@@ -443,7 +532,7 @@ table.dt td.na{color:#b9bec7;}
 </div></div>
 </div>
 <div class="sum closed" id="sumTc25Q3">
-  <div class="sum-h" data-toggle="sumTc25Q3"><span class="qbadge" data-i18n="t937">2025 Q3</span><span class="sum-t" data-i18n="t938">'25.Q3 Tencent 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumTc25Q3"><span class="qbadge" data-i18n="t937">2025 Q3</span><span class="sum-t" data-i18n="t938">Tencent</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t939">总营收 Total Revenue</div><ul class="bl"><li data-i18n="t924">Q3 总收入人民币 <b class="hl">1,929 亿元</b><span class="usdv">（约 272 亿美元）</span>，YoY ▲15.4%、QoQ ▲4.5%。</li></ul><div class="sub" data-i18n="t940">游戏业务 Games</div><ul class="bl"><li data-i18n="t925"><b>整体：</b>Q3 游戏收入人民币 <b class="hl">636 亿元</b><span class="usdv">（约 89.5 亿美元）</span>，YoY ▲22.8%、QoQ ▲7.4%，约占总收入 <span class="tagv">33%</span>；游戏收入<b>首次突破 600 亿元</b>，创单季历史最高。</li><li data-i18n="t926"><b>国内市场：</b>人民币 <b class="hl">428 亿元</b><span class="usdv">（约 60.2 亿美元）</span>，YoY ▲14.7%、QoQ ▲5.9%。<ul><li>增长来自《三角洲行动》等多款产品，《王者荣耀》《和平精英》收入持续增长，以及《无畏契约》从 PC 端拓展至移动端</li><li>体现腾讯游戏「平台化」运营的成功，降低了对单一爆款的依赖</li></ul></li><li data-i18n="t927"><b>国际市场：</b>人民币 <b class="hl">208 亿元</b><span class="usdv">（约 29.3 亿美元）</span>，<b>首次突破 200 亿元</b>，YoY ▲43.4%、QoQ ▲10.6%，增速创新高。<ul><li>主要因 Supercell 旗下游戏收入增长、近期收购工作室的收入贡献，以及新发布的 PC / 主机游戏《消逝的光芒：困兽》销量表现</li><li>国际游戏收入在总营收中占比已提升至近 11%，全球化战略进入收获期</li></ul></li></ul><div class="sub" data-i18n="t941">其他 Others</div><ul class="bl"><li data-i18n="t928"><b>社交网络：</b>收入 323 亿元，YoY ▲5%，主要来自视频号直播、音乐付费会员及小游戏平台服务费。</li><li data-i18n="t929"><b>营销服务：</b>收入 362 亿元，YoY ▲21%，广告展示量与 AI 驱动定向带动的 eCPM 增长共同推动。</li><li data-i18n="t930"><b>资本支出与研发：</b>资本开支 129.8 亿元，YoY ▼24.1%、QoQ ▼32.1%，约占营收 6%；研发费用 228 亿元，YoY ▲27.6%，创单季新高。</li></ul><div class="sub" data-i18n="t942">洞察 Insight</div><div class="ins">
     <div class="ic i1"><h4 data-i18n="t931">全球产业调整期中的逆势增长</h4><p data-i18n="t932">对比同期其他游戏公司财报，全球游戏产业正经历结构性调整，而腾讯在海外市场取得良好成绩，甚至驱动了自身与整个行业新一轮增长。</p></div>
     <div class="ic i2"><h4 data-i18n="t933">从规模投入转向资金效率</h4><p data-i18n="t934">Q3 资本支出同比下降 24.1%，研发费用却同比增长 27.6% —— 战略从追求硬件投入规模，转向更注重资金使用效率和业务实际回报。</p></div>
@@ -451,11 +540,11 @@ table.dt td.na{color:#b9bec7;}
 </div></div>
 </div>
 <div class="sum closed" id="sumTc25Q2">
-  <div class="sum-h" data-toggle="sumTc25Q2"><span class="qbadge" data-i18n="t951">2025 Q2</span><span class="sum-t" data-i18n="t952">'25.Q2 Tencent 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumTc25Q2"><span class="qbadge" data-i18n="t951">2025 Q2</span><span class="sum-t" data-i18n="t952">Tencent</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t953">总营收 Total Revenue</div><ul class="bl"><li data-i18n="t943">Q2 总收入人民币 <b class="hl">1,845 亿元</b><span class="usdv">（约 257 亿美元）</span>，YoY ▲14.5%、QoQ ▲2.5%。</li></ul><div class="sub" data-i18n="t954">游戏业务 Games</div><ul class="bl"><li data-i18n="t944"><b>整体：</b>Q2 游戏收入人民币 <b class="hl">592 亿元</b><span class="usdv">（约 82.5 亿美元）</span>，YoY ▲22.1%、QoQ ▼0.5%，约占总收入 <span class="tagv">32%</span>；游戏业务增速位居腾讯各业务第一，延续 Q1 强势。</li><li data-i18n="t945"><b>国内市场：</b>人民币 <b class="hl">404 亿元</b><span class="usdv">（约 56.3 亿美元）</span>，YoY ▲16.8%、QoQ ▼5.8%。<ul><li>主要得益于《三角洲行动》的收入贡献，以及《王者荣耀》《无畏契约》《和平精英》等长青游戏的收入增长</li></ul></li><li data-i18n="t946"><b>国际市场：</b>人民币 <b class="hl">188 亿元</b>，YoY ▲35.3%。<ul><li>主要得益于 Supercell 旗下游戏及《PUBG MOBILE》的收入增长，以及新发布的《沙丘：觉醒》的收入贡献</li></ul></li></ul><div class="sub" data-i18n="t955">其他 Others</div><ul class="bl"><li data-i18n="t947"><b>小游戏：</b>Q2 总流水 YoY ▲20%，得益于技术底座升级 —— 兼容更多游戏引擎、提升渲染效果、降低加载时长。</li><li data-i18n="t948"><b>AI：</b>AI 技术为游戏收入增长做出贡献 —— 加快内容制作速度与规模、使 PvP 虚拟队友与 PvE NPC 更真实、增强获客与留存营销。</li><li data-i18n="t949"><b>下半年新品：</b>《胜利女神：新的希望》《无畏契约手游》《王者荣耀：世界》。</li><li data-i18n="t950"><b>人力：</b>员工约 11.1 万人，YoY ▲5%、QoQ ▲1.5%；Q2 总酬金 309 亿元，YoY ▲9%，季度人均薪酬约 27.8 万元，人效小幅提升。</li></ul></div>
 </div>
 <div class="sum closed" id="sumTc25Q1">
-  <div class="sum-h" data-toggle="sumTc25Q1"><span class="qbadge" data-i18n="t962">2025 Q1</span><span class="sum-t" data-i18n="t963">'25.Q1 Tencent 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumTc25Q1"><span class="qbadge" data-i18n="t962">2025 Q1</span><span class="sum-t" data-i18n="t963">Tencent</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t964">总营收 Total Revenue</div><ul class="bl"><li data-i18n="t956">Q1 总收入人民币 <b class="hl">1,800 亿元</b><span class="usdv">（约 290 亿美元）</span>，YoY ▲12.9%、QoQ ▲4.4%；游戏是同比增速最高的业务。</li></ul><div class="sub" data-i18n="t965">游戏业务 Games</div><ul class="bl"><li data-i18n="t957"><b>整体：</b>Q1 游戏收入人民币 <b class="hl">595 亿元</b><span class="usdv">（约 83 亿美元）</span>，YoY ▲23.7%、QoQ ▲20.9%。<ul><li>同比 23.7% 的增速远超游戏行业均值，反映腾讯过去几年精品化研发布局与长青游戏战略的显著成功</li></ul></li><li data-i18n="t958"><b>国内市场：</b>人民币 <b class="hl">429 亿元</b><span class="usdv">（约 61 亿美元）</span>，YoY ▲24.3%、QoQ ▲29.2%。<ul><li>主要得益于《王者荣耀》与《和平精英》的收入增长，以及《地下城与勇士：起源》与《三角洲行动》的收入贡献</li></ul></li><li data-i18n="t959"><b>国际市场：</b>人民币 <b class="hl">166 亿元</b><span class="usdv">（约 23 亿美元）</span>，YoY ▲22.1%、QoQ ▲3.8%。<ul><li>主要由于《荒野乱斗》《部落冲突：皇室战争》及《PUBG MOBILE》的收入增长</li></ul></li></ul><div class="sub" data-i18n="t966">其他 Others</div><ul class="bl"><li data-i18n="t960"><b>AI：</b>马化腾表示 AI 能力已对效果广告与长青游戏等业务产生实质性贡献；腾讯加大对元宝应用与微信内 AI 的投入，预期带来长期可观的增量回报。</li><li data-i18n="t961"><b>成本：</b>Q1 资本开支 274.76 亿元，占总收入 15%，预计全年超 1,000 亿元，主要用于支持 AI 相关发展。</li></ul></div>
 </div>
 <div class="sec"><i>02</i><span class="sec-t" data-i18n="t1080">产品动向</span> <span class="sec-sub">Key Titles</span> <span class="ychip" data-ychip>2025</span></div>
@@ -467,15 +556,15 @@ table.dt td.na{color:#b9bec7;}
       <div class="pd" data-i18n="t968">4Q25 持续位列行业游戏排行榜前三；2026 年 2 月峰值 DAU 突破 <b>5,000 万</b>，月度流水创上线以来新高。通过 AI 编码提升开发效率，并部署 AI 智能伙伴提升用户参与度。</div>
     </div>
     <div class="pi v2">
-      <div class="pn" data-i18n="t969"><span class="plat p-pc" title="PC 端">🖥 PC</span>《无畏契约》端游<span class="ptag b-hi">DAU 历史新高</span></div>
+      <div class="pn" data-i18n="t969"><span class="plat p-pc" title="PC 端">🖥 Only PC</span>《无畏契约》端游<span class="ptag b-hi">DAU 历史新高</span></div>
       <div class="pd" data-i18n="t970">4Q25 流水 YoY ▲30%+，平均 DAU 创历史新高，增长来自「神秘绽放」系列皮肤、限时玩法模式与电竞赛事。</div>
     </div>
     <div class="pi v3">
-      <div class="pn" data-i18n="t971"><span class="plat p-mo" title="移动端">📱 Mobile</span>《无畏契约》手游<span class="ptag b-new">2025 最佳新手游</span></div>
+      <div class="pn" data-i18n="t971"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《无畏契约》手游<span class="ptag b-new">2025 最佳新手游</span></div>
       <div class="pd" data-i18n="t972">2025 年全行业<b>流水表现最佳的新手游</b>，为移动端带来 PC 级射击体验，独特美术风格深受年轻用户喜爱；2026 年 2 月中式美学皮肤上线后流水创历史新高。</div>
     </div>
     <div class="pi v4">
-      <div class="pn" data-i18n="t973"><span class="plat p-mo" title="移动端">📱 Mobile</span>《部落冲突：皇室战争》<span class="ptag b-gl">手游 DAU 第三</span></div>
+      <div class="pn" data-i18n="t973"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《部落冲突：皇室战争》<span class="ptag b-gl">手游 DAU 第三</span></div>
       <div class="pd" data-i18n="t974">4Q25 位列全行业手游 DAU 第三，平均 DAU 与流水 YoY 增长超 <b>3 倍</b>，均创历史新高；2026 年 3 月十周年庆典推出带随机增益的限时 PVP 玩法。</div>
     </div>
     <div class="pi v5">
@@ -483,15 +572,15 @@ table.dt td.na{color:#b9bec7;}
       <div class="pd" data-i18n="t976">斩获 2025 年 TGA 玩家之声奖；4Q25 依托全新剧情、都市废墟地图与新角色上线，流水与 DAU 同比快速增长。</div>
     </div>
     <div class="pi v6">
-      <div class="pn" data-i18n="t977"><span class="plat p-pc" title="PC 端">🖥 PC</span>《消逝的光芒：困兽》<span class="ptag b-new">全球销量 500 万</span></div>
+      <div class="pn" data-i18n="t977"><span class="plat p-pc" title="PC 端">🖥 Only PC</span>《消逝的光芒：困兽》<span class="ptag b-new">全球销量 500 万</span></div>
       <div class="pd" data-i18n="t978">Techland 工作室研发的 3A 新作，9 月上线后全球销量突破 <b>500 万份</b>，Steam 好评率 87%，成为拉动国际市场收入增长的主力之一。</div>
     </div>
     <div class="pi v1">
-      <div class="pn" data-i18n="t979"><span class="plat p-mo" title="移动端">📱 Mobile</span>《王者荣耀》<span class="ptag b-hi">国服 DAU 1.39 亿</span></div>
+      <div class="pn" data-i18n="t979"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《王者荣耀》<span class="ptag b-hi">国服 DAU 1.39 亿</span></div>
       <div class="pd" data-i18n="t980">2025 年国服日活跃用户突破 <b>1.39 亿</b>，全球月活超 2.6 亿；11 月职业联赛年度总决赛现场观众 6.22 万人，刷新赛事纪录；Q3 增长得益于与阅文 IP《诡秘之主》《狐妖小红娘》的合作。</div>
     </div>
     <div class="pi v2">
-      <div class="pn" data-i18n="t981"><span class="plat p-mo" title="移动端">📱 Mobile</span>《和平精英》<span class="ptag b-ug">地铁逃生 DAU 3,700 万</span></div>
+      <div class="pn" data-i18n="t981"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《和平精英》<span class="ptag b-ug">地铁逃生 DAU 3,700 万</span></div>
       <div class="pd" data-i18n="t982">8 月迎来六周年庆典；2024 年上线的搜打撤模式「地铁逃生」在 5 月 1 日 DAU 峰值突破 <b>3,700 万</b>。</div>
     </div>
     <div class="pi v3">
@@ -502,9 +591,9 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="ypanel" data-yg="1" data-y="2024">
-<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1081">财报摘要</span> <span class="sec-sub">Summary</span> <span class="ychip" data-ychip>2024</span></div>
+<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1081">财报摘要</span> <span class="ychip" data-ychip>2024</span></div>
 <div class="sum" id="sumTc24">
-  <div class="sum-h" data-toggle="sumTc24"><span class="qbadge" data-i18n="t1050">2024 全年</span><span class="sum-t" data-i18n="t1051">'24 全年 Tencent 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumTc24"><span class="qbadge" data-i18n="t1050">2024 全年</span><span class="sum-t" data-i18n="t1051">Tencent</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t1052">总营收 Total Revenue</div><ul class="bl"><li data-i18n="t1042">2024 年全年总收入人民币 <b class="hl">6,602.57 亿元</b><span class="usdv">（约 911 亿美元）</span>，YoY ▲8.4%。</li></ul><div class="sub" data-i18n="t1053">游戏业务 Games</div><ul class="bl"><li data-i18n="t1043"><b>整体：</b>2024 年游戏收入人民币 <b class="hl">1,977 亿元</b>，YoY ▲9.9%；其中国内 1,397 亿元、国际 580 亿元。</li><li data-i18n="t1044"><b>国内市场：</b>人民币 <b class="hl">1,397 亿元</b>，YoY ▲10.2%。<ul><li>主要得益于《无畏契约》《火影忍者手游》《金铲铲之战》《英雄联盟手游》的收入提升，以及新收入来源《地下城与勇士：起源》《三角洲行动》</li><li>《三角洲行动》Q4 双端收入超 10 亿元，腾讯高管认为其具备成为长青游戏的潜力</li><li>财报正文口径为 1,397 亿元；按各季度数据加总为 1,396 亿元，差异来自四舍五入</li></ul></li><li data-i18n="t1045"><b>国际市场：</b>人民币 <b class="hl">580 亿元</b>，YoY ▲9%，<b>创历史新高</b>，在游戏收入中保持三成左右的稳定占比。<ul><li>收入主要得益于《PUBG MOBILE》及 Supercell 游戏的良好表现</li></ul></li></ul><div class="sub" data-i18n="t1054">其他 Others</div><ul class="bl"><li data-i18n="t1046"><b>长青游戏：</b>2024 年符合标准的游戏由 12 款增至 <b>14 款</b>，新增《地下城与勇士：起源》《三角洲行动》。<ul><li>腾讯将年流水超 40 亿元、且季度平均 DAU 超 500 万的手游或超 200 万的 PC 游戏定义为长青游戏</li></ul></li><li data-i18n="t1047"><b>研发与成本：</b>2024 年研发投入 706.9 亿元；一般及行政开支 1,127 亿元，YoY ▲9%，主要由于含 AI 项目的研发开支与雇员成本增加。</li><li data-i18n="t1048"><b>人力：</b>2024 年底员工 11.06 万人（2023 年 10.54 万人），总酬金成本 1,128 亿元，YoY ▲4.7%。</li><li data-i18n="t1049"><b>未来：</b>已储备《异人之下》《胜利女神：新的希望》《暗区突围：无限》《沙丘：觉醒》等重点新品；强调 AI 战略重要性，将增加 AI 相关资本开支及原生 AI 产品的研发与营销力度。</li></ul></div>
 </div>
 <div class="sec"><i>02</i><span class="sec-t" data-i18n="t1082">产品动向</span> <span class="sec-sub">Key Titles</span> <span class="ychip" data-ychip>2024</span></div>
@@ -516,11 +605,11 @@ table.dt td.na{color:#b9bec7;}
       <div class="pd" data-i18n="t1067">2024 年 9 月推出，Q4 双端收入超 <b>10 亿元</b>；腾讯高管认为其具备成为长青游戏的潜力，并于 2024 年新晋长青游戏。</div>
     </div>
     <div class="pi v2">
-      <div class="pn" data-i18n="t1068"><span class="plat p-mo" title="移动端">📱 Mobile</span>《地下城与勇士：起源》<span class="ptag b-new">新晋长青游戏</span></div>
+      <div class="pn" data-i18n="t1068"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《地下城与勇士：起源》<span class="ptag b-new">新晋长青游戏</span></div>
       <div class="pd" data-i18n="t1069">2024 年新增的长青游戏之一，与《三角洲行动》共同使长青游戏数量由 12 款增至 14 款。</div>
     </div>
     <div class="pi v3">
-      <div class="pn" data-i18n="t1070"><span class="plat p-mo" title="移动端">📱 Mobile</span>《PUBG MOBILE》<span class="ptag b-gl">国际收入主力</span></div>
+      <div class="pn" data-i18n="t1070"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《PUBG MOBILE》<span class="ptag b-gl">国际收入主力</span></div>
       <div class="pd" data-i18n="t1071">与 Supercell 旗下游戏共同支撑 2024 年国际市场 580 亿元的历史新高。</div>
     </div>
     <div class="pi v4">
@@ -532,7 +621,7 @@ table.dt td.na{color:#b9bec7;}
       <div class="pd" data-i18n="t1075">（NetEase）端游上线四天下载破 300 万；手游上线后蝉联 iOS 下载榜第一约两周，双端玩家两周内突破 <b>1,500 万</b>。</div>
     </div>
     <div class="pi v6">
-      <div class="pn" data-i18n="t1076"><span class="plat p-mo" title="移动端">📱 Mobile</span>《逆水寒》手游<span class="ptag b-gl">港澳台下载第一</span></div>
+      <div class="pn" data-i18n="t1076"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《逆水寒》手游<span class="ptag b-gl">港澳台下载第一</span></div>
       <div class="pd" data-i18n="t1077">（NetEase）登顶港澳台地区 iOS 下载榜，并于 2025 年 1 月在台湾地区登顶 iOS 畅销榜。</div>
     </div>
   </div>
@@ -591,9 +680,9 @@ table.dt td.na{color:#b9bec7;}
 <div class="cd" data-i18n="t121">堆叠柱 = 国内 + 国际游戏收入　|　折线 = 国际市场占游戏收入比重（%）</div>
 <div class="cw h240"><canvas id="cTMix"></canvas></div>
 <div class="leg">
-<span class="li" data-i18n="t136"><span class="lsq" style="background:#1d5fa8"></span>国内 Domestic</span>
-<span class="li" data-i18n="t137"><span class="lsq" style="background:#7ba3ce"></span>国际 International</span>
-<span class="li" data-i18n="t138"><span class="lln" style="background:#c47a00"></span>国际占比 %</span>
+<span class="li" data-i18n="t136"><span class="lsq" style="background:#111111"></span>国内 Domestic</span>
+<span class="li" data-i18n="t137"><span class="lsq" style="background:#8a8a8a"></span>国际 International</span>
+<span class="li" data-i18n="t138"><span class="lln" style="background:#f5b400"></span>国际占比 %</span>
 </div>
 <div class="fn" data-i18n="t131">国际占比在 2025Q4 达到 35.8% 的高点后回落至 2026Q2 的 28.2%，2026 年增长重心明显回到国内市场。</div>
 </div>
@@ -612,7 +701,7 @@ table.dt td.na{color:#b9bec7;}
 <div class="pd" data-i18n="t069">Q2 平均日活跃账户数<b>创下历史新高</b> —— 继 2026 Q1「DAU 与流水双新高」后连续第二个季度刷新纪录，突破春节档峰值；与《无畏契约》共同支撑国内收入增长。</div>
 </div>
 <div class="pi v2">
-<div class="pn" data-i18n="t051"><span class="plat p-pc" title="PC 端">🖥 PC</span>《无畏契约》VALORANT<span class="ptag b-hi">DAU 历史新高</span></div>
+<div class="pn" data-i18n="t051"><span class="plat p-pc" title="PC 端">🖥 Only PC</span>《无畏契约》VALORANT<span class="ptag b-hi">DAU 历史新高</span></div>
 <div class="pd" data-i18n="t070">Q2 平均日活跃账户数<b>创下历史新高</b>；国际侧与《鸣潮》一同驱动国际市场增长，抵消部分 Supercell 产品的下滑。</div>
 </div>
 <div class="pi v3">
@@ -620,11 +709,11 @@ table.dt td.na{color:#b9bec7;}
 <div class="pd" data-i18n="t071">在 2026 年中国新上线手游中，平均 DAU 与流水均<b>排名第一</b>；与《王者荣耀》共同构成 Q2 国内环比增长的重要推动因素。</div>
 </div>
 <div class="pi v4">
-<div class="pn" data-i18n="t053"><span class="plat p-mo" title="移动端">📱 Mobile</span>《无畏契约：源能行动》<span class="ptag b-new">新品接力</span></div>
+<div class="pn" data-i18n="t053"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《无畏契约：源能行动》<span class="ptag b-new">新品接力</span></div>
 <div class="pd" data-i18n="t072">与《三角洲行动》《洛克王国：世界》同列 H1 国内增长驱动产品。</div>
 </div>
 <div class="pi v5">
-<div class="pn" data-i18n="t054"><span class="plat p-mo" title="移动端">📱 Mobile</span>《Arrows – Puzzle Escape》<span class="ptag b-gl">全球下载量第一</span></div>
+<div class="pn" data-i18n="t054"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《Arrows – Puzzle Escape》<span class="ptag b-gl">全球下载量第一</span></div>
 <div class="pd" data-i18n="t073">腾讯子公司 <b>Miniclip</b> 旗下休闲解谜手游，成为 <b>2026 Q2 全球下载量最高的手游</b>，为腾讯国际业务打开新的市场增量。</div>
 </div>
 </div>
@@ -633,11 +722,11 @@ table.dt td.na{color:#b9bec7;}
 <div class="sub" data-i18n="t043">2026 Q1 国内 Domestic</div>
 <div class="pg">
 <div class="pi v1">
-<div class="pn" data-i18n="t055"><span class="plat p-mo" title="移动端">📱 Mobile</span>《王者荣耀》<span class="ptag b-hi">流水历史新高</span></div>
+<div class="pn" data-i18n="t055"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《王者荣耀》<span class="ptag b-hi">流水历史新高</span></div>
 <div class="pd" data-i18n="t074">受中国水墨画及古丝绸之路文化主题高品质外观，以及针对不同玩家群体的营销活动推动。</div>
 </div>
 <div class="pi v2">
-<div class="pn" data-i18n="t056"><span class="plat p-mo" title="移动端">📱 Mobile</span>《和平精英》<span class="ptag b-hi">峰值 DAU 9,000 万</span><span class="ptag b-ug">UGC</span></div>
+<div class="pn" data-i18n="t056"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《和平精英》<span class="ptag b-hi">峰值 DAU 9,000 万</span><span class="ptag b-ug">UGC</span></div>
 <div class="pd" data-i18n="t075">峰值 DAU 达历史新高 <b>9,000 万</b>，流水 YoY <b>▲30%+</b>；增长来自新职业撤离玩法、持续演进的 UGC 平台，以及与法拉利、《斗罗大陆》等 IP 联动。</div>
 </div>
 <div class="pi v3">
@@ -645,7 +734,7 @@ table.dt td.na{color:#b9bec7;}
 <div class="pd" data-i18n="t076">受 Vyron's Cosmic Guardian 皮肤、蝶变时刻 Morphosis 赛季（含重制后的航天城地图），以及春节期间名人和品牌联动推动。</div>
 </div>
 <div class="pi v4">
-<div class="pn" data-i18n="t058"><span class="plat p-mo" title="移动端">📱 Mobile</span>《无畏契约：源能行动》<span class="ptag b-op">手游前十</span></div>
+<div class="pn" data-i18n="t058"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《无畏契约：源能行动》<span class="ptag b-op">手游前十</span></div>
 <div class="pd" data-i18n="t077">上线后持续位列行业手游前十，推出高品质武器道具。</div>
 </div>
 <div class="pi v5">
@@ -656,15 +745,15 @@ table.dt td.na{color:#b9bec7;}
 <div class="sub" data-i18n="t044">2026 Q1 国际 International</div>
 <div class="pg">
 <div class="pi v1">
-<div class="pn" data-i18n="t060"><span class="plat p-mo" title="移动端">📱 Mobile</span>《PUBG MOBILE》<span class="ptag b-gl">流水 YoY ▲</span></div>
+<div class="pn" data-i18n="t060"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《PUBG MOBILE》<span class="ptag b-gl">流水 YoY ▲</span></div>
 <div class="pd" data-i18n="t079">增长点包括东方神话主题外观、品牌联动及周年庆活动。</div>
 </div>
 <div class="pi v2">
-<div class="pn" data-i18n="t061"><span class="plat p-mo" title="移动端">📱 Mobile</span>《部落冲突：皇室战争》<span class="ptag b-gl">DAU / 流水回升</span></div>
+<div class="pn" data-i18n="t061"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《部落冲突：皇室战争》<span class="ptag b-gl">DAU / 流水回升</span></div>
 <div class="pd" data-i18n="t080">受东方神话主题外观、品牌联动和周年庆活动推动，DAU 与流水在 1Q26 回升。</div>
 </div>
 <div class="pi v3">
-<div class="pn" data-i18n="t062"><span class="plat p-pc" title="PC 端">🖥 PC</span>《英雄联盟》<span class="ptag b-ip">赛季内容</span></div>
+<div class="pn" data-i18n="t062"><span class="plat p-pc" title="PC 端">🖥 Only PC</span>《英雄联盟》<span class="ptag b-ip">赛季内容</span></div>
 <div class="pd" data-i18n="t081">流水 YoY 增长，受 For Demacia 赛季、ARAM: Mayhem 模式及 Exalted Viego 皮肤推动。</div>
 </div>
 <div class="pi v4">
@@ -693,9 +782,9 @@ table.dt td.na{color:#b9bec7;}
 <span class="ys-note" data-i18n="t015">财报摘要 / 产品动向 随年度切换 · 总营收与游戏业务图表为跨年度连续数据</span>
 </div>
 <div class="ypanel active" data-y="2026" data-yg="2">
-<div class="sec"><i>01</i><span class="sec-t" data-i18n="t021">财报摘要</span> <span class="sec-sub">Summary</span> <span class="ychip" data-ychip="">2026</span></div>
+<div class="sec"><i>01</i><span class="sec-t" data-i18n="t021">财报摘要</span> <span class="ychip" data-ychip="">2026</span></div>
 <div class="sum" id="sumNeH1">
-<div class="sum-h" data-toggle="sumNeH1"><span class="qbadge" data-i18n="t184">2026 H1（含 Q2）</span><span class="sum-t" data-i18n="t185">'26.H1 NetEase 财报摘要</span><span class="qhint" data-i18n="t186">Q1 + Q2 合计，含 Q2 单季数据</span><span class="arw">▾</span></div>
+<div class="sum-h" data-toggle="sumNeH1"><span class="qbadge" data-i18n="t184">2026 H1（含 Q2）</span><span class="sum-t" data-i18n="t185">NetEase</span><span class="arw">▾</span></div>
 <div class="sum-b">
 <div class="sub" data-i18n="t187">总营收 Total Net Revenue</div>
 <ul class="bl">
@@ -715,7 +804,7 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="sum closed" id="sumNeQ1">
-<div class="sum-h" data-toggle="sumNeQ1"><span class="qbadge" data-i18n="t032">2026 Q1</span><span class="sum-t" data-i18n="t029">'26.Q1 NetEase 财报摘要</span><span class="arw">▾</span></div>
+<div class="sum-h" data-toggle="sumNeQ1"><span class="qbadge" data-i18n="t032">2026 Q1</span><span class="sum-t" data-i18n="t029">NetEase</span><span class="arw">▾</span></div>
 <div class="sum-b">
 <div class="sub" data-i18n="t045">总营收 Total Net Revenue</div>
 <ul class="bl">
@@ -749,21 +838,21 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="ypanel" data-yg="2" data-y="2025">
-<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1083">财报摘要</span> <span class="sec-sub">Summary</span> <span class="ychip" data-ychip>2025</span></div>
+<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1083">财报摘要</span> <span class="ychip" data-ychip>2025</span></div>
 <div class="sum" id="sumNe25Q4">
-  <div class="sum-h" data-toggle="sumNe25Q4"><span class="qbadge" data-i18n="t992">2025 Q4 & 全年</span><span class="sum-t" data-i18n="t993">'25.Q4 & 全年 NetEase 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumNe25Q4"><span class="qbadge" data-i18n="t992">2025 Q4 & 全年</span><span class="sum-t" data-i18n="t993">NetEase</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t994">总营收 Total Net Revenue</div><ul class="bl"><li data-i18n="t986">全年净收入人民币 <b class="hl">1,126 亿元</b><span class="usdv">（约 161 亿美元）</span>，YoY ▲6.9%。</li></ul><div class="sub" data-i18n="t995">游戏业务 Games & Related Value-Added Services</div><ul class="bl"><li data-i18n="t987"><b>全年：</b>游戏及相关增值服务净收入人民币 <b class="hl">921 亿元</b><span class="usdv">（约 132 亿美元）</span>，YoY ▲10.1%；其中在线游戏约占该分部净收入的 <span class="tagv">97.3%</span>（约 896.1 亿元）。</li><li data-i18n="t988"><b>Q4：</b>游戏及相关增值服务净收入人民币 <b class="hl">220 亿元</b>，YoY ▲3.4%；其中在线游戏约占该分部净收入的 <span class="tagv">96.8%</span>（约 212.6 亿元），上一季度与去年同期该占比分别为 97.6% 与 96.7%。<ul><li>增长主要来自《梦幻西游》PC 版，以及新上线的《燕云十六声》《漫威争锋》等自研游戏净收入提升；暴雪游戏在国内市场保持热度，全年整体营收创历史新高</li><li>在线游戏收入环比下降，是因为上一季度受益于暑期大量多元化活动带来的高基数</li></ul></li></ul><div class="sub" data-i18n="t996">其他 Others</div><ul class="bl"><li data-i18n="t989"><b>AI 应用进展：</b>游戏开发全流程（美术、策划、编程、动画、QA）深度使用 AI，部分环节效能提升 <b>300%</b>。<ul><li>已落地产品：智能 NPC（《逆水寒》）、实时语音 AI 队友（《永劫无间》）、AIGC 创作（《蛋仔派对》）</li></ul></li><li data-i18n="t990"><b>AI 战略观点：</b>AI 降低了游戏制作门槛，却把头部产品的成功标准提得更高；网易将在垂类模型、AI 原创玩法与人才梯队上保持高强度投入。<ul><li>核心壁垒从单纯产能转向整合能力（AI 技术 + 数字体系 + 经济系统 + 社交生态的融合）</li><li>差异化路径：致力于打造各类游戏的 AI 专家，而非通用大模型</li></ul></li><li data-i18n="t991"><b>产品进展：</b>《燕云十六声》全球玩家超 8,000 万；《遗忘之海》上线；《无限大》全平台全球同步发行筹备中。</li></ul></div>
 </div>
 <div class="sum closed" id="sumNe25Q3">
-  <div class="sum-h" data-toggle="sumNe25Q3"><span class="qbadge" data-i18n="t1004">2025 Q3</span><span class="sum-t" data-i18n="t1005">'25.Q3 NetEase 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumNe25Q3"><span class="qbadge" data-i18n="t1004">2025 Q3</span><span class="sum-t" data-i18n="t1005">NetEase</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t1006">总营收 Total Net Revenue</div><ul class="bl"><li data-i18n="t997">Q3 净收入人民币 <b class="hl">284 亿元</b><span class="usdv">（约 40 亿美元）</span>，YoY ▲8.2%、QoQ ▲1.6%。</li></ul><div class="sub" data-i18n="t1007">游戏业务 Games & Related Value-Added Services</div><ul class="bl"><li data-i18n="t998"><b>整体：</b>游戏及相关增值服务净收入人民币 <b class="hl">233 亿元</b><span class="usdv">（约 33 亿美元）</span>，YoY ▲11.8%、QoQ ▲2.3%；其中在线游戏约占该分部净收入的 <span class="tagv">97.6%</span>，对应约人民币 227.7 亿元，QoQ ▲2.8%。<ul><li>环比增长来自《梦幻西游》PC 版、《逆水寒》手游等自研游戏及若干代理游戏；同比增长来自《梦幻西游》PC 版、《蛋仔派对》与新上线的《燕云十六声》《漫威争锋》</li></ul></li><li data-i18n="t999"><b>《梦幻西游》PC 版：</b>三季度起最高同时在线玩家数<b>连创四次新高</b>，达到 <b>358 万</b>。<ul><li>稳定的经济系统与独特体验是基础；「畅玩服」简化系统与玩法，乐趣更直接、学习门槛更低，吸引了大量长期流失用户与全新玩家</li></ul></li></ul><div class="sub" data-i18n="t1008">其他 Others</div><ul class="bl"><li data-i18n="t1000"><b>海外布局：</b>《命运：群星》8 月 28 日海外、10 月 16 日中国上线，登顶欧美多地区及中国 iOS 下载榜；《逆水寒》手游与《燕云十六声》分别于 11 月 7 日、11 月 14 日全球发行；《无限大》在 2025 东京电玩展推出线下试玩。</li><li data-i18n="t1001"><b>暴雪游戏：</b>《魔兽世界》11 月 18 日推出国区独家「泰坦重铸」服务器；《暗黑破坏神 II》重制版与《星际争霸 II》分别于 8 月 27 日、10 月 28 日回归中国；《暗黑破坏神 IV》国区 12 月 12 日上线。</li><li data-i18n="t1002"><b>未来战略：</b>专注已有的成功产品、精益求精，不分散精力做把握不大的新项目；对新项目谨慎且重视，要做出有竞争力的内容。</li><li data-i18n="t1003"><b>营业成本：</b>Q3 营业成本 102 亿元<span class="usdv">（约 14 亿美元）</span>，YoY ▲5.2%、QoQ ▲4.1%，人员成本、收入分成与代理游戏版权成本同比环比均增加。</li></ul></div>
 </div>
 <div class="sum closed" id="sumNe25Q2">
-  <div class="sum-h" data-toggle="sumNe25Q2"><span class="qbadge" data-i18n="t1014">2025 Q2</span><span class="sum-t" data-i18n="t1015">'25.Q2 NetEase 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumNe25Q2"><span class="qbadge" data-i18n="t1014">2025 Q2</span><span class="sum-t" data-i18n="t1015">NetEase</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t1016">总营收 Total Net Revenue</div><ul class="bl"><li data-i18n="t1009">Q2 净收入人民币 <b class="hl">279 亿元</b><span class="usdv">（约 39 亿美元）</span>，YoY ▲9.5%、QoQ ▼3.1%。</li></ul><div class="sub" data-i18n="t1017">游戏业务 Games & Related Value-Added Services</div><ul class="bl"><li data-i18n="t1010"><b>整体：</b>游戏及相关增值服务净收入人民币 <b class="hl">228 亿元</b><span class="usdv">（约 32 亿美元）</span>，YoY ▲13.7%、QoQ ▼5.0%。</li><li data-i18n="t1011"><b>在线游戏：</b>净收入 221 亿元<span class="usdv">（约 31 亿美元）</span>，YoY ▲14.9%、QoQ ▼5.4%，占游戏收入 <span class="tagv">97.1%</span>。<ul><li>环比减少来自若干自研及代理游戏；同比增加来自《第五人格》、新上线的《燕云十六声》《漫威争锋》以及若干代理游戏</li></ul></li></ul><div class="sub" data-i18n="t1018">其他 Others</div><ul class="bl"><li data-i18n="t1012"><b>海外布局：</b>在多个海外地区发布新产品，进一步提升国际影响力；将推出原创海洋冒险 RPG《遗忘之海》与叙事向动作冒险游戏《归唐》，并筹备将《逆水寒》手游和《燕云十六声》推向全球市场。</li><li data-i18n="t1013"><b>营业成本：</b>Q2 营业成本 98 亿元<span class="usdv">（约 14 亿美元）</span>，YoY ▲4.3%、QoQ ▼4.8%；平台收入分成与代理游戏版权成本环比减少，代理版权成本同比增加。</li></ul></div>
 </div>
 <div class="sum closed" id="sumNe25Q1">
-  <div class="sum-h" data-toggle="sumNe25Q1"><span class="qbadge" data-i18n="t1024">2025 Q1</span><span class="sum-t" data-i18n="t1025">'25.Q1 NetEase 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumNe25Q1"><span class="qbadge" data-i18n="t1024">2025 Q1</span><span class="sum-t" data-i18n="t1025">NetEase</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t1026">总营收 Total Net Revenue</div><ul class="bl"><li data-i18n="t1019">Q1 净收入人民币 <b class="hl">288 亿元</b><span class="usdv">（约 40 亿美元）</span>，YoY ▲7.3%、QoQ ▲7.7%。</li></ul><div class="sub" data-i18n="t1027">游戏业务 Games & Related Value-Added Services</div><ul class="bl"><li data-i18n="t1020"><b>整体：</b>游戏及相关增值服务净收入人民币 <b class="hl">240 亿元</b><span class="usdv">（约 30 亿美元）</span>，YoY ▲11.8%、QoQ ▲13.0%。<ul><li>增长主要由于《第五人格》及若干新上线游戏如《燕云十六声》和《漫威争锋》的良好表现</li></ul></li><li data-i18n="t1021"><b>在线游戏：</b>净收入 234 亿元，YoY ▲14.3%、QoQ ▲13.8%，占游戏收入 <span class="tagv">97.5%</span>。</li></ul><div class="sub" data-i18n="t1028">其他 Others</div><ul class="bl"><li data-i18n="t1022"><b>新品储备：</b>覆盖 RPG、开放世界、团队竞技等多元领域，如《漫威秘法狂潮》《Destiny: Rising》《无限大》等。</li><li data-i18n="t1023"><b>海外计划：</b>《燕云十六声》海外 Steam 预约开启，主机版本与海外发行加速推进；《全明星街球派对》5 月 22 日在海外多地区上线。</li></ul></div>
 </div>
 <div class="sec"><i>02</i><span class="sec-t" data-i18n="t1084">产品动向</span> <span class="sec-sub">Key Titles</span> <span class="ychip" data-ychip>2025</span></div>
@@ -783,7 +872,7 @@ table.dt td.na{color:#b9bec7;}
       <div class="pd" data-i18n="t1034">与《燕云十六声》同为 2025 年游戏收入同比增长的核心新品，持续贡献海外收入。</div>
     </div>
     <div class="pi v4">
-      <div class="pn" data-i18n="t1035"><span class="plat p-mo" title="移动端">📱 Mobile</span>《逆水寒》手游<span class="ptag b-ug">11 月全球发行</span></div>
+      <div class="pn" data-i18n="t1035"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《逆水寒》手游<span class="ptag b-ug">11 月全球发行</span></div>
       <div class="pd" data-i18n="t1036">Q3 环比增长的主要来源之一；11 月 7 日全球发行；已落地实时智能 NPC 的 AI 应用。</div>
     </div>
     <div class="pi v2">
@@ -798,9 +887,9 @@ table.dt td.na{color:#b9bec7;}
 </div>
 </div>
 <div class="ypanel" data-yg="2" data-y="2024">
-<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1085">财报摘要</span> <span class="sec-sub">Summary</span> <span class="ychip" data-ychip>2024</span></div>
+<div class="sec"><i>01</i><span class="sec-t" data-i18n="t1085">财报摘要</span> <span class="ychip" data-ychip>2024</span></div>
 <div class="sum" id="sumNe24">
-  <div class="sum-h" data-toggle="sumNe24"><span class="qbadge" data-i18n="t1061">2024 全年</span><span class="sum-t" data-i18n="t1062">'24 全年 NetEase 财报摘要</span><span class="arw">▾</span></div>
+  <div class="sum-h" data-toggle="sumNe24"><span class="qbadge" data-i18n="t1061">2024 全年</span><span class="sum-t" data-i18n="t1062">NetEase</span><span class="arw">▾</span></div>
   <div class="sum-b"><div class="sub" data-i18n="t1063">总营收 Total Net Revenue</div><ul class="bl"><li data-i18n="t1055">2024 年全年净收入人民币 <b class="hl">1,053 亿元</b><span class="usdv">（约 144 亿美元）</span>，YoY ▲1.8%。</li></ul><div class="sub" data-i18n="t1064">游戏业务 Games & Related Value-Added Services</div><ul class="bl"><li data-i18n="t1056"><b>整体：</b>游戏及相关增值服务净收入人民币 <b class="hl">836 亿元</b><span class="usdv">（约 115 亿美元）</span>，YoY ▲2.5%；尽管增幅有限，仍占全年总营收的 <span class="tagv">79.4%</span>，是网易最主要的收入来源。</li><li data-i18n="t1057"><b>Q4：</b>营收 212 亿元，YoY ▲1.5%；《永劫无间》端游、《魔兽世界》《炉石传说》等代理游戏表现出色，推动端游收入 YoY ▲57%。</li><li data-i18n="t1058"><b>在线游戏：</b>净收入 805 亿元，YoY ▲6.3%，约占该分部净收入的 <span class="tagv">96.2%</span>；其中手游净收入 <b class="hl">584.95 亿元</b>，YoY ▲2.7%，约占在线游戏的 <span class="tagv">72.7%</span>。<ul><li>分季度手游收入：Q1 160.58 亿（YoY ▲19.4%）、Q2 147.25 亿（YoY ▼16.1%）、Q3 142.99 亿（YoY ▼9.7%）、Q4 134.13 亿（YoY ▼10.4%）</li><li>手游占在线游戏比重全年逐季下滑：78.6% → 76.4% → 70.8% → 65.3%，端游（《永劫无间》及暴雪代理产品）占比相应上升</li></ul></li></ul><div class="sub" data-i18n="t1065">其他 Others</div><ul class="bl"><li data-i18n="t1059"><b>研发投入：</b>全年研发投入 175 亿元，占总营收 16.6%，连续第五年超百亿。</li><li data-i18n="t1060"><b>新游戏：</b>将在全球市场推出更多新品以丰富产品矩阵，如《界外狂潮》《Destiny: Rising》《漫威秘法狂潮》。</li></ul></div>
 </div>
 </div>
@@ -849,11 +938,11 @@ table.dt td.na{color:#b9bec7;}
 <div class="sub" data-i18n="t196">2026 Q2 重点产品</div>
 <div class="pg">
 <div class="pi v1">
-<div class="pn" data-i18n="t197"><span class="plat p-mo" title="移动端">📱 Mobile</span>《逆水寒》手游<span class="ptag b-hi">版本运营</span></div>
+<div class="pn" data-i18n="t197"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《逆水寒》手游<span class="ptag b-hi">版本运营</span></div>
 <div class="pd" data-i18n="t198">6月“新世界”版本上线首日活跃玩家突破 <b>1,000万</b>，同时在线人数创两年新高。</div>
 </div>
 <div class="pi v2">
-<div class="pn" data-i18n="t199"><span class="plat p-mo" title="移动端">📱 Mobile</span>《蛋仔派对》<span class="ptag b-ug">UGC 生态</span></div>
+<div class="pn" data-i18n="t199"><span class="plat p-mo" title="移动端">📱 Only Mobile</span>《蛋仔派对》<span class="ptag b-ug">UGC 生态</span></div>
 <div class="pd" data-i18n="t200">注册用户突破 <b>7亿</b>、月活稳定在 <b>1亿以上</b>，UGC 生态继续扩张。</div>
 </div>
 <div class="pi v3">
@@ -878,6 +967,28 @@ table.dt td.na{color:#b9bec7;}
 </ul>
 <div class="fn" data-i18n="t214">来源说明：收入及变化原因主要来自网易 2026Q2 财报；具体产品运营指标及电话会产品进展参考 GameLook 公开报道及电话会实录整理。</div>
 </div><!-- /panel netease -->
+<div class="evidence-wrap">
+<div class="evidence-title" data-i18n="t1100">重点产品指标追踪</div>
+<div class="evidence-scroll">
+<table class="evidence">
+<colgroup><col style="width:12%"><col style="width:14%"><col style="width:14%"><col style="width:25%"><col style="width:35%"></colgroup>
+<thead><tr><th data-i18n="t1101">游戏</th><th data-i18n="t1102">时间</th><th data-i18n="t1103">数据</th><th data-i18n="t1104">口径</th><th data-i18n="t1105">来源／备注</th></tr></thead>
+<tbody>
+<tr><td rowspan="8" class="game-cell" data-i18n="t1106">Delta Force</td><td data-i18n="t1107">2025年4月</td><td data-i18n="t1108">超1,200万</td><td data-i18n="t1109">PC＋手游双端 Peak DAU</td><td data-i18n="t1110">Tencent 2025Q1官方业绩公告</td></tr>
+<tr><td data-i18n="t1111">2025年7月</td><td data-i18n="t1112">超2,000万</td><td data-i18n="t1113">月均DAU</td><td data-i18n="t1114">Tencent 2025Q2演示报告</td></tr>
+<tr><td data-i18n="t1115">2025年9月</td><td data-i18n="t1116">超3,000万</td><td data-i18n="t1117">DAU里程碑</td><td data-i18n="t1118">游戏官方周年庆公告</td></tr>
+<tr><td data-i18n="t1119">2026年1月</td><td data-i18n="t1120">超4,100万</td><td data-i18n="t1121">DAU里程碑</td><td data-i18n="t1122">游戏官方公告</td></tr>
+<tr><td data-i18n="t1123">2026年2月</td><td data-i18n="t1124">超5,000万</td><td data-i18n="t1125">峰值DAU</td><td data-i18n="t1126">Tencent 2025年度／Q4演示报告</td></tr>
+<tr><td data-i18n="t1127">2026年3月</td><td data-i18n="t1128">超5,000万</td><td data-i18n="t1129">DAU里程碑</td><td data-i18n="t1130">游戏官方公告</td></tr>
+<tr><td data-i18n="t1131">2026Q1</td><td data-i18n="t1132">创历史新高</td><td data-i18n="t1133">季度平均DAU</td><td data-i18n="t1134">Tencent 2026Q1财报，未披露具体数值</td></tr>
+<tr><td data-i18n="t1135">2026Q2</td><td data-i18n="t1136">再创历史新高</td><td data-i18n="t1137">季度平均DAU</td><td data-i18n="t1138">Tencent 2026Q2业绩公告，未披露具体数值</td></tr>
+<tr><td rowspan="3" class="game-cell" data-i18n="t1139">VALORANT</td><td data-i18n="t1140">2025年10月</td><td data-i18n="t1141">超5,000万</td><td data-i18n="t1142">国服端游＋手游累计MAU</td><td data-i18n="t1143">Tencent 2025Q3演示报告</td></tr>
+<tr><td data-i18n="t1144">2026年5月</td><td data-i18n="t1145">超1,000万</td><td data-i18n="t1146">手游DAU</td><td data-i18n="t1147">游戏官方公告</td></tr>
+<tr><td data-i18n="t1148">2026年7月</td><td data-i18n="t1149">超1亿</td><td data-i18n="t1150">注册用户</td><td data-i18n="t1151">游戏官方公告，非DAU</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="common">
 <h3 data-i18n="t149">🔗 腾讯与网易共同 Insight</h3>
 <ul class="bl">
@@ -997,10 +1108,11 @@ const NE = {
 const usdM = yi => yi*100/RATE;              // 亿元 → 百万美元
 const usdB = yi => yi*100/RATE/1000;         // 亿元 → 十亿美元
 const sep  = n  => n.toLocaleString('en-US');
+const cnyUnit = ()=> LANG==='KR' ? '억' : '亿';
 function cnyNum(yi){ return yi>=1000 ? sep(Math.round(yi)) : String(+yi.toFixed(1)); }
 function fmtVal(yi){                          // 图表数据标签
   if(yi==null) return '';
-  return CUR==='CNY' ? '¥'+cnyNum(yi)+'亿' : '$'+usdB(yi).toFixed(1)+'B';
+  return CUR==='CNY' ? '¥'+cnyNum(yi)+cnyUnit() : '$'+usdB(yi).toFixed(1)+'B';
 }
 function fmtAxis(yi){
   if(CUR==='CNY') return cnyNum(yi);
@@ -1008,7 +1120,7 @@ function fmtAxis(yi){
 }
 function fmtBoth(yi){
   if(yi==null) return t('待发布');
-  const c='¥'+cnyNum(yi)+'亿', u='$'+sep(Math.round(usdM(yi)))+'M';
+  const c='¥'+cnyNum(yi)+cnyUnit(), u='$'+sep(Math.round(usdM(yi)))+'M';
   return CUR==='CNY' ? c+'（≈'+u+'）' : u+'（≈'+c+'）';
 }
 function fmtPct(v,d){ if(v==null) return '—'; return (v>0?'+':'')+v.toFixed(d==null?1:d)+'%'; }
@@ -1018,16 +1130,16 @@ const UNIT = ()=> CUR==='CNY' ? t('单位：人民币亿元') : t('单位：十�
    3. Chart.js 默认
    ══════════════════════════════════════════════════════════ */
 Chart.register(ChartDataLabels);
-Chart.defaults.font.family="'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif";
-Chart.defaults.color='#6b7280';
+Chart.defaults.font.family=getComputedStyle(document.body).fontFamily;
+Chart.defaults.color='#5c5c5c';
 Chart.defaults.plugins.datalabels.display=false;
 Chart.defaults.plugins.legend.display=false;
 Chart.defaults.plugins.tooltip.backgroundColor='rgba(21,23,25,.93)';
 Chart.defaults.plugins.tooltip.padding=9;
 Chart.defaults.plugins.tooltip.cornerRadius=2;
 
-const TC_C='#1d5fa8', TC_L='#7ba3ce', NE_C='#a0201b', NE_L='#e0b3ac';
-const LINE='#c97a00', MUTED='#d6dae1', GC='rgba(197,204,216,.35)', SOFT='#6b7280';
+const TC_C='#111111', TC_L='#8a8a8a', NE_C='#111111', NE_L='#8a8a8a';
+const LINE='#f5b400', MUTED='#e6e6e6', GC='rgba(17,17,17,.14)', SOFT='#8a8a8a';
 const AX ={grid:{color:GC},border:{display:false},ticks:{color:SOFT,font:{size:10}}};
 const AXN={grid:{display:false},border:{display:false},ticks:{color:SOFT,font:{size:10}}};
 const CMN={responsive:true,maintainAspectRatio:false,animation:{duration:550},interaction:{mode:'index',intersect:false}};
@@ -1047,11 +1159,11 @@ function combo(id,d,o){
       {type:'line',data:d.yoy,borderColor:LINE,backgroundColor:'transparent',borderWidth:2.1,
         pointBackgroundColor:LINE,pointBorderColor:'#fff',pointBorderWidth:1.4,pointRadius:4,tension:.3,
         spanGaps:false,yAxisID:'yR',order:1,
-        datalabels:{display:true,anchor:'center',align:'top',offset:8,clamp:true,clip:false,
-          backgroundColor:'rgba(255,255,255,.94)',borderColor:ctx=>((ctx.dataset.data[ctx.dataIndex]??0)>=0?LINE:'#c8352a'),
+          datalabels:{display:true,anchor:'center',align:'top',offset:8,clamp:true,clip:false,
+          backgroundColor:'rgba(255,255,255,.94)',borderColor:ctx=>((ctx.dataset.data[ctx.dataIndex]??0)>=0?LINE:'#5c5c5c'),
           borderWidth:1,borderRadius:3,padding:{top:2,right:4,bottom:2,left:4},
           font:{size:9.5,weight:'800'},
-          color:ctx=>((ctx.dataset.data[ctx.dataIndex]??0)>=0?'#96600a':'#b42318'),
+          color:ctx=>((ctx.dataset.data[ctx.dataIndex]??0)>=0?'#5c5c5c':'#1a1a1a'),
           formatter:v=>v==null?'':fmtPct(v)}}
     ]},
     options:{...CMN,layout:{padding:{top:34,right:8,bottom:4}},
@@ -1176,7 +1288,7 @@ function heatColor(r){
   return 'rgb('+R+','+G+','+B+')';
 }
 function cellMoney(v){
-  return CUR==='CNY' ? '¥'+cnyNum(v)+'亿' : '$'+sep(Math.round(usdM(v)))+'M';
+  return CUR==='CNY' ? '¥'+cnyNum(v)+cnyUnit() : '$'+sep(Math.round(usdM(v)))+'M';
 }
 function heatTable(elId,label,d,o){
   o=o||{}; const hl=o.hl==null?1:o.hl, pct=!!o.pct;
@@ -1371,7 +1483,7 @@ function renderKPI(){
     host.innerHTML=set.cards.map(c=>{
       const val = c.txt!=null ? '<span class="kv-pend">'+t(c.txt)+'</span>' : kpiVal(c.yi);
       const pills=c.p.map(x=>{
-        const inner = x[3]!=null ? '<b class="num">'+(CUR==='CNY'?'¥'+cnyNum(x[3])+'亿':'$'+usdB(x[3]).toFixed(1)+'B')+'</b>' : t(x[2]);
+        const inner = x[3]!=null ? '<b class="num">'+(CUR==='CNY'?'¥'+cnyNum(x[3])+cnyUnit():'$'+usdB(x[3]).toFixed(1)+'B')+'</b>' : t(x[2]);
         return '<span class="kpill '+x[0]+'">'+(x[1]?'<span class="pl">'+t(x[1])+'</span>':'')+inner+'</span>';
       }).join('');
       return '<div class="kc'+(c.txt!=null?' kc-pend':'')+'">'
@@ -1404,21 +1516,21 @@ function renderCurrency(){
    ══════════════════════════════════════════════════════════ */
 // Tencent
 combo('cTGame',TC.game,{hi:TC_C,ylMax:680,yrMin:-3,yrMax:43});
-shareLine('cTShare',[{name:'游戏收入占总收入 %',data:TC.gameShare,color:TC_C,fill:'rgba(29,95,168,.09)'}],
+shareLine('cTShare',[{name:'游戏收入占总收入 %',data:TC.gameShare,color:TC_C,fill:'rgba(17,17,17,.08)'}],
   {min:24,max:38,legend:false});
 combo('cTDom',TC.dom,{hi:TC_C,ylMax:490,yrMin:-3,yrMax:46});
 combo('cTIntl',TC.intl,{hi:TC_C,ylMax:220,yrMin:-3,yrMax:90});
 stackMix('cTMix');
-combo('cTTotal',TC.total,{hi:'#c97a00',ylMin:0,ylMax:2100,yrMin:0,yrMax:24});
+combo('cTTotal',TC.total,{hi:LINE,ylMin:0,ylMax:2100,yrMin:0,yrMax:24});
 
 // NetEase
 combo('cNGame',NE.gvas,{hi:NE_C,hiFrom:8,ylMax:265,yrMin:-6,yrMax:25});
 shareLine('cNShare',[
   {name:'游戏及增值服务占总收入 %',data:NE.gvasShare,color:NE_C},
-  {name:'在线游戏占游戏及增值服务 %',data:NE.onlineShare,color:'#1565c0'}
+  {name:'在线游戏占游戏及增值服务 %',data:NE.onlineShare,color:'#5c5c5c'}
 ],{min:74,max:90,dualAxis:true,min2:92,max2:100});
 combo('cNOnline',NE.online,{hi:NE_C,hiFrom:8,ylMax:260,yrMin:-4,yrMax:27});
-combo('cNTotal',NE.total,{hi:'#c97a00',hiFrom:8,ylMin:0,ylMax:315,yrMin:-6,yrMax:17});
+combo('cNTotal',NE.total,{hi:LINE,hiFrom:8,ylMin:0,ylMax:315,yrMin:-6,yrMax:17});
 
 renderCurrency();
 
@@ -1639,59 +1751,60 @@ document.getElementById('btnXlsx').addEventListener('click',exportXlsx);
 <script>
 /* ══ 8. 다국어 CN ↔ KR ══ */
 const KR={
-t001:'중국 주요 게임사 실적 정리',
-t002:'<b>Tencent 텐센트</b> · <b>NetEase 넷이즈</b>　|　데이터 구간 <b>2024Q1 – 2026Q2</b><br/>담당팀 <b>PUBGM Operation &amp; Coordination Team</b>　|　담당자 <b>Ru Yi Jing（经如一）</b>',
-t003:'위안화 기준 · 달러는 보조',
+t001:'중국 주요 게임사 실적 분석',
+t002:'<b>Tencent</b> · <b>NetEase</b>　|　데이터 구간 <b>2024Q1 – 2026Q2</b><br/>담당팀 <b>PUBGM Operation &amp; Coordination Team</b>　|　담당자 <b>Ru Yi Jing（经如一）</b>',
+t003:'위안화 기준 · 달러는 참고용',
 t004:'차트 환산 기준 1 USD = 6.8109 CNY',
-t005:'실적 원문 기준은 위안화이며, 분기 비교（YoY／QoQ／비중）는 모두 위안화로 직접 산출하고 달러는 어떠한 증감률 계산에도 사용하지 않습니다. <b>본문</b> 괄호 안의 달러 금액은 각 기수 실적 공시 원문 값（당기 환율 기준, 기수별 환율 상이）을 그대로 사용하며, <b>KPI／차트／히트맵／Excel 내보내기</b>의 달러 금액은 Tencent 2026 H1 실적 발표 자료의 편의환산 환율 <b>1 USD = 6.8109 CNY</b>로 일괄 환산해 분기·기업 간 비교 가능성을 확보했습니다. 두 기준은 서로 달라 금액에 약 4–5% 차이가 있으며, 모두 규모 참고용입니다.',
+t005:'실적 공시의 기본 통화는 위안화입니다. YoY·QoQ·비중 등 분기 비교 지표는 모두 위안화 기준으로 산출했으며, 달러는 증감률 계산에 사용하지 않았습니다. <b>본문</b>의 괄호 안 달러 금액은 각 기간 공시에 기재된 환산값을 사용하고, <b>KPI·차트·히트맵·Excel 내보내기</b>의 달러 금액은 비교 편의를 위해 <b>1 USD = 6.8109 CNY</b>로 통일 환산했습니다. 따라서 두 기준의 달러 금액에는 약 4~5% 차이가 있을 수 있으며, 달러 수치는 규모 파악을 위한 참고값입니다.',
+t006:'💱 환산 기준',
 t007:'⬇&nbsp; 전체 데이터 내보내기（Excel）',
-t008:'<span class="dot"></span>Tencent 텐센트',
-t009:'<span class="dot"></span>NetEase 넷이즈',
+t008:'<span class="dot"></span>Tencent',
+t009:'<span class="dot"></span>NetEase',
 t010:'Key Metrics', t011:'Key Metrics',
 t012:'📅 실적 기간', t013:'📅 실적 기간',
-t014:'실적 요약 / 주요 타이틀은 연도별 전환 · 총매출과 게임사업 차트는 연도 연속 데이터',
-t015:'실적 요약 / 주요 타이틀은 연도별 전환 · 총매출과 게임사업 차트는 연도 연속 데이터',
-t016:'실적 요약', t017:'실적 요약', t018:'총매출', t019:'게임사업', t020:'주요 타이틀',
+t014:'주요 타이틀은 연도별 조회 · 매출 차트는 전체 기간 추이',
+t015:'주요 타이틀은 연도별 조회 · 매출 차트는 전체 기간 추이',
+t016:'실적 요약', t017:'실적 요약', t018:'총매출', t019:'게임사업 매출', t020:'주요 타이틀',
 t021:'실적 요약', t022:'실적 요약', t023:'총매출', t024:'게임사업', t025:'주요 타이틀',
-t027:"'26.H1 Tencent 실적 요약", t028:"'26.Q1 Tencent 실적 요약", t029:"'26.Q1 NetEase 실적 요약",
+t027:'Tencent', t028:'Tencent', t029:'NetEase',
 t030:'2026 H1（Q2 포함）', t031:'2026 Q1', t032:'2026 Q1',
-t033:'Q1 + Q2 합산, Q2 단일 분기 데이터 포함',
-t034:'총매출 Total Revenue', t035:'게임사업 Games', t036:'기타 Others', t037:'인사이트 Insight',
-t038:'총매출 Total Revenue', t039:'게임사업 Games', t040:'기타 Others', t041:'인사이트 Insight',
+t033:'Q1·Q2 누적 기준이며, Q2 단독 분기 데이터도 포함',
+t034:'총매출', t035:'게임사업', t036:'기타', t037:'인사이트',
+t038:'총매출', t039:'게임사업', t040:'기타', t041:'인사이트',
 t042:'2026 Q2 핵심', t043:'2026 Q1 국내 Domestic', t044:'2026 Q1 해외 International',
-t045:'총매출 Total Net Revenue', t046:'게임사업 Games &amp; Related Value-Added Services',
-t047:'기타 Others', t048:'인사이트 Insight', t049:'2026 Q1 핵심 타이틀',
-t050:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《삼각주 행동》<span class="ptag b-hi">DAU 역대 최고</span>',
-t051:'<span class="plat p-pc" title="PC">🖥 PC</span>《발로란트》VALORANT<span class="ptag b-hi">DAU 역대 최고</span>',
+t045:'총매출', t046:'게임 및 관련 부가서비스',
+t047:'기타', t048:'인사이트', t049:'2026 Q1 핵심 타이틀',
+t050:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《델타포스》<span class="ptag b-hi">DAU 역대 최고</span>',
+t051:'<span class="plat p-pc" title="PC">🖥 Only PC</span>《발로란트》VALORANT<span class="ptag b-hi">DAU 역대 최고</span>',
 t052:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《로코왕국: 월드》<span class="ptag b-new">2026 신작 1위</span>',
-t053:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《발로란트: 소스 오퍼레이션》<span class="ptag b-new">신작 계주</span>',
-t054:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《Arrows – Puzzle Escape》<span class="ptag b-gl">글로벌 다운로드 1위</span>',
-t055:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《왕자영요》<span class="ptag b-hi">매출 역대 최고</span>',
-t056:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《화평정영》<span class="ptag b-hi">최고 DAU 9,000만</span><span class="ptag b-ug">UGC</span>',
-t057:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《삼각주 행동》<span class="ptag b-hi">DAU / 매출 동반 최고</span>',
-t058:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《발로란트: 소스 오퍼레이션》<span class="ptag b-op">모바일 매출 TOP10</span>',
+t053:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《발로란트: 소스 오퍼레이션》<span class="ptag b-new">신작 계승</span>',
+t054:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《Arrows – Puzzle Escape》<span class="ptag b-gl">글로벌 다운로드 1위</span>',
+t055:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《왕자영요》<span class="ptag b-hi">매출 역대 최고</span>',
+t056:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《화평정영》<span class="ptag b-hi">최고 DAU 9,000만</span><span class="ptag b-ug">UGC</span>',
+t057:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《델타포스》<span class="ptag b-hi">DAU / 매출 동반 최고</span>',
+t058:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《발로란트: 소스 오퍼레이션》<span class="ptag b-op">모바일 매출 TOP10</span>',
 t059:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《로코왕국: 월드》<span class="ptag b-new">출시 첫 달 DAU 1,300만+</span>',
-t060:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《PUBG MOBILE》<span class="ptag b-gl">매출 YoY ▲</span>',
-t061:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《클래시 로얄》<span class="ptag b-gl">DAU / 매출 반등</span>',
-t062:'<span class="plat p-pc" title="PC">🖥 PC</span>《리그 오브 레전드》<span class="ptag b-ip">시즌 콘텐츠</span>',
+t060:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《PUBG MOBILE》<span class="ptag b-gl">매출 YoY ▲</span>',
+t061:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《클래시 로얄》<span class="ptag b-gl">DAU / 매출 반등</span>',
+t062:'<span class="plat p-pc" title="PC">🖥 Only PC</span>《리그 오브 레전드》<span class="ptag b-ip">시즌 콘텐츠</span>',
 t063:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《명조》<span class="ptag b-gl">3월 급성장</span>',
 t064:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《몽환서유》 시리즈<span class="ptag b-op">성장 주력</span>',
 t065:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《연운십육성》<span class="ptag b-op">성장 주력</span><span class="ptag b-gl">글로벌</span>',
-t066:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《제5인격》 / 《에그파티》 / 《역수한》 모바일<span class="ptag b-ug">고빈도 콘텐츠 업데이트</span>',
+t066:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《제5인격》 / 《에그파티》 / 《역수한》 모바일<span class="ptag b-ug">고빈도 콘텐츠 업데이트</span>',
 t067:'<span class="plat p-mx" title="PC + 콘솔">🖥🎮 PC / 콘솔</span>《마블 라이벌즈》<span class="ptag b-gl">글로벌 확장</span>',
 t068:'<span class="plat p-mx" title="멀티플랫폼">🖥📱🎮 멀티플랫폼</span>블리자드 시리즈<span class="ptag b-ip">IP 퍼블리싱</span>',
-t069:'Q2 평균 DAU가 <b>역대 최고치를 경신</b> —— 2026 Q1「DAU·매출 동반 최고」에 이어 2개 분기 연속 기록 경신으로 춘절 성수기 정점을 돌파했으며, 《발로란트》와 함께 국내 매출 성장을 견인.',
-t070:'Q2 평균 DAU가 <b>역대 최고치를 경신</b>；해외에서는 《명조》와 함께 해외 매출 성장을 견인하며 일부 Supercell 타이틀의 하락을 상쇄.',
+t069:'Q2 평균 DAU가 <b>역대 최고치를 경신</b>했다. 2026 Q1의 ‘DAU·매출 동반 최고’에 이어 2개 분기 연속 기록을 새로 쓰며 춘절 성수기 효과를 넘어섰고, 《발로란트》와 함께 중국 내 게임 매출 성장을 견인했다.',
+t070:'Q2 평균 DAU가 <b>역대 최고치를 경신</b>했다. 해외에서는 《명조》와 함께 매출 성장을 이끌며 일부 Supercell 타이틀의 하락을 상쇄했다.',
 t071:'2026년 중국 신작 모바일게임 중 평균 DAU와 매출 모두 <b>1위</b>；《왕자영요》와 함께 Q2 국내 QoQ 성장의 주요 동력.',
-t072:'《삼각주 행동》《로코왕국: 월드》와 함께 H1 국내 성장을 견인한 타이틀.',
-t073:'텐센트 자회사 <b>Miniclip</b>의 캐주얼 퍼즐 모바일게임으로 <b>2026 Q2 글로벌 다운로드 1위</b>를 기록, 텐센트 해외 사업의 신규 시장 증분을 개척.',
+t072:'《델타포스》《로코왕국: 월드》와 함께 H1 국내 성장을 견인한 타이틀.',
+t073:'텐센트 자회사 <b>Miniclip</b>의 캐주얼 퍼즐 모바일게임으로, <b>2026 Q2 글로벌 다운로드 1위</b>를 기록했다. 하드코어 장르 중심이던 해외 사업에 새로운 유입 축을 추가했다.',
 t074:'중국 수묵화 및 고대 실크로드 문화 테마의 고품질 스킨과 유저층별 마케팅 활동이 견인.',
-t075:'최고 DAU 역대 최고치 <b>9,000만</b> 달성, 매출 YoY <b>▲30%+</b>；신규 직업 탈출 모드, 지속 진화하는 UGC 플랫폼, 페라리·《투라대륙》 등 IP 컬래버가 성장 요인.',
-t076:"Vyron's Cosmic Guardian 스킨, 나비변화 Morphosis 시즌（리메이크된 우주기지 맵 포함）, 춘절 기간 셀럽·브랜드 컬래버가 견인.",
+t075:'최고 DAU <b>9,000만</b>을 기록하고 매출도 YoY <b>▲30%+</b> 성장했다. 신규 직업·탈출 모드, 확장된 UGC 플랫폼, 페라리·《투라대륙》 등 IP 콜라보가 성장을 견인했다.',
+t076:"Vyron's Cosmic Guardian 스킨, 나비변화 Morphosis 시즌（리메이크된 우주기지 맵 포함）, 춘절 기간 셀럽·브랜드 콜라보가 견인.",
 t077:'출시 이후 모바일게임 업계 TOP10을 지속 유지, 고품질 무기 아이템 출시.',
 t078:'출시 첫 달 PC·모바일 합산 평균 DAU가 <b>1,300만</b>을 지속 상회, 모바일게임 매출 업계 TOP10 진입.',
-t079:'동양 신화 테마 스킨, 브랜드 컬래버, 주년 이벤트가 성장 요인.',
-t080:'동양 신화 테마 스킨, 브랜드 컬래버, 주년 이벤트에 힘입어 1Q26 DAU와 매출이 반등.',
+t079:'동양 신화 테마 스킨, 브랜드 콜라보, 주년 이벤트가 성장 요인.',
+t080:'동양 신화 테마 스킨, 브랜드 콜라보, 주년 이벤트에 힘입어 1Q26 DAU와 매출이 반등.',
 t081:'매출 YoY 성장, For Demacia 시즌·ARAM: Mayhem 모드·Exalted Viego 스킨이 견인.',
 t082:'3월 DAU·매출이 전년 대비 급성장, Buffies 캐릭터 강화 시스템·Brawl Pass 개선·Trophy 시스템 개편이 주요 요인.',
 t083:'《연운십육성》과 함께 Q1 자체개발 게임 매출 증가의 핵심 원천；장기 운영 역량을 지속 입증.',
@@ -1699,24 +1812,24 @@ t084:'국내 매출 성장원인 동시에 해외 시장 확장의 핵심 자체
 t085:'고빈도 콘텐츠 업데이트와 플레이 혁신을 통해 유저 활성도와 매출 모두 강세 유지.',
 t086:'《연운십육성》과 함께 해외 시장을 지속 확장하며 유저 리텐션 제고.',
 t087:'중국 시장에서 안정적으로 운영되며 현지화 콘텐츠 업데이트를 지속.',
-t088:'스테디셀러의 초점이 유저·영향력 확장으로 이동',
+t088:'스테디셀러 운영의 초점이 유저 기반·영향력 확장으로 이동',
 t089:'새로운 스테디셀러 라인업 형성',
-t090:'신작 전략이 단일 대작 베팅에서 멀티 장르 확장으로 전환',
+t090:'신작 전략이 단일 대작 집중에서 멀티 장르 포트폴리오로 전환',
 t091:'2026년 성장은 여전히 국내 시장 중심',
 t092:'해외 시장의 돌파구가 캐주얼 장르로 이동',
 t093:'스테디셀러가 여전히 성장의 기반',
-t094:'UGC·플레이 확장·IP 컬래버의 조합 구동',
-t095:'다수의 성숙 타이틀이 안정적 성과 유지',
+t094:'UGC·플레이 확장·IP 콜라보의 결합 효과',
+t095:'다수의 기존 타이틀이 안정적 성과 유지',
 t096:'다각화된 글로벌 사업 포트폴리오 구축',
-t097:'텐센트는 e스포츠·오프라인 이벤트·UGC·IP 컬래버 등으로 유저 접점을 넓히고 있으며, 스테디셀러의 운영 경계가 확장되고 있다.',
-t098:'《삼각주 행동》《발로란트: 소스 오퍼레이션》《로코왕국: 월드》 등이 기존 성숙 타이틀을 이어받아 신규 유저와 매출 성장을 담당하고 있다.',
-t099:'텐센트는 오픈월드·몬스터 수집·PVE 슈팅·배틀로얄·카드 등 여러 장르를 동시에 전개해 단일 타이틀 성공에 대한 의존도를 낮추고 있다.',
-t100:'H1 국내 게임 매출 성장률이 해외를 뚜렷이 상회했다. 현재 텐센트의 성장은 국내 성숙 타이틀과 신작 계주에 주로 의존하고 있으며, 해외 사업은 라인업 구조와 장기 성과 개선이 여전히 필요하다.',
-t101:'하드코어 장르（Supercell 일부 타이틀）가 압박을 받는 가운데 Miniclip의 캐주얼 퍼즐 게임이 Q2 글로벌 다운로드 1위를 차지했다. 텐센트 해외 사업의 성장 동력이 단일 하드코어 장르에서 「하드코어 장기운영 + 캐주얼 대량유입」의 이원 구조로 확장되고 있다.',
-t102:'《왕자영요》《화평정영》《삼각주 행동》이 콘텐츠·플레이·컬래버를 통해 성장을 유지하고 있으며, 스테디셀러가 여전히 텐센트 게임 매출 안정성의 핵심 축이다.',
-t103:'단발성 업데이트나 단일 컬래버로 매출을 끌어올리는 방식이 아니라, UGC 플랫폼으로 콘텐츠 공급을 지속 확대하고 플레이 확장으로 유저 참여를 높인 뒤 외부 IP 컬래버로 신규 유저 유입과 휴면 유저 복귀를 유도하는 구조다. 「콘텐츠 공급—유저 참여—소셜 확산—수익화」의 조합 메커니즘이 장기 타이틀의 생명력을 유지하는 핵심 방식이다.',
-t104:'《몽환서유》 시리즈, 《제5인격》《에그파티》《역수한》 모바일, 《연운십육성》이 함께 Q1을 뒷받침하며 성숙 타이틀의 장기 운영 역량을 보여줬다.',
-t105:'넷이즈의 글로벌 전략은 더 이상 단일 타이틀에 의존하지 않는다. 자체개발 게임의 해외 진출, 글로벌 IP 협업, 성숙 타이틀의 현지화 운영을 동시에 추진하며 다각화된 글로벌 사업 구조를 갖춰가고 있다.',
+t097:'텐센트는 e스포츠·오프라인 이벤트·UGC·IP 콜라보를 통해 유저 접점을 넓히고, 스테디셀러의 수명과 활용 범위를 확장하고 있다.',
+t098:'《델타포스》《발로란트: 소스 오퍼레이션》《로코왕국: 월드》 등이 기존 타이틀을 이어받아 신규 유저와 매출 성장을 담당하고 있다.',
+t099:'텐센트는 오픈월드·몬스터 수집·PvE 슈팅·배틀로얄·카드 등 다양한 장르를 병행하며 단일 타이틀 의존도를 낮추고 있다.',
+t100:'H1 중국 내 게임 매출 성장률이 해외를 뚜렷하게 웃돌았다. 현재 성장은 기존 타이틀의 안정적 실적과 신작의 매출 승계에 의존하고 있으며, 해외 사업은 라인업 다변화와 장기 성과 개선이 과제로 남아 있다.',
+t101:'일부 Supercell 타이틀이 압박을 받는 가운데 Miniclip의 캐주얼 퍼즐 게임이 Q2 글로벌 다운로드 1위를 기록했다. 텐센트 해외 사업의 성장 구조가 ‘하드코어 장기 운영’ 중심에서 ‘하드코어 장기 운영 + 캐주얼 대규모 유입’의 이원화 구조로 확장되고 있다.',
+t102:'《왕자영요》《화평정영》《델타포스》가 콘텐츠·플레이·콜라보를 통해 성장을 유지하고 있으며, 스테디셀러가 여전히 텐센트 게임 매출 안정성의 핵심 축이다.',
+t103:'단발성 업데이트나 단일 콜라보로 매출을 끌어올리는 방식이 아니라, UGC 플랫폼으로 콘텐츠 공급을 지속 확대하고 플레이 확장으로 유저 참여를 높인 뒤 외부 IP 콜라보로 신규 유저 유입과 휴면 유저 복귀를 유도하는 구조다. 「콘텐츠 공급—유저 참여—소셜 확산—수익화」의 결합 메커니즘이 장기 타이틀의 생명력을 유지하는 핵심 방식이다.',
+t104:'《몽환서유》 시리즈, 《제5인격》《에그파티》《역수한》 모바일, 《연운십육성》이 함께 Q1을 뒷받침하며 기존 타이틀의 장기 운영 역량을 보여줬다.',
+t105:'넷이즈의 글로벌 전략은 단일 타이틀 의존도를 낮추는 방향으로 진화하고 있다. 자체 개발작의 해외 진출, 글로벌 IP 협업, 기존 타이틀의 현지화 운영을 병행하며 사업 포트폴리오를 다각화하고 있다.',
 t106:'텐센트 총매출 추이<span class="cu" data-unit=""></span>',
 t107:'텐센트 게임사업 매출（국내 + 해외）<span class="cu" data-unit=""></span>',
 t108:'게임 매출의 총매출 대비 비중',
@@ -1727,8 +1840,8 @@ t112:'총매출 추이 Total Net Revenue<span class="cu" data-unit=""></span>',
 t113:'게임 및 관련 부가서비스 매출<span class="cu" data-unit=""></span>',
 t114:'매출 구조 비중',
 t115:'온라인 게임 매출 Online Games<span class="cu" data-unit=""></span>',
-t116:'막대 = 분기 총매출　|　꺾은선 = YoY 증감률　·　2024Q1 – 2026Q2',
-t117:'막대 = 분기 게임 매출　|　꺾은선 = YoY 증감률　·　2024Q1 – 2026Q2',
+t116:'막대 = 분기 총매출　|　꺾은선 = YoY 증감률　·　2024Q1~2026Q2',
+t117:'막대 = 분기 게임 매출　|　꺾은선 = YoY 증감률　·　2024Q1~2026Q2',
 t118:'텐센트 전체 매출에서 게임사업이 차지하는 비중（%）',
 t119:'막대 = 국내 게임 매출　|　꺾은선 = YoY',
 t120:'막대 = 해외 게임 매출　|　꺾은선 = YoY（보고 환율 기준）',
@@ -1737,19 +1850,19 @@ t122:'막대 = 분기 순매출　|　꺾은선 = YoY',
 t123:'막대 = 분기 매출　|　꺾은선 = YoY 증감률　·　2024Q1 – 2026Q2',
 t124:'게임 및 부가서비스의 총매출 비중 %　|　온라인 게임의 게임·부가서비스 비중 %',
 t125:'막대 = 온라인 게임 매출　|　꺾은선 = YoY 증감률',
-t126:'2026Q2 총매출 2,047.85억 위안으로 분기 기준 최초로 2,000억 위안 돌파；YoY ▲11.0%로 2026Q1（▲9.1%） 대비 반등.',
-t127:'2026Q2 게임 매출 약 659억 위안, YoY ▲11.3%·QoQ ▲2.6%로 두 자릿수 성장 구간에 복귀.',
+t126:'2026Q2 총매출은 2,047.85억 위안으로 분기 기준 처음으로 2,000억 위안을 넘어섰다. YoY ▲11.0%로 2026Q1（▲9.1%） 대비 성장률도 반등했다.',
+t127:'2026Q2 게임 매출은 약 659억 위안으로, YoY ▲11.3%·QoQ ▲2.6%를 기록하며 두 자릿수 성장세로 복귀했다.',
 t128:'최근 6개 분기 30%–33% 구간을 안정적으로 유지, 2026Q2는 32.2%.',
 t129:'2026Q2는 473억 위안, YoY ▲17%로 이번 분기 게임 성장의 주요 원천.',
-t130:'2026Q2는 186억 위안；보고 환율 기준 YoY ▼0.8%이나 불변 환율 기준 YoY ▲4% — 환율 요인으로 약 4.8%p 차이 발생.',
+t130:'2026Q2 매출은 186억 위안이다. 보고 환율 기준 YoY ▼0.8%지만 불변 환율 기준으로는 YoY ▲4%로, 환율 요인에 따른 차이가 약 4.8%p 발생했다.',
 t131:'해외 비중은 2025Q4 35.8% 고점 이후 2026Q2 28.2%까지 하락, 2026년 성장 축이 국내 시장으로 뚜렷이 회귀.',
 t132:'2026Q2 순매출 301.07억 위안으로 2개 분기 연속 분기 300억 위안 이상을 유지.',
 t133:'2026Q1은 257.13억 위안, YoY ▲6.9%·QoQ ▲17.1%로 최근 9개 분기 중 최고치.',
-t134:"게임 및 부가서비스 비중은 2026Q2 83.1%, H1 83.6%；온라인 게임 비중은 97% 내외에서 안정적.　·　<b>산정 기준</b>: 금액은 재무보고서의 정확한 수치를 사용하고, YoY／QoQ／비중은 모두 재무보고서 공시 수치를 그대로 채택（공시는 반올림된 금액으로 증감률을 산출하므로, 차트의 금액으로 역산하면 0.1–0.3%p 차이가 발생할 수 있음）.",
-t135:'넷이즈는 실적 발표 시 「게임 및 관련 부가서비스」（Games and Related Value-Added Services, 이하 부가서비스／VAS）를 매출 부문으로 공시하고 온라인 게임이 차지하는 비중을 별도 제시한다. 여기서 온라인 게임 금액은 「게임 및 관련 부가서비스 매출 × 공식 온라인 게임 비중」으로 산출한 근사치다.',
-t136:'<span class="lsq" style="background:#1d5fa8"></span>국내 Domestic',
-t137:'<span class="lsq" style="background:#7ba3ce"></span>해외 International',
-t138:'<span class="lln" style="background:#c47a00"></span>해외 비중 %',
+t134:"게임 및 부가서비스가 총매출에서 차지하는 비중은 2026Q2 83.1%, H1 83.6%이며, 온라인 게임 비중은 97% 안팎에서 안정적이다.　·　<b>산정 기준</b>: 금액은 재무보고서의 정확한 수치를 사용하고 YoY·QoQ·비중은 공시 수치를 적용했다. 공시는 반올림된 금액으로 증감률을 산출하므로 차트 금액으로 역산할 경우 0.1~0.3%p 차이가 발생할 수 있다.",
+t135:'넷이즈는 실적 발표에서 ‘게임 및 관련 부가서비스’（Games and Related Value-Added Services, 이하 VAS）를 별도 매출 부문으로 공시하고 온라인 게임 비중을 따로 제시한다. 본문에서 제시한 온라인 게임 금액은 ‘게임 및 관련 부가서비스 매출 × 공시된 온라인 게임 비중’으로 계산한 근사치다.',
+t136:'<span class="lsq" style="background:#111111"></span>국내 Domestic',
+t137:'<span class="lsq" style="background:#8a8a8a"></span>해외 International',
+t138:'<span class="lln" style="background:#f5b400"></span>해외 비중 %',
 t139:'NetEase 2026 H1 및 Q2 데이터가 반영되었습니다. 본문 달러 금액은 각 기간 공시 환율 기준이며, 차트와 KPI는 1 USD = 6.8109 CNY로 통일 환산합니다.',
 t140:'<div class="ei">📄</div> <h4>2025년 연간 실적 내용 보완 예정</h4> <p>2025 Q1–Q4의 요약·인사이트·주요 타이틀은 아직 정리되지 않았습니다.<br/>Confluence 링크 제공 시 이곳에 추가되며, 아래 차트에는 2025년 전 분기 데이터가 이미 포함되어 있습니다.</p>',
 t141:'<div class="ei">📄</div> <h4>2025년 연간 실적 내용 보완 예정</h4> <p>2025 Q1–Q4의 요약·인사이트·주요 타이틀은 아직 정리되지 않았습니다.<br/>Confluence 링크 제공 시 이곳에 추가되며, 아래 차트에는 2025년 전 분기 데이터가 이미 포함되어 있습니다.</p>',
@@ -1761,9 +1874,9 @@ t151:'일괄 환산 환율 1 USD = 6.8109 CNY　|　최종 업데이트 2026-08-
 t152:'H1 총매출 <b class="hl">4,012.43억 위안</b><span class="usdv">（약 562억 달러）</span>, YoY <b class="hl">▲10%</b>；이 중 Q2 매출 <b class="hl">2,047.85억 위안</b><span class="usdv">（약 287억 달러）</span>, YoY ▲11%·QoQ ▲4%.',
 t153:'H1 매출총이익 2,296.98억 위안<span class="usdv">（약 322억 달러）</span>, YoY ▲12%；Q2 매출총이익 1,184.33억 위안<span class="usdv">（약 166억 달러）</span>, YoY ▲13%·QoQ ▲6%.',
 t154:'<b>전체：</b>H1 게임사업 매출 <b class="hl">1,301억 위안</b><span class="usdv">（약 182억 달러）</span>, YoY <b class="hl">▲9.6%</b>로 H1 총매출의 약 <span class="tagv">32.4%</span>；이 중 Q2는 약 <b class="hl">659억 위안</b><span class="usdv">（약 92억 달러）</span>, YoY ▲11.3%·QoQ ▲2.6%로 Q2 총매출의 약 32.2%.',
-t155:'<b>국내 시장：</b>H1 <b class="hl">927억 위안</b><span class="usdv">（약 130억 달러）</span>, YoY ▲11.3%로 H1 게임 매출의 약 71.3%；Q2 473억 위안<span class="usdv">（약 66억 달러）</span>, YoY ▲17%·QoQ ▲4%로 Q2 게임 매출의 약 71.8%<ul><li>성장은 주로 《삼각주 행동》《발로란트》《발로란트: 소스 오퍼레이션》《로코왕국: 월드》 등에서 발생</li></ul>',
+t155:'<b>국내 시장：</b>H1 <b class="hl">927억 위안</b><span class="usdv">（약 130억 달러）</span>, YoY ▲11.3%로 H1 게임 매출의 약 71.3%；Q2 473억 위안<span class="usdv">（약 66억 달러）</span>, YoY ▲17%·QoQ ▲4%로 Q2 게임 매출의 약 71.8%<ul><li>성장은 주로 《델타포스》《발로란트》《발로란트: 소스 오퍼레이션》《로코왕국: 월드》 등에서 발생</li></ul>',
 t156:'<b>해외 시장：</b>H1 <b class="hl">374억 위안</b><span class="usdv">（약 52억 달러）</span>, YoY ▲5.6%로 H1 게임 매출의 약 28.7%；Q2 186억 위안<span class="usdv">（약 26억 달러）</span>, 보고 환율 기준 YoY <b>▼0.8%</b>·불변 환율 기준 YoY <b>▲4%</b>, QoQ ▼0.7%로 Q2 게임 매출의 약 28.2%<ul><li>두 YoY 기준의 차이가 약 4.8%p로, 해외 사업은 실질적으로 성장했으나 환율 변동으로 위안화 환산 매출이 소폭 감소</li><li>QoQ ▼0.7%는 일부 Supercell 타이틀의 하락이 《명조》와 《VALORANT》의 성장을 상쇄한 결과</li><li>텐센트 자회사 Miniclip의 캐주얼 퍼즐 게임 《Arrows – Puzzle Escape》가 <b>2026 Q2 글로벌 다운로드 1위</b>를 기록, 해외 시장의 돌파구가 하드코어가 아닌 <b>캐주얼 장르</b>에서 발생</li></ul>',
-t157:'<b>타이틀 성과：</b><ul><li>Q2 《삼각주 행동》과 《발로란트》 평균 일간 활성 계정 수가 모두 <b>역대 최고치를 경신</b>（전 기간 최고, 동기 대비 기준 아님）</li><li>《로코왕국: 월드》는 2026년 중국 신작 모바일게임 중 평균 DAU와 매출 모두 <b>1위</b></li></ul>',
+t157:'<b>타이틀 성과：</b><ul><li>Q2 《델타포스》와 《발로란트》 평균 일간 활성 계정 수가 모두 <b>역대 최고치를 경신</b>（전 기간 최고, 동기 대비 기준 아님）</li><li>《로코왕국: 월드》는 2026년 중국 신작 모바일게임 중 평균 DAU와 매출 모두 <b>1위</b></li></ul>',
 t158:'<b>마케팅 서비스：</b>Q2 매출 435.65억 위안<span class="usdv">（약 61억 달러）</span>, YoY ▲22%·QoQ ▲14%.<ul><li>AIM+, AI 추천, 위챗 생태계 폐쇄루프가 광고 효율을 제고</li><li>618 시즌 효과도 긍정적으로 작용</li></ul>',
 t159:'<b>핀테크 및 기업서비스：</b>Q2 매출 602.86억 위안<span class="usdv">（약 84억 달러）</span>, YoY ▲9%·QoQ ▲0.7%.<ul><li>텐센트 클라우드가 AI 수요와 해외 확장에 힘입어 성장</li></ul>',
 t160:'<b>설비투자：</b>Q2 528억 위안<span class="usdv">（약 74억 달러）</span>, YoY ▲176%·QoQ ▲65.3%；H1 847.20억 위안<span class="usdv">（약 119억 달러）</span>, YoY ▲81.9%.',
@@ -1788,31 +1901,31 @@ t178:'<b>스테디셀러：</b>《몽환서유》 시리즈, 《제5인격》《
 t179:'<b>글로벌화：</b>《연운십육성》《마블 라이벌즈》 등이 해외 시장을 지속 확장.<ul><li>블리자드 시리즈는 중국 시장에서 안정적으로 운영되며 현지화 콘텐츠 업데이트를 지속</li></ul>',
 t180:'유다오 순매출 13.48억 위안, YoY ▲3.8%；넷이즈 클라우드뮤직 순매출 19.81억 위안, YoY ▲6.6%；혁신 및 기타 사업 순매출 15.49억 위안, YoY ▼4.6%.',
 t181:'연구개발비 44.82억 위안, YoY ▲2.2%；판매·마케팅비 34.41억 위안, YoY ▲27.7%.',
-t182:'두 회사 모두 <b>「신작 주도」에서 「성숙 타이틀 + 신작 계주」로 전환</b>하고 있다. 성숙 타이틀이 안정적 현금흐름과 유저 기반을 제공하고 신작이 성장과 구조 고도화를 담당하는 구조로, 핵심은 단기 매출 정점이 아니라 장기 운영 가능한 타이틀을 만들어낼 수 있는지 여부다.',
+t182:'두 회사 모두 <b>「신작 주도」에서 「기존 타이틀 + 신작 계승」으로 전환</b>하고 있다. 기존 타이틀이 안정적 현금흐름과 유저 기반을 제공하고 신작이 성장과 구조 고도화를 담당하는 구조로, 핵심은 단기 매출 정점이 아니라 장기 운영 가능한 타이틀을 만들어낼 수 있는지 여부다.',
 t183:'게임 산업은 <b>수량 경쟁에서 품질·수명주기 경쟁으로</b> 이동하고 있다. 공급 과잉과 유저 시간의 한계라는 배경에서, 장기 콘텐츠 업데이트 역량·안정적 유저 생태계·지속적 수익화 능력을 갖춘 타이틀의 가치가 더 커지고 있다.',
 t184:'2026 H1（Q2 포함）',
-t185:"'26.H1 NetEase 실적 요약",
+t185:'NetEase',
 t186:'Q1 + Q2 합계, Q2 단일 분기 포함',
-t187:'총매출 Total Net Revenue',
+t187:'총매출',
 t188:'H1 순매출 <b class="hl">606.98억 위안</b><span class="usdv">（약 89억 달러）</span>, YoY <b class="hl">▲7.0%</b>；이 중 Q2 순매출 <b class="hl">301.07억 위안</b><span class="usdv">（약 44억 달러）</span>, YoY ▲7.9%·QoQ ▼1.6%.',
-t189:'게임사업 Games & Related Value-Added Services',
+t189:'게임 및 관련 부가서비스',
 t190:'<b>전체：</b>H1 게임 및 관련 부가서비스 순매출 <b class="hl">507.36억 위안</b><span class="usdv">（약 75억 달러）</span>, YoY <b class="hl">▲8.3%</b>；이 중 Q2 매출 <b class="hl">250.23억 위안</b><span class="usdv">（약 37억 달러）</span>, YoY ▲9.7%·QoQ ▼2.7%. 온라인 게임 비중은 해당 분기의 <span class="tagv">97.6%</span>（H1）와 <span class="tagv">97.7%</span>（Q2）.<ul><li><b>H1 성장 요인：</b>H1 게임 매출 증가는 《몽환서유》 시리즈, 《연운십육성》, 《에그파티》 등 자체개발 게임의 매출 증가가 주요하게 기여했다.</li><li><b>Q2 YoY 성장 요인：</b>Q2 매출의 YoY 증가는 주로 《몽환서유》 시리즈와 《연운십육성》 등 자체개발 게임에서 발생했다.</li><li><b>Q2 QoQ 하락 원인：</b>경영진은 일부 자체개발 및 라이선스 게임의 매출이 소폭 감소했다고 설명했다.</li><li><b>핵심 타이틀과 글로벌화：</b>《몽환서유》 시리즈, 《제5인격》《에그파티》《역수한》 모바일, 《연운십육성》 등이 콘텐츠 업데이트·플레이 혁신·커뮤니티 활동으로 활력을 유지했으며, 《연운십육성》《마블 라이벌즈》는 콘텐츠와 커뮤니티 운영을 통해 해외 커버리지를 확대하고 있다.</li></ul>',
-t191:'인사이트 Insight',
-t192:'<b>성숙 타이틀과 신작이 함께 성장 견인：</b>Q1 온라인 게임 매출은 QoQ 약 17.9% 증가했으며, 《몽환서유》 시리즈와 《연운십육성》 등 자체개발 게임이 주로 기여했다；Q2 게임 및 관련 부가서비스 매출은 YoY 9.7% 증가했지만 QoQ 2.7% 감소했다. 《역수한》《에그파티》《영겁무간》《연운십육성》 등 핵심 타이틀은 업데이트, UGC, 크로스플랫폼, 해외 운영을 통해 활력을 유지했다.',
+t191:'인사이트',
+t192:'<b>기존 타이틀과 신작이 함께 성장 견인：</b>Q1 온라인 게임 매출은 QoQ 약 17.9% 증가했으며, 《몽환서유》 시리즈와 《연운십육성》 등 자체개발 게임이 주로 기여했다；Q2 게임 및 관련 부가서비스 매출은 YoY 9.7% 증가했지만 QoQ 2.7% 감소했다. 《역수한》《에그파티》《영겁무간》《연운십육성》 등 핵심 타이틀은 업데이트, UGC, 크로스플랫폼, 해외 운영을 통해 활력을 유지했다.',
 t193:'<b>해외 성장은 장기 운영 의존도가 높아짐：</b>넷이즈는 《연운십육성》《마블 라이벌즈》의 지속적인 콘텐츠 업데이트와 현지화 운영을 통해 해외 유저 활성도와 제품 수명주기를 높이고 있다.',
 t194:'<b>프로젝트 전략은 “선택과 집중”으로 전환：</b>경영진은 낮은 확실성의 프로젝트를 줄이고 핵심 타이틀에 집중하며, AI를 콘텐츠 생산과 유저 경험의 효율 증폭기로 활용할 계획이다；이는 개별 프로젝트의 품질을 높이는 데 도움이 되지만, 단기 신작 수와 매출 릴레이는 소수 핵심 프로젝트에 더 의존하게 된다는 의미이기도 하다.',
 t195:'달러 기준：Q1 발표자료는 1 USD = 6.8980 CNY, H1/Q2 공시는 1 USD = 6.7851 CNY 기준으로 환산했다. 달러 금액은 참고용이며, 성장률은 위안화 기준으로 계산한다；차트와 KPI는 1 USD = 6.8109 CNY로 통일 환산한다.',
 t196:'2026 Q2 주요 타이틀',
-t197:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《역수한》 모바일<span class="ptag b-hi">콘텐츠 운영</span>',
+t197:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《역수한》 모바일<span class="ptag b-hi">콘텐츠 운영</span>',
 t198:'6월 “신세계” 버전 출시 첫날 활성 유저가 <b>1,000만 명</b>을 돌파했으며, 동시 접속자 수는 2년 만에 최고치를 기록했다.',
-t199:'<span class="plat p-mo" title="모바일">📱 Mobile</span>《에그파티》<span class="ptag b-ug">UGC 생태계</span>',
+t199:'<span class="plat p-mo" title="모바일">📱 Only Mobile</span>《에그파티》<span class="ptag b-ug">UGC 생태계</span>',
 t200:'등록 유저가 <b>7억 명</b>을 돌파했고 월간 활성 유저는 <b>1억 명 이상</b>을 유지하며 UGC 생태계가 계속 확장되고 있다.',
 t201:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《연운십육성》<span class="ptag b-gl">글로벌화</span>',
 t202:'Steam 호평률이 높은 수준을 유지하고 6월 Xbox에 출시됐다；중국 내 버전 업데이트가 유저와 매출 성장을 견인했다.',
 t203:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>《영겁무간》<span class="ptag b-hi">크로스플랫폼 운영</span>',
 t204:'PC와 모바일 버전을 한층 연동했으며, 5주년 버전에 육상·수상 전장과 수중 전투를 추가해 전 플랫폼 참여도를 높였다.',
-t205:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>성숙 타이틀과 블리자드 시리즈<span class="ptag b-op">장기 운영</span>',
-t206:'《몽환서유》 시리즈와 《제5인격》 등 성숙 타이틀이 안정적인 기반을 제공하고, 블리자드 시리즈는 중국 시장에서 현지화 운영을 이어가고 있다.',
+t205:'<span class="plat p-pm" title="PC + 모바일">🖥📱 PC+Mobile</span>기존 타이틀과 블리자드 시리즈<span class="ptag b-op">장기 운영</span>',
+t206:'《몽환서유》 시리즈와 《제5인격》 등 기존 타이틀이 안정적인 기반을 제공하고, 블리자드 시리즈는 중국 시장에서 현지화 운영을 이어가고 있다.',
 t207:'제품 동향',
 t208:'《망각의 바다》는 출시 초기에 신규 유저의 이해 비용이 높았으며, 향후 고빈도 업데이트와 경험 개선을 통해 평가를 개선할 계획이다.',
 t209:'《무한대》《무해지하》《궤영장봉》 등은 여전히 개발 또는 집중 개선 단계에 있다.',
@@ -1835,11 +1948,11 @@ t915:"2025년 중국 상위권 게임사들이 「게임의 장기 서비스」�
 t916:"2026 신작: 슈터가 여전히 전략의 중심",
 t917:"Tencent가 판호를 획득한 게임은 약 20여 종으로 오픈월드 RPG·슈터·액션·2D 등을 포괄하며 슈터가 여전히 전략의 중심. &lt;Rules of Engagement: The Grey State&gt;, &lt;CrossFire: Rainbow&gt;, &lt;ARC Raiders&gt;, &lt;코드네임: 일식&gt;, &lt;코드네임 GP&gt; 등이 슈터 세부 장르를 담당. Steven Ma 부총재는 슈터가 중국 시장 약 20%, 글로벌 약 35%를 차지한다며 <b>중국 슈터 시장이 지금의 2배로 성장 가능</b>하다고 언급.",
 t918:"2025 Q4 & 연간",
-t919:"'25.Q4 & 연간 Tencent 재무 보고서 요약",
-t920:"총 매출 Total Revenue",
-t921:"게임 사업 Games",
-t922:"기타 Others",
-t923:"인사이트 Insight",
+t919:'Tencent',
+t920:"총매출",
+t921:"게임사업",
+t922:"기타",
+t923:"인사이트",
 t924:"Q3 총 매출 <b class=\"hl\">1,929억 위안</b><span class=\"usdv\">（약 272억 달러）</span>, YoY ▲15.4%·QoQ ▲4.5%.",
 t925:"<b>전체：</b>Q3 게임 관련 총 매출 <b class=\"hl\">636억 위안</b><span class=\"usdv\">（약 89.5억 달러）</span>, YoY ▲22.8%·QoQ ▲7.4%로 전체 매출의 <span class=\"tagv\">33%</span> 기록. 게임 관련 매출이 사상 처음으로 600억 위안을 돌파하며 <b>단일 분기 Tencent 최고 기록을 경신</b>.",
 t926:"<b>중국 시장：</b>매출 <b class=\"hl\">428억 위안</b><span class=\"usdv\">（약 60.2억 달러）</span>, YoY ▲14.7%·QoQ ▲5.9%.<ul><li>&lt;Delta Force&gt; 등 다수 게임의 높은 매출과 &lt;왕자영요&gt;·&lt;화평정영&gt; 등 장수 게임의 지속적인 매출 증가, &lt;발로란트&gt;의 모바일 버전 확장</li><li>Tencent Game의 성공적인 「플랫폼화」 운영과 특정 인기 타이틀에 대한 의존도 감소를 확인</li></ul>",
@@ -1854,11 +1967,11 @@ t934:"Tencent의 Q3 지출은 전년 대비 24.1% 감소했으나 R&amp;D 비용
 t935:"PC 시장 회복과 크로스플랫폼 융합",
 t936:"&lt;검은신화: 오공&gt; 이후 중국 PC 및 콘솔 시장에 대한 관심이 높아지며 PC 게임 상황이 호전되는 중이고, PC/콘솔/모바일 간의 경계도 모호해지고 있음. Tencent는 크로스 플랫폼으로의 시장 전환을 추진하면서 일정 수준의 성과를 거둠（&lt;Delta Force&gt;, &lt;Path of Exile 2&gt;, &lt;다잉 라이트: 더 비스트&gt; 등）.",
 t937:"2025 Q3",
-t938:"'25.Q3 Tencent 재무 보고서 요약",
-t939:"총 매출 Total Revenue",
-t940:"게임 사업 Games",
-t941:"기타 Others",
-t942:"인사이트 Insight",
+t938:'Tencent',
+t939:"총매출",
+t940:"게임사업",
+t941:"기타",
+t942:"인사이트",
 t943:"Q2 총 매출 <b class=\"hl\">1,845억 위안</b><span class=\"usdv\">（약 257억 달러）</span>, YoY ▲14.5%·QoQ ▲2.5%.",
 t944:"<b>전체：</b>Q2 게임 관련 총 매출 <b class=\"hl\">592억 위안</b><span class=\"usdv\">（약 82.5억 달러）</span>, YoY ▲22.1%·QoQ ▼0.5%로 전체 매출의 <span class=\"tagv\">32%</span> 기록. 분야별 업무에서 게임 업무의 매출 성장률이 22.1%로 <b>전체 1위</b>를 기록하며 Q1의 강세를 그대로 유지.",
 t945:"<b>중국 시장：</b>매출 <b class=\"hl\">404억 위안</b><span class=\"usdv\">（약 56.3억 달러）</span>, YoY ▲16.8%·QoQ ▼5.8%.<ul><li>&lt;Delta Force&gt;가 높은 매출을 기록하고 &lt;왕자영요&gt;·&lt;발로란트&gt;·&lt;화평정영&gt; 등 장수 게임의 매출이 증가</li></ul>",
@@ -1868,10 +1981,10 @@ t948:"<b>AI：</b>AI 기술 발전이 게임 매출 증가에 크게 기여 —�
 t949:"<b>신작：</b>&lt;승리의 여신: 니케&gt;, &lt;발로란트 모바일&gt;, &lt;Honor of Kings World&gt; 등 주요 타이틀 하반기 출시 예정.",
 t950:"<b>인건비：</b>2025년 Q2 현재 Tencent 그룹 임직원 수 약 11.1만 명（전년 동기 대비 5% 증가）, Q2 임금 총액 309억 위안（전년 동기 대비 9% 증가）. 인건비가 늘어난 동시에 임직원의 업무 효율도 소폭 상승하여 조직 효율은 계속 향상되는 중.",
 t951:"2025 Q2",
-t952:"'25.Q2 Tencent 재무 보고서 요약",
-t953:"총 매출 Total Revenue",
-t954:"게임 사업 Games",
-t955:"기타 Others",
+t952:'Tencent',
+t953:"총매출",
+t954:"게임사업",
+t955:"기타",
 t956:"Q1 총 매출 <b class=\"hl\">1,800억 위안</b><span class=\"usdv\">（약 290억 달러）</span>, YoY ▲12.9%·QoQ ▲4.4%；게임 사업이 전 부문 중 성장률 1위.",
 t957:"<b>전체：</b>Q1 게임 매출 <b class=\"hl\">595억 위안</b><span class=\"usdv\">（약 83억 달러）</span>, YoY ▲23.7%·QoQ ▲20.9%.<ul><li>YoY 23.7%의 성장률은 게임 산업 평균을 크게 상회. 지난 몇 년간 이어진 프리미엄 게임 개발과 장수 게임 전략의 성공을 입증</li></ul>",
 t958:"<b>중국 국내시장：</b><b class=\"hl\">429억 위안</b><span class=\"usdv\">（약 61억 달러）</span>, YoY ▲24.3%·QoQ ▲29.2%.<ul><li>&lt;왕자영요&gt;·&lt;화평정영&gt;의 매출 증가와 &lt;던파 모바일&gt;·&lt;Delta Force&gt;의 기여</li></ul>",
@@ -1879,40 +1992,40 @@ t959:"<b>글로벌 시장：</b><b class=\"hl\">166억 위안</b><span class=\"u
 t960:"<b>AI：</b>마화텅은 AI 역량이 성과형 광고와 장수 게임 사업에 실질적으로 기여하고 있다고 언급. Yuanbao 앱과 위챗 내 AI 투자를 확대하며 장기적이고 가시적인 매출 증대를 기대.",
 t961:"<b>비용：</b>Q1 자본 지출 274.76억 위안으로 총 매출의 15%, 연간 1,000억 위안 초과 예상；주로 AI 관련 사업 발전에 사용.",
 t962:"2025 Q1",
-t963:"'25.Q1 Tencent 재무 보고서 요약",
-t964:"총 매출 Total Revenue",
-t965:"게임 사업 Games",
-t966:"기타 Others",
+t963:'Tencent',
+t964:"총매출",
+t965:"게임사업",
+t966:"기타",
 t967:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;Delta Force&gt;<span class=\"ptag b-hi\">최고 DAU 5,000만</span>",
 t968:"25.4Q 중국 내 게임 랭킹 3위 유지；2026년 2월 최고 DAU <b>5,000만</b> 돌파와 함께 역대 최고 월 매출 기록. AI 코딩으로 개발 효율을 높이고 AI 스마트 버디로 유저 참여도 제고.",
-t969:"<span class=\"plat p-pc\" title=\"PC\">🖥 PC</span>&lt;발로란트&gt; PC<span class=\"ptag b-hi\">DAU 역대 최고</span>",
+t969:"<span class=\"plat p-pc\" title=\"PC\">🖥 Only PC</span>&lt;발로란트&gt; PC<span class=\"ptag b-hi\">DAU 역대 최고</span>",
 t970:"25.4Q 매출 YoY ▲30% 이상, A.DAU 역대 최고치 달성. 「미스트블룸」 시리즈 스킨, 기간 한정 모드, 이스포츠가 성장 요인.",
-t971:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;발로란트&gt; 모바일<span class=\"ptag b-new\">2025 최고 신작</span>",
+t971:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;발로란트&gt; 모바일<span class=\"ptag b-new\">2025 최고 신작</span>",
 t972:"2025년 중국 게임 중 <b>가장 뛰어난 매출 퍼포먼스를 기록한 신작 모바일 게임</b>. PC 수준의 슈팅 경험을 모바일에 이식하고 독특한 아트 스타일로 젊은 유저층의 호응을 얻음；2026년 2월 중국 전통미를 결합한 스킨 출시 후 역대 최고 매출 기록.",
-t973:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;클래시 로얄&gt;<span class=\"ptag b-gl\">모바일 DAU 3위</span>",
+t973:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;클래시 로얄&gt;<span class=\"ptag b-gl\">모바일 DAU 3위</span>",
 t974:"25.4Q 전체 모바일 게임 DAU 3위, A.DAU와 매출 모두 YoY <b>3배 이상</b> 증가하며 역대 최고치 경신；2026년 3월 10주년 기념 이벤트로 랜덤 보너스 기간 한정 PVP 모드 출시.",
 t975:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;명조&gt;<span class=\"ptag b-ip\">TGA 플레이어 보이스</span>",
 t976:"2025년 TGA 「플레이어 보이스」 부문 수상；25.4Q 신규 스토리·도시 폐허 맵·신규 캐릭터 출시로 매출과 DAU 모두 전년 대비 큰 폭 성장.",
-t977:"<span class=\"plat p-pc\" title=\"PC\">🖥 PC</span>&lt;다잉 라이트: 더 비스트&gt;<span class=\"ptag b-new\">글로벌 500만 판매</span>",
+t977:"<span class=\"plat p-pc\" title=\"PC\">🖥 Only PC</span>&lt;다잉 라이트: 더 비스트&gt;<span class=\"ptag b-new\">글로벌 500만 판매</span>",
 t978:"Techland 스튜디오가 개발한 AAA 신작. 9월 출시 후 글로벌 판매량 <b>500만 장</b> 돌파, Steam 긍정 평가 87%로 글로벌 매출 성장의 주요 동력 중 하나.",
-t979:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;왕자영요&gt;<span class=\"ptag b-hi\">중국 DAU 1.39억</span>",
-t980:"2025년 중국 서버 DAU <b>1.39억</b> 돌파, 글로벌 MAU 2.6억 이상；11월 프로리그 연간 결승전 현장 관중 6.22만 명으로 대회 최다 기록 경신；Q3 성장은 웨원 IP &lt;궤비지주&gt;·&lt;호묘소홍낭&gt; 컬래버가 견인.",
-t981:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;화평정영&gt;<span class=\"ptag b-ug\">메트로 이스케이프 DAU 3,700만</span>",
+t979:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;왕자영요&gt;<span class=\"ptag b-hi\">중국 DAU 1.39억</span>",
+t980:"2025년 중국 서버 DAU <b>1.39억</b> 돌파, 글로벌 MAU 2.6억 이상；11월 프로리그 연간 결승전 현장 관중 6.22만 명으로 대회 최다 기록 경신；Q3 성장은 웨원 IP &lt;궤비지주&gt;·&lt;호묘소홍낭&gt; 콜라보가 견인.",
+t981:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;화평정영&gt;<span class=\"ptag b-ug\">메트로 이스케이프 DAU 3,700만</span>",
 t982:"8월 6주년 기념 이벤트 진행；2024년 출시된 익스트랙션 모드 「메트로 이스케이프」가 5월 1일 최고 DAU <b>3,700만</b> 돌파.",
 t983:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;Nizhan: Future&gt;<span class=\"ptag b-new\">2026년 1월 출시</span>",
 t984:"언리얼 엔진 기반 멀티플랫폼 FPS로 2026년 1월 출시 후 100만 이상의 DAU 확보.",
 t985:"2025년 주요 타이틀 Tencent",
 t986:"연간 순이익 <b class=\"hl\">1,126억 위안</b><span class=\"usdv\">（약 161억 달러）</span>, YoY ▲6.9%.",
 t987:"<b>연간：</b>게임 및 관련 부가가치 서비스 순이익 <b class=\"hl\">921억 위안</b><span class=\"usdv\">（약 132억 달러）</span>, YoY ▲10.1%；이 중 온라인 게임이 해당 부문 순이익의 약 <span class=\"tagv\">97.3%</span>（약 896.1억 위안）를 차지.",
-t988:"<b>Q4：</b>게임 및 관련 부가가치 서비스 순이익 <b class=\"hl\">220억 위안</b>, YoY ▲3.4%；이 중 온라인 게임이 해당 부문 순이익의 약 <span class=\"tagv\">96.8%</span>（약 212.6억 위안）를 차지하며, 직전 분기와 전년 동기의 비중은 각각 97.6%·96.7%.<ul><li>&lt;몽환서유&gt; PC 버전, 신규 출시된 &lt;연운십육성&gt;·&lt;마블 라이벌즈&gt; 등 자체 개발 게임의 매출 증가가 주요 원인；블리자드 게임이 중국 내 인기를 유지하며 연간 영업이익이 역대 최고치 달성</li><li>온라인 게임 매출의 QoQ 감소는 직전 분기가 여름 시즌의 다양한 이벤트로 높은 기저를 형성했기 때문</li></ul>",
+t988:"<b>Q4：</b>게임 및 관련 부가가치 서비스 순매출 <b class=\"hl\">220억 위안</b>, YoY ▲3.4%；이 중 온라인 게임이 해당 부문 순매출의 약 <span class=\"tagv\">96.8%</span>（약 212.6억 위안）를 차지했으며, 직전 분기와 전년 동기 비중은 각각 97.6%·96.7%다.<ul><li>&lt;몽환서유&gt; PC 버전과 신규 출시된 &lt;연운십육성&gt;·&lt;마블 라이벌즈&gt; 등 자체 개발작의 매출 증가가 주요 원인이다. 블리자드 게임도 중국 내 인기를 유지하며 연간 매출이 역대 최고치를 기록했다.</li><li>온라인 게임 매출의 QoQ 감소는 직전 분기가 여름 시즌 이벤트로 높은 기저를 형성했기 때문이다.</li></ul>",
 t989:"<b>AI 활용 진척：</b>게임 개발 전 과정（아트·기획·프로그래밍·애니메이션·QA）에 AI를 적극 활용하며 일부 작업 단계의 효율이 <b>300%</b> 향상.<ul><li>기적용 타이틀: 스마트 NPC（&lt;역수한&gt;）, 실시간 보이스 채팅 AI 팀원（&lt;NARAKA&gt;）, AIGC 창작（&lt;Eggy Party&gt;）</li></ul>",
 t990:"<b>AI 전략 관점：</b>AI는 게임 창작의 장벽을 낮췄지만 상위권 타이틀의 성공 기준은 더욱 높아짐；NetEase는 수직 AI 모델, AI 오리지널 모드, 인재 양성에 고강도 투자를 이어갈 계획.<ul><li>핵심 경쟁력이 단순한 개발 능력에서 통합 역량으로 전환（AI 기술＋디지털 시스템＋경제 시스템＋소셜 환경의 융합）</li><li>NetEase만의 차별화된 방식: 범용 빅 모델이 아닌 각종 게임의 AI 전문가 양성에 주력</li></ul>",
 t991:"<b>타이틀 진척：</b>&lt;연운십육성&gt; 글로벌 유저 8,000만 돌파；&lt;망각의 바다&gt; 출시；&lt;Ananta&gt; 글로벌 전 플랫폼 동시 출시 준비 중.",
 t992:"2025 Q4 & 연간",
-t993:"'25.Q4 & 연간 NetEase 재무 보고서 요약",
-t994:"총 매출 Total Net Revenue",
-t995:"게임 사업 Games &amp; Related Value-Added Services",
-t996:"기타 Others",
+t993:'NetEase',
+t994:"총매출",
+t995:"게임 및 관련 부가서비스",
+t996:"기타",
 t997:"Q3 순이익 <b class=\"hl\">284억 위안</b><span class=\"usdv\">（약 40억 달러）</span>, YoY ▲8.2%·QoQ ▲1.6%.",
 t998:"<b>전체：</b>게임 및 관련 부가가치 순수익 <b class=\"hl\">233억 위안</b><span class=\"usdv\">（약 33억 달러）</span>, YoY ▲11.8%·QoQ ▲2.3%；이 중 온라인 게임이 해당 부문 순수익의 약 <span class=\"tagv\">97.6%</span>를 차지하며 약 227.7억 위안, QoQ ▲2.8%.<ul><li>&lt;몽환서유&gt; PC 버전, &lt;역수한&gt; 모바일 등 자체 제작 타이틀과 일부 위탁 운영 게임의 순수익 증가에 따라 전분기 대비 매출이 증가</li><li>&lt;몽환서유&gt; PC 버전, &lt;Eggy Party&gt;, 신규 타이틀인 &lt;연운십육성&gt;과 &lt;마블 라이벌즈&gt; 등 자체 제작 타이틀과 일부 위탁 운영 게임의 순수익 증가에 따라 전년 대비 매출도 증가</li></ul>",
 t999:"<b>&lt;몽환서유&gt; PC 버전：</b>Q3 들어 최고 동시 접속자 수가 <b>4번 연속 경신</b>되며 최고 <b>358만</b>을 달성.<ul><li>운영 로직: 안정적인 경제 시스템과 독특한 게임 체험, 시스템과 모드를 간소화한 정식 버전 등으로 직접 재밌게 즐길 수 있고 진입 장벽이 낮아져 장기간 이탈한 유저와 신규 유저를 모두 끌어들임</li></ul>",
@@ -1921,38 +2034,38 @@ t1001:"<b>블리자드 게임：</b>&lt;월드 오브 워크래프트&gt;가 11�
 t1002:"<b>향후 전략：</b>기존의 성공작에 집중하여 중요하지 않은 새로운 프로젝트에 힘을 분산하지 않음；신규 프로젝트에 대해 신중하면서도 중요시하는 태도를 가지며 경쟁력 있는 콘텐츠를 제작.",
 t1003:"<b>영업 비용：</b>Q3 영업 비용 102억 위안<span class=\"usdv\">（약 14억 달러）</span>, YoY ▲5.2%·QoQ ▲4.1%；인건비, 매출 R/S 및 판권 라이선스 비용 모두 전분기·전년 대비 증가.",
 t1004:"2025 Q3",
-t1005:"'25.Q3 NetEase 재무 보고서 요약",
-t1006:"총 매출 Total Net Revenue",
-t1007:"게임 사업 Games &amp; Related Value-Added Services",
-t1008:"기타 Others",
+t1005:'NetEase',
+t1006:"총매출",
+t1007:"게임 및 관련 부가서비스",
+t1008:"기타",
 t1009:"Q2 순이익 <b class=\"hl\">279억 위안</b><span class=\"usdv\">（약 39억 달러）</span>, YoY ▲9.5%·QoQ ▼3.1%.",
 t1010:"<b>전체：</b>게임 및 관련 부가가치 순수익 <b class=\"hl\">228억 위안</b><span class=\"usdv\">（약 32억 달러）</span>, YoY ▲13.7%·QoQ ▼5.0%.",
 t1011:"<b>온라인 게임：</b>순수익 221억 위안<span class=\"usdv\">（약 31억 달러）</span>, YoY ▲14.9%·QoQ ▼5.4%로 전체 게임 매출의 <span class=\"tagv\">97.1%</span>.<ul><li>온라인 게임 순수익이 전 분기 대비 감소한 것은 자체 개발 및 위탁 운영 게임이 주요 원인</li><li>매출 증가의 원인은 &lt;제5인격&gt;, 신규 출시된 &lt;연운십육성&gt;과 &lt;마블 라이벌즈&gt;, 일부 위탁 운영 게임 순수익의 증가</li></ul>",
 t1012:"<b>해외 시장 현황：</b>오리지널 바다 모험 RPG &lt;Forgotten Seas&gt;, 서사형 액션 어드벤처 게임 &lt;Blood Message&gt; 출시 예정；&lt;역수한&gt; 모바일과 &lt;연운십육성&gt;도 글로벌 출시 예정.",
 t1013:"<b>영업 비용：</b>Q2 영업 비용 98억 위안<span class=\"usdv\">（약 14억 달러）</span>, YoY ▲4.3%·QoQ ▼4.8%；플랫폼 매출 분담 및 위탁 운영 게임 라이선스 비용은 전 분기 대비 감소, 위탁 운영 게임 라이선스 비용은 전년 동기 대비 증가.",
 t1014:"2025 Q2",
-t1015:"'25.Q2 NetEase 재무 보고서 요약",
-t1016:"총 매출 Total Net Revenue",
-t1017:"게임 사업 Games &amp; Related Value-Added Services",
-t1018:"기타 Others",
+t1015:'NetEase',
+t1016:"총매출",
+t1017:"게임 및 관련 부가서비스",
+t1018:"기타",
 t1019:"Q1 순이익 <b class=\"hl\">288억 위안</b><span class=\"usdv\">（약 40억 달러）</span>, YoY ▲7.3%·QoQ ▲7.7%.",
 t1020:"<b>전체：</b>게임 및 관련 부가가치 서비스 순이익 <b class=\"hl\">240억 위안</b><span class=\"usdv\">（약 30억 달러）</span>, YoY ▲11.8%·QoQ ▲13.0%.<ul><li>기존작 &lt;제5인격&gt;과 &lt;연운십육성&gt;·&lt;마블 라이벌즈&gt; 등 신작들의 좋은 성과가 매출 증가를 견인</li></ul>",
 t1021:"<b>온라인 게임：</b>순이익 234억 위안, YoY ▲14.3%·QoQ ▲13.8%로 게임 매출의 <span class=\"tagv\">97.5%</span> 차지.",
 t1022:"<b>신작 준비：</b>RPG·오픈월드·팀 배틀 등 다양한 장르를 포괄（&lt;마블 미스틱 메이헴&gt;, &lt;Destiny: Rising&gt;, &lt;Ananta&gt; 등）.",
 t1023:"<b>해외 진출 계획：</b>&lt;연운십육성&gt; 해외 Steam 예약 개시, 콘솔 버전 및 해외 출시 준비 가속화；&lt;올스타 스트리트볼 파티&gt; 5월 22일 해외 다수 지역 출시.",
 t1024:"2025 Q1",
-t1025:"'25.Q1 NetEase 재무 보고서 요약",
-t1026:"총 매출 Total Net Revenue",
-t1027:"게임 사업 Games &amp; Related Value-Added Services",
-t1028:"기타 Others",
+t1025:'NetEase',
+t1026:"총매출",
+t1027:"게임 및 관련 부가서비스",
+t1028:"기타",
 t1029:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;몽환서유&gt; PC<span class=\"ptag b-hi\">동접 358만</span>",
-t1030:"Q3부터 최고 동시 접속자 수가 4회 연속 신기록을 세우며 <b>358만</b> 달성；「창완 서버」가 시스템과 플레이를 단순화해 진입 장벽을 낮추고 복귀·신규 유저를 대거 유입.",
+t1030:"Q3부터 최고 동시 접속자 수가 4회 연속 신기록을 세워 <b>358만</b>을 기록했다. ‘창완 서버’가 시스템과 플레이를 단순화해 진입 장벽을 낮추고 복귀·신규 유저를 대거 유입했다.",
 t1031:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;연운십육성&gt;<span class=\"ptag b-gl\">글로벌 유저 8,000만</span>",
 t1032:"글로벌 유저 <b>8,000만</b> 돌파；11월 14일 글로벌 출시, 해외 Steam 예약과 콘솔 버전을 함께 추진.",
 t1033:"<span class=\"plat p-mx\" title=\"PC + 콘솔\">🖥🎮 PC / 콘솔</span>&lt;마블 라이벌즈&gt;<span class=\"ptag b-gl\">자체 개발 글로벌 주력</span>",
 t1034:"&lt;연운십육성&gt;과 함께 2025년 게임 매출 YoY 성장을 이끈 핵심 신작으로 해외 매출에 지속 기여.",
-t1035:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;역수한&gt; 모바일<span class=\"ptag b-ug\">11월 글로벌 출시</span>",
-t1036:"Q3 QoQ 성장의 주요 원천 중 하나；11월 7일 글로벌 출시；실시간 스마트 NPC AI 기능을 적용.",
+t1035:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;역수한&gt; 모바일<span class=\"ptag b-ug\">11월 글로벌 출시</span>",
+t1036:"Q3 QoQ 성장의 주요 동력 중 하나다. 11월 7일 글로벌 출시했으며 실시간 스마트 NPC AI 기능을 적용했다.",
 t1037:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;Destiny: Rising&gt;<span class=\"ptag b-new\">iOS 다운로드 1위</span>",
 t1038:"8월 28일 해외, 10월 16일 중국 출시 후 구미 다수 지역과 중국 시장 iOS 다운로드 1위 달성.",
 t1039:"<span class=\"plat p-mx\" title=\"멀티플랫폼\">🖥📱🎮 멀티플랫폼</span>블리자드 시리즈<span class=\"ptag b-ip\">중국 서버 복귀</span>",
@@ -1967,10 +2080,10 @@ t1047:"<b>R&amp;D·비용：</b>2024년 개발 투자 총액 706.9억 위안；�
 t1048:"<b>인력：</b>2024년 말 임직원 11.06만 명（2023년 10.54만 명）, 급여 총 지출 1,128억 위안, YoY ▲4.7%.",
 t1049:"<b>향후 계획：</b>&lt;이인지하&gt;, &lt;승리의 여신: 니케&gt;, &lt;Arena Breakout: Infinite&gt;, &lt;듄: 어웨이크닝&gt; 등 주요 신작을 준비 중；AI 전략의 중요성을 강조하며 AI 관련 지출과 오리지널 AI 제품의 개발·마케팅 역량을 강화할 예정.",
 t1050:"2024 연간",
-t1051:"'24 연간 Tencent 재무 보고서 요약",
-t1052:"총 매출 Total Revenue",
-t1053:"게임 사업 Games",
-t1054:"기타 Others",
+t1051:'Tencent',
+t1052:"총매출",
+t1053:"게임사업",
+t1054:"기타",
 t1055:"2024년 연간 순이익 <b class=\"hl\">1,053억 위안</b><span class=\"usdv\">（약 144억 달러）</span>, YoY ▲1.8%.",
 t1056:"<b>전체：</b>게임 및 관련 부가가치 서비스 순이익 <b class=\"hl\">836억 위안</b><span class=\"usdv\">（약 115억 달러）</span>, YoY ▲2.5%；증가폭은 소폭이나 여전히 연간 총 영업이익의 <span class=\"tagv\">79.4%</span>를 차지하는 최대 수입원.",
 t1057:"<b>Q4：</b>매출 212억 위안, YoY ▲1.5%；&lt;NARAKA&gt; PC 버전과 &lt;월드 오브 워크래프트&gt;·&lt;하스스톤&gt; 등 위탁 운영 게임의 뛰어난 성과로 PC 매출이 YoY ▲57% 급증.",
@@ -1978,21 +2091,21 @@ t1058:"<b>온라인 게임：</b>순이익 805억 위안, YoY ▲6.3%로 해당 
 t1059:"<b>개발 투자：</b>연간 개발 투자 총액 175억 위안으로 총 영업이익의 16.6%；5년 연속 100억 위안 이상 투자.",
 t1060:"<b>신작：</b>글로벌 시장에 더 많은 신작을 출시해 라인업을 확대할 예정（&lt;FragPunk&gt;, &lt;Destiny: Rising&gt;, &lt;마블 미스틱 메이헴&gt; 등）.",
 t1061:"2024 연간",
-t1062:"'24 연간 NetEase 재무 보고서 요약",
-t1063:"총 매출 Total Net Revenue",
-t1064:"게임 사업 Games &amp; Related Value-Added Services",
-t1065:"기타 Others",
+t1062:'NetEase',
+t1063:"총매출",
+t1064:"게임 및 관련 부가서비스",
+t1065:"기타",
 t1066:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;Delta Force&gt;<span class=\"ptag b-new\">4Q 합산 10억 위안</span>",
 t1067:"2024년 9월 출시, 4분기 PC/모바일 합산 매출 <b>10억 위안</b> 돌파；Tencent 경영진은 새로운 장수 게임으로서의 잠재력을 언급했으며 2024년 장수 게임에 신규 진입.",
-t1068:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;던파 모바일&gt;<span class=\"ptag b-new\">신규 장수 게임</span>",
+t1068:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;던파 모바일&gt;<span class=\"ptag b-new\">신규 장수 게임</span>",
 t1069:"2024년 신규 장수 게임 중 하나로, &lt;Delta Force&gt;와 함께 장수 게임 수를 12개에서 14개로 확대.",
-t1070:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;PUBG MOBILE&gt;<span class=\"ptag b-gl\">해외 매출 주력</span>",
+t1070:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;PUBG MOBILE&gt;<span class=\"ptag b-gl\">해외 매출 주력</span>",
 t1071:"슈퍼셀 산하 게임과 함께 2024년 해외 매출 580억 위안의 역대 최고치를 견인.",
 t1072:"<span class=\"plat p-mx\" title=\"PC + 콘솔\">🖥🎮 PC / 콘솔</span>&lt;마블 라이벌즈&gt;<span class=\"ptag b-new\">Steam 글로벌 1위</span>",
 t1073:"（NetEase）12월 6일 출시 후 Steam 글로벌 랭킹 1위 등극, 가입 유저 <b>4,000만</b> 돌파；2025년 1월 시즌 1 업데이트와 함께 Steam 글로벌 매출·인기 랭킹 1위 탈환.",
 t1074:"<span class=\"plat p-pm\" title=\"PC + 모바일\">🖥📱 PC+Mobile</span>&lt;연운십육성&gt;<span class=\"ptag b-new\">PC/모바일 1,500만</span>",
 t1075:"（NetEase）PC 버전 출시 4일 만에 다운로드 300만 돌파；모바일 버전 출시 후 약 2주간 iOS 다운로드 1위 유지, PC/모바일 총 유저 2주 만에 <b>1,500만</b> 돌파.",
-t1076:"<span class=\"plat p-mo\" title=\"모바일\">📱 Mobile</span>&lt;역수한&gt; 모바일<span class=\"ptag b-gl\">홍콩·마카오·대만 1위</span>",
+t1076:"<span class=\"plat p-mo\" title=\"모바일\">📱 Only Mobile</span>&lt;역수한&gt; 모바일<span class=\"ptag b-gl\">홍콩·마카오·대만 1위</span>",
 t1077:"（NetEase）홍콩·마카오·대만 지역 iOS 다운로드 1위 기록, 2025년 1월 대만 iOS 매출 1위 달성.",
 t1078:"2024년 주요 타이틀 Tencent / NetEase",
 t1079:"실적 요약",
@@ -2001,12 +2114,105 @@ t1081:"실적 요약",
 t1082:"주요 타이틀",
 t1083:"실적 요약",
 t1084:"주요 타이틀",
-t1085:"실적 요약"
+t1085:"실적 요약",
+t1100:"주요 타이틀 지표 추이",
+t1101:"게임",t1102:"시점",t1103:"데이터",t1104:"지표 기준",t1105:"출처·비고",
+t1106:"Delta Force",t1107:"2025년 4월",t1108:"1,200만+",t1109:"PC+모바일 합산 Peak DAU",t1110:"Tencent 2025 Q1 공식 실적 발표",
+t1111:"2025년 7월",t1112:"2,000만+",t1113:"월평균 DAU",t1114:"Tencent 2025 Q2 실적 발표 자료",
+t1115:"2025년 9월",t1116:"3,000만+",t1117:"DAU 마일스톤",t1118:"게임 공식 서비스 1주년 공지",
+t1119:"2026년 1월",t1120:"4,100만+",t1121:"DAU 마일스톤",t1122:"게임 공식 공지",
+t1123:"2026년 2월",t1124:"5,000만+",t1125:"최고 DAU",t1126:"Tencent 2025년 연간·Q4 실적 발표 자료",
+t1127:"2026년 3월",t1128:"5,000만+",t1129:"DAU 마일스톤",t1130:"게임 공식 공지",
+t1131:"2026 Q1",t1132:"역대 최고치",t1133:"분기 평균 DAU",t1134:"Tencent 2026 Q1 실적 발표, 구체 수치 미공개",
+t1135:"2026 Q2",t1136:"역대 최고치 재경신",t1137:"분기 평균 DAU",t1138:"Tencent 2026 Q2 실적 발표, 구체 수치 미공개",
+t1139:"VALORANT",t1140:"2025년 10월",t1141:"5,000만+",t1142:"중국 PC+모바일 합산 MAU",t1143:"Tencent 2025 Q3 실적 발표 자료",
+t1144:"2026년 5월",t1145:"1,000만+",t1146:"모바일 DAU",t1147:"게임 공식 공지",
+t1148:"2026년 7월",t1149:"1억+",t1150:"가입자 수",t1151:"게임 공식 공지, DAU가 아님"
 };
 
 /* ── 언어 전환 엔진 ── */
 const CNSTORE={};
 document.querySelectorAll('[data-i18n]').forEach(el=>{ CNSTORE[el.dataset.i18n]=el.innerHTML; });
+function buildSummaryTemplate(){
+  /* The NetEase 2026 conversion-basis footnote is redundant with the global methodology note. */
+  document.querySelectorAll('.panel[data-co="2"] [data-i18n="t195"]').forEach(el=>el.remove());
+  document.querySelectorAll('.sum-b').forEach(b=>{
+    if(b.dataset.summaryTemplate) return;
+    const kicker=document.createElement('div');
+    kicker.className='sum-kicker';
+    b.insertBefore(kicker,b.firstChild);
+    const nodes=[...b.children].slice(1);
+    let blockNo=0;
+    for(let i=0;i<nodes.length;i++){
+      const n=nodes[i], next=nodes[i+1];
+      if(!n.classList.contains('sub') || !next) continue;
+      const isList=next.matches('ul.bl');
+      const isNe2026Insight=!!n.closest('.panel[data-co="2"] .ypanel[data-y="2026"]')
+        && /洞察|Insight/.test(n.textContent);
+      const isInsight=next.classList.contains('ins') || isNe2026Insight;
+      if(!isList && !isInsight) continue;
+      const block=document.createElement('div');
+      block.className='sum-block '+(isInsight?'sum-block-insight':'sum-block-metric');
+      block.dataset.sumBlock=String(++blockNo);
+      b.insertBefore(block,n);
+      block.append(n,next);
+      /* Total revenue is already presented in the top KPI band; omit the duplicate Summary block. */
+      if(blockNo===1) block.remove();
+      i++;
+    }
+    b.dataset.summaryTemplate='v2';
+  });
+}
+/* Remove Summary rows that repeat the KPI band above. */
+function dedupeSummaryKpiRows(){
+  document.querySelectorAll('.sum-b .sum-block-metric').forEach(block=>{
+    const heading=block.querySelector('.sub');
+    if(!heading || !/游戏|增值服务|게임사업|온라인 게임|부가서비스/.test(heading.textContent)) return;
+    const list=block.querySelector('ul.bl'); if(!list) return;
+    [...list.children].forEach(li=>{
+      const label=li.firstChild?.textContent?.trim()||'';
+      if(!/^(整体|国内市场|国际市场|整体：|国内市场：|国际市场：|전체|국내 시장|해외 시장|국내시장|해외시장|온라인 게임)/.test(label)) return;
+      const labelEl=li.querySelector(':scope > b');
+      const tail=li.innerHTML.match(/<ul\b[\s\S]*$/i)?.[0]||'';
+      if(tail) li.innerHTML=(labelEl?labelEl.outerHTML:'')+tail; else li.remove();
+    });
+  });
+  return;
+  document.querySelectorAll('.sum-b .sum-block-metric').forEach(block=>{
+    const heading=block.querySelector('.sub');
+    if(!heading || !/游戏|游戏业务|增值服务|게임사업|온라인 게임|부가서비스/.test(heading.textContent)) return;
+    const list=block.querySelector('ul.bl');
+    if(!list) return;
+    [...list.children].forEach(li=>{
+      const label=li.firstChild?.textContent?.trim()||'';
+      if(!/^(整体|国内市场|国际市场|整体：|国内市场：|国际市场：|전체|국내 시장|해외 시장|국내시장|해외시장|온라인 게임)/.test(label)) return;
+      /* Keep the complete translated analysis row; only remove duplicated KPI values. */
+      const co=block.closest('.panel')?.dataset.co;
+      const id=block.closest('.sum')?.id||'';
+      const period={sumTcH1:['1','2026','H1'],sumTcQ1:['1','2026','Q1'],sumTc25Q4:['1','2025','Q4'],sumTc25Q3:['1','2025','Q3'],sumTc25Q2:['1','2025','Q2'],sumTc25Q1:['1','2025','Q1'],sumTc24:['1','2024','FY'],sumNeH1:['2','2026','H1'],sumNeQ1:['2','2026','Q1'],sumNe25Q4:['2','2025','Q4'],sumNe25Q3:['2','2025','Q3'],sumNe25Q2:['2','2025','Q2'],sumNe25Q1:['2','2025','Q1'],sumNe24:['2','2024','FY']}[id];
+      const cards=period&&KPI[period[0]]?.[period[1]]?.[period[2]]?.cards||[];
+      const values=cards.slice(1).flatMap(c=>[c.yi,...c.p.map(x=>x[2]).filter(Boolean)]).filter(Boolean);
+      const head=li.innerHTML.split(/<ul\b/i)[0];
+      const tail=li.innerHTML.match(/<ul\b[\s\S]*$/i)?.[0]||'';
+      let clean=head;
+      const esc=v=>String(v).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      values.forEach(v=>{
+        const original=String(v), raw=original.replace(/[▲▼]/g,'').replace(/,/g,'').replace(/%/g,'');
+        if(original.includes('%')){
+          clean=clean.replace(new RegExp(esc(original),'g'),'');
+          clean=clean.replace(new RegExp('<span[^>]*class="tagv"[^>]*>\\s*'+esc(raw)+'%\\s*<\\/span>','gi'),'');
+        } else if(/^\d+(\.\d+)?$/.test(raw)){
+          const n=raw.replace(/\.0+$/,'');
+          const num='(?:'+n.replace('.', '\\.')+'|'+n.replace('.', ',')+')\\s*(?:亿元|亿|억 위안|억|元|위안|CNY)';
+          clean=clean.replace(new RegExp('(?:<b[^>]*>)?\\s*'+num+'\\s*(?:<\\/b>)?\\s*(?:<span[^>]*class="usdv"[^>]*>[\\s\\S]*?<\\/span>)?','gi'),'');
+        } else {
+          clean=clean.replace(new RegExp(v.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&'),'g'),'');
+        }
+      });
+      li.innerHTML=clean+tail;
+    });
+  });
+}
 function applyLang(){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.dataset.i18n;
@@ -2016,11 +2222,14 @@ function applyLang(){
   document.documentElement.lang = LANG==='KR' ? 'ko' : 'zh';
   document.title = LANG==='KR' ? '중국 주요 게임사 실적 정리 · Tencent / NetEase'
                                : '中国头部游戏公司财报整理 · Tencent / NetEase';
+  document.querySelectorAll('.sum-kicker').forEach(el=>{ el.innerHTML=LANG==='KR'?'핵심 결론':'核心结论'; });
   document.querySelectorAll('#langSeg button').forEach(b=>b.classList.toggle('active',b.dataset.lang===LANG));
   renderPtabs(); renderKPI(); renderCurrency();
   document.querySelectorAll('.panel, .common').forEach(el=>{ colorPercents(el); markShares(el); });
+  dedupeSummaryKpiRows();
 }
 LANG='KR';
+buildSummaryTemplate();
 document.getElementById('langSeg').addEventListener('click',e=>{
   const b=e.target.closest('button'); if(!b||b.dataset.lang===LANG) return;
   LANG=b.dataset.lang; applyLang();
