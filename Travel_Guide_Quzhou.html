@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4b3020">
+  <title>Travel_Guide_Quzhou</title>
+  <style>
+:root {
+  --ink: #4b3020;
+  --ink-deep: #2d1d14;
+  --paper: #f6efe2;
+  --card: #fffaf2;
+  --sand: #c9903f;
+  --sand-light: #ead2a7;
+  --lake: #9b6a35;
+  --lake-light: #f1e2ca;
+  --orange: #b75a2e;
+  --green: #7d7046;
+  --muted: #796b60;
+  --border: #e3d5bf;
+  --topbar: #342116;
+  --hero-start: #3a2418;
+  --hero-mid: #76502c;
+  --hero-end: #b77a34;
+  --hero-glow: rgba(255, 211, 134, .24);
+  --body-glow: rgba(218, 174, 104, .34);
+  --headline-accent: #e6c884;
+  --action-bg: #f3d797;
+  --route-dot: #f5d58d;
+  --metric-bg: #f5efe5;
+  --common-start: rgba(255,253,249,.9);
+  --common-end: rgba(244,231,207,.55);
+  --shadow: 0 18px 55px rgba(75, 48, 32, .12);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --nav-h: 66px;
+}
+
+:root[data-theme="harbor-blue"] {
+  --ink: #173b4f; --ink-deep: #0b1e2a; --paper: #eef5f7; --card: #fbfeff;
+  --sand: #d0a348; --sand-light: #efdcac; --lake: #2a7d83; --lake-light: #d9eff0;
+  --orange: #d06b3d; --green: #4f7f68; --muted: #60737b; --border: #d5e2e6;
+  --topbar: #102f40; --hero-start: #0c2b3a; --hero-mid: #14536a; --hero-end: #2f858b;
+  --hero-glow: rgba(111,210,216,.2); --body-glow: rgba(102,180,190,.22); --headline-accent: #f0cf7b;
+  --action-bg: #f4d98f; --route-dot: #f4d98f; --metric-bg: #edf4f5;
+  --common-start: rgba(251,254,255,.92); --common-end: rgba(218,238,239,.62);
+  --shadow: 0 18px 55px rgba(15, 54, 72, .12);
+}
+
+:root[data-theme="island-turquoise"] {
+  --ink: #16484d; --ink-deep: #0b2f34; --paper: #edf9f7; --card: #fbfffe;
+  --sand: #e0a94d; --sand-light: #f4dfaf; --lake: #168e91; --lake-light: #d5f3f0;
+  --orange: #d96f45; --green: #43856b; --muted: #5f7775; --border: #cfe4e1;
+  --topbar: #103a40; --hero-start: #0d3a43; --hero-mid: #16747a; --hero-end: #3db4aa;
+  --hero-glow: rgba(151,238,224,.23); --body-glow: rgba(69,183,166,.2); --headline-accent: #ffda91;
+  --action-bg: #ffe0a3; --route-dot: #ffe0a3; --metric-bg: #e9f5f2;
+  --common-start: rgba(251,255,254,.94); --common-end: rgba(211,241,235,.65);
+  --shadow: 0 18px 55px rgba(16, 79, 78, .12);
+}
+
+:root[data-theme="mountain-green"] {
+  --ink: #29483a; --ink-deep: #15291f; --paper: #f1f5ed; --card: #fcfff9;
+  --sand: #b68a4c; --sand-light: #e5d2ad; --lake: #4f8068; --lake-light: #dcebe2;
+  --orange: #b9633f; --green: #50795b; --muted: #68776c; --border: #d7e0d2;
+  --topbar: #213b2f; --hero-start: #1c3429; --hero-mid: #3f6752; --hero-end: #7c8a55;
+  --hero-glow: rgba(211,222,151,.2); --body-glow: rgba(147,177,128,.2); --headline-accent: #dfc989;
+  --action-bg: #e8d49a; --route-dot: #e8d49a; --metric-bg: #edf2e9;
+  --common-start: rgba(252,255,249,.94); --common-end: rgba(226,236,216,.68);
+  --shadow: 0 18px 55px rgba(39, 71, 54, .12);
+}
+
+:root[data-theme="heritage-red"] {
+  --ink: #2d2a26; --ink-deep: #1a1815; --paper: #faf8f4; --card: #ffffff;
+  --sand: #bf9463; --sand-light: #ece2d0; --lake: #6b7d70; --lake-light: #e7ede8;
+  --orange: #b06a4a; --green: #6f8268; --muted: #8b8177; --border: #e6e1d8;
+  --topbar: #7a4530; --hero-start: #8a4a2e; --hero-mid: #bf7b42; --hero-end: #e0b876;
+  --hero-glow: rgba(230,210,170,.14); --body-glow: rgba(200,180,140,.12); --headline-accent: #ddceac;
+  --action-bg: #ece2cd; --route-dot: #ece2cd; --metric-bg: #f6f3ee;
+  --common-start: rgba(255,255,255,.95); --common-end: rgba(240,235,225,.6);
+  --shadow: 0 18px 55px rgba(30, 28, 24, .09);
+}
+
+:root[data-theme="snow-blue"] {
+  --ink: #29475c; --ink-deep: #152b3a; --paper: #f1f6f9; --card: #fbfdff;
+  --sand: #83a9c2; --sand-light: #d2e3ed; --lake: #4f85a6; --lake-light: #dcebf3;
+  --orange: #c46f55; --green: #5d857c; --muted: #6d7d88; --border: #d5e1e8;
+  --topbar: #203b4f; --hero-start: #183246; --hero-mid: #3d6d89; --hero-end: #88afc4;
+  --hero-glow: rgba(220,244,255,.24); --body-glow: rgba(156,200,221,.2); --headline-accent: #d7ecf4;
+  --action-bg: #d9edf5; --route-dot: #d9edf5; --metric-bg: #edf3f7;
+  --common-start: rgba(251,253,255,.95); --common-end: rgba(221,235,244,.68);
+  --shadow: 0 18px 55px rgba(35, 70, 92, .12);
+}
+
+:root[data-theme="city-night"] {
+  --ink: #302b52; --ink-deep: #171429; --paper: #f3f1f7; --card: #fdfcff;
+  --sand: #a982ca; --sand-light: #e3d6ef; --lake: #596db0; --lake-light: #e0e5f5;
+  --orange: #c96982; --green: #587d77; --muted: #706d7d; --border: #ded9e7;
+  --topbar: #201c38; --hero-start: #1a1732; --hero-mid: #3e376c; --hero-end: #6c5793;
+  --hero-glow: rgba(210,184,244,.22); --body-glow: rgba(159,137,203,.18); --headline-accent: #ddc4f0;
+  --action-bg: #dec8ef; --route-dot: #dec8ef; --metric-bg: #efedf5;
+  --common-start: rgba(253,252,255,.95); --common-end: rgba(230,223,241,.68);
+  --shadow: 0 18px 55px rgba(43, 37, 79, .13);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink-deep);
+  background:
+    radial-gradient(circle at 12% 20%, var(--body-glow), transparent 30%),
+    var(--paper);
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  line-height: 1.7;
+}
+button, a { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; }
+
+.reading-progress {
+  position: fixed; z-index: 100; left: 0; top: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--sand), var(--action-bg), var(--lake));
+}
+.topbar {
+  position: fixed; z-index: 90; top: 0; left: 0; right: 0; height: var(--nav-h);
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+  padding: 0 max(22px, calc((100vw - 1180px) / 2));
+  color: white; background: color-mix(in srgb, var(--topbar) 95%, transparent); backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 750; letter-spacing: .04em; }
+.brand-mark {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px;
+  color: var(--ink-deep); background: linear-gradient(135deg, var(--action-bg), var(--sand));
+}
+.primary-nav { display: flex; align-items: center; gap: 28px; color: rgba(255,255,255,.78); font-size: .92rem; }
+.primary-nav a:hover { color: white; }
+
+.hero {
+  position: relative; min-height: 520px; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr); align-items: center; gap: 20px;
+  color: white; padding: 76px max(28px, calc((100vw - 1180px) / 2));
+  background:
+    radial-gradient(circle at 78% 18%, var(--hero-glow), transparent 26%),
+    linear-gradient(120deg, var(--hero-start), var(--hero-mid) 54%, var(--hero-end) 100%);
+  border-radius: 0 0 44px 44px;
+}
+.hero::after {
+  content: "ROUTE 01"; position: absolute; right: 5%; bottom: -34px;
+  font: 800 8rem/1 Georgia, serif; letter-spacing: -.04em; color: rgba(255,255,255,.055);
+}
+.hero-glow { position: absolute; border-radius: 50%; filter: blur(4px); }
+.hero-glow-one { width: 340px; height: 340px; right: 9%; top: -150px; background: color-mix(in srgb, var(--action-bg) 24%, transparent); }
+.hero-glow-two { width: 260px; height: 260px; left: 43%; bottom: -170px; background: color-mix(in srgb, var(--sand) 28%, transparent); }
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+.eyebrow, .section-kicker { margin: 0 0 10px; color: var(--headline-accent); font-size: .76rem; font-weight: 800; letter-spacing: .22em; }
+.hero h1 { margin: 0; font: 800 clamp(2.7rem, 5vw, 5rem)/1.08 Georgia, "Songti SC", serif; letter-spacing: -.03em; }
+.hero-subtitle { max-width: 660px; margin: 22px 0 0; color: rgba(255,255,255,.78); font-size: 1.08rem; }
+.hero-actions { display: flex; gap: 12px; margin-top: 32px; }
+.primary-action, .secondary-action {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 46px;
+  border-radius: 999px; padding: 0 20px; cursor: pointer;
+}
+.primary-action { color: var(--ink-deep); background: var(--action-bg); font-weight: 750; }
+.secondary-action { color: white; background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.24); }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+.hero-tags span { padding: 7px 12px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; background: rgba(255,255,255,.08); font-size: .82rem; }
+.hero-date { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); color: white; font-size: .92rem; font-weight: 600; letter-spacing: .02em; }
+.hero-route { position: relative; z-index: 1; min-height: 340px; }
+.route-map-word {
+  position: absolute; inset: 52px 22px auto auto; font: 800 7rem/1 Georgia, serif;
+  color: rgba(255,255,255,.08); letter-spacing: -.08em;
+}
+.route-orbit { position: absolute; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; transform: rotate(-14deg); }
+.route-orbit-one { width: 360px; height: 190px; right: 0; top: 74px; }
+.route-orbit-two { width: 280px; height: 280px; right: 38px; top: 32px; }
+.route-city { position: absolute; display: flex; align-items: center; gap: 8px; font-size: .82rem; color: rgba(255,255,255,.82); }
+.route-city .route-dot { width: 10px; height: 10px; border: 2px solid var(--route-dot); border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 6px color-mix(in srgb, var(--route-dot) 14%, transparent); }
+.route-city .route-label { width: auto; height: auto; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.route-city-a { right: 76px; top: 55px; }
+.route-city-b { right: 292px; top: 136px; }
+.route-city-c { right: 22px; top: 235px; }
+.route-city-d { right: 230px; top: 300px; }
+
+.quick-strip {
+  position: relative; z-index: 5; width: min(1120px, calc(100% - 32px)); margin: -32px auto 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); overflow: hidden;
+  background: var(--card); border: 1px solid rgba(228,221,208,.9); border-radius: 20px; box-shadow: var(--shadow);
+}
+.quick-item { padding: 20px 22px; border-right: 1px solid var(--border); }
+.quick-item:last-child { border-right: 0; }
+.quick-item span { display: block; color: var(--muted); font-size: .76rem; }
+.quick-item strong { display: block; margin-top: 2px; font-size: .94rem; }
+
+.page-shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 66px 0 100px; }
+.section-block { scroll-margin-top: calc(var(--nav-h) + 24px); margin-bottom: 80px; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+.section-heading h2 { margin: 0; font: 800 2.1rem/1.15 Georgia, "Songti SC", serif; color: var(--ink); }
+.section-note { color: var(--muted); font-size: .86rem; }
+.overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.overview-card { position: relative; overflow: hidden; min-height: 245px; padding: 26px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(23,59,79,.06); }
+.overview-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--accent); }
+.tone-blue { --accent: #6d7d78; }
+.tone-gold { --accent: var(--sand); }
+.tone-green { --accent: var(--green); }
+.overview-card-top { display: flex; justify-content: space-between; align-items: center; }
+.card-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; background: color-mix(in srgb, var(--accent) 14%, white); color: var(--accent); font-size: 1.25rem; font-weight: 800; }
+.overview-card h3 { margin: 24px 0 8px; font-size: 1.22rem; }
+.overview-card p { margin: 0; color: #4a4640; }
+.overview-card footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem; }
+.module-section { padding: 34px; border: 1px solid rgba(228,221,208,.92); border-radius: 24px; background: rgba(255,253,249,.58); }
+.common-section { padding: 34px; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(145deg, var(--common-start), var(--common-end)); }
+.common-module-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.common-card { border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,.88); overflow: hidden; }
+.common-card.wide { grid-column: 1 / -1; }
+.common-card summary { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; align-items: center; gap: 13px; min-height: 92px; padding: 17px 18px; cursor: pointer; list-style: none; }
+.common-card summary::-webkit-details-marker { display: none; }
+.common-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 13px; color: #fff8e8; background: var(--ink); font-weight: 800; }
+.common-title strong, .common-title small { display: block; }
+.common-title strong { color: var(--ink); font-size: 1rem; }
+.common-title small { margin-top: 3px; color: var(--muted); font-size: .76rem; line-height: 1.5; }
+.common-card ul { margin: 0; padding: 0 24px 20px 75px; color: #4a4640; font-size: .84rem; line-height: 1.7; }
+.common-card li + li { margin-top: 5px; }
+.common-card[open] { box-shadow: 0 10px 30px rgba(77,48,31,.07); }
+.module-catalog { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.catalog-card { display: grid; grid-template-columns: 46px 1fr; gap: 14px; min-height: 150px; padding: 18px; border: 1px solid var(--border); border-radius: 15px; background: var(--card); }
+.catalog-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; color: white; background: var(--lake); font-weight: 800; }
+.catalog-card.attention .catalog-icon { background: var(--sand); }
+.catalog-card.disabled { opacity: .48; filter: grayscale(.35); }
+.catalog-state { color: var(--orange); font-size: .7rem; font-weight: 800; }
+.catalog-card h3 { margin: 2px 0 4px; font-size: 1rem; }
+.catalog-card p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.55; }
+.status { display: inline-flex; align-items: center; width: fit-content; white-space: nowrap; padding: 4px 9px; border-radius: 999px; font-size: .7rem; font-weight: 750; }
+.status.confirmed { color: #27624b; background: #e2f1e9; }
+.status.suggested { color: #8a5b19; background: #f8ecd2; }
+.status.pending { color: #9b4938; background: #fae5df; }
+.status.recheck { color: #315f7a; background: #e1edf4; }
+
+.day-selector { width: min(720px, 100%); display: grid; grid-template-columns: 38px minmax(0, 1fr) 38px; align-items: center; gap: 8px; }
+.day-selector.short-trip { width: auto; grid-template-columns: minmax(0, 1fr); }
+.day-tab-rail { display: flex; gap: 8px; min-width: 0; overflow-x: auto; padding: 3px 2px 5px; scrollbar-width: none; scroll-snap-type: x proximity; }
+.day-tab-rail::-webkit-scrollbar { display: none; }
+.day-tab { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--card); border-radius: 12px; padding: 8px 12px; cursor: pointer; }
+.day-tab { flex: 0 0 auto; scroll-snap-align: center; }
+.day-tab strong { color: var(--ink); }
+.day-tab span { color: #6b6258; font-size: .78rem; }
+.day-tab em { padding: 2px 5px; border-radius: 999px; color: #fff5dc; background: var(--orange); font-size: .62rem; font-style: normal; }
+.day-tab.active { color: white; background: var(--orange); border-color: var(--orange); }
+.day-tab.active strong { color: #fff; }
+.day-tab.active span { color: rgba(255,255,255,.7); }
+.day-arrow { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); color: var(--ink); font-size: 1.45rem; cursor: pointer; }
+.day-arrow:disabled, .day-footer-nav button:disabled { opacity: .3; cursor: not-allowed; }
+.day-migration-note { grid-column: 1 / -1; justify-self: end; color: var(--muted); font-size: .72rem; }
+.day-card { scroll-margin-top: calc(var(--nav-h) + 20px); overflow: hidden; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.day-card[hidden] { display: none !important; }
+.day-card-header { display: grid; grid-template-columns: 130px 1fr; align-items: stretch; color: white; background: var(--ink); }
+.day-index { display: flex; flex-direction: column; justify-content: center; padding: 24px 26px; background: rgba(255,255,255,.055); }
+.day-index span { font: 800 2.4rem/1 Georgia, serif; color: var(--action-bg); }
+.day-index small { margin-top: 7px; color: rgba(255,255,255,.62); }
+.day-title-block { padding: 24px 28px; }
+.day-title-line { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.65); font-size: .82rem; }
+.day-title-block h3 { margin: 8px 0 0; font: 800 2rem/1.15 Georgia, "Songti SC", serif; }
+.metric-row { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--metric-bg); border-bottom: 1px solid var(--border); }
+.metric-row > div { padding: 18px 22px; border-right: 1px solid var(--border); }
+.metric-row > div:last-child { border-right: 0; }
+.metric-row span { display: block; color: var(--muted); font-size: .72rem; }
+.metric-row strong { display: block; margin-top: 2px; }
+.day-body { display: grid; grid-template-columns: minmax(290px, .78fr) minmax(0, 1.5fr); gap: 26px; padding: 30px; }
+.day-side { display: flex; flex-direction: column; gap: 18px; }
+.alert-box { padding: 18px; border-radius: 14px; border-left: 4px solid var(--alert); background: color-mix(in srgb, var(--alert) 10%, white); }
+.alert-yellow { --alert: #c2984f; }
+.alert-orange { --alert: #b06a4a; }
+.alert-blue { --alert: #6b7d70; }
+.alert-box p { margin: 4px 0 0; color: #4a463f; font-size: .88rem; }
+.transport-panel, .timeline-panel { border: 1px solid var(--border); border-radius: 16px; background: white; }
+.transport-panel { padding: 20px; }
+.transport-panel h4, .panel-title h4 { margin: 0; color: var(--ink); }
+.transport-line { display: grid; grid-template-columns: 36px 1fr; gap: 12px; margin-top: 18px; }
+.transport-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: var(--lake); background: var(--lake-light); font-size: .76rem; font-weight: 800; }
+.transport-line strong, .transport-line span, .transport-line small { display: block; }
+.transport-line strong { font-size: .87rem; }
+.transport-line span { color: var(--orange); font-size: .8rem; }
+.transport-line small { color: var(--muted); font-size: .74rem; }
+.timeline-panel { padding: 22px 24px; }
+.panel-title { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.panel-title span { color: var(--muted); font-size: .75rem; }
+.timeline { list-style: none; margin: 0; padding: 12px 0 0; }
+.timeline li { position: relative; display: grid; grid-template-columns: 76px 1fr; gap: 16px; padding: 12px 0 12px 22px; border-left: 2px solid #e6dfd3; }
+.timeline li::before { content: ""; position: absolute; width: 10px; height: 10px; left: -6px; top: 20px; border-radius: 50%; background: #c5b9a6; border: 2px solid white; box-shadow: 0 0 0 1px #c5b9a6; }
+.timeline li.timeline-key::before { background: var(--orange); box-shadow: 0 0 0 1px var(--orange); }
+.timeline li.timeline-rest::before { background: var(--green); box-shadow: 0 0 0 1px var(--green); }
+.timeline time { color: var(--orange); font-weight: 800; font-size: .86rem; }
+.timeline strong { display: block; }
+.timeline p { margin: 2px 0 0; color: #6b6258; font-size: .85rem; }
+.module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 30px 30px; }
+.day-footer-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: 18px; }
+.day-footer-nav button { width: fit-content; min-height: 42px; padding: 0 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer; }
+.day-footer-nav button:last-child { justify-self: end; }
+.day-footer-nav > span { color: var(--muted); font-size: .78rem; }
+.detail-card { border: 1px solid var(--border); border-radius: 14px; background: #fff; }
+.detail-card summary { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; min-height: 86px; padding: 15px; cursor: pointer; list-style: none; }
+.detail-card summary::-webkit-details-marker { display: none; }
+.detail-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: white; background: var(--lake); font-size: .72rem; font-weight: 800; }
+.detail-card summary strong, .detail-card summary small { display: block; }
+.detail-card summary small { margin-top: 2px; color: var(--muted); font-size: .72rem; line-height: 1.45; }
+.detail-card summary::after {
+  content: "⌄";
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform .25s ease;
+  display: inline-block;
+}
+.detail-card[open] summary::after {
+  transform: rotate(180deg);
+}
+.detail-card ul { margin: 0; padding: 0 22px 18px 48px; color: #4a4640; font-size: .84rem; }
+.task-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.validation-section { padding: 34px; color: white; background: var(--ink-deep); border-radius: 26px; }
+.validation-section .section-kicker { color: var(--action-bg); }
+.validation-section .section-heading h2 { color: white; }
+.validation-section .section-note { color: rgba(255,255,255,.58); }
+.validation-summary { display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: center; margin-bottom: 18px; padding: 18px 20px; border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: rgba(255,255,255,.06); }
+.validation-summary div { display: flex; align-items: baseline; gap: 8px; }
+.validation-summary strong { color: var(--action-bg); font: 800 2.4rem/1 Georgia, serif; }
+.validation-summary span { color: rgba(255,255,255,.66); font-size: .76rem; }
+.validation-summary p { margin: 0; color: rgba(255,255,255,.67); font-size: .86rem; }
+.validation-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.validation-item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 15px; border-radius: 14px; background: rgba(255,255,255,.07); }
+.validation-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-weight: 900; background: rgba(255,255,255,.12); }
+.validation-item.warning .validation-icon { color: #ffd6c3; background: rgba(201,109,60,.36); }
+.validation-item.pending .validation-icon { color: #ffe3a9; background: rgba(215,163,92,.28); }
+.validation-item.recheck .validation-icon { color: #c9ebed; background: rgba(42,125,131,.42); }
+.validation-item.pass .validation-icon { color: #d5f3df; background: rgba(79,127,104,.48); }
+.validation-item strong { display: block; font-size: .9rem; }
+.validation-item p { margin: 3px 0 0; color: rgba(255,255,255,.6); font-size: .76rem; line-height: 1.55; }
+.task-card { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 22px; border: 1px dashed #cdbfa9; border-radius: 16px; background: rgba(255,253,249,.72); cursor: pointer; transition: .18s ease; }
+.task-card:hover { transform: translateY(-2px); border-color: var(--sand); background: var(--card); }
+.task-check { position: absolute; opacity: 0; pointer-events: none; }
+.task-check-wrap { position: relative; padding-top: 2px; }
+.task-check-ui { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #cdbfa9; border-radius: 9px; color: transparent; background: white; transition: .18s ease; }
+.task-check:focus-visible + .task-check-ui { outline: 3px solid rgba(42,125,131,.24); }
+.task-check:checked + .task-check-ui { color: white; background: var(--green); border-color: var(--green); }
+.task-content { display: block; }
+.task-content strong, .task-content small { display: block; }
+.task-content strong { margin: 14px 0 5px; font-size: 1.02rem; }
+.task-content small { color: var(--muted); font-size: .82rem; line-height: 1.6; }
+.task-card.completed { opacity: .66; border-style: solid; }
+.task-card.completed .task-content strong { text-decoration: line-through; }
+
+.status-dialog { width: min(520px, calc(100% - 28px)); border: 0; border-radius: 24px; padding: 34px; color: var(--ink-deep); box-shadow: 0 30px 100px rgba(11,30,42,.35); }
+.status-dialog::backdrop { background: rgba(10,27,38,.62); backdrop-filter: blur(4px); }
+.status-dialog h2 { margin: 0 0 12px; font-family: Georgia, "Songti SC", serif; }
+.status-dialog p:not(.section-kicker) { color: var(--muted); }
+.dialog-close { position: absolute; right: 18px; top: 14px; border: 0; background: transparent; font-size: 1.6rem; cursor: pointer; }
+.status-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.mode-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.mode-compare div { padding: 14px; border-radius: 12px; background: #f7efe1; }
+.mode-compare strong, .mode-compare span { display: block; }
+.mode-compare span { margin-top: 3px; color: var(--muted); font-size: .76rem; line-height: 1.55; }
+.back-top { position: fixed; z-index: 80; right: 22px; bottom: 22px; width: 44px; height: 44px; border: 0; border-radius: 50%; color: white; background: var(--orange); box-shadow: 0 10px 30px rgba(23,59,79,.28); opacity: 0; pointer-events: none; transform: translateY(12px); transition: .2s ease; cursor: pointer; }
+.back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-route { display: none; }
+  .quick-strip { grid-template-columns: repeat(2, 1fr); }
+  .quick-item { border-bottom: 1px solid var(--border); }
+  .overview-grid, .task-grid { grid-template-columns: 1fr; }
+  .module-catalog { grid-template-columns: repeat(2, 1fr); }
+  .validation-list { grid-template-columns: 1fr; }
+  .overview-card { min-height: 0; }
+  .day-heading { align-items: start; flex-direction: column; }
+  .day-selector { width: 100%; }
+  .day-body { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 650px) {
+  .hero { display: block; padding: 54px 18px 70px; border-radius: 0 0 28px 28px; }
+  .hero::after { display: none; }
+  .hero h1 { font-size: clamp(2.25rem, 12vw, 3.25rem); }
+  .hero-subtitle { font-size: .94rem; }
+  .hero-actions { justify-content: center; }
+  .secondary-action { background: rgba(9,39,52,.28); }
+  .hero-tags { gap: 6px; }
+  .hero-tags span { padding: 5px 9px; font-size: .74rem; }
+  .hero-date { padding: 6px 14px; font-size: .84rem; margin-top: 14px; }
+  .quick-strip { grid-template-columns: 1fr 1fr; margin-top: -30px; border-radius: 16px; }
+  .quick-item { padding: 14px; }
+  .quick-item:nth-child(even) { border-right: 0; }
+  .quick-item:last-child { grid-column: 1 / -1; }
+  .page-shell { width: min(100% - 24px, 1120px); padding-top: 48px; }
+  .section-block { margin-bottom: 58px; }
+  .section-heading h2 { font-size: 1.75rem; }
+  .module-section { padding: 22px 16px; }
+  .common-section { padding: 22px 16px; }
+  .common-module-grid { grid-template-columns: 1fr; }
+  .common-card.wide { grid-column: auto; }
+  .common-card summary { grid-template-columns: 38px minmax(0, 1fr); min-height: 82px; padding: 15px; }
+  .common-card summary .status { grid-column: 2; }
+  .common-card ul { padding: 0 18px 18px 56px; }
+  .module-catalog { grid-template-columns: 1fr; }
+  .validation-section { padding: 24px 16px; }
+  .validation-summary { grid-template-columns: 1fr; gap: 6px; }
+  .section-note { display: none; }
+  .day-card { border-radius: 20px; }
+  .day-card-header { grid-template-columns: 1fr; }
+  .day-index { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 10px; padding: 18px 20px 10px; }
+  .day-index span { font-size: 1.65rem; }
+  .day-title-block { padding: 8px 20px 20px; }
+  .day-title-block h3 { font-size: 1.7rem; }
+  .day-title-line { flex-wrap: wrap; }
+  .metric-row { grid-template-columns: 1fr 1fr; }
+  .metric-row > div { padding: 13px 16px; border-bottom: 1px solid var(--border); }
+  .metric-row > div:nth-child(even) { border-right: 0; }
+  .day-body { padding: 18px; gap: 16px; }
+  .timeline-panel { padding: 18px; }
+  .timeline li { grid-template-columns: 58px 1fr; gap: 9px; padding-left: 16px; }
+  .module-grid { grid-template-columns: 1fr; padding: 0 18px 18px; }
+  .detail-card summary { grid-template-columns: 34px 1fr auto; }
+  .detail-card summary .status { grid-column: 2; }
+  .mode-compare { grid-template-columns: 1fr; }
+}
+
+@media print {
+  body { padding: 0; background: white; }
+  .topbar, .reading-progress, .back-top, .hero-actions, .day-selector, .day-footer-nav { display: none !important; }
+  .hero { min-height: 0; padding: 36px; border-radius: 0; print-color-adjust: exact; }
+  .hero-route { display: none; }
+  .quick-strip { margin: 18px auto; box-shadow: none; }
+  .page-shell { padding: 20px 0; }
+  .overview-card, .day-card, .task-card { box-shadow: none; break-inside: avoid; }
+  .day-card[hidden] { display: block !important; margin-top: 24px; }
+  .section-block { margin-bottom: 30px; }
+}
+
+/* ===== 港澳版风格优化：更轻、更清楚、更适合手机查看 ===== */
+:root {
+  --shadow: 0 4px 18px rgba(30, 28, 24, .08);
+  --radius-lg: 20px;
+  --radius-md: 16px;
+}
+
+body {
+  background: #faf8f4;
+  color: #262320;
+  line-height: 1.82;
+}
+
+.topbar {
+  background: rgba(122, 69, 48, .96);
+  border-bottom-color: rgba(224, 208, 178, .2);
+}
+
+.primary-nav {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.brand-mark {
+  border-radius: 12px;
+  font-size: 1.08rem;
+}
+
+.hero {
+  min-height: 420px;
+  display: block;
+  padding: 58px 20px 52px;
+  text-align: center;
+  border-radius: 0 0 42px 42px;
+  background: linear-gradient(135deg, #8a4a2e 0%, #bf7b42 45%, #d9a856 75%, #e0b876 100%);
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.65rem);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .16);
+}
+
+.hero-subtitle {
+  max-width: 780px;
+  margin: 16px auto 0;
+  font-size: 1.02rem;
+}
+
+.hero-actions {
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.hero-route {
+  display: none;
+}
+
+.hero-tags {
+  justify-content: center;
+  margin: 24px auto 0;
+}
+
+.quick-strip {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-top: -26px;
+  border-radius: 18px;
+}
+
+.quick-item {
+  padding: 16px 20px;
+}
+
+.quick-item span {
+  color: var(--ink);
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+.quick-item span em {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: .76rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.quick-item strong {
+  margin-top: 5px;
+  color: #3a3630;
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+.page-shell {
+  padding-top: 52px;
+}
+
+.section-block {
+  margin-bottom: 58px;
+}
+
+.section-heading {
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  display: inline-block;
+  padding-bottom: 7px;
+  border-bottom: 3px solid var(--sand);
+  color: var(--ink);
+  font-size: 1.85rem;
+}
+
+.section-kicker {
+  margin-bottom: 6px;
+  color: var(--sand);
+  letter-spacing: .18em;
+}
+
+.common-section {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.common-module-grid {
+  gap: 14px;
+}
+
+.common-card {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(30, 28, 24, .07);
+}
+
+.common-card summary {
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  min-height: 82px;
+  padding: 14px 16px;
+}
+
+.common-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: transparent;
+  font-size: 1.7rem;
+}
+
+.common-title strong {
+  color: var(--ink);
+  font-size: 1.04rem;
+}
+
+.common-title small {
+  font-size: .78rem;
+}
+
+.common-card summary::after {
+  content: "⌄";
+  color: var(--muted);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform .25s ease;
+  display: inline-block;
+}
+
+.common-card[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.common-card ul {
+  padding: 0 22px 18px 70px;
+  color: #4a463f;
+  font-size: .88rem;
+}
+
+.common-card li::marker {
+  color: var(--orange);
+}
+
+.item-label {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.day-card {
+  overflow: visible;
+  border-left: 6px solid var(--orange);
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(30, 28, 24, .08);
+}
+
+.day-card-header {
+  position: relative;
+  display: block;
+  color: var(--ink);
+  background: transparent;
+}
+
+.day-index {
+  position: absolute;
+  z-index: 2;
+  top: -16px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: var(--orange);
+}
+
+.day-index span {
+  color: #fff;
+  font: 800 1rem/1 "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+.day-index small {
+  margin-top: 0;
+  color: rgba(255, 255, 255, .8);
+  font-size: .74rem;
+}
+
+.day-title-block {
+  padding: 34px 24px 18px;
+}
+
+.day-title-line {
+  color: #6b6258;
+}
+
+.day-title-block h3 {
+  margin-top: 9px;
+  color: var(--ink);
+  font-size: 1.75rem;
+}
+
+.metric-row {
+  background: #f6f3ee;
+}
+
+.metric-row strong {
+  color: #3a3630;
+  font-size: .9rem;
+}
+
+.day-body {
+  gap: 20px;
+  padding: 24px;
+}
+
+.alert-box {
+  border-radius: 10px;
+}
+
+.transport-panel,
+.timeline-panel {
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(30, 28, 24, .035);
+}
+
+.transport-icon,
+.detail-icon {
+  font-size: 1.08rem;
+}
+
+.transport-icon {
+  background: transparent;
+  font-size: 1.4rem;
+}
+
+.timeline li {
+  border-left-color: #e3ded3;
+}
+
+.timeline time {
+  color: var(--orange);
+}
+
+.detail-card {
+  border-radius: 14px;
+  background: #fff;
+}
+
+.detail-card summary {
+  min-height: 78px;
+  padding: 13px 14px;
+}
+
+.detail-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  color: var(--ink);
+  background: transparent;
+  font-size: 1.5rem;
+}
+
+.status {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: .68rem;
+}
+
+.back-top {
+  background: var(--orange);
+}
+
+@media (max-width: 650px) {
+  .hero {
+    padding: 46px 16px 62px;
+    border-radius: 0 0 26px 26px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+  .quick-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .common-section {
+    padding: 0;
+  }
+  .common-card summary {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    padding: 13px;
+  }
+  .common-card summary .status {
+    grid-column: auto;
+  }
+  .common-card ul {
+    padding-left: 58px;
+  }
+  .day-title-block {
+    padding: 32px 18px 16px;
+  }
+  .day-title-block h3 {
+    font-size: 1.55rem;
+  }
+  .day-body {
+    padding: 18px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="trip-title">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+      <div class="hero-content">
+        <p class="eyebrow" id="trip-kicker"></p>
+        <h1 id="trip-title"></h1>
+        <p class="hero-subtitle" id="trip-subtitle"></p>
+        <div class="hero-date" id="hero-date"></div>
+        <div class="hero-actions">
+          <a class="primary-action" href="#days">查看每日行程 <span>↓</span></a>
+        </div>
+        <div class="hero-tags" id="hero-tags" aria-label="旅行标签"></div>
+      </div>
+      <div class="hero-route" aria-label="目的地路线示意">
+        <div class="route-orbit route-orbit-one"></div>
+        <div class="route-orbit route-orbit-two"></div>
+        <div class="route-map-word" id="route-map-word"></div>
+        <div class="route-city route-city-a"><span class="route-dot"></span><span class="route-label" id="route-city-a"></span></div>
+        <div class="route-city route-city-b"><span class="route-dot"></span><span class="route-label" id="route-city-b"></span></div>
+        <div class="route-city route-city-c"><span class="route-dot"></span><span class="route-label" id="route-city-c"></span></div>
+        <div class="route-city route-city-d"><span class="route-dot"></span><span class="route-label" id="route-city-d"></span></div>
+      </div>
+    </section>
+
+    <div class="page-shell">
+      <section class="section-block common-section" id="common-modules">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">TRIP ESSENTIALS</p>
+          <h2>行前总表</h2>
+          </div>
+          <span class="section-note">缺少的信息会明确标为待补充</span>
+        </div>
+        <div class="common-module-grid" id="common-module-grid"></div>
+      </section>
+
+      <section class="section-block" id="days">
+        <div class="section-heading day-heading">
+          <div>
+            <p class="section-kicker">DAY BY DAY</p>
+            <h2>每日详细行程</h2>
+          </div>
+          <div class="day-selector" id="day-selector" aria-label="选择行程日期"></div>
+        </div>
+        <div id="day-list"></div>
+        <div class="day-footer-nav" id="day-footer-nav" aria-label="切换上一天或下一天"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <button class="back-top" id="back-top" type="button" aria-label="返回顶部">↑</button>
+  <script>
+window.TRIP_DATA = {
+  meta: {
+    kicker: "2026 · AUTUMN CITY BREAK",
+    title: "上海出发 · 衢州慢游",
+    subtitle: "4天3晚家庭休闲攻略｜南孔古城、老城烟火与江畔慢行",
+    theme: "heritage-red",
+    themeLabel: "古城朱砂",
+    dates: "2026.10.04 — 10.07",
+    startDate: "2026-10-04",
+    endDate: "2026-10-07",
+    people: "6人 · 2位30+女性 + 4位60–70岁长辈",
+    transport: "高铁往返 · 市内打车／步行",
+    budget: "",
+    showBudget: false,
+    showStatus: false,
+    status: "",
+    route: {label: "衢州", cities: ["上海", "水亭门", "鹿鸣", "南孔古城"]},
+    dialogText: "这份衢州攻略已完成主线整理。场馆信息按当前确认结果标注，灯光秀、喷泉和现场活动仍以当天公告为准。"
+  },
+  tags: ["南孔古城", "水亭门夜景", "长辈友好", "不辣慢游", "老城逛吃"],
+  overview: [
+    {icon: "慢", tone: "gold", title: "旅行节奏", status: "已确认", statusType: "confirmed", body: "纯市区休闲游，不爬山、不赶路；尽量不早于8:00出门。", foot: "4位长辈同行 · 每天预留茶歇与机动时间"},
+    {icon: "住", tone: "gold", title: "住宿安排", status: "已确认", statusType: "confirmed", body: "全季酒店（衢州水亭门店）连住3晚，3间高级大床房。", foot: "10/4 14:00后入住 · 10/7 12:00前离店 · 无早餐"},
+    {icon: "核", tone: "blue", title: "信息状态", status: "出发前复核", statusType: "recheck", body: "孔庙、博物馆、儒学馆和文化艺术中心开放信息已整理。", foot: "灯光秀、喷泉与部分现场开放以当天公告为准"}
+  ],
+  commonModules: [
+    {id: "transport", icon: "交", title: "交通信息", status: "建议方案", statusType: "suggested", summary: "只保留时间段，不写死具体车次。", items: ["去程｜10/4 约07:30–10:00从上海出发，午前后抵达衢州", "返程｜10/7 约15:00–18:00从衢州出发，返回上海", "市内｜根据现场情况直接打车；6人可选一辆大车或两辆车"]},
+    {id: "lodging", icon: "住", title: "住宿信息", status: "已确认", statusType: "confirmed", summary: "全程不换酒店，减少长辈搬运行李。", items: ["全季酒店（衢州水亭门店）", "地址｜柯城区府山街道县学街18号", "房型｜高级大床房×3；入住10/4 14:00后，离店10/7 12:00前", "预订平台｜去哪儿旅行；酒店电话｜+86-570-8088988；无早餐"]},
+    {id: "route", icon: "线", title: "总行程路线", status: "建议方案", statusType: "suggested", wide: true, summary: "按老城、南孔文化、鹿鸣片区分日安排。", items: ["D1｜衢州站 → 水亭门 → 南孔爷爷的书房 → 古城夜景", "D2｜孔庙 → 衢州博物馆 → 府山公园 → 信安湖/礼贤桥", "D3｜松园菜场 → 鹿鸣山 → 文化艺术中心 → 北门街", "D4｜早餐/伴手礼 → 中国儒学馆 → 返程"]},
+    {id: "food-shopping", icon: "食", title: "美食与购物", status: "建议方案", statusType: "suggested", summary: "餐厅不做最终定案，按地点保留备选池。", items: ["水亭门/古城｜古铺良食、卿春小馆、好灶头、南孔菜院·土烧鱼头、林涧月、辉婶江西小馆、汪馒头", "府山/老城｜衢州人家、老土饭店、方家小厨、谢家小厨、快人快鱼、小老汪、苹鑫菜馆、老地方饭店、香满楼、三娜饭店", "松园/马站底｜风顺财馆、董爸爸烤饼、李泽烤饼、慧贞菜包、素琴蛋卷、喜多滋水晶糕、水晶糕女孩、王阿盖", "鹿鸣/银泰/吾悦｜野栀子、婉澜、鹿鸣山居、鹿鸣书院、半日闲茶馆", "西区/双港｜九九大排档、渔乡村、方家菜谱、鱼米乡、小胖子排档、1717大排档、梅苑味馆、农家饭店、村里农家大碗鱼、药王山庄", "重口味｜老裴鸭头、雷记麻辣烫、满天香鸭头、贝贝烧烤等，仅供年轻人尝鲜；每桌先说‘不放辣椒’"]},
+    {id: "booking", icon: "约", title: "预约清单", status: "出发前复核", statusType: "recheck", summary: "已确认项目与当天公告分开记录。", items: ["已确认｜孔氏南宗家庙10/5开放、无需预约；成人10元，60–69岁5元，70岁以上免票", "已确认｜衢州博物馆10/5开放、免费、无需预约，实体身份证刷证入馆", "已确认｜中国儒学馆10/7开放，9:00–17:00，免费无需预约", "已确认｜文化艺术中心10/6开放，非遗馆/美术馆9:00–17:30，图书馆8:30–21:00，免费无需预约", "出发前复核｜灯光秀、喷泉、钟楼登楼及城市规划展览馆当天安排"]},
+    {id: "packing", icon: "包", title: "行李清单", status: "建议方案", statusType: "suggested", summary: "以长辈舒适和不辣饮食为重点。", items: ["证件｜6人身份证；父母身份证随身携带，用于景点入馆/优惠", "穿着｜舒适平底鞋、薄外套、防晒用品；雨天备折叠伞或轻便雨衣", "健康｜常用药、肠胃药、创可贴、纸巾、湿巾；长辈随身水杯", "电子｜充电器、充电宝；重要预约和酒店信息截图保存"]},
+    {id: "rain", icon: "雨", title: "雨天备选", status: "建议方案", statusType: "suggested", wide: true, summary: "晴天主线不变，遇雨按当天体力和返程时间切换。", items: ["Day1｜南孔爷爷的书房、室内茶馆；水亭门改为短距离街区慢逛", "Day2｜孔庙＋博物馆＋中国儒学馆，缩短或取消府山公园与信安湖户外段", "Day3｜城市规划展览馆＋文化艺术中心（非遗馆、美术馆、图书馆），取消鹿鸣山草坪户外段", "Day4｜中国儒学馆或一处室内场馆＋伴手礼；返程前不安排长距离户外活动"]},
+    {id: "verification", icon: "核", title: "信息核实记录", status: "持续更新", statusType: "recheck", wide: true, summary: "把已确认、建议方案和仍需当天确认的内容分开。", items: ["已确认｜酒店、房型、入住离店、无早餐；孔庙/博物馆10/5；儒学馆10/7；文化艺术中心10/6", "建议方案｜松园菜场约8:30出门；Day3安排鹿鸣山＋文化艺术中心；餐厅按地点备选", "出发前复核｜当天灯光秀/喷泉具体场次、钟楼登楼、城市规划展览馆预约提示、餐厅营业和辣度", "说明｜第三方推荐仅作为候选，不将个人口味写成确定事实"]}
+  ],
+  destinationModules: [
+    {icon: "城", name: "城市步行模块", enabled: true, text: "老城街区串联、步行距离、桥边夜景、茶歇和雨天短线。"},
+    {icon: "车", name: "自驾／包车模块", enabled: false, text: "本次不启用。"},
+    {icon: "高", name: "高原模块", enabled: false, text: "本次不启用。"},
+    {icon: "岛", name: "海岛模块", enabled: false, text: "本次不启用。"},
+    {icon: "外", name: "国外旅行模块", enabled: false, text: "本次不启用。"},
+    {icon: "亲", name: "长辈／亲子模块", enabled: true, text: "低强度节奏、清淡饮食、茶歇、证件和室内替代。"},
+    {icon: "摄", name: "摄影模块", enabled: true, text: "城墙、天王塔、南孔爷爷书房、孔庙红墙、钟楼和红礼堂机位。"}
+  ],
+  expectedDayCount: 4,
+  knownIssues: [
+    {severity: "warning", title: "Day4不要排成全天游玩", text: "返程窗口为15:00–18:00，下午文化艺术中心、傍晚水亭门和夜间马站底无法完整叠加；主线保留上午文化/购物，午后取行李去车站。"},
+    {severity: "warning", title: "松园菜场8:30可能排队", text: "早市热门摊位可能拥挤；若等待过久，切换府山豆腐花、北门菜场或南湖菜场。"},
+    {severity: "info", title: "衢州特色菜普遍偏辣", text: "点餐时反复说明‘不放辣椒’；鸭头、麻辣烫、三头一掌和辣烤饼只列年轻人尝鲜。"}
+  ],
+  days: [
+    {
+      id: "day1", short: "D1", isoDate: "2026-10-04", date: "10.04 周日", title: "抵达衢州 · 水亭门古城初探", theme: "先安顿，再慢慢看夜景", status: "建议方案", statusType: "suggested",
+      metrics: [{label: "抵达", value: "午前后"}, {label: "主区域", value: "水亭门"}, {label: "活动强度", value: "低—中"}, {label: "步行", value: "约4—6千步"}],
+      alert: {tone: "yellow", title: "今日原则", text: "抵达后先吃饭、安顿和休息；古城墙安排在17:30前，夜间以平路慢逛为主。"},
+      transport: [{icon: "🚄", route: "上海 → 衢州", time: "约07:30–10:00出发", note: "不写死车次；以实际购票时间为准"}, {icon: "车", route: "衢州站 → 全季水亭门店", time: "约20min", note: "直接打车，现场决定一辆大车或两辆车"}],
+      timeline: [{time: "午前后", title: "抵达衢州站", text: "出站后直接前往酒店附近，先解决午餐。", level: "key"}, {time: "12:30", title: "午餐与酒店安顿", text: "古铺良食、卿春小馆等水亭门附近备选；14:00后按酒店安排入住。", level: "rest"}, {time: "14:00", title: "水亭门历史文化街区", text: "逛天王塔、民国风情街和沿江街巷，晴天可先看古城墙外景。", level: "key"}, {time: "15:30", title: "南孔爷爷的书房", text: "二楼阳台和‘衢州’字墙适合合影，安排一段坐着喝茶的休息时间。", level: "rest"}, {time: "16:30", title: "古城墙", text: "白天开放至17:30；根据天气、体力和现场排队决定是否登墙。", level: "normal"}, {time: "18:00", title: "亮灯后的水亭门", text: "古城墙、天王塔和江面倒影进入夜景时段。", level: "key"}, {time: "19:00", title: "灯光秀／喷泉", text: "国庆参考19:00后开始，具体场次以当天公告为准；看完步行回酒店。", level: "normal"}],
+      modules: [{icon: "食", title: "晚餐与小吃", type: "food", status: "建议方案", statusType: "suggested", summary: "水亭门附近按现场排队情况选择。", items: ["全员清淡优先：好灶头、古铺良食、南孔菜院·土烧鱼头", "顺路小吃：汪馒头北乡汤圆、葱花馒头；水晶糕可少量尝试", "辣味鸭头、麻辣烫只给年轻人作为可选"]}, {icon: "摄", title: "拍照点", type: "photo", status: "建议方案", statusType: "suggested", summary: "古城墙、天王塔、书房阳台和江面倒影。", items: ["南孔爷爷书房二楼阳台拍天王塔", "亮灯后在沿江步道拍水亭门倒影", "古城墙登楼是否开放以现场为准"]}, {icon: "雨", title: "雨天替代", type: "rain", status: "建议方案", statusType: "suggested", summary: "减少户外距离，保留古城氛围。", items: ["南孔爷爷的书房或室内茶馆坐着休息", "水亭门街区只走短线，雨停再看夜景", "晚餐按水亭门室内餐厅备选"]}]
+    },
+    {
+      id: "day2", short: "D2", isoDate: "2026-10-05", date: "10.05 周一", title: "南孔文化 · 府山与信安湖", theme: "白天看展，傍晚看江", status: "已确认／建议方案", statusType: "confirmed",
+      metrics: [{label: "主区域", value: "孔庙—博物馆"}, {label: "场馆", value: "均已确认开放"}, {label: "活动强度", value: "低—中"}, {label: "联游时长", value: "约3—4h"}],
+      alert: {tone: "blue", title: "已确认", text: "孔庙与博物馆10月5日正常开放；两处相邻，带好6人的实体身份证。"},
+      transport: [{icon: "车", route: "酒店 → 孔氏南宗家庙", time: "短途打车或步行", note: "以长辈体力和当日路况决定"}, {icon: "步", route: "孔庙 → 衢州博物馆", time: "步行几十米", note: "两处紧邻"}, {icon: "步", route: "博物馆 → 府山／老城", time: "步行或短途打车", note: "下午安排平路慢行"}],
+      timeline: [{time: "08:30", title: "外出早餐", text: "酒店无早餐；在水亭门、府山或老城附近选择清淡早餐。", level: "rest"}, {time: "09:00", title: "孔氏南宗家庙", text: "9:00–17:00，16:30停止入园；成人10元，60–69岁5元，70岁以上凭证件免票；无需预约。", level: "key"}, {time: "10:30", title: "衢州博物馆", text: "9:00–18:00，17:30停止入馆；免费、无需预约，重点看‘衢州六千年’、礼贤江山龙化石和南宋金娃娃。", level: "key"}, {time: "12:30", title: "午餐", text: "王阿盖、方家小厨等马站底/老城备选，点餐先说明不辣。", level: "rest"}, {time: "14:30", title: "府山公园", text: "全程平路，边走边看本地生活；累了就提前进入茶歇。", level: "normal"}, {time: "16:30", title: "茶歇", text: "半山书院、上林赋茶馆或南孔爷爷的书房，坐着休息1—2小时。", level: "rest"}, {time: "19:30", title: "信安湖／礼贤桥散步", text: "视体力选择短线看倒影；不强求走完整绿道。", level: "normal"}],
+      modules: [{icon: "核", title: "入馆信息", type: "booking", status: "已确认", statusType: "confirmed", summary: "孔庙与博物馆均可直接入馆。", items: ["孔庙无需预约；购票通常赠迷你《论语》，70岁以上免票人群不赠", "博物馆免费无需预约；实体身份证刷证，忘带可扫码登记", "两处联游预留约3—4小时"]}, {icon: "食", title: "本区餐饮备选", type: "food", status: "建议方案", statusType: "suggested", summary: "府山、马站底和老城按位置选择。", items: ["正餐：衢州人家、老土饭店、方家小厨、谢家小厨、快人快鱼、苹鑫菜馆", "小吃：汪馒头、府山豆腐花、王阿盖、素琴蛋卷", "重辣：老裴鸭头、雷记麻辣烫、三头一掌只作年轻人尝鲜"]}, {icon: "雨", title: "雨天替代", type: "rain", status: "建议方案", statusType: "suggested", summary: "室内场馆为主，户外段随时取消。", items: ["孔庙＋博物馆照常联游", "若仍想继续看展，可把中国儒学馆作为室内补充", "府山公园、信安湖改为短距离或取消"]}]
+    },
+    {
+      id: "day3", short: "D3", isoDate: "2026-10-06", date: "10.06 周二", title: "松园早市 · 鹿鸣放空 · 文化艺术中心", theme: "先吃烟火，再看展拍照", status: "建议方案", statusType: "suggested",
+      metrics: [{label: "早餐", value: "松园菜场"}, {label: "主区域", value: "鹿鸣／西区"}, {label: "活动强度", value: "低—中"}, {label: "室内时段", value: "下午"}],
+      alert: {tone: "yellow", title: "节奏提醒", text: "松园按约8:30出门，不为避队强行7点起床；下午文化艺术中心已确认10月6日开放。"},
+      transport: [{icon: "步", route: "酒店 → 松园菜场", time: "约300m", note: "步行前往，按现场人流调整"}, {icon: "车", route: "松园 → 鹿鸣山", time: "约10–15min", note: "直接打车"}, {icon: "车", route: "鹿鸣山 → 文化艺术中心", time: "以实时路况为准", note: "同属西区方向，现场调整"}],
+      timeline: [{time: "08:30", title: "松园菜场早市", text: "搁袋饼、葱花馒头、鸡蛋粿、肉蛋堡等；热门摊位可能排队。", level: "key"}, {time: "10:30", title: "鹿鸣山大草坪／红礼堂", text: "正常开放、免费；只在平地和院街走走，不登山。", level: "normal"}, {time: "12:30", title: "午餐", text: "鹿鸣山居或返回市区；也可按现场情况选择西区餐厅。", level: "rest"}, {time: "14:00", title: "衢州市文化艺术中心", text: "非遗馆、美术馆9:00–17:30（17:00停止入馆），图书馆8:30–21:00；免费无需预约。", level: "key"}, {time: "15:30", title: "看展与拍照", text: "非遗馆、3楼十米书墙、玻璃穹顶；长辈可在室内坐着休息。", level: "normal"}, {time: "17:00", title: "县学街／北门街二选一", text: "县学街更安静，北门街有钟楼和老城烟火；根据体力选一条。", level: "normal"}, {time: "19:00", title: "晚餐与夜市", text: "可在北门街、马站底或水亭门附近用餐；水亭门夜市作为补充，不强求二次前往。", level: "rest"}],
+      modules: [{icon: "食", title: "松园与西区备选", type: "food", status: "建议方案", statusType: "suggested", summary: "早餐小吃和西区正餐分开选择。", items: ["松园：风顺财馆、董爸爸烤饼、李泽烤饼、慧贞菜包、素琴蛋卷、喜多滋水晶糕", "西区：九九大排档（烤牛肉串、铁板鲫鱼）、渔乡村、方家菜谱、鱼米乡、梅苑味馆等", "辣度较高的小吃先询问能否不辣，无法调整就跳过"]}, {icon: "摄", title: "文化艺术中心亮点", type: "photo", status: "已确认", statusType: "confirmed", summary: "非遗馆、图书馆、美术馆均可室内慢逛。", items: ["非遗馆约3000㎡，集中展示300+非遗项目", "图书馆3楼十米书墙和玻璃穹顶适合拍照", "美术馆展览以当天展陈为准"]}, {icon: "雨", title: "雨天替代", type: "rain", status: "建议方案", statusType: "suggested", summary: "把户外鹿鸣山换成室内文化线。", items: ["城市规划展览馆9:00–17:00，建议通过‘衢州城展馆’公众号预约或现场扫码登记", "随后前往文化艺术中心看非遗馆、美术馆或图书馆", "雨停后只在北门街或水亭门短线散步"]}]
+    },
+    {
+      id: "day4", short: "D4", isoDate: "2026-10-07", date: "10.07 周三", title: "悠闲上午 · 伴手礼 · 返程", theme: "不赶路地结束旅程", status: "建议方案", statusType: "suggested",
+      metrics: [{label: "早餐", value: "约8:30"}, {label: "主区域", value: "老城／孔庙片区"}, {label: "活动强度", value: "低"}, {label: "返程", value: "15:00–18:00窗口"}],
+      alert: {tone: "blue", title: "返程原则", text: "上午完成文化或购物，午餐后取行李并前往车站；不安排下午到晚上连续游玩。"},
+      transport: [{icon: "步", route: "酒店周边早餐 → 儒学馆／伴手礼", time: "短途步行或打车", note: "按长辈体力调整"}, {icon: "车", route: "酒店 → 衢州站", time: "按返程车次倒推", note: "建议预留充足到站时间"}],
+      timeline: [{time: "08:30", title: "外出早餐", text: "酒店无早餐；可选府山豆腐花、附近小吃或前几日喜欢的店。", level: "rest"}, {time: "09:30", title: "中国儒学馆", text: "9:00–17:00，16:30停止入馆；免费、无需预约，刷身份证或扫码登记。", level: "key"}, {time: "10:45", title: "伴手礼与茶歇", text: "常山贡面、龙游发糕、衢州酥饼、笋干、麻饼、蛋卷等按需购买；再喝杯茶。", level: "normal"}, {time: "12:00", title: "午餐", text: "马站底或老城附近简单用餐，不再安排远距离移动。", level: "rest"}, {time: "返程前约1.5h", title: "取行李并前往衢州站", text: "按实际返程车次倒推时间，预留站内安检和候车时间。", level: "key"}, {time: "15:00–18:00", title: "高铁返程", text: "按已购车次返回上海。", level: "key"}],
+      modules: [{icon: "食", title: "伴手礼与早餐备选", type: "food", status: "建议方案", statusType: "suggested", summary: "少量购买，优先方便携带和真空包装。", items: ["小吃：慧贞菜包、素琴蛋卷、汪馒头北乡汤圆（现场食用）", "伴手礼：龙游发糕、常山贡面、衢州酥饼、笋干、邵永丰麻饼、素琴蛋卷", "午餐：马站底、老城或酒店周边就近解决"]}, {icon: "核", title: "儒学馆信息", type: "booking", status: "已确认", statusType: "confirmed", summary: "适合返程前的室内文化安排。", items: ["10月7日正常开放，9:00–17:00，16:30停止入馆", "免费、无需预约，刷身份证或现场扫码登记", "若前几日已参观或长辈不想看展，可改为伴手礼和茶歇"]}, {icon: "雨", title: "雨天替代", type: "rain", status: "建议方案", statusType: "suggested", summary: "只保留一个室内点，避免误车。", items: ["儒学馆与伴手礼二选一作为上午主安排", "若Day3未能完成文化艺术中心，可按返程时间短时补看图书馆或非遗馆", "午餐后直接取行李去车站，不安排水亭门夜景"]}]
+    }
+  ],
+  tasks: [
+    {title: "出发前复核场馆公告", text: "确认城市规划展览馆预约提示，以及各场馆国庆临时调整。", status: "出发前复核", type: "recheck"},
+    {title: "当天确认夜景活动", text: "10月4日、10月6日到水亭门后查看灯光秀和音乐喷泉具体场次。", status: "出发前复核", type: "recheck"},
+    {title: "按区域现场选餐厅", text: "从地点备选池中选择当日营业、排队合适且能做不辣的店。", status: "建议方案", type: "suggested"}
+  ]
+};
+
+</script>
+  <script>
+(function () {
+  if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
+  window.scrollTo(0, 0);
+  const data = window.TRIP_DATA;
+  const $ = (selector) => document.querySelector(selector);
+  const TASK_KEY = "travel-guide-completed-tasks";
+  const AVAILABLE_THEMES = ["desert-gold", "harbor-blue", "island-turquoise", "mountain-green", "heritage-red", "snow-blue", "city-night"];
+  const ICONS = {
+    日期: "📅", 同行: "👥", 交通: "🚄", 预算: "💰", 状态: "📌",
+    交: "🚄", 线: "🧭", 住: "🏨", 食: "🍜", 包: "🎒", 雨: "🌧️", 约: "🎟️", 核: "🪪",
+    城: "🏙️", 车: "🚕", 高: "🏔️", 岛: "🏝️", 外: "🌍", 亲: "👨‍👩‍👧‍👦", 摄: "📷", 步: "🚶"
+  };
+  const iconFor = (value) => ICONS[value] || value;
+
+  function formatItem(text) {
+    return String(text).split("；").map((segment) => {
+      const barIndex = segment.indexOf("｜");
+      if (barIndex > -1 && barIndex <= 8) {
+        const label = segment.slice(0, barIndex);
+        const rest = segment.slice(barIndex + 1);
+        return `<b class="item-label">${label}</b>｜${rest}`;
+      }
+      const colonIndex = segment.indexOf("：");
+      if (colonIndex > -1 && colonIndex <= 6) {
+        const label = segment.slice(0, colonIndex);
+        const rest = segment.slice(colonIndex + 1);
+        return `<b class="item-label">${label}</b>：${rest}`;
+      }
+      return segment;
+    }).join("；");
+  }
+
+  function applyTheme() {
+    const requestedTheme = data.meta.theme || "desert-gold";
+    const theme = AVAILABLE_THEMES.includes(requestedTheme) ? requestedTheme : "desert-gold";
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.themeLabel = data.meta.themeLabel || "目的地主题";
+    const themeColor = getComputedStyle(document.documentElement).getPropertyValue("--topbar").trim();
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta && themeColor) themeMeta.setAttribute("content", themeColor);
+  }
+
+  const status = (text, type) => `<span class="status ${type}">${text}</span>`;
+
+  function parseLocalDate(isoDate) {
+    const [year, month, day] = isoDate.split("-").map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  function toLocalISO(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function resolveCalendarContext() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const todayISO = toLocalISO(today);
+    const start = parseLocalDate(data.meta.startDate);
+    const end = parseLocalDate(data.meta.endDate);
+    const exactIndex = data.days.findIndex((day) => day.isoDate === todayISO);
+    let initialIndex = 0;
+
+    if (exactIndex >= 0) {
+      initialIndex = exactIndex;
+    } else if (today > end) {
+      initialIndex = data.days.length - 1;
+    } else if (today >= start) {
+      const previousMigratedDays = data.days
+        .map((day, index) => ({index, date: parseLocalDate(day.isoDate)}))
+        .filter((item) => item.date <= today);
+      initialIndex = previousMigratedDays.length ? previousMigratedDays[previousMigratedDays.length - 1].index : 0;
+    }
+
+    return {today, todayISO, start, end, exactIndex, initialIndex};
+  }
+
+  const calendarContext = resolveCalendarContext();
+
+  function renderMeta() {
+    $("#trip-kicker").textContent = data.meta.kicker;
+    $("#trip-title").textContent = data.meta.title;
+    $("#trip-subtitle").textContent = data.meta.subtitle;
+    $("#hero-tags").innerHTML = data.tags.map((tag) => `<span>${tag}</span>`).join("");
+
+    $("#hero-date").innerHTML = `<span aria-hidden="true">${iconFor("日期")}</span><span>${data.meta.dates}</span>`;
+
+    const route = data.meta.route || {};
+    $("#route-map-word").textContent = route.label || data.meta.themeLabel || "旅程";
+    ["a", "b", "c", "d"].forEach((key) => {
+      const node = $("#route-city-" + key);
+      if (node) node.textContent = (route.cities || [])["abcd".indexOf(key)] || "";
+    });
+  }
+
+  function renderOverview() {
+    const overviewGrid = $("#overview-grid");
+    if (!overviewGrid) return;
+    overviewGrid.innerHTML = data.overview.map((item) => `
+      <article class="overview-card tone-${item.tone}">
+        <div class="overview-card-top">
+          <span class="card-icon">${iconFor(item.icon)}</span>
+          ${status(item.status, item.statusType)}
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.body}</p>
+        <footer>${item.foot}</footer>
+      </article>
+    `).join("");
+  }
+
+  function renderCommonModules() {
+    const commonGrid = $("#common-module-grid");
+    if (!commonGrid) return;
+    const fixedOverviewIds = ["transport", "route", "lodging", "food-shopping", "packing"];
+    const visibleModules = data.commonModules.filter((module) => fixedOverviewIds.includes(module.id));
+    commonGrid.innerHTML = visibleModules.map((module) => `
+      <details class="common-card ${module.wide ? "wide" : ""}" data-common-id="${module.id}" ${module.id === "route" || module.id === "emergency" ? "open" : ""}>
+        <summary>
+          <span class="common-icon">${iconFor(module.icon)}</span>
+          <span class="common-title"><strong>${module.title}</strong></span>
+        </summary>
+        <ul>${module.items.map((item) => `<li>${formatItem(item)}</li>`).join("")}</ul>
+      </details>
+    `).join("");
+  }
+
+  function renderModuleCatalog() {
+    const catalog = $("#module-catalog");
+    if (!catalog) return;
+    const enabledModules = data.destinationModules.filter((module) => module.enabled);
+    const count = $("#module-count");
+    if (count) count.textContent = `本次启用 ${enabledModules.length} / ${data.destinationModules.length} 个可选模块`;
+    catalog.innerHTML = enabledModules.map((module) => `
+        <article class="catalog-card enabled">
+          <span class="catalog-icon">${iconFor(module.icon)}</span>
+          <div><span class="catalog-state">已启用</span><h3>${module.name}</h3><p>${module.text}</p></div>
+        </article>
+      `).join("");
+  }
+
+  function renderDays() {
+    const pagedDays = data.expectedDayCount > 3;
+    const missingDays = Math.max(0, data.expectedDayCount - data.days.length);
+    const tabs = data.days.map((day, index) => `
+      <button class="day-tab ${index === 0 ? "active" : ""} ${day.isoDate === calendarContext.todayISO ? "is-today" : ""}" data-day-index="${index}" type="button" role="tab" aria-selected="${index === 0}">
+        <strong>${day.short}</strong><span>${day.date}</span>${day.isoDate === calendarContext.todayISO ? "<em>今天</em>" : ""}
+      </button>
+    `).join("");
+    $("#day-selector").classList.toggle("short-trip", !pagedDays);
+    $("#day-selector").innerHTML = pagedDays ? `
+        <button class="day-arrow" id="day-prev" type="button" aria-label="上一天" disabled>‹</button>
+        <div class="day-tab-rail" role="tablist">${tabs}</div>
+        <button class="day-arrow" id="day-next" type="button" aria-label="下一天" ${data.days.length < 2 ? "disabled" : ""}>›</button>
+        <span class="day-migration-note" id="day-progress-label">已接入 ${data.days.length}/${data.expectedDayCount} 天${missingDays ? ` · 其余 ${missingDays} 天待迁移` : ""}</span>
+      ` : `
+        <div class="day-tab-rail" role="tablist">${tabs}</div>
+        <span class="day-migration-note" id="day-progress-label">${data.expectedDayCount} 天短途行程 · 连续展开</span>
+      `;
+
+    $("#day-list").innerHTML = data.days.map((day, index) => `
+      <article class="day-card" id="${day.id}" data-day-index="${index}" ${pagedDays && index > 0 ? "hidden" : ""}>
+        <header class="day-card-header">
+          <div class="day-index"><span>${day.short}</span><small>${day.date}</small></div>
+          <div class="day-title-block">
+            <div class="day-title-line"><span>${day.theme}</span></div>
+            <h3>${day.title}</h3>
+          </div>
+        </header>
+        <div class="metric-row">
+          ${day.metrics.map((item) => `<div><span>${item.label}</span><strong>${item.value}</strong></div>`).join("")}
+        </div>
+        <div class="day-body">
+          <aside class="day-side">
+            <div class="alert-box alert-${day.alert.tone}">
+              <strong>${day.alert.title}</strong><p>${day.alert.text}</p>
+            </div>
+            <div class="transport-panel">
+              <h4>🚕 交通接驳</h4>
+              ${day.transport.map((item) => `
+                <div class="transport-line">
+                  <span class="transport-icon">${iconFor(item.icon)}</span>
+                  <div><strong>${item.route}</strong><span>${item.time}</span><small>${item.note}</small></div>
+                </div>
+              `).join("")}
+            </div>
+          </aside>
+          <div class="timeline-panel">
+            <div class="panel-title"><h4>🕘 今日时间轴</h4><span>关键节点优先</span></div>
+            <ol class="timeline">
+              ${day.timeline.map((item) => `
+                <li class="timeline-${item.level}"><time>${item.time}</time><div><strong>${item.title}</strong><p>${item.text}</p></div></li>
+              `).join("")}
+            </ol>
+          </div>
+        </div>
+        <div class="module-grid">
+          ${day.modules.map((module) => `
+            <details class="detail-card ${module.type}">
+              <summary><span class="detail-icon">${iconFor(module.icon)}</span><span><strong>${module.title}</strong></span></summary>
+              <ul>${module.items.map((item) => `<li>${formatItem(item)}</li>`).join("")}</ul>
+            </details>
+          `).join("")}
+        </div>
+      </article>
+    `).join("");
+
+    $("#day-footer-nav").hidden = !pagedDays;
+    $("#day-footer-nav").innerHTML = pagedDays ? `
+      <button id="day-footer-prev" type="button" disabled><span>←</span> 上一天</button>
+      <span id="day-footer-status">第 1 / ${data.expectedDayCount} 天</span>
+      <button id="day-footer-next" type="button" ${data.days.length < 2 ? "disabled" : ""}>下一天 <span>→</span></button>
+    ` : "";
+  }
+
+  function showDay(index, moveToSection) {
+    const pagedDays = data.expectedDayCount > 3;
+    const safeIndex = Math.max(0, Math.min(index, data.days.length - 1));
+    document.querySelectorAll(".day-card").forEach((card, cardIndex) => {
+      card.hidden = pagedDays && cardIndex !== safeIndex;
+    });
+    document.querySelectorAll(".day-tab").forEach((tab, tabIndex) => {
+      const active = tabIndex === safeIndex;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
+      if (active) tab.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
+    });
+
+    if (pagedDays) {
+      const atStart = safeIndex === 0;
+      const atEnd = safeIndex === data.days.length - 1;
+      $("#day-prev").disabled = atStart;
+      $("#day-next").disabled = atEnd;
+      $("#day-footer-prev").disabled = atStart;
+      $("#day-footer-next").disabled = atEnd;
+      $("#day-progress-label").textContent = `第 ${safeIndex + 1} / ${data.expectedDayCount} 天 · ${data.days[safeIndex].title}`;
+      $("#day-footer-status").textContent = `第 ${safeIndex + 1} / ${data.expectedDayCount} 天`;
+    }
+    document.body.dataset.activeDay = String(safeIndex);
+    if (moveToSection) {
+      const target = pagedDays ? $("#days") : document.querySelector(`.day-card[data-day-index="${safeIndex}"]`);
+      target.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+  }
+
+  function renderTasks() {
+    const taskGrid = $("#task-grid");
+    if (!taskGrid) return;
+    const completed = JSON.parse(localStorage.getItem(TASK_KEY) || "[]");
+    taskGrid.innerHTML = data.tasks.map((task, index) => `
+      <label class="task-card ${completed.includes(index) ? "completed" : ""}">
+        <span class="task-check-wrap">
+          <input class="task-check" type="checkbox" data-task-index="${index}" ${completed.includes(index) ? "checked" : ""}>
+          <span class="task-check-ui" aria-hidden="true">✓</span>
+        </span>
+        <span class="task-content">
+          ${status(task.status, task.type)}
+          <strong>${task.title}</strong>
+          <small>${task.text}</small>
+        </span>
+      </label>
+    `).join("");
+  }
+
+  function parseMinutes(value) {
+    const match = String(value).match(/^(\d{1,2}):(\d{2})/);
+    return match ? Number(match[1]) * 60 + Number(match[2]) : null;
+  }
+
+  function getValidationResults() {
+    const results = [];
+    const missingDays = Math.max(0, data.expectedDayCount - data.days.length);
+    results.push({
+      severity: missingDays ? "pending" : "pass",
+      title: missingDays ? `还有 ${missingDays} 天尚未接入母版` : "每日行程已全部接入",
+      text: `当前已整理 ${data.days.length} / ${data.expectedDayCount} 天；未接入内容不会被视为缺失或删除。`
+    });
+
+    const pendingLodging = data.days.filter((day) => day.modules.some((module) => module.type === "lodging" && module.statusType === "pending"));
+    results.push({
+      severity: pendingLodging.length ? "pending" : "pass",
+      title: pendingLodging.length ? `${pendingLodging.length} 天住宿信息待补充` : "住宿信息完整",
+      text: pendingLodging.length ? `${pendingLodging.map((day) => day.short).join("、")} 仍需填写酒店、地址、电话、订单和取消规则。` : "已具备旅途中查找所需信息。"
+    });
+
+    const pendingTransport = data.days.flatMap((day) => day.transport.filter((item) => /待确认/.test(item.note)).map(() => day.short));
+    results.push({
+      severity: pendingTransport.length ? "recheck" : "pass",
+      title: pendingTransport.length ? `${pendingTransport.length} 项交通信息待确认` : "交通信息已确认",
+      text: pendingTransport.length ? `${[...new Set(pendingTransport)].join("、")} 的司机、车型或接驳信息仍需补齐。` : "当前交通信息无明显缺口。"
+    });
+
+    const timelineIssues = data.days.filter((day) => {
+      const times = day.timeline.map((item) => parseMinutes(item.time)).filter((item) => item !== null);
+      return times.some((time, index) => index > 0 && time < times[index - 1]);
+    });
+    results.push({
+      severity: timelineIssues.length ? "warning" : "pass",
+      title: timelineIssues.length ? "发现时间轴顺序异常" : "已接入日期的时间轴顺序正常",
+      text: timelineIssues.length ? `${timelineIssues.map((day) => day.short).join("、")} 需要重新检查开始时间。` : "Day 1—2 暂未发现前后时间倒置。"
+    });
+
+    return [...data.knownIssues, ...results];
+  }
+
+  function renderValidation() {
+    if (!$("#validation-summary") || !$("#validation-list")) return;
+    const results = getValidationResults();
+    const unresolved = results.filter((item) => item.severity !== "pass").length;
+    $("#validation-summary").innerHTML = `
+      <div><strong>${unresolved}</strong><span>项待处理</span></div>
+      <p>这部分用于区分“攻略还没写完”和“行程本身有冲突”。后续每次补充内容都会重新检查。</p>
+    `;
+    const icons = {warning: "!", pending: "…", recheck: "↻", pass: "✓"};
+    $("#validation-list").innerHTML = results.map((item) => `
+      <article class="validation-item ${item.severity}">
+        <span class="validation-icon">${icons[item.severity]}</span>
+        <div><strong>${item.title}</strong><p>${item.text}</p></div>
+      </article>
+    `).join("");
+  }
+
+  function bindInteractions() {
+    const body = document.body;
+
+    document.querySelectorAll(".day-tab").forEach((button) => {
+      button.addEventListener("click", () => {
+        showDay(Number(button.dataset.dayIndex), data.expectedDayCount <= 3);
+      });
+    });
+    if (data.expectedDayCount > 3) {
+      $("#day-prev").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) - 1, false));
+      $("#day-next").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) + 1, false));
+      $("#day-footer-prev").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) - 1, true));
+      $("#day-footer-next").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) + 1, true));
+    }
+
+    document.querySelectorAll(".task-check").forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        const checked = [...document.querySelectorAll(".task-check:checked")].map((item) => Number(item.dataset.taskIndex));
+        localStorage.setItem(TASK_KEY, JSON.stringify(checked));
+        checkbox.closest(".task-card").classList.toggle("completed", checkbox.checked);
+      });
+    });
+
+    const backTop = $("#back-top");
+    window.addEventListener("scroll", () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      $("#reading-progress").style.width = `${max > 0 ? window.scrollY / max * 100 : 0}%`;
+      backTop.classList.toggle("visible", window.scrollY > 500);
+    }, {passive: true});
+    backTop.addEventListener("click", () => window.scrollTo({top: 0, behavior: "smooth"}));
+    showDay(calendarContext.initialIndex, false);
+  }
+
+  applyTheme();
+  renderMeta();
+  renderOverview();
+  renderCommonModules();
+  renderModuleCatalog();
+  renderDays();
+  renderValidation();
+  renderTasks();
+  bindInteractions();
+  window.scrollTo(0, 0);
+  window.addEventListener("load", () => window.scrollTo(0, 0));
+})();
+
+</script>
+</body>
+</html>
