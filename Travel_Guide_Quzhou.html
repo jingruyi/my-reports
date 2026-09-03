@@ -1094,9 +1094,9 @@ window.TRIP_DATA = {
     `).join("");
     $("#day-selector").classList.toggle("short-trip", !pagedDays);
     $("#day-selector").innerHTML = pagedDays ? `
-        <button class="day-arrow" id="day-prev" type="button" aria-label="上一天" disabled>‹</button>
+        <button class="day-arrow" id="day-prev" type="button" aria-label="上一天" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
         <div class="day-tab-rail" role="tablist">${tabs}</div>
-        <button class="day-arrow" id="day-next" type="button" aria-label="下一天" ${data.days.length < 2 ? "disabled" : ""}>›</button>
+        <button class="day-arrow" id="day-next" type="button" aria-label="下一天" ${data.days.length < 2 ? "disabled" : ""}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
         <span class="day-migration-note" id="day-progress-label">已接入 ${data.days.length}/${data.expectedDayCount} 天${missingDays ? ` · 其余 ${missingDays} 天待迁移` : ""}</span>
       ` : `
         <div class="day-tab-rail" role="tablist">${tabs}</div>
