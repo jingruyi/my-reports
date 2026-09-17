@@ -1,0 +1,2411 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4b3020">
+  <title>青甘大环线旅行攻略</title>
+  <style>
+:root {
+  --ink: #4b3020;
+  --ink-deep: #2d1d14;
+  --paper: #f6efe2;
+  --card: #fffaf2;
+  --sand: #c9903f;
+  --sand-light: #ead2a7;
+  --lake: #9b6a35;
+  --lake-light: #f1e2ca;
+  --orange: #b75a2e;
+  --green: #7d7046;
+  --muted: #796b60;
+  --border: #e3d5bf;
+  --topbar: #342116;
+  --hero-start: #3a2418;
+  --hero-mid: #76502c;
+  --hero-end: #b77a34;
+  --hero-glow: rgba(255, 211, 134, .24);
+  --body-glow: rgba(218, 174, 104, .34);
+  --headline-accent: #e6c884;
+  --action-bg: #f3d797;
+  --route-dot: #f5d58d;
+  --metric-bg: #f5efe5;
+  --common-start: rgba(255,253,249,.9);
+  --common-end: rgba(244,231,207,.55);
+  --shadow: 0 18px 55px rgba(75, 48, 32, .12);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --nav-h: 66px;
+}
+
+:root[data-theme="harbor-blue"] {
+  --ink: #173b4f; --ink-deep: #0b1e2a; --paper: #eef5f7; --card: #fbfeff;
+  --sand: #d0a348; --sand-light: #efdcac; --lake: #2a7d83; --lake-light: #d9eff0;
+  --orange: #d06b3d; --green: #4f7f68; --muted: #60737b; --border: #d5e2e6;
+  --topbar: #102f40; --hero-start: #0c2b3a; --hero-mid: #14536a; --hero-end: #2f858b;
+  --hero-glow: rgba(111,210,216,.2); --body-glow: rgba(102,180,190,.22); --headline-accent: #f0cf7b;
+  --action-bg: #f4d98f; --route-dot: #f4d98f; --metric-bg: #edf4f5;
+  --common-start: rgba(251,254,255,.92); --common-end: rgba(218,238,239,.62);
+  --shadow: 0 18px 55px rgba(15, 54, 72, .12);
+}
+
+:root[data-theme="island-turquoise"] {
+  --ink: #16484d; --ink-deep: #0b2f34; --paper: #edf9f7; --card: #fbfffe;
+  --sand: #e0a94d; --sand-light: #f4dfaf; --lake: #168e91; --lake-light: #d5f3f0;
+  --orange: #d96f45; --green: #43856b; --muted: #5f7775; --border: #cfe4e1;
+  --topbar: #103a40; --hero-start: #0d3a43; --hero-mid: #16747a; --hero-end: #3db4aa;
+  --hero-glow: rgba(151,238,224,.23); --body-glow: rgba(69,183,166,.2); --headline-accent: #ffda91;
+  --action-bg: #ffe0a3; --route-dot: #ffe0a3; --metric-bg: #e9f5f2;
+  --common-start: rgba(251,255,254,.94); --common-end: rgba(211,241,235,.65);
+  --shadow: 0 18px 55px rgba(16, 79, 78, .12);
+}
+
+:root[data-theme="mountain-green"] {
+  --ink: #29483a; --ink-deep: #15291f; --paper: #f1f5ed; --card: #fcfff9;
+  --sand: #b68a4c; --sand-light: #e5d2ad; --lake: #4f8068; --lake-light: #dcebe2;
+  --orange: #b9633f; --green: #50795b; --muted: #68776c; --border: #d7e0d2;
+  --topbar: #213b2f; --hero-start: #1c3429; --hero-mid: #3f6752; --hero-end: #7c8a55;
+  --hero-glow: rgba(211,222,151,.2); --body-glow: rgba(147,177,128,.2); --headline-accent: #dfc989;
+  --action-bg: #e8d49a; --route-dot: #e8d49a; --metric-bg: #edf2e9;
+  --common-start: rgba(252,255,249,.94); --common-end: rgba(226,236,216,.68);
+  --shadow: 0 18px 55px rgba(39, 71, 54, .12);
+}
+
+:root[data-theme="heritage-red"] {
+  --ink: #2d2a26; --ink-deep: #1a1815; --paper: #faf8f4; --card: #ffffff;
+  --sand: #bf9463; --sand-light: #ece2d0; --lake: #6b7d70; --lake-light: #e7ede8;
+  --orange: #b06a4a; --green: #6f8268; --muted: #8b8177; --border: #e6e1d8;
+  --topbar: #7a4530; --hero-start: #8a4a2e; --hero-mid: #bf7b42; --hero-end: #e0b876;
+  --hero-glow: rgba(230,210,170,.14); --body-glow: rgba(200,180,140,.12); --headline-accent: #ddceac;
+  --action-bg: #ece2cd; --route-dot: #ece2cd; --metric-bg: #f6f3ee;
+  --common-start: rgba(255,255,255,.95); --common-end: rgba(240,235,225,.6);
+  --shadow: 0 18px 55px rgba(30, 28, 24, .09);
+}
+
+:root[data-theme="snow-blue"] {
+  --ink: #29475c; --ink-deep: #152b3a; --paper: #f1f6f9; --card: #fbfdff;
+  --sand: #83a9c2; --sand-light: #d2e3ed; --lake: #4f85a6; --lake-light: #dcebf3;
+  --orange: #c46f55; --green: #5d857c; --muted: #6d7d88; --border: #d5e1e8;
+  --topbar: #203b4f; --hero-start: #183246; --hero-mid: #3d6d89; --hero-end: #88afc4;
+  --hero-glow: rgba(220,244,255,.24); --body-glow: rgba(156,200,221,.2); --headline-accent: #d7ecf4;
+  --action-bg: #d9edf5; --route-dot: #d9edf5; --metric-bg: #edf3f7;
+  --common-start: rgba(251,253,255,.95); --common-end: rgba(221,235,244,.68);
+  --shadow: 0 18px 55px rgba(35, 70, 92, .12);
+}
+
+:root[data-theme="city-night"] {
+  --ink: #302b52; --ink-deep: #171429; --paper: #f3f1f7; --card: #fdfcff;
+  --sand: #a982ca; --sand-light: #e3d6ef; --lake: #596db0; --lake-light: #e0e5f5;
+  --orange: #c96982; --green: #587d77; --muted: #706d7d; --border: #ded9e7;
+  --topbar: #201c38; --hero-start: #1a1732; --hero-mid: #3e376c; --hero-end: #6c5793;
+  --hero-glow: rgba(210,184,244,.22); --body-glow: rgba(159,137,203,.18); --headline-accent: #ddc4f0;
+  --action-bg: #dec8ef; --route-dot: #dec8ef; --metric-bg: #efedf5;
+  --common-start: rgba(253,252,255,.95); --common-end: rgba(230,223,241,.68);
+  --shadow: 0 18px 55px rgba(43, 37, 79, .13);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink-deep);
+  background:
+    radial-gradient(circle at 12% 20%, var(--body-glow), transparent 30%),
+    var(--paper);
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  line-height: 1.7;
+}
+button, a { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; }
+
+.reading-progress {
+  position: fixed; z-index: 100; left: 0; top: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--sand), var(--action-bg), var(--lake));
+}
+.topbar {
+  position: fixed; z-index: 90; top: 0; left: 0; right: 0; height: var(--nav-h);
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+  padding: 0 max(22px, calc((100vw - 1180px) / 2));
+  color: white; background: color-mix(in srgb, var(--topbar) 95%, transparent); backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 750; letter-spacing: .04em; }
+.brand-mark {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px;
+  color: var(--ink-deep); background: linear-gradient(135deg, var(--action-bg), var(--sand));
+}
+.primary-nav { display: flex; align-items: center; gap: 28px; color: rgba(255,255,255,.78); font-size: .92rem; }
+.primary-nav a:hover { color: white; }
+
+.hero {
+  position: relative; min-height: 520px; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr); align-items: center; gap: 20px;
+  color: white; padding: 76px max(28px, calc((100vw - 1180px) / 2));
+  background:
+    radial-gradient(circle at 78% 18%, var(--hero-glow), transparent 26%),
+    linear-gradient(120deg, var(--hero-start), var(--hero-mid) 54%, var(--hero-end) 100%);
+  border-radius: 0 0 44px 44px;
+}
+.hero::after {
+  content: "ROUTE 01"; position: absolute; right: 5%; bottom: -34px;
+  font: 800 8rem/1 Georgia, serif; letter-spacing: -.04em; color: rgba(255,255,255,.055);
+}
+.hero-glow { position: absolute; border-radius: 50%; filter: blur(4px); }
+.hero-glow-one { width: 340px; height: 340px; right: 9%; top: -150px; background: color-mix(in srgb, var(--action-bg) 24%, transparent); }
+.hero-glow-two { width: 260px; height: 260px; left: 43%; bottom: -170px; background: color-mix(in srgb, var(--sand) 28%, transparent); }
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+.eyebrow, .section-kicker { margin: 0 0 10px; color: var(--headline-accent); font-size: .76rem; font-weight: 800; letter-spacing: .22em; }
+.hero h1 { margin: 0; font: 800 clamp(2.7rem, 5vw, 5rem)/1.08 Georgia, "Songti SC", serif; letter-spacing: -.03em; }
+.hero-subtitle { max-width: 660px; margin: 22px 0 0; color: rgba(255,255,255,.78); font-size: 1.08rem; }
+.hero-actions { display: flex; gap: 12px; margin-top: 32px; }
+.primary-action, .secondary-action {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 46px;
+  border-radius: 999px; padding: 0 20px; cursor: pointer;
+}
+.primary-action { color: var(--ink-deep); background: var(--action-bg); font-weight: 750; }
+.secondary-action { color: white; background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.24); }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+.hero-tags span { padding: 7px 12px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; background: rgba(255,255,255,.08); font-size: .82rem; }
+.hero-date { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); color: white; font-size: .92rem; font-weight: 600; letter-spacing: .02em; }
+.hero-route { position: relative; z-index: 1; min-height: 340px; }
+.route-map-word {
+  position: absolute; inset: 52px 22px auto auto; font: 800 7rem/1 Georgia, serif;
+  color: rgba(255,255,255,.08); letter-spacing: -.08em;
+}
+.route-orbit { position: absolute; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; transform: rotate(-14deg); }
+.route-orbit-one { width: 360px; height: 190px; right: 0; top: 74px; }
+.route-orbit-two { width: 280px; height: 280px; right: 38px; top: 32px; }
+.route-city { position: absolute; display: flex; align-items: center; gap: 8px; font-size: .82rem; color: rgba(255,255,255,.82); }
+.route-city .route-dot { width: 10px; height: 10px; border: 2px solid var(--route-dot); border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 6px color-mix(in srgb, var(--route-dot) 14%, transparent); }
+.route-city .route-label { width: auto; height: auto; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.route-city-a { right: 76px; top: 55px; }
+.route-city-b { right: 292px; top: 136px; }
+.route-city-c { right: 22px; top: 235px; }
+.route-city-d { right: 230px; top: 300px; }
+
+.quick-strip {
+  position: relative; z-index: 5; width: min(1120px, calc(100% - 32px)); margin: -32px auto 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); overflow: hidden;
+  background: var(--card); border: 1px solid rgba(228,221,208,.9); border-radius: 20px; box-shadow: var(--shadow);
+}
+.quick-item { padding: 20px 22px; border-right: 1px solid var(--border); }
+.quick-item:last-child { border-right: 0; }
+.quick-item span { display: block; color: var(--muted); font-size: .76rem; }
+.quick-item strong { display: block; margin-top: 2px; font-size: .94rem; }
+
+.page-shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 66px 0 100px; }
+.section-block { scroll-margin-top: calc(var(--nav-h) + 24px); margin-bottom: 80px; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+.section-heading h2 { margin: 0; font: 800 2.1rem/1.15 Georgia, "Songti SC", serif; color: var(--ink); }
+.section-note { color: var(--muted); font-size: .86rem; }
+.overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.overview-card { position: relative; overflow: hidden; min-height: 245px; padding: 26px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(23,59,79,.06); }
+.overview-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--accent); }
+.tone-blue { --accent: #6d7d78; }
+.tone-gold { --accent: var(--sand); }
+.tone-green { --accent: var(--green); }
+.overview-card-top { display: flex; justify-content: space-between; align-items: center; }
+.card-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; background: color-mix(in srgb, var(--accent) 14%, white); color: var(--accent); font-size: 1.25rem; font-weight: 800; }
+.overview-card h3 { margin: 24px 0 8px; font-size: 1.22rem; }
+.overview-card p { margin: 0; color: #4a4640; }
+.overview-card footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem; }
+.module-section { padding: 34px; border: 1px solid rgba(228,221,208,.92); border-radius: 24px; background: rgba(255,253,249,.58); }
+.common-section { padding: 34px; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(145deg, var(--common-start), var(--common-end)); }
+.common-module-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.common-card { border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,.88); overflow: hidden; }
+.common-card.wide { grid-column: 1 / -1; }
+.common-card summary { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; align-items: center; gap: 13px; min-height: 92px; padding: 17px 18px; cursor: pointer; list-style: none; }
+.common-card summary::-webkit-details-marker { display: none; }
+.common-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 13px; color: #fff8e8; background: var(--ink); font-weight: 800; }
+.common-title strong, .common-title small { display: block; }
+.common-title strong { color: var(--ink); font-size: 1rem; }
+.common-title small { margin-top: 3px; color: var(--muted); font-size: .76rem; line-height: 1.5; }
+.common-card ul { margin: 0; padding: 0 24px 20px 75px; color: #4a4640; font-size: .84rem; line-height: 1.7; }
+.common-card li + li { margin-top: 5px; }
+.common-card[open] { box-shadow: 0 10px 30px rgba(77,48,31,.07); }
+.module-catalog { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.catalog-card { display: grid; grid-template-columns: 46px 1fr; gap: 14px; min-height: 150px; padding: 18px; border: 1px solid var(--border); border-radius: 15px; background: var(--card); }
+.catalog-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; color: white; background: var(--lake); font-weight: 800; }
+.catalog-card.attention .catalog-icon { background: var(--sand); }
+.catalog-card.disabled { opacity: .48; filter: grayscale(.35); }
+.catalog-state { color: var(--orange); font-size: .7rem; font-weight: 800; }
+.catalog-card h3 { margin: 2px 0 4px; font-size: 1rem; }
+.catalog-card p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.55; }
+.status { display: inline-flex; align-items: center; width: fit-content; white-space: nowrap; padding: 4px 9px; border-radius: 999px; font-size: .7rem; font-weight: 750; }
+.status.confirmed { color: #27624b; background: #e2f1e9; }
+.status.suggested { color: #8a5b19; background: #f8ecd2; }
+.status.pending { color: #9b4938; background: #fae5df; }
+.status.recheck { color: #315f7a; background: #e1edf4; }
+
+.day-selector { width: min(720px, 100%); display: grid; grid-template-columns: 38px minmax(0, 1fr) 38px; align-items: center; gap: 8px; }
+.day-selector.short-trip { width: auto; grid-template-columns: minmax(0, 1fr); }
+.day-tab-rail { display: flex; gap: 8px; min-width: 0; overflow-x: auto; padding: 3px 2px 5px; scrollbar-width: none; scroll-snap-type: x proximity; }
+.day-tab-rail::-webkit-scrollbar { display: none; }
+.day-tab { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--card); border-radius: 12px; padding: 8px 12px; cursor: pointer; }
+.day-tab { flex: 0 0 auto; scroll-snap-align: center; }
+.day-tab strong { color: var(--ink); }
+.day-tab span { color: #6b6258; font-size: .78rem; }
+.day-tab em { padding: 2px 5px; border-radius: 999px; color: #fff5dc; background: var(--orange); font-size: .62rem; font-style: normal; }
+.day-tab.active { color: white; background: var(--orange); border-color: var(--orange); }
+.day-tab.active strong { color: #fff; }
+.day-tab.active span { color: rgba(255,255,255,.7); }
+.day-arrow { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); color: var(--ink); font-size: 1.45rem; cursor: pointer; }
+.day-arrow:disabled, .day-footer-nav button:disabled { opacity: .3; cursor: not-allowed; }
+.day-migration-note { grid-column: 1 / -1; justify-self: end; color: var(--muted); font-size: .72rem; }
+.day-card { scroll-margin-top: calc(var(--nav-h) + 20px); overflow: hidden; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.day-card[hidden] { display: none !important; }
+.day-card-header { display: grid; grid-template-columns: 130px 1fr; align-items: stretch; color: white; background: var(--ink); }
+.day-index { display: flex; flex-direction: column; justify-content: center; padding: 24px 26px; background: rgba(255,255,255,.055); }
+.day-index span { font: 800 2.4rem/1 Georgia, serif; color: var(--action-bg); }
+.day-index small { margin-top: 7px; color: rgba(255,255,255,.62); }
+.day-title-block { padding: 24px 28px; }
+.day-title-line { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.65); font-size: .82rem; }
+.day-title-block h3 { margin: 8px 0 0; font: 800 2rem/1.15 Georgia, "Songti SC", serif; }
+.metric-row { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--metric-bg); border-bottom: 1px solid var(--border); }
+.metric-row > div { padding: 18px 22px; border-right: 1px solid var(--border); }
+.metric-row > div:last-child { border-right: 0; }
+.metric-row span { display: block; color: var(--muted); font-size: .72rem; }
+.metric-row strong { display: block; margin-top: 2px; }
+.day-body { display: grid; grid-template-columns: minmax(290px, .78fr) minmax(0, 1.5fr); gap: 26px; padding: 30px; }
+.day-side { display: flex; flex-direction: column; gap: 18px; }
+.alert-box { padding: 18px; border-radius: 14px; border-left: 4px solid var(--alert); background: color-mix(in srgb, var(--alert) 10%, white); }
+.alert-yellow { --alert: #c2984f; }
+.alert-orange { --alert: #b06a4a; }
+.alert-blue { --alert: #4f7089; }
+.alert-box p { margin: 4px 0 0; color: #4a463f; font-size: .88rem; }
+.transport-panel, .timeline-panel { border: 1px solid var(--border); border-radius: 16px; background: white; }
+.transport-panel { padding: 20px; }
+.transport-panel h4, .panel-title h4 { margin: 0; color: var(--ink); }
+.transport-line { display: grid; grid-template-columns: 36px 1fr; gap: 12px; margin-top: 18px; }
+.transport-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: var(--lake); background: var(--lake-light); font-size: .76rem; font-weight: 800; }
+.transport-line strong, .transport-line span, .transport-line small { display: block; }
+.transport-line strong { font-size: .87rem; }
+.transport-line span { color: var(--orange); font-size: .8rem; }
+.transport-line small { color: var(--muted); font-size: .74rem; }
+.timeline-panel { padding: 22px 24px; }
+.panel-title { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.panel-title span { color: var(--muted); font-size: .75rem; }
+.timeline { list-style: none; margin: 0; padding: 12px 0 0; }
+.timeline li { position: relative; display: grid; grid-template-columns: 76px 1fr; gap: 16px; padding: 12px 0 12px 22px; border-left: 2px solid #e6dfd3; }
+.timeline li::before { content: ""; position: absolute; width: 10px; height: 10px; left: -6px; top: 20px; border-radius: 50%; background: #c5b9a6; border: 2px solid white; box-shadow: 0 0 0 1px #c5b9a6; }
+.timeline li.timeline-key::before { background: var(--orange); box-shadow: 0 0 0 1px var(--orange); }
+.timeline li.timeline-rest::before { background: var(--green); box-shadow: 0 0 0 1px var(--green); }
+.timeline time { color: var(--orange); font-weight: 800; font-size: .86rem; }
+.timeline strong { display: block; }
+.timeline p { margin: 2px 0 0; color: #6b6258; font-size: .85rem; }
+.module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 30px 30px; }
+.day-footer-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: 18px; }
+.day-footer-nav button { width: fit-content; min-height: 42px; padding: 0 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer; }
+.day-footer-nav button:last-child { justify-self: end; }
+.day-footer-nav > span { color: var(--muted); font-size: .78rem; }
+.detail-card { border: 1px solid var(--border); border-radius: 14px; background: #fff; }
+.detail-card summary { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; min-height: 86px; padding: 15px; cursor: pointer; list-style: none; }
+.detail-card summary::-webkit-details-marker { display: none; }
+.detail-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: white; background: var(--lake); font-size: .72rem; font-weight: 800; }
+.detail-card summary strong, .detail-card summary small { display: block; }
+.detail-card summary small { margin-top: 2px; color: var(--muted); font-size: .72rem; line-height: 1.45; }
+.detail-card summary::after {
+  content: "⌄";
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform .25s ease;
+  display: inline-block;
+  transform: translateY(-2px);
+}
+.detail-card[open] summary::after {
+  transform: translateY(-2px) rotate(180deg);
+}
+.detail-card ul { margin: 0; padding: 0 22px 18px 48px; color: #4a4640; font-size: .84rem; }
+.task-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.validation-section { padding: 34px; color: white; background: var(--ink-deep); border-radius: 26px; }
+.validation-section .section-kicker { color: var(--action-bg); }
+.validation-section .section-heading h2 { color: white; }
+.validation-section .section-note { color: rgba(255,255,255,.58); }
+.validation-summary { display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: center; margin-bottom: 18px; padding: 18px 20px; border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: rgba(255,255,255,.06); }
+.validation-summary div { display: flex; align-items: baseline; gap: 8px; }
+.validation-summary strong { color: var(--action-bg); font: 800 2.4rem/1 Georgia, serif; }
+.validation-summary span { color: rgba(255,255,255,.66); font-size: .76rem; }
+.validation-summary p { margin: 0; color: rgba(255,255,255,.67); font-size: .86rem; }
+.validation-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.validation-item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 15px; border-radius: 14px; background: rgba(255,255,255,.07); }
+.validation-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-weight: 900; background: rgba(255,255,255,.12); }
+.validation-item.warning .validation-icon { color: #ffd6c3; background: rgba(201,109,60,.36); }
+.validation-item.pending .validation-icon { color: #ffe3a9; background: rgba(215,163,92,.28); }
+.validation-item.recheck .validation-icon { color: #c9ebed; background: rgba(42,125,131,.42); }
+.validation-item.pass .validation-icon { color: #d5f3df; background: rgba(79,127,104,.48); }
+.validation-item strong { display: block; font-size: .9rem; }
+.validation-item p { margin: 3px 0 0; color: rgba(255,255,255,.6); font-size: .76rem; line-height: 1.55; }
+.task-card { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 22px; border: 1px dashed #cdbfa9; border-radius: 16px; background: rgba(255,253,249,.72); cursor: pointer; transition: .18s ease; }
+.task-card:hover { transform: translateY(-2px); border-color: var(--sand); background: var(--card); }
+.task-check { position: absolute; opacity: 0; pointer-events: none; }
+.task-check-wrap { position: relative; padding-top: 2px; }
+.task-check-ui { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #cdbfa9; border-radius: 9px; color: transparent; background: white; transition: .18s ease; }
+.task-check:focus-visible + .task-check-ui { outline: 3px solid rgba(42,125,131,.24); }
+.task-check:checked + .task-check-ui { color: white; background: var(--green); border-color: var(--green); }
+.task-content { display: block; }
+.task-content strong, .task-content small { display: block; }
+.task-content strong { margin: 14px 0 5px; font-size: 1.02rem; }
+.task-content small { color: var(--muted); font-size: .82rem; line-height: 1.6; }
+.task-card.completed { opacity: .66; border-style: solid; }
+.task-card.completed .task-content strong { text-decoration: line-through; }
+
+.status-dialog { width: min(520px, calc(100% - 28px)); border: 0; border-radius: 24px; padding: 34px; color: var(--ink-deep); box-shadow: 0 30px 100px rgba(11,30,42,.35); }
+.status-dialog::backdrop { background: rgba(10,27,38,.62); backdrop-filter: blur(4px); }
+.status-dialog h2 { margin: 0 0 12px; font-family: Georgia, "Songti SC", serif; }
+.status-dialog p:not(.section-kicker) { color: var(--muted); }
+.dialog-close { position: absolute; right: 18px; top: 14px; border: 0; background: transparent; font-size: 1.6rem; cursor: pointer; }
+.status-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.mode-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.mode-compare div { padding: 14px; border-radius: 12px; background: #f7efe1; }
+.mode-compare strong, .mode-compare span { display: block; }
+.mode-compare span { margin-top: 3px; color: var(--muted); font-size: .76rem; line-height: 1.55; }
+.back-top { position: fixed; z-index: 80; right: 22px; bottom: 22px; width: 44px; height: 44px; border: 0; border-radius: 50%; color: white; background: var(--orange); box-shadow: 0 10px 30px rgba(23,59,79,.28); opacity: 0; pointer-events: none; transform: translateY(12px); transition: .2s ease; cursor: pointer; }
+.back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-route { display: none; }
+  .quick-strip { grid-template-columns: repeat(2, 1fr); }
+  .quick-item { border-bottom: 1px solid var(--border); }
+  .overview-grid, .task-grid { grid-template-columns: 1fr; }
+  .module-catalog { grid-template-columns: repeat(2, 1fr); }
+  .validation-list { grid-template-columns: 1fr; }
+  .overview-card { min-height: 0; }
+  .day-heading { align-items: start; flex-direction: column; }
+  .day-selector { width: 100%; }
+  .day-body { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 650px) {
+  .hero { display: block; padding: 54px 18px 70px; border-radius: 0 0 28px 28px; }
+  .hero::after { display: none; }
+  .hero h1 { font-size: clamp(2.25rem, 12vw, 3.25rem); }
+  .hero-subtitle { font-size: .94rem; }
+  .hero-actions { justify-content: center; }
+  .secondary-action { background: rgba(9,39,52,.28); }
+  .hero-tags { gap: 6px; }
+  .hero-tags span { padding: 5px 9px; font-size: .74rem; }
+  .hero-date { padding: 6px 14px; font-size: .84rem; margin-top: 14px; }
+  .quick-strip { grid-template-columns: 1fr 1fr; margin-top: -30px; border-radius: 16px; }
+  .quick-item { padding: 14px; }
+  .quick-item:nth-child(even) { border-right: 0; }
+  .quick-item:last-child { grid-column: 1 / -1; }
+  .page-shell { width: min(100% - 24px, 1120px); padding-top: 48px; }
+  .section-block { margin-bottom: 58px; }
+  .section-heading h2 { font-size: 1.75rem; }
+  .module-section { padding: 22px 16px; }
+  .common-section { padding: 22px 16px; }
+  .common-module-grid { grid-template-columns: 1fr; }
+  .common-card.wide { grid-column: auto; }
+  .common-card summary { grid-template-columns: 38px minmax(0, 1fr); min-height: 82px; padding: 15px; }
+  .common-card summary .status { grid-column: 2; }
+  .common-card ul { padding: 0 18px 18px 56px; }
+  .module-catalog { grid-template-columns: 1fr; }
+  .validation-section { padding: 24px 16px; }
+  .validation-summary { grid-template-columns: 1fr; gap: 6px; }
+  .section-note { display: none; }
+  .day-card { border-radius: 20px; }
+  .day-card-header { grid-template-columns: 1fr; }
+  .day-index { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 10px; padding: 18px 20px 10px; }
+  .day-index span { font-size: 1.65rem; }
+  .day-title-block { padding: 8px 20px 20px; }
+  .day-title-block h3 { font-size: 1.7rem; }
+  .day-title-line { flex-wrap: wrap; }
+  .metric-row { grid-template-columns: 1fr 1fr; }
+  .metric-row > div { padding: 13px 16px; border-bottom: 1px solid var(--border); }
+  .metric-row > div:nth-child(even) { border-right: 0; }
+  .day-body { padding: 18px; gap: 16px; }
+  .timeline-panel { padding: 18px; }
+  .timeline li { grid-template-columns: 58px 1fr; gap: 9px; padding-left: 16px; }
+  .module-grid { grid-template-columns: 1fr; padding: 0 18px 18px; }
+  .detail-card summary { grid-template-columns: 38px 1fr auto; }
+  .detail-card summary .status { grid-column: 2; }
+  .mode-compare { grid-template-columns: 1fr; }
+}
+
+@media print {
+  body { padding: 0; background: white; }
+  .topbar, .reading-progress, .back-top, .hero-actions, .day-selector, .day-footer-nav { display: none !important; }
+  .hero { min-height: 0; padding: 36px; border-radius: 0; print-color-adjust: exact; }
+  .hero-route { display: none; }
+  .quick-strip { margin: 18px auto; box-shadow: none; }
+  .page-shell { padding: 20px 0; }
+  .overview-card, .day-card, .task-card { box-shadow: none; break-inside: avoid; }
+  .day-card[hidden] { display: block !important; margin-top: 24px; }
+  .section-block { margin-bottom: 30px; }
+}
+
+/* ===== 港澳版风格优化：更轻、更清楚、更适合手机查看 ===== */
+:root {
+  --shadow: 0 4px 18px rgba(30, 28, 24, .08);
+  --radius-lg: 20px;
+  --radius-md: 16px;
+}
+
+body {
+  background: #faf8f4;
+  color: #262320;
+  line-height: 1.82;
+}
+
+.topbar {
+  background: rgba(122, 69, 48, .96);
+  border-bottom-color: rgba(224, 208, 178, .2);
+}
+
+.primary-nav {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.brand-mark {
+  border-radius: 12px;
+  font-size: 1.08rem;
+}
+
+.hero {
+  min-height: 420px;
+  display: block;
+  padding: 58px 20px 52px;
+  text-align: center;
+  border-radius: 0 0 42px 42px;
+  background: linear-gradient(135deg, #8a4a2e 0%, #bf7b42 45%, #d9a856 75%, #e0b876 100%);
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.65rem);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .16);
+}
+
+.hero-subtitle {
+  max-width: 780px;
+  margin: 16px auto 0;
+  font-size: 1.02rem;
+}
+
+.hero-actions {
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.hero-route {
+  display: none;
+}
+
+.hero-tags {
+  justify-content: center;
+  margin: 24px auto 0;
+}
+
+.quick-strip {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-top: -26px;
+  border-radius: 18px;
+}
+
+.quick-item {
+  padding: 16px 20px;
+}
+
+.quick-item span {
+  color: var(--ink);
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+.quick-item span em {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: .76rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.quick-item strong {
+  margin-top: 5px;
+  color: #3a3630;
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+.page-shell {
+  padding-top: 52px;
+}
+
+.section-block {
+  margin-bottom: 58px;
+}
+
+.section-heading {
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  display: inline-block;
+  padding-bottom: 7px;
+  border-bottom: 3px solid var(--sand);
+  color: var(--ink);
+  font-size: 1.85rem;
+}
+
+.section-kicker {
+  margin-bottom: 6px;
+  color: var(--sand);
+  letter-spacing: .18em;
+}
+
+.common-section {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.common-module-grid {
+  gap: 14px;
+}
+
+.common-card {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(30, 28, 24, .07);
+}
+
+.common-card summary {
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  min-height: 82px;
+  padding: 14px 16px;
+}
+
+.common-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: transparent;
+  font-size: 1.7rem;
+  transform: translateY(-2px);
+}
+
+.common-title strong {
+  color: var(--ink);
+  font-size: 1.04rem;
+}
+
+.common-title small {
+  font-size: .78rem;
+}
+
+.common-card summary::after {
+  content: "⌄";
+  color: var(--muted);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform .25s ease;
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+.common-card[open] summary::after {
+  transform: translateY(-2px) rotate(180deg);
+}
+
+.common-card ul {
+  padding: 0 22px 18px 70px;
+  color: #4a463f;
+  font-size: .88rem;
+}
+
+.common-card li::marker {
+  color: var(--orange);
+}
+
+.item-label {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.common-categories {
+  padding: 0 22px 18px 22px;
+}
+
+.common-category {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.common-category:first-child {
+  border-top: 0;
+  padding-top: 4px;
+}
+
+.common-category-title {
+  display: block;
+  font-size: .92rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.common-category ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+  color: #4a463f;
+  font-size: .88rem;
+  line-height: 1.7;
+}
+
+.common-tone-blue { color: #4f7089; }
+.common-tone-green { color: #6f8268; }
+.common-tone-sand { color: #bf9463; }
+.common-tone-rose { color: #b5697f; }
+.common-tone-red { color: #b3503f; }
+.common-tone-orange { color: #b06a4a; }
+.common-tone-yellow { color: #c2984f; }
+.common-tone-brown { color: #7a5c3e; }
+.common-tone-default { color: var(--orange); }
+
+.day-card {
+  overflow: visible;
+  border-left: 6px solid var(--orange);
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(30, 28, 24, .08);
+}
+
+.day-card-header {
+  position: relative;
+  display: block;
+  color: var(--ink);
+  background: transparent;
+}
+
+.day-index {
+  position: absolute;
+  z-index: 2;
+  top: -16px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 16px;
+  border-radius: 999px;
+  background: var(--orange);
+}
+
+.day-index span {
+  color: #fff;
+  font: 800 1rem/1 "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+.day-index small {
+  margin-top: 0;
+  color: rgba(255, 255, 255, .8);
+  font-size: .74rem;
+}
+
+.day-title-block {
+  padding: 34px 24px 18px;
+}
+
+.day-title-line {
+  color: #6b6258;
+}
+
+.day-title-block h3 {
+  margin-top: 9px;
+  color: var(--ink);
+  font-size: 1.75rem;
+}
+
+.metric-row {
+  background: #f6f3ee;
+}
+
+.metric-row strong {
+  color: #3a3630;
+  font-size: .9rem;
+}
+
+.day-body {
+  gap: 20px;
+  padding: 24px;
+}
+
+.alert-box {
+  border-radius: 10px;
+}
+
+.transport-panel,
+.timeline-panel {
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(30, 28, 24, .035);
+}
+
+.transport-icon,
+.detail-icon {
+  font-size: 1.08rem;
+}
+
+.transport-icon {
+  background: transparent;
+  font-size: 1.4rem;
+}
+
+.timeline li {
+  border-left-color: #e3ded3;
+}
+
+.timeline time {
+  color: var(--orange);
+}
+
+.detail-card {
+  border-radius: 14px;
+  background: #fff;
+}
+
+.detail-card summary {
+  min-height: 78px;
+  padding: 13px 14px;
+}
+
+.detail-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  color: var(--ink);
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  transform: translateY(-2px);
+}
+
+.status {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: .68rem;
+}
+
+.back-top {
+  background: var(--orange);
+}
+
+@media (max-width: 650px) {
+  .hero {
+    padding: 46px 16px 62px;
+    border-radius: 0 0 26px 26px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+  .quick-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .common-section {
+    padding: 0;
+  }
+  .common-card summary {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    padding: 13px;
+  }
+  .common-card summary .status {
+    grid-column: auto;
+  }
+  .common-card ul {
+    padding-left: 58px;
+  }
+  .day-title-block {
+    padding: 32px 18px 16px;
+  }
+  .day-title-block h3 {
+    font-size: 1.55rem;
+  }
+  .day-body {
+    padding: 18px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="trip-title">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+      <div class="hero-content">
+        <p class="eyebrow" id="trip-kicker"></p>
+        <h1 id="trip-title"></h1>
+        <p class="hero-subtitle" id="trip-subtitle"></p>
+        <div class="hero-date" id="hero-date"></div>
+        <div class="hero-actions">
+          <a class="primary-action" href="#days">查看每日行程 <span>↓</span></a>
+        </div>
+        <div class="hero-tags" id="hero-tags" aria-label="旅行标签"></div>
+      </div>
+      <div class="hero-route" aria-label="目的地路线示意">
+        <div class="route-orbit route-orbit-one"></div>
+        <div class="route-orbit route-orbit-two"></div>
+        <div class="route-map-word" id="route-map-word"></div>
+        <div class="route-city route-city-a"><span class="route-dot"></span><span class="route-label" id="route-city-a"></span></div>
+        <div class="route-city route-city-b"><span class="route-dot"></span><span class="route-label" id="route-city-b"></span></div>
+        <div class="route-city route-city-c"><span class="route-dot"></span><span class="route-label" id="route-city-c"></span></div>
+        <div class="route-city route-city-d"><span class="route-dot"></span><span class="route-label" id="route-city-d"></span></div>
+      </div>
+    </section>
+
+    <div class="page-shell">
+      <section class="section-block common-section" id="common-modules">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">TRIP ESSENTIALS</p>
+          <h2>行前总表</h2>
+          </div>
+        </div>
+        <div class="common-module-grid" id="common-module-grid"></div>
+      </section>
+
+      <section class="section-block" id="days">
+        <div class="section-heading day-heading">
+          <div>
+            <p class="section-kicker">DAY BY DAY</p>
+            <h2>每日详细行程</h2>
+          </div>
+          <div class="day-selector" id="day-selector" aria-label="选择行程日期"></div>
+        </div>
+        <div id="day-list"></div>
+        <div class="day-footer-nav" id="day-footer-nav" aria-label="切换上一天或下一天"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <button class="back-top" id="back-top" type="button" aria-label="返回顶部">↑</button>
+  <!-- 复制新攻略时，主要替换下面 window.TRIP_DATA 数据；页面结构和样式保持不变。 -->
+  <script>
+window.TRIP_DATA = {
+  meta: {
+    kicker: "2026 · AUTUMN SILK ROAD JOURNEY",
+    title: "上海出发 · 青甘大环线",
+    subtitle: "10天9晚｜雪山草原、丹霞丝路、戈壁盐湖与青海湖",
+    theme: "desert-gold",
+    themeLabel: "沙漠金",
+    dates: "2026.09.23 — 10.02",
+    startDate: "2026-09-23",
+    endDate: "2026-10-02",
+    people: "三位女生",
+    transport: "往返飞机 + 5 座 SUV 包车",
+    budget: "基础团费约 ¥5,000—6,000 / 人",
+    status: "包车排表已确认 · 个别订单待补"
+  },
+  tags: ["祁连秋色", "七彩丹霞", "敦煌丝路", "柴达木戈壁", "水上雅丹", "盐湖日落", "高原慢节奏"],
+  overview: [
+    {
+      icon: "交", tone: "blue", title: "往返大交通", status: "出发前复核", statusType: "recheck",
+      body: "去程 9C7165：上海浦东 T2 08:15 → 西宁 T3 12:00；返程 9C6834：西宁 T3 20:55 → 上海虹桥 T1 23:40。",
+      foot: "航班号与时刻来自原始攻略；订单号、行李额和实际出票状态待补。"
+    },
+    {
+      icon: "线", tone: "gold", title: "环线方向", status: "建议方案", statusType: "suggested",
+      body: "西宁 → 祁连 → 张掖 → 嘉峪关 → 敦煌 → 大柴旦 → 水上雅丹 → 茶卡 → 青海湖 → 西宁。",
+      foot: "以旅行社包车排表为主；Day 5 演出票、Day 9 茶卡安排和具体住宿订单待补。"
+    },
+    {
+      icon: "高", tone: "green", title: "高原与长途节奏", status: "出发前复核", statusType: "recheck",
+      body: "西宁首日轻适应；祁连、大柴旦、茶卡和青海湖阶段控制活动强度，戈壁路段避免夜间赶路。",
+      foot: "健康建议仅作行程提醒；个人病史、药物和保险信息需要另行补充。"
+    }
+  ],
+  commonModules: [
+    {
+      id: "transport", icon: "大交通", title: "交通信息", status: "出发前复核", statusType: "recheck",
+      summary: "往返航班 + 全程 5 座 SUV 包车。",
+      items: [
+        "去程｜2026.09.23 春秋航空 9C7165｜上海浦东 T2 08:15 → 西宁曹家堡 T3 12:00",
+        "返程｜2026.10.02 春秋航空 9C6834｜西宁曹家堡 T3 20:55 → 上海虹桥 T1 23:40",
+        "当地｜全程 5 座 SUV 包车"
+      ]
+    },
+    {
+      id: "lodging", icon: "住宿", title: "住宿信息", status: "待补充", statusType: "pending",
+      summary: "9晚住宿已包含；酒店按旅行社暂定排表记录，均以‘或同级’为准。",
+      items: [
+        "D1｜西宁｜白云翔羚酒店（或同级）",
+        "D2｜祁连｜盛唐翠光酒店（或同级）",
+        "D3｜张掖｜丹霞锦华酒店（或同级）",
+        "D4｜嘉峪关｜遇见酒店（或同级）",
+        "D5｜鸣沙山｜顶奢帐篷",
+        "D6｜敦煌｜敦煌山庄",
+        "D7｜大柴旦｜怡景酒店（或同级）",
+        "D8｜水上雅丹｜孤独星际（携程自订）",
+        "D9｜青海湖｜蓝峰酒店（或同级）",
+        "D10｜无住宿｜当晚航班返沪"
+      ]
+    },
+    {
+      id: "route", icon: "总路线", title: "总行程路线", status: "建议方案", statusType: "suggested", wide: true,
+      summary: "10天包车路线与住宿城市已按旅行社排表更新。",
+      items: [
+        "D1｜上海 → 西宁｜早班机抵达，适应高原节奏",
+        "D2｜西宁 → 祁连｜祁连山草原与卓尔山",
+        "D3｜祁连 → 张掖｜扁都口秋色与七彩丹霞日落",
+        "D4｜张掖 → 平山湖 → 嘉峪关｜平山湖峡谷步行日",
+        "D5｜嘉峪关 → 敦煌｜嘉峪关关城后前往敦煌",
+        "D6｜敦煌核心日｜莫高窟、鸣沙山与月牙泉",
+        "D7｜敦煌 → 大柴旦｜戈壁公路与翡翠湖",
+        "D8｜大柴旦 → 水上雅丹｜荒漠湖泊，夜宿水上雅丹附近",
+        "D9｜水上雅丹 → 德令哈 → 茶卡 → 青海湖｜茶卡与青海湖按天气和向导安排",
+        "D10｜青海湖 → 西宁机场 → 上海｜青海湖收尾后返程"
+      ]
+    },
+    {
+      id: "food-shopping", icon: "美食", title: "美食与购物", status: "建议方案", statusType: "suggested",
+      summary: "已按行程地点加入两篇小红书的餐食、酸奶和冰品候选；具体门店与营业信息待复核。",
+      items: [
+        "沿途特色｜清炖羊肉、炕锅土豆、沙葱炒蛋、驴肉黄面、牛肉小饭、浆水面、杏皮水、八宝茶",
+        "非羊肉稳妥选择｜牦牛肉面、炕锅鸡、大盘鸡、卷子鸡、驴肉黄面、土豆牛肉、素菜砂锅",
+        "西宁候选｜作者实吃艾菲尔双拼炕锅、宝葫芦甜醅无糖奶茶、振明酸奶、青海土火锅；评论推荐麻辣烫、抓面和商业巷西北口味关东煮",
+        "敦煌市区补充线索｜笔记作者列出明祥麻辣烫、胡杨焖饼、米记羊肉粉汤、杨记干粮等候选；建荣市场可看葡萄、李广桃、杏干和冻干，具体口味、营业状态与价格均需现场复核",
+        "沿途零食｜青海酸奶与奶制品、张掖前进酸奶／思露杏皮茶、敦煌杏皮气泡水／杏干、盐湖与景区主题冰淇淋",
+        "敦煌夜市饮品候选｜驼奶特调：笔记作者评价口感惊喜、店铺布置有敦煌特色；评论有人表示夜市内不易找到，原笔记定位信息未能在当前页面稳定读取，先按现场定位和营业状态核实，不专程绕路",
+        "购物比价原则｜景区、夜市和网红街可能有溢价；同类商品先问 2—3 家，区分明码实价、普通摊位与官方授权商品，不因所谓“统一价”或强推套餐冲动购买",
+        "近期敦煌实购参考（非统一价）｜笔记记录夜市敦亭丝巾可比较材质并尝试议价，冰箱贴本次约 10 元 4 个、骆驼挂件约 8—10 元；建荣市场杏干本次体验有分歧，且部分推荐可能受赠品影响，多逛几家再买",
+        "网友价格线索（未核实）｜普通葡萄干约 ¥15—25／斤，杏干、黑枸杞等约 ¥30—45／斤，青稞饼约 ¥2、牛肉青稞馕约 ¥10；购买散装食品先确认计价单位、净重、生产信息与封装",
+        "伴手礼地点候选｜西宁大新街可先看平价小件；敦煌盛憶轩／敦盛工艺品批发可比较冰箱贴、挂件和文创；西宁湖灵野集及附近安多手作作为质量和设计感更强的可选店，地址、营业状态与价格需地图／现场核验",
+        "敦煌夜市点心候选｜骆小姐文创酥饼可关注李广杏酥、西北沙枣面酥；笔记称包装适合送人且人均几十元，但属于单店体验，购买前确认口味、配料、保质期和长途携带防压",
+        "西宁应急补购｜若行李延误或临时缺衣物，可在新千夜市及周边批发市场补买披肩、帽子、配饰和冲锋衣；笔记记录普通披肩约 ¥25、加绒披肩约 ¥45、配饰约 ¥10—30、三合一冲锋衣约 ¥150，靴子约 ¥10—20但评论提醒质量一般，优先自带舒适鞋。营业到约 24:00 的说法需现场确认",
+        "德令哈可选绕行餐食｜有笔记推荐深夜营业的炕锅羊排／羊肠、洋芋粉、烤饼、咸麦仁粥和烤羊肉串，人均约 ¥40；本次默认路线不经过德令哈，且评论出现排队、羊肉膻味和‘有人踩雷’等相反反馈，仅在调整路线并核实店名、营业状态后考虑",
+        "待补｜各城市最终餐厅、营业时间、人均、排队情况、伴手礼与正规购买点；网友口味评价不等于已确认"
+      ]
+    },
+    {
+      id: "packing", icon: "行李", title: "行李清单", status: "建议方案", statusType: "suggested",
+      summary: "按 7 类整理，优先准备必需品；带或不带按 9 月底天气和实际活动取舍。",
+      categories: [
+        {title: "证件与电子", tone: "blue", items: ["身份证、订单截图、少量现金", "充电宝、充电线、车载充电器、多口充电头", "离线地图；相机备用电池和存储卡（如带相机）"]},
+        {title: "生活用品与卫生", tone: "green", items: ["湿巾、湿厕纸、纸巾、垃圾袋", "一次性内裤、洗脸巾、压缩浴巾、眼罩", "少量马桶垫、洗衣凝珠"]},
+        {title: "服饰与鞋", tone: "sand", items: ["冲锋衣或防风外套、3—4 条长裤、速干上衣", "运动鞋、厚袜、保暖帽", "鸣沙山换鞋"]},
+        {title: "防晒与护肤", tone: "rose", items: ["高倍防晒霜、偏光墨镜、防晒帽", "润唇膏、护手霜、保湿霜、眼药水", "洗护和美妆分装"]},
+        {title: "高原与健康", tone: "red", items: ["个人常用药、晕车药、肠胃药、感冒药、创可贴", "生理性海水喷雾、保温杯", "血氧仪（可选）"]},
+        {title: "车上补给", tone: "yellow", items: ["饮用水、热饮", "巧克力、坚果、面包、牛肉干或能量棒", "电解质饮料／葡萄糖少量备用"]},
+        {title: "风沙与盐湖", tone: "brown", items: ["手机挂绳、手机／相机密封防沙袋", "手机防水袋（近水拍摄时）、脏衣物收纳袋", "暖宝宝（少量）"]}
+      ]
+    },
+    {
+      id: "booking", icon: "预约", title: "预约清单", status: "待补充", statusType: "pending", wide: true,
+      summary: "源稿给出了票价参考，但没有预约状态和放票日期。",
+      items: [
+        "已确认｜莫高窟 2026.09.28 08:30 场次",
+        "优先确认｜《又见敦煌》场次",
+        "旅行社已列入门票｜祁连卓尔山（含景交）、七彩丹霞（含景交）、平山湖大峡谷（含景交）、嘉峪关、鸣沙山、翡翠湖、水上雅丹（含景交）、茶卡盐湖、青海湖黑马河",
+        "合同已含赠送｜住宿二选一：露营含露营基地游玩礼包（含管理费¥25／人），选酒店则无礼包；赠祁连草原骑马射箭等体验礼包；赠精美伴手礼（5选2）；赠鸣沙山写真（8张底片含6张精修）；赠翡翠湖或祁连草原无人机航拍（二选一）"
+      ]
+    },
+    {
+      id: "budget", icon: "预算", title: "预算", status: "待补充", statusType: "pending",
+      summary: "原稿基础口径为每人约 ¥5,000—6,000，费用边界需合同确认。",
+      items: [
+        "已确认包含｜5 座 SUV 包车、9 晚住宿（3 人间）、旅行社排表所列景区门票及景交",
+        "另计｜往返机票、莫高窟约 ¥238／人、《又见敦煌》约 ¥318—688／人及其他自费体验",
+        "外部账单参考｜一篇近期 7 天个人记录总计约 ¥5,407（机票、团费、景区小交通、自费项目与餐饮特产合计）；路线、季节、住宿和是否跟团不同，仅用于检查费用是否漏项，不作为本次报价",
+        "待补｜包车总价与付款节点、实际机票、逐晚住宿、餐饮、购物和 10%—15% 应急金"
+      ]
+    },
+    {
+      id: "emergency", icon: "应急", title: "应急信息", status: "待补充", statusType: "pending", wide: true,
+      summary: "通用紧急电话 + 高原不适处理。",
+      categories: [
+        {title: "紧急电话", tone: "red", items: [
+          "报警 110／急救 120／交通事故 122"
+        ]},
+        {title: "高反应对", tone: "orange", items: [
+          "预防｜到达高海拔前两天及出现不适时不跑跳、不快走",
+          "出现不适｜立刻停止爬升、跑跳和拍摄，原地保暖、坐下或半卧休息，由同伴陪同观察；不要独自留在车外或继续赶行程",
+          "危险信号，立即拨打120并下撤｜休息后仍持续加重，或出现走路不稳／意识含糊／异常嗜睡、静息呼吸困难、持续咳嗽或口唇发紫等；不要等待‘睡一觉就好’",
+          "饮食与休息｜少量多次饮水，优先清淡、易消化和高热量小份路餐；正餐七分饱、少量多餐，牦牛／羊肉火锅、油炸、糯米和豆制品不要一次吃太多，尤其晚餐；恶心、呕吐、胸闷气短或睡眠明显受影响时停止游览，不把糖果、葡萄糖或保健品当治疗",
+          "氧气与用药｜氧气只作等待救援或下撤途中的临时支持，不能替代下撤和就医；药物按医生既往交代或现场专业人员建议使用，不自行叠加"
+        ]}
+      ]
+    }
+  ],
+  destinationModules: [
+    {icon: "城", name: "城市步行模块", enabled: false, text: "地铁出口、步行距离、街区串联、休息点与雨天方案。"},
+    {icon: "车", name: "自驾／包车模块", enabled: true, text: "每日车程、最晚出发、司机与车辆、补给、厕所和不走夜路原则。"},
+    {icon: "高", name: "高原模块", enabled: true, text: "住宿海拔、活动强度、保暖补水、症状观察、应急动作和就医／下撤方案。"},
+    {icon: "岛", name: "海岛模块", enabled: false, text: "船班、潮汐、浮潜、防晒、台风与停航替代方案。"},
+    {icon: "外", name: "国外旅行模块", enabled: false, text: "签证、入境、货币、通信、时差、语言与领事信息。"},
+    {icon: "亲", name: "长辈／亲子模块", enabled: false, text: "体力节奏、饮食、午休、医疗、无障碍与儿童用品。"},
+    {icon: "摄", name: "摄影模块", enabled: true, text: "日出日落、光线时段、机位、穿搭、器材和天气替代方案。"}
+  ],
+  expectedDayCount: 10,
+  knownIssues: [
+    {
+      severity: "warning",
+      title: "Day 5《又见敦煌》20:00 场",
+      text: "当天按 20:00 场安排，晚餐、前往剧场和存包安检按演出时间倒排。"
+    },
+    {
+      severity: "recheck",
+      title: "Day 9 茶卡安排待天气确认",
+      text: "德令哈前往茶卡后入住青海湖；是否进入茶卡盐湖，按当天实际天气与向导建议决定。"
+    }
+  ],
+  researchSources: [
+    {
+      platform: "小红书", author: "敦煌旅游小章（敦煌演出）", captured: "2026-08-31",
+      title: "避坑排雷《又见敦煌》保姆级观影攻略附位置图",
+      url: "https://www.xiaohongshu.com/explore/6a0aa1010000000007028333",
+      status: "单次观演经验 · 评论未提供交叉支持", statusType: "recheck",
+      scope: "《又见敦煌》五段走位观演的站位、时长和散场交通节奏线索。",
+      note: "正文给出大厅、T台、木箱墙、玻璃地板和终章座位的个人站位建议，并称各场约 15—20 分钟、散场前可叫车；唯一可见评论为票务推广，没有独立交叉验证。攻略仅保留为现场观察参考，站位、票档、接驳与散场秩序以官方和工作人员安排为准。"
+    },
+    {
+      platform: "小红书", author: "敦煌旅游小章（敦煌演出）", captured: "2026-08-31",
+      title: "避坑排雷《又见敦煌》保姆级观影攻略附位置图（另一链接）",
+      url: "https://www.xiaohongshu.com/explore/6a057bb8000000000603604c",
+      status: "与已整理版本内容重复", statusType: "confirmed",
+      scope: "核对同一《又见敦煌》五段走位观演笔记的不同分享链接。",
+      note: "正文与已整理版本一致：五段走位、每场约 15—20 分钟、散场前叫车和高价票取舍均无新增信息；仅更新链接记录，不重复写入攻略。"
+    },
+    {
+      platform: "小红书", author: "小萱的青甘", captured: "2026-08-31",
+      title: "在张掖七彩丹霞 千万别直接坐到最里面那一站！",
+      url: "https://www.xiaohongshu.com/explore/6a001155000000000702dcb6",
+      status: "景区动线经验 · 评论含路线补充", statusType: "recheck",
+      scope: "七彩丹霞入口、观光车单向顺序、观景台取舍和日落安排。",
+      note: "正文及评论提示景区观光车单向行驶，近期经验建议先确认入口和站点顺序，西门线可依次看云海台、锦绣台、虹霞台并把虹霞台留给日落；评论补充西门约 17:00 到、北门线及市区／高铁站直通车信息。班次、票价、入口、开放和站点均可能调整，攻略只保留为现场规划线索。"
+    },
+    {
+      platform: "小红书", author: "是Yolo阿-", captured: "2026-08-31",
+      title: "周末48h特种兵出发张掖✈️人均800！！🤯",
+      url: "https://www.xiaohongshu.com/explore/69e63f0c000000001a02217f",
+      status: "短途个人体验 · 评论多为泛反馈", statusType: "recheck",
+      scope: "张掖七彩丹霞、马蹄寺交通与张掖本地餐食线索。",
+      note: "正文提到七彩丹霞下午 16:00 后入园、约 19:30 离开，北门附近有张丹霞鱼庄；评论主要是‘7 天约 2k+—3k’等泛预算反馈。票价、班次和景区时段为单次体验，未作为本次 10 天线路的确定值；仅保留餐食与傍晚游览节奏参考。"
+    },
+    {
+      platform: "小红书", author: "甘南领队花花", captured: "2026-08-31",
+      title: "青甘大环线的厕所问题如何解决？",
+      url: "https://www.xiaohongshu.com/explore/6a0cc498000000003601adef",
+      status: "用户补充图片 · 设施信息仍需现场复核", statusType: "recheck",
+      scope: "青甘长途与盐湖段厕所、服务点确认提醒。",
+      note: "用户补充 4 张‘青甘大环线厕所攻略’图片，列出鸣沙山、莫高窟、七彩丹霞、水上雅丹、察尔汗、翡翠湖等水厕／基本干净点位，以及 U 型公路、南八仙、小柴旦、大地之子等旱厕或不建议依赖点位；图片为近期汇总，设施、收费和开放情况仍需出发前向景区／向导确认。"
+    },
+    {
+      platform: "小红书", author: "小金鱼", captured: "2026-08-31",
+      title: "去鸣沙山后悔忘带的东西（真诚反思版）",
+      url: "https://www.xiaohongshu.com/explore/6a0ad9d2000000003503b795",
+      status: "5 月实测 · 9 月按需筛选", statusType: "recheck",
+      scope: "鸣沙山与青甘沿线的防晒、干燥、保暖、鞋服和车上用品。",
+      note: "正文强调眼药水、保暖帽、冲锋衣、分层内搭、洞洞鞋／拖鞋、防晒保湿、一次性内裤、现金、充电宝和少量路餐；结合 9/23—10/2 时段，仅补充保暖帽和合脚换鞋按需携带，红霉素软膏等药品不作统一建议。"
+    },
+    {
+      platform: "小红书", author: "52Hz", captured: "2026-08-31",
+      title: "青甘大环线穿搭以及必备品",
+      url: "https://www.xiaohongshu.com/explore/69fccee3000000001f0055b8",
+      status: "图片型清单 · 评论补充有限", statusType: "recheck",
+      scope: "青甘分层穿搭、鞋类和 9 月底行李取舍。",
+      note: "正文图片内容未能稳定提取；可见评论补充洞洞鞋可带作住宿或换鞋，另有服务方称低温时羽绒服体验有限。攻略已保留合脚换鞋按需携带和分层保暖原则，不将单次评论升级为 9 月底固定穿衣结论。"
+    },
+    {
+      platform: "小红书", author: "吴小胖", captured: "2026-08-31",
+      title: "高反这个有用",
+      url: "https://www.xiaohongshu.com/explore/6a009ddb000000003700ef7d",
+      status: "个案用药体验 · 评论意见分歧", statusType: "recheck",
+      scope: "高反不适时某云南白药相关产品的个人体验与评论反馈。",
+      note: "正文称使用后约 20 分钟呼吸有所缓解并搭配氧气；15 条评论中同时有‘有用’与‘没用、价格高、瓶身重’等相反反馈。仅记录为个案，不替代停止活动、下撤、求助和就医原则，不列为统一用药推荐。"
+    },
+    {
+      platform: "小红书", author: "小悠在徒步", captured: "2026-08-31",
+      title: "户外高反应对指南！！！",
+      url: "https://www.xiaohongshu.com/explore/6687b543000000001e012419",
+      status: "户外高反经验 · 评论含加重与撤回个案", statusType: "recheck",
+      scope: "高海拔活动的症状识别、减速休息、运动取舍和同伴观察。",
+      note: "正文与可见评论强调到达高海拔后避免跑跳、缓慢行动、少量清淡进食和充分保暖；有评论称在青海湖跑跳后症状加重并被迫撤回，也有头痛、胸闷气短、失眠和肿胀等个案。药物、红景天、高原安、葡萄糖及‘提前半个月不做有氧运动’均为个人经验，未作为统一建议；攻略只提取停止活动、同伴观察、危险信号、下撤和就医原则。"
+    },
+    {
+      platform: "小红书", author: "没空听你画大饼", captured: "2026-08-31",
+      title: "关于8天的青甘大环线，我背了整整一书包药",
+      url: "https://www.xiaohongshu.com/explore/6817333d0000000021000f7c",
+      status: "个人药品清单 · 评论意见分散", statusType: "recheck",
+      scope: "青甘长途旅行的常备药、干燥护理与药品精简。",
+      note: "正文记录个人携带红景天、感冒／止痛、胃肠、鼻腔和眼部护理用品的经历，并提醒不要整包装携带；评论有人认为城镇可购药，也有人担心无人区补给。攻略仅吸收‘按个人需要少量分装、保留说明书、准备干燥护理和肠胃应急’原则；红景天、高原安、999、布洛芬、金银花、红霉素等具体药物不作为统一推荐，氧气和乘机要求另按航司及医生建议核实。"
+    },
+    {
+      platform: "小红书", author: "尔古风筝", captured: "2026-08-31",
+      title: "在高原吃太饱，比饿着还危险",
+      url: "https://www.xiaohongshu.com/explore/69e24bcf000000001d01a27b",
+      status: "饮食经验 · 评论少量支持", statusType: "recheck",
+      scope: "高原饮食份量、油腻食物取舍和吃撑后的休息提醒。",
+      note: "正文建议七分饱、少量多餐、碳水优先并控制高油高脂及晚餐份量；评论中有人认同吃多与排便不畅会让不适更明显。关于‘消化耗氧导致高反’的机制属于作者解释，未作为医学结论；攻略仅保留温和、少量、易消化和持续症状就医原则。"
+    },
+    {
+      platform: "小红书", author: "请叫我Tillie", captured: "2026-08-31",
+      title: "顶顶牛！青甘大环线必吃！",
+      url: "https://www.xiaohongshu.com/explore/6a86efe4000000003300c989",
+      status: "单店体验 · 评论有口味与价格补充", statusType: "recheck",
+      scope: "大柴旦顶顶牛菜品、份量、口味、人均和高反相关个人感受。",
+      note: "作者称牦牛／干锅火锅份量较大，推荐毛肚、青稞饼和红枣茶；评论补充可要求更辣、有人觉得偏咸或偏好清汤，人均约 ¥75—80。店铺地址、营业、菜单和价格仍需出发前地图核验；‘吃完高反缓解’属于个人感受，不作健康依据。可见 17 条评论已参考，未将其设置为必吃或改变高原安全原则。"
+    },
+    {
+      platform: "小红书", author: "XP", captured: "2026-08-31",
+      title: "极致J人的青甘大环线所带物品分享（已回）",
+      url: "https://www.xiaohongshu.com/explore/6a6ec2a4000000003400ed2f",
+      status: "回程清单 · 分类细但个人化较强", statusType: "recheck",
+      scope: "11 天西北物资分类、备忘录打包流程、长途舒适和高原用品取舍。",
+      note: "笔记正文只给出‘复制到备忘录、装好后删除’的收纳方法；作者在 11 条评论中进一步列出药品、防晒、护肤、衣物和生活用品。结合 9/23—10/2 时段与现有清单，新增清单打包流程和腰背靠垫按需携带；加湿器、光腿神器、便携 Wi‑Fi、过多饰品及具体药品未统一推荐。评论中作者个人清单较多，未发现路线或门店信息。"
+    },
+    {
+      platform: "小红书", author: "壹", captured: "2026-08-31",
+      title: "青甘大环线🍱美食篇",
+      url: "https://www.xiaohongshu.com/explore/6a9042e4000000002501242c",
+      status: "路线美食清单 · 无公开评论", statusType: "recheck",
+      scope: "西宁、德令哈、大柴旦、敦煌和嘉峪关沿线餐厅与菜品候选。",
+      note: "正文按城市列出依然轩、小江溪、兰州马家包子、顶顶牛、伊布拉特色炕锅开锅涮、西关牛肉面、臻品香、敦煌食局、不晚 bistro、阿西娅牛肉面和清真·山城手抓餐厅等。当前路线未经过德令哈，未将其写入日程；其余店铺已按对应城市并入餐食候选，均需地图核验地址、营业、近期评价、排队和菜单。页面无公开评论，不设必吃或固定顺序。"
+    },
+    {
+      platform: "小红书", author: "悄漫雾", captured: "2026-08-31",
+      title: "去西北前千万不要忘记大采购！！！",
+      url: "https://www.xiaohongshu.com/explore/6a82db8500000000050319e4",
+      status: "返程采购经验 · 数量和价格偏主观", statusType: "recheck",
+      scope: "青甘无人区补给、防晒保湿、车上路餐、衣物和常用药采购提醒。",
+      note: "正文强调 315 国道等偏远路段补给点少、饮水和日用品可能价格较高，提醒在敦煌／大柴旦等城镇离开前补齐必要物资；具体‘三倍量’、10 包湿厕纸、景区高价和薄羽绒服等属于单次体验或夸张数量，未照搬。自热饭／火锅、葡萄糖与布洛芬等涉及场景或个人健康，不作为统一建议；作者在评论中说明自己跟当地小团，领队推荐未作为服务背书。"
+    },
+    {
+      platform: "小红书", author: "乐乐欢", captured: "2026-08-31",
+      title: "自驾青甘大环线10天9晚｜最全行李清单",
+      url: "https://www.xiaohongshu.com/explore/6a91291f000000001f0039e1",
+      status: "自驾实测清单 · 部分不适用于包车", statusType: "recheck",
+      scope: "2600 公里自驾行李、热水设备、沙漠防护、高反与亲子用品取舍。",
+      note: "正文为 2026.08.14—08.23 自驾实测，包含便携烧水壶、隔脏毯、折叠凳、折叠盆、血氧仪和一次性马桶垫等；其中驾驶相关和自驾车载物品不迁入当前包车版本。结合 9 月底行程，仅将烧水壶改为‘先确认司机／酒店热水后再决定’，血氧仪列为担心高反或有基础病时的监测备选；不采用‘头痛绝对不能洗澡’等个体经验作为硬性医学规则。4 条可见评论主要为作者说明和情绪回应，无新增实质经验。"
+    },
+    {
+      platform: "小红书", author: "小怡的家", captured: "2026-08-31",
+      title: "存一下去西北要带的东西",
+      url: "https://www.xiaohongshu.com/explore/6a9140ba000000002a031f64",
+      status: "行前清单 · 与既有内容重复较多", statusType: "recheck",
+      scope: "西北旅行证件数码、衣物鞋服、高原与常用药、护肤洗护、日用及路餐。",
+      note: "正文与已有多篇清单高度重合，补充拍立得／无人机按实际使用和航司、景区规则决定，以及一次性马桶垫可少量备用。高原安、益生菌和具体药品仍为作者个人选择，未列为统一用药建议。可见 1 条评论为包车广告，未采用其车型／价格或联系方式。"
+    },
+    {
+      platform: "小红书", author: "小号", captured: "2026-08-31",
+      title: "今晚落地西宁，求不知道吃啥 当地人推荐 跟着本地人 推荐",
+      url: "https://www.xiaohongshu.com/explore/6a810ffd0000000022030176",
+      status: "评论型求推荐 · 可见评论较多", statusType: "recheck",
+      scope: "西宁落地首餐、本地面食、炕锅、牛肉和甜胚子饮品候选。",
+      note: "正文没有具体店铺，主要价值来自 141 条评论中可见部分：城西师范大学旁尕晋娃抓面／伊彩兴抓面、干拉牛肉面、炕锅羊排、牛大骨、干锅土豆、甜胚子奶茶等；大清真寺附近有约 ¥25 一碗的热食线索但店名和菜品不明。评论也提醒玫瑰饼不值得排长队、酸奶品牌口味可能相近。因评论未完整展开，店铺和价格均作为候选／预算线索，需出发前地图核验。"
+    },
+    {
+      platform: "小红书", author: "一起出去玩!", captured: "2026-08-31",
+      title: "天！青甘大环线保姆级必带清单🧾",
+      url: "https://www.xiaohongshu.com/explore/6a8d425b00000000100291ca",
+      status: "行前清单 · 与既有内容高度重合", statusType: "recheck",
+      scope: "青甘环线生活用品、防晒护理、电子设备、高原物品与证件资料。",
+      note: "正文补充多口充电头、相机备用存储卡、折叠购物袋、学生证／优惠证件和迷你三脚架等细节；暖宝宝按低温预报作为备选。高原安及益生菌仍仅属作者个人选择，未写入统一用药建议。与既有多篇清单重复较多，攻略只新增优惠证件、折叠购物袋、电子配件和天气触发式暖宝宝提示。页面仅显示 1 条公开评论，未提供实质经验，评论区其余内容需登录查看。"
+    },
+    {
+      platform: "小红书", author: "Super", captured: "2026-08-31",
+      title: "存一下下周去青甘大环线要带的东西。。",
+      url: "https://www.xiaohongshu.com/explore/6a7c0ca100000000280056d8",
+      status: "行前清单 · 评论建议抵达后补购零食", statusType: "recheck",
+      scope: "青甘环线防晒防风、分层衣物、高海拔路段、干燥护理、车上用品与行李精简。",
+      note: "正文建议防晒防风、短袖与薄长袖分层、舒适鞋、保温杯、保湿洗护、充电宝、U 型枕和密封袋；提到高原安、益生菌等产品，但未作为统一用药建议。结合 9 月 23 日—10 月 2 日行程，内容与现有行李清单大多重复，仅补充‘零食不必从家大量携带，抵达后按车程少量补购’；2 条公开评论中 1 条支持到青海再买零食，评论区其余内容需登录查看。"
+    },
+    {
+      platform: "小红书", author: "月读", captured: "2026-08-31",
+      title: "8.29鸣沙山已逃，9月要来的姐妹注意了。。",
+      url: "https://www.xiaohongshu.com/explore/6a9295f30000000004028d2f",
+      status: "近期个人体验 · 评论有补充", statusType: "recheck",
+      scope: "鸣沙山入园时段、路线、鞋套、骆驼和演出避坑。",
+      note: "作者建议 17:00 后入园、按木梯路线登沙，提醒中门步行到月牙泉和景区内鞋套／滑沙租赁线索；评论确认晚上偏冷，但未确认闭园时间。攻略将其作为避开正午暴晒的建议，门票、租赁、观光车、演出和闭园规则仍以官方当天公告为准。"
+    },
+    {
+      platform: "小红书", author: "暂时没想好", captured: "2026-08-31",
+      title: "青甘大环线伴手礼",
+      url: "https://www.xiaohongshu.com/explore/6a8a961f00000000170014ed",
+      status: "个人购物分享 · 评论补充地点", statusType: "recheck",
+      scope: "西宁、敦煌文创和伴手礼地点线索。",
+      note: "正文提到西宁大新街、敦煌盛憶轩／敦盛工艺品批发、西宁湖灵野集；评论补充湖灵野集附近安多手作和盐庄东公交站线索。店铺位置、营业状态、质量和价格未做外部核验，攻略仅列为购物候选并提醒现场比价。"
+    },
+    {
+      platform: "小红书", author: "呆呆💦", captured: "2026-08-31",
+      title: "西北旅游已回!有些东西真的不用带(反思版)",
+      url: "https://www.xiaohongshu.com/explore/6a8692d00000000025004c11",
+      status: "返程反思 · 个人体感", statusType: "recheck",
+      scope: "青甘环线用品实用性、卫生、鞋服和车上补给取舍。",
+      note: "作者反馈一次性内裤、压缩浴巾／洗脸巾、眼药水、防晒、湿巾、U 型枕和眼罩高频使用；冲锋衣内胆、光腿神器和葡萄糖未使用。结合 9 月底天气，保留分层保暖但不删去轻薄保暖层，过度冬装和非必需美容用品降为可选；红霉素软膏和其他药物不作为统一建议。"
+    },
+    {
+      platform: "小红书", author: "。。。", captured: "2026-08-31",
+      title: "说说去西北后悔忘带的东西（已回复盘）",
+      url: "https://www.xiaohongshu.com/explore/6a92a2600000000020036f3d",
+      status: "返程清单 · 用品需按季节筛选", statusType: "recheck",
+      scope: "青甘环线遗忘物品、长途车和湖边／沙漠防护。",
+      note: "正文强调 U 型枕、小毯子、零钱、三合一冲锋衣、湿厕纸、防晒保湿、偏光墨镜、充电宝、防尘罩和少量药品；结合 9 月底行程保留轻薄挡风用品和功能防护，手机防水袋、雨具等改为按天气／是否涉水可选。文末含向导推荐内容，不作为路线或服务背书。"
+    },
+    {
+      platform: "小红书", author: "西柚的小窝", captured: "2026-08-31",
+      title: "秋冬去青甘｜保姆级物资清单🧾",
+      url: "https://www.xiaohongshu.com/explore/6a92827f0000000025025558",
+      status: "行前清单 · 9 月底已筛选", statusType: "recheck",
+      scope: "秋冬向衣物、防晒保湿、长途车补给、离线地图和日用杂物。",
+      note: "正文覆盖轻薄羽绒、冲锋衣、保湿防晒、眼药水、U 型枕、离线地图、车上零食、电解质和保温杯等；高原安及益生菌仅为作者个人选择，未作为攻略用药建议。结合本次 9 月 23 日—10 月 2 日行程，采用分层保暖、风沙防护、少量路餐和离线地图，过冬级或重复用品不额外增加。"
+    },
+    {
+      platform: "小红书", author: "柿柿如意", captured: "2026-08-31",
+      title: "敦煌夜市本地强推！照着吃就对了！",
+      url: "https://www.xiaohongshu.com/explore/6a9417ae0000000020033984",
+      status: "强推式个人体验 · 无有效评论交叉", statusType: "recheck",
+      scope: "沙洲夜市小吃候选与口味线索。",
+      note: "正文列出黄金土豆饼、铁板鱿鱼、罐罐米线、炒田螺、甘肃麻辣烫、红柳烤肉、酱香豆腐、烤猪蹄和杏皮水；当前页面未显示有效评论交叉，且店铺定位不完整。攻略仅作为夜市现场候选，不设置必吃或专程排队目标。"
+    },
+    {
+      platform: "小红书", author: "贝贝南瓜🎃", captured: "2026-08-31",
+      title: "去青甘的朋友们 行李都怎么精简的啊",
+      url: "https://www.xiaohongshu.com/explore/6a88028a0000000021009728",
+      status: "提问帖 · 评论经验较多", statusType: "recheck",
+      scope: "青甘行李精简、衣物数量与干燥防晒取舍。",
+      note: "评论中较一致的建议是减少彩妆、保留防晒和保湿，带 3—4 条耐穿长裤、1 件三合一冲锋衣和少量速干上衣；也有人因追求出片携带多套衣服，说明数量高度取决于个人需求。攻略采用前一类‘功能优先’原则，不设硬性件数。"
+    },
+    {
+      platform: "小红书", author: "美系哆啦", captured: "2026-08-31",
+      title: "莫高窟一日游（常规票版）",
+      url: "https://www.xiaohongshu.com/explore/6a8c8046000000001e017475",
+      status: "个人实走 · 评论有疑问", statusType: "recheck",
+      scope: "常规票动线、8 普窟＋应急窟延伸、复制窟与返程时间。",
+      note: "作者记录常规票包含两部电影、8 个实体窟和摆渡车，体验中约 08:00 取票、08:30 入场、11:47 完成 8 普窟＋4 应急窟、14:17 返回起点；评论和作者回复提示改签、延伸参观需按现场工作人员安排，不能保证。攻略将其作为 D6 时间缓冲参考，不把 12 窟或改签写成固定权益。"
+    },
+    {
+      platform: "小红书", author: "甘肃壹家人旅游服务", captured: "2026-08-31",
+      title: "张掖七彩丹霞开闭园时间调整附日出日落表",
+      url: "https://www.xiaohongshu.com/explore/6a8a5c52000000000302984f",
+      status: "服务账号季节性信息 · 官方待核验", statusType: "recheck",
+      scope: "2026 年 9—10 月七彩丹霞开放时间、日出日落和观景台线索。",
+      note: "正文称 9 月 1 日至 10 月 31 日可能 06:30 开园，并给出停止入园／闭园的口径与日出日落观景台建议；原图中的观景台编号和文字存在缺失，且评论指出‘深度游’是多四个观景台、乘独立商务观光车。所有时间、票务、交通和观景台规则均需出发前以景区官方公告确认，不采用服务账号的包车报价。"
+    },
+    {
+      platform: "小红书", author: "🍀", captured: "2026-08-31",
+      title: "去西北前不疯狂采购 等着哭就完了。",
+      url: "https://www.xiaohongshu.com/explore/6a87a9cd00000000330379e8",
+      status: "返程体验 · 用品建议需按个人调整", statusType: "recheck",
+      scope: "防晒、风沙、干燥、长途车程和现金准备。",
+      note: "作者刚完成青甘环线，强调防晒、湿厕纸、充电宝、洗衣用品、偏光镜、防风绳、防晒帽、三合一冲锋衣、U 型枕、润唇护手、保鲜袋、保温杯和少量现金等。评论仅补充为跟团／本地向导体验，未提供可交叉核验的物价或店铺信息；药物和用品数量按个人情况调整。"
+    },
+    {
+      platform: "小红书", author: "塔塔 Tara -", captured: "2026-07-16",
+      title: "yesbut 青甘环线必吃榜之零食合集",
+      url: "https://www.xiaohongshu.com/explore/6a5262a90000000011018260",
+      status: "网友整理 · 到店前复核", statusType: "recheck",
+      scope: "西宁、张掖、敦煌、七彩丹霞、鸣沙山、茶卡与察尔汗的酸奶、饮品和景区冰品。",
+      note: "清单来自笔记图片及公开评论区的按地点整理；品牌、口味、价格、售卖点和营业状态均未由官方渠道确认。"
+    },
+    {
+      platform: "小红书", author: "椰子芭乐沙", captured: "2026-07-16",
+      title: "两头大肥猪，已落地西宁！！！！！",
+      url: "https://www.xiaohongshu.com/explore/6a434eae000000002100b3cc",
+      status: "实吃记录 + 评论候选", statusType: "recheck",
+      scope: "西宁落地后的正餐、奶茶、酸奶、夜市，以及本地网友推荐的麻辣烫、抓面与西北口味关东煮。",
+      note: "作者置顶更新的实吃内容与评论推荐已分开标注；未登录状态只读取到公开可见评论，模糊店名和纯主观内容未采用。"
+    },
+    {
+      platform: "小红书", author: "西北领队-小马", captured: "2026-07-16",
+      title: "一条读懂❗️西宁夜市小吃街保姆级攻略😋",
+      url: "https://www.xiaohongshu.com/explore/6a029281000000000800308f",
+      status: "领队整理 · 仅采用街区线索", statusType: "recheck",
+      scope: "西宁下南关街与莫家街的夜市定位，以及酿皮、羊肉、甜醅子、老酸奶、炕锅土豆等通用小吃。",
+      note: "作者具有西北领队身份，正文没有具体店铺、账单或可核实价格；“没有景区溢价”“随便一家都在线”“人均几十吃到撑”等绝对化表述未采用。评论区需登录后才可见，配图首图为通用街景与小吃拼图。攻略仅把下南关街列为独立备选，并将莫家街并入大新街／小新街老城步行片区。"
+    },
+    {
+      platform: "小红书", author: "凑四合六", captured: "2026-07-16",
+      title: "敦煌沙洲夜市夯拉榜",
+      url: "https://www.xiaohongshu.com/explore/6a3dc288000000002103fa68",
+      status: "个人测评 · 评论有分歧", statusType: "recheck",
+      scope: "沙洲夜市的沙葱牛肉饼、李广记杏皮茶、漠北烤鱼、虾滑、爆肚、烤肉，以及敦煌市区的牛肉面和麻辣烫。",
+      note: "作者多次到访，但口味仍属个人体验；公开评论对牛肉饼和烤鱼评价分歧明显，攻略按候选而非必吃处理。"
+    },
+    {
+      platform: "小红书", author: "creep", captured: "2026-08-31",
+      title: "我在敦煌吃什么",
+      url: "https://www.xiaohongshu.com/explore/6a8fb06200000000290289ca",
+      status: "个人体验 · 候选线索", statusType: "recheck",
+      scope: "敦煌夜市、市区餐食与建荣市场采购线索。",
+      note: "正文按夜市、市区和建荣市场列出多家个人候选，包括李广记杏皮茶、沙葱牛肉饼、思露杏皮茶、明祥麻辣烫、胡杨焖饼、米记羊肉粉汤，以及葡萄、李广桃、杏干和冻干。笔记仅 1 条公开评论，未形成交叉验证；不当作必吃榜，价格、门店状态和卫生情况出发前／到店时复核。"
+    },
+    {
+      platform: "小红书", author: "竹此一家", captured: "2026-07-16",
+      title: "青甘大环线夜市篇（超好逛！）",
+      url: "https://www.xiaohongshu.com/explore/6a3c8b340000000021017380",
+      status: "个人体验 · 到店前复核", statusType: "recheck",
+      scope: "西宁新千／大新街夜市取舍、张掖麻辣烫、敦煌沙洲夜市小吃，以及敦煌研究院官方摊和盛憶轩文创购物。",
+      note: "正文提供的夜市定位和店名较具体；价格、摊位位置、营业状态与所谓官方摊位仍需现场或官方渠道确认。"
+    },
+    {
+      platform: "小红书", author: "momo", captured: "2026-07-16",
+      title: "来敦煌一定要喝这一家！！",
+      url: "https://www.xiaohongshu.com/explore/6a3404550000000006021623",
+      status: "位置不完整 · 仅作线索", statusType: "pending",
+      scope: "沙洲夜市内的驼奶特调饮品与敦煌风格小店氛围。",
+      note: "正文未出现可识别店名，页面定位也未能转换为具体摊位；评论中有人表示在夜市没有找到，因此不设为独立导航目标。"
+    },
+    {
+      platform: "小红书", author: "心海.", captured: "2026-07-16",
+      title: "去青甘千万别乱买，参考这份真实物价",
+      url: "https://www.xiaohongshu.com/explore/6a3c90f40000000011006b80",
+      status: "个人询价 · 仅作比价基准", statusType: "recheck",
+      scope: "青海与敦煌文创、服饰、果干、小吃的参考价，以及景区和夜市可能溢价的提醒。",
+      note: "价格缺少票据、店铺、日期明细和独立交叉验证，且作者评论含向导推荐；只用于识别明显高价，不作为统一市场价或砍价承诺。"
+    },
+    {
+      platform: "小红书", author: "尾巴大王", captured: "2026-07-16",
+      title: "去鸣沙山前 千万记得先大采购！！！",
+      url: "https://www.xiaohongshu.com/explore/6a3892b60000000022016743",
+      status: "装备清单 · 已过滤夸张项", statusType: "recheck",
+      scope: "鸣沙山入园前的防沙鞋套、电子设备保护、防晒遮挡、饮水和清洁用品。",
+      note: "正文含领队推广、绝对化措辞和未经验证的价格；评论对景区水价提出反例，因此只保留通用准备原则，价格与供应以景区当日信息为准。"
+    },
+    {
+      platform: "小红书", author: "陌莫森", captured: "2026-07-16",
+      title: "青甘大环线第一、二天避雷指南",
+      url: "https://www.xiaohongshu.com/explore/6a3b5f70000000002101bffb",
+      status: "部分路线不匹配 · 选择性采用", statusType: "recheck",
+      scope: "西宁首日餐饮与住宿提醒，以及另一版本线路中的日月山、青海湖和茶卡游览动线。",
+      note: "笔记第二天走西宁—青海湖—茶卡—德令哈，与本攻略 Day 2 西宁—祁连不同；只将西宁通用提醒和茶卡分支线索放入对应日期，药物、氧气及路边散装肉奶建议未采用。"
+    },
+    {
+      platform: "小红书", author: "陌莫森", captured: "2026-07-16",
+      title: "青甘大环线第三天行程避雷指南",
+      url: "https://www.xiaohongshu.com/explore/6a3c91be000000002200a8bd",
+      status: "路线不匹配且表述有误 · 选择性采用", statusType: "recheck",
+      scope: "察尔汗盐湖游览规则、翡翠湖闭园与园内交通线索，以及大柴旦夜市补给。",
+      note: "该笔记的第三天并非本攻略 Day 3，正文还混用茶卡与察尔汗名称；生命树及同日串联路线未采用，仅保留可映射到 Day 7／Day 9 的待核实线索。"
+    },
+    {
+      platform: "小红书", author: "爱喝咖啡的小丸子🥕", captured: "2026-07-16",
+      title: "青甘环线伴手礼（上）",
+      url: "https://www.xiaohongshu.com/explore/6a3b9ddd000000001102ef30",
+      status: "实购物品 · 价格不完整", statusType: "recheck",
+      scope: "七彩丹霞、大柴旦翡翠湖、敦煌与莫高窟的冰箱贴、木尺、杯垫、明信片、小包等非食品伴手礼。",
+      note: "作者确有购买体验，但多数物品合并付款、无准确价格和具体店铺；只用于筛选有地点辨识度的文创，不作为价格或质量保证。"
+    },
+    {
+      platform: "小红书", author: "So", captured: "2026-07-16",
+      title: "青甘大环线如何准确查天气",
+      url: "https://www.xiaohongshu.com/explore/6a20086a0000000007028da0",
+      status: "查询方法可用 · 地点映射已按路线修正", statusType: "recheck",
+      scope: "青海湖、茶卡盐湖、大柴旦翡翠湖、察尔汗盐湖、黑独山、鸣沙山、七彩丹霞与祁连草原的天气查询地点。",
+      note: "正文是提问，景点与县市对照来自配图，评论区补充了“搜不到景点就用地图找最近县市／乡镇”的方法。原图将青海湖统一写为刚察县，本攻略 Day 10 走黑马河—二郎剑南岸，已改为共和县／黑马河沿线；App 推荐不视为官方背书。"
+    },
+    {
+      platform: "小红书", author: "芝芝丸子吱吱", captured: "2026-07-16",
+      title: "大西北青甘环线冰激凌测评",
+      url: "https://www.xiaohongshu.com/explore/6a38af060000000008003fba",
+      status: "本人实吃 · 价格与售卖点待复核", statusType: "recheck",
+      scope: "茶卡、察尔汗、鸣沙山、河西走廊服务区与七彩丹霞的冰淇淋、冰糕和气泡水。",
+      note: "正文逐图记录口味和回忆价格，攻略已按实际路线合并到 D3、D5、D6 与 D9；可可西里加油站冰糕不在本次路线内，未收录。评论对茶卡大青盐冰淇淋有正向补充，并指出察尔汗青苹果气泡水可能只是罐装汽水加冰，故列入不推荐。"
+    },
+    {
+      platform: "小红书", author: "陆旒的发癫日常", captured: "2026-07-16",
+      title: "青甘大环线美食推荐（大柴旦镇）",
+      url: "https://www.xiaohongshu.com/explore/6a184104000000000803f530",
+      status: "单篇强推荐 · 缺少账单与评论交叉验证", statusType: "recheck",
+      scope: "大柴旦镇顶顶牛的牦牛肉／黄牛肉锅、服务与用餐环境。",
+      note: "正文称牛肉新鲜、分量足、暖气充足、服务会加汤添茶并送酸奶；配图仅能确认红汤牛肉、炸物和“顶顶牛”门头，没有菜单、账单、人均或公开评论。携程同期列表将其记为“顶顶牛特色干锅牦牛肉”，标注参考人均约 ¥68、暂无点评，与笔记的“牛肉火锅”表述不完全一致，故只列备选。"
+    },
+    {
+      platform: "小红书", author: "爱吃薯条大王", captured: "2026-07-16",
+      title: "大柴旦超绝饭馆 全都吃干净了",
+      url: "https://www.xiaohongshu.com/explore/69f834670000000035025ba4",
+      status: "本人实吃 · 门店无法识别", statusType: "pending",
+      scope: "大柴旦炕锅羊肉、酸奶及多人合餐菜式线索。",
+      note: "正文首推炕锅羊肉中的薯片／土豆片，并称酸奶偏酸、服务热情。三张配图可见炕锅羊肉、青椒炒菜、荷塘小炒、类似抓饭的主食及较新的就餐环境，但门店名称、地址、菜单、账单与价格均不可识别；两条公开评论只有收藏意向，没有实吃交叉验证，因此不新增无名餐厅导航目标。"
+    },
+    {
+      platform: "小红书", author: "一步一脚印", captured: "2026-08-31",
+      title: "高反来了：这些症状不是累，是危险信号⚠️",
+      url: "https://www.xiaohongshu.com/explore/6a8334c3000000003301bc7a",
+      status: "含 AI 生成内容 · 仅提取通用应急动作", statusType: "recheck",
+      scope: "不限定地区的高原不适识别与应急动作线索。",
+      note: "笔记作者明确声明含 AI 生成内容，正文案例为稻城亚丁牛奶海而非本路线；本攻略只保留‘停止活动／陪同观察／危险信号立即求助并下撤／氧气不替代就医’等通用安全顺序，不把图文当作医学诊断或个体用药方案。出发前结合个人病史向医生确认。"
+    },
+    {
+      platform: "用户补充", author: "用户整理资料", captured: "2026-08-31",
+      title: "莫高窟必看窟位与游览攻略",
+      url: "",
+      status: "行程参考 · 官方规则待核验", statusType: "recheck",
+      scope: "普窟／特窟重点、票种差异、标准动线、拍摄与证件提醒。",
+      note: "用户补充了 45、57、220、275、321 等特窟候选，以及 96、17、257、61 等普窟重点，并整理了常规票、应急票、特窟票和标准游览动线。票价、售票时间、每日限量、可参观窟位和现场管理规则可能随季节调整，已在 D6 预约卡中按‘出发前官方核验’处理；攻略不采用‘蹭窟’作为执行建议。"
+    },
+    {
+      platform: "小红书", author: "七铺作庑殿顶", captured: "2026-08-31",
+      title: "四刷莫高窟，总结一些比较重要的普窟",
+      url: "https://www.xiaohongshu.com/explore/69ca5598000000001e00fe43",
+      status: "多次参观经验 · 评论未核验", statusType: "recheck",
+      scope: "普窟窟位艺术看点与参观秩序线索。",
+      note: "作者自述四刷、看过 30 多个普窟，推荐 259、257、249、428、427、407、329、328、323、237、61 等窟，并说明照片来自复制窟或画册。407 窟是否开放、各窟当日是否纳入讲解路线需现场确认；评论区在当前链接下要求登录，未作为交叉证据。"
+    },
+    {
+      platform: "小红书", author: "敦煌鼎旺老城门小于", captured: "2026-08-31",
+      title: "莫高窟必看洞窟清单",
+      url: "https://www.xiaohongshu.com/explore/697b274a0000000022031cf0",
+      status: "旅行服务账号整理 · 评论有补充", statusType: "recheck",
+      scope: "96、257、220、158、45、3 窟的看点线索。",
+      note: "正文列出 96、257、220、158、45、3 窟及艺术看点；公开评论指出 3 窟可能已永久不开放，说明开放窟位和特窟每天可能变化。攻略将 158 窟加入候选，并将 3 窟列为‘不预设、现场核验’，不把服务账号清单当作固定参观顺序。"
+    },
+    {
+      platform: "小红书", author: "觉习猷成型君", captured: "2026-08-31",
+      title: "莫高窟特窟怎么看怎么选？（攻略不要太全）",
+      url: "https://www.xiaohongshu.com/explore/6a6c16eb000000002403cb37",
+      status: "个人攻略 · 时效与评论需复核", statusType: "recheck",
+      scope: "特窟现场排队、线路售卖和 1 号线窟位看点。",
+      note: "笔记称特窟只能现场排队、按线路售卖不能挑窟号，并给出 10:30 排队、11:00—14:30 售票及 156／45／57／257 等 1 号线价格线索；评论反馈早到仍可能售罄，且每天开放窟位可能变化。仅作为预算和排队预案，价格、时间、地点和线路以官方当天公告为准。"
+    },
+    {
+      platform: "小红书", author: "小红薯695873FD", captured: "2026-08-31",
+      title: "敦煌，一座沙漠里最尊重游客的城市",
+      url: "https://www.xiaohongshu.com/explore/6a8f872f00000000260026a3",
+      status: "个人体验 · 评论有补充", statusType: "recheck",
+      scope: "鸣沙山票务／演出、莫高窟票种、沙洲夜市餐食与价格线索。",
+      note: "正文及评论提供鸣沙山门票、连续入园、演出接驳、景区饮水、停车，以及漠北烤鱼、手抓饭、李广记杏皮茶和文创市场的个人价格线索；评论指出无人机和合唱活动受季节天气影响、夜市周边停车不便、景区自助水可能较便宜。所有价格、演出、公交和商户状态以官方／现场为准。"
+    },
+    {
+      platform: "小红书", author: "小鹿酱在路上", captured: "2026-08-31",
+      title: "莫高窟今天看了18个！普窟毕业！附经典窟名单",
+      url: "https://www.xiaohongshu.com/explore/69e23f98000000001d01dea0",
+      status: "现场体验 · 评论有时效性", statusType: "recheck",
+      scope: "莫高窟常规参观流程、复制窟讲解和普窟数量线索。",
+      note: "正文记录取纸质票、两部数字电影、旺季 8 个普窟讲解和陈列中心复制窟讲解等流程；评论提到窟位和特窟开放每天可能变化，也有人反馈从早到晚参观体力消耗很大。攻略只采用流程与时间缓冲提醒，不采用跟随其他团队听讲解的做法，票务和现场管理以官方安排为准。"
+    },
+    {
+      platform: "小红书", author: "momo啦", captured: "2026-08-31",
+      title: "去莫高窟前必看",
+      url: "https://www.xiaohongshu.com/explore/6a9432300000000004029660",
+      status: "实用工具线索 · 官方入口待核验", statusType: "recheck",
+      scope: "“云游敦煌”小程序的参观前预习、洞窟资料回看与拍摄限制提醒。",
+      note: "作者称莫高窟内扫码可进入“云游敦煌”，查看洞窟介绍、图片、背景知识和主题专栏；洞窟内不能拍照，适合入窟前预习、出窟后回看。公开评论主要是收藏和咨询，没有反向体验；小程序入口、二维码和功能以莫高窟现场及官方渠道为准。"
+    },
+    {
+      platform: "小红书", author: "鸭肉粉丝汤", captured: "2026-08-31",
+      title: "青甘大环线7天流水账记录💟",
+      url: "https://www.xiaohongshu.com/explore/6a94ec5b000000002003e5f8",
+      status: "近期个人账单 · 路线不同", statusType: "recheck",
+      scope: "7 天青甘行程的交通、团费、景区小交通、自费项目和餐饮特产费用结构。",
+      note: "作者记录总花费约 ¥5,407（去程返程机票、7 天用车住宿早餐和多数大门票等合计），并提示莫高窟 A 票需实名预约、尽量提前约一个月；评论中作者称团整体体验不错，近期天气为时晴时风、偏冷。该路线与本攻略 10 天包车方案、航班和景点取舍不同，金额仅作费用结构参考，不替代本人的实时报价。"
+    },
+    {
+      platform: "小红书", author: "momo", captured: "2026-08-31",
+      title: "一些敦煌购物碎碎念",
+      url: "https://www.xiaohongshu.com/explore/6a8d4616000000002201ceaa",
+      status: "近期实购 · 体验有分歧", statusType: "recheck",
+      scope: "敦煌丝巾、杏干、骆驼挂件、冰箱贴与李广记杏皮水的购买体验。",
+      note: "作者记录敦煌夜市敦亭丝巾、盛憶轩挂件、李广记杏干／杏皮水和建荣市场杏干购买体验：丝巾可比较材质并尝试议价，冰箱贴有 10 元 4 个的本次购买记录，挂件约 8—10 元；建荣市场杏干本次购物体验一般但商品本身尚可，且作者提醒部分推荐可能受赠品影响。价格为个人当次记录，需与现场明码标价和多店比价结合。"
+    },
+    {
+      platform: "小红书", author: "小芒果", captured: "2026-07-16",
+      title: "来敦煌一定要吃这家面呀！！！！！！",
+      url: "https://www.xiaohongshu.com/explore/6a1816a6000000003601f9b3",
+      status: "本人实吃 + 多条评论交叉支持", statusType: "recheck",
+      scope: "敦煌蒋氏臊子面的臊子炸酱面、浆水面、素碱面与杏皮水。",
+      note: "正文推荐臊子炸酱面、浆水面和杏皮水；公开评论有多条本地人或实吃反馈，补充素碱面，并称整体实惠。店名由评论提出后获作者确认，评论还称目前有 3 家分店；笔记未给出具体分店、地址、菜单或清晰账单，公开检索也不足以锁定对应门店，因此攻略不写死地址与价格。"
+    },
+    {
+      platform: "携程美食林", author: "平台餐厅列表", captured: "2026-07-16",
+      title: "大柴旦热门美食列表｜顶顶牛特色干锅牦牛肉",
+      url: "https://gs.ctrip.com/html5/you/foods/2025133.html",
+      status: "营业线索 · 暂无点评", statusType: "recheck",
+      scope: "用于交叉确认顶顶牛仍出现在大柴旦餐厅列表，以及干锅牛肉、青稞饼和参考人均。",
+      note: "平台页面显示参考人均约 ¥68，但标注暂无点评，也未在公开页面中提供足够地址与营业信息；价格、门店名称、菜单和营业状态仍需出发前通过地图及电话复核。"
+    },
+    {
+      platform: "小红书", author: "佛系的彩虹", captured: "2026-08-31",
+      title: "青海三个盐湖9月中旬选哪个",
+      url: "https://www.xiaohongshu.com/explore/6a8b974e0000000014025363",
+      status: "对比笔记 + 公开评论 · 选择性采用", statusType: "recheck",
+      scope: "茶卡盐湖、察尔汗盐湖、翡翠湖的天气敏感度、出片特点与替代选择。",
+      note: "评论反馈整体更偏向察尔汗；茶卡更依赖晴天、少云和可接受风力，阴雨或起云时体验可能明显下降；翡翠湖抵达较晚可能只有局部湖面出片。评论还提到如意湖、蜜蜡湖等替代点，但门票、开放和路线均未核实，未写入默认行程。"
+    },
+    {
+      platform: "小红书", author: "小红薯6A51B5D3", captured: "2026-08-31",
+      title: "大家觉得青甘排名前三的景点是哪三个？",
+      url: "https://www.xiaohongshu.com/explore/69febae00000000035029cd9",
+      status: "评论型讨论 · 排名分歧明显", statusType: "recheck",
+      scope: "青甘景点偏好、盐湖体验差异和已消失／替代点位线索。",
+      note: "正文仅邀请带图评论，评论对茶卡、察尔汗、水上雅丹、黑独山、翡翠湖、可可西里等偏好分歧很大；其中有评论称东台吉乃尔湖‘现在已经消失’，不作为当前路线景点。仅用于说明景点体验受天气、季节和个人偏好影响，不形成固定前三排名。"
+    },
+    {
+      platform: "小红书", author: "都给我疯", captured: "2026-08-31",
+      title: "西北四湖",
+      url: "https://www.xiaohongshu.com/explore/69f7da9b000000003701cb7a",
+      status: "四湖对比 + 公开评论 · 选择性采用", statusType: "recheck",
+      scope: "青海湖、察尔汗盐湖、翡翠湖、茶卡盐湖的同质化与个人偏好讨论。",
+      note: "评论普遍认为察尔汗、翡翠湖更值得优先比较，也有人推荐青海湖、认为茶卡可省略；意见受天气、景区入口和个人期待影响明显。攻略仅将其用于解释 D9 盐湖机动和 D10 青海湖轻游取舍，不形成客观排名。"
+    },
+    {
+      platform: "小红书", author: "饭当当🍚", captured: "2026-08-31",
+      title: "西宁的朋友，老实交代吧！",
+      url: "https://www.xiaohongshu.com/explore/6a155e2400000000350217cd",
+      status: "评论型美食征集 · 选择性采用", statusType: "recheck",
+      scope: "西宁本地餐食与口味偏好线索。",
+      note: "评论补充抓面、炕锅羊肉、牛大骨、干锅土豆、酿皮和甜胚子等高频候选；部分具体店名缺地址或仅为单次体验。牦牛酸奶口味评价分歧明显，因此攻略只保留为少量尝试，不列为必吃。"
+    },
+    {
+      platform: "小红书", author: "小羊咩咩（gap版）", captured: "2026-08-31",
+      title: "没想到青甘旅游最好吃一顿饭在德令哈",
+      url: "https://www.xiaohongshu.com/explore/6a5ccbda000000000402aa92",
+      status: "路线不重合 · 仅作绕行候选", statusType: "recheck",
+      scope: "德令哈深夜餐食、炕锅羊排与人均价格线索。",
+      note: "正文推荐深夜营业的炕锅羊排／羊肠、洋芋粉、烤饼、咸麦仁粥和烤羊肉串，人均约 ¥40；评论同时出现排队、羊肉膻味和其他人踩雷反馈。当前 10 天默认路线不经过德令哈，未写入固定日程，仅在未来改线时复核。"
+    },
+    {
+      platform: "小红书", author: "momo", captured: "2026-08-31",
+      title: "来敦煌一定要喝这一家！！",
+      url: "https://www.xiaohongshu.com/explore/6a3404550000000006021623",
+      status: "饮品体验 · 定位未稳定读取", statusType: "recheck",
+      scope: "敦煌夜市驼奶特调与店铺布置线索。",
+      note: "正文称驼奶特调口感惊喜、店铺有敦煌特色；13 条可见评论主要询问位置，作者称已在笔记上方定位，但当前页面未稳定显示具体店名与地址，因此仅保留为夜市现场候选。"
+    },
+    {
+      platform: "小红书", author: "素质教育", captured: "2026-08-31",
+      title: "西宁美食推荐（评论区有更新）",
+      url: "https://www.xiaohongshu.com/explore/69cd1490000000001a037072",
+      status: "本地长期体验 + 评论更新 · 选择性采用", statusType: "recheck",
+      scope: "西宁正餐、炕锅、酸辣里脊、面食和店铺环境／分店差异。",
+      note: "作者长期居住西宁，推荐尕张娃、悦宾楼虎台店、贾小旧院／红光小院、海湖新区河湟老灶、马相卿、祁记面片力盟店和牛杂／牦牛大骨汤等；评论补充排队、咸味、分店服务和口味差异。店名、地址、营业和团购价格仍需地图及到店复核，抓面与酸奶不列为必吃。"
+    },
+    {
+      platform: "小红书", author: "吃游八方的一碟", captured: "2026-08-31",
+      title: "【西宁】马相卿特色烤肉",
+      url: "https://www.xiaohongshu.com/explore/6a09f56b0000000035033a9e",
+      status: "探店正文 · 评论较少", statusType: "recheck",
+      scope: "马相卿特色烤肉的羊肉串、炮仗面和青海酸奶口味线索。",
+      note: "正文评价羊肉串新鲜、火候合适，特色炮仗面带汤且偏清淡，青海酸奶顺滑；与既有马相卿条目合并，不改变其炕锅牛腩优先、烧烤按个人口味的建议。门店地址、营业和价格仍需地图／到店复核。"
+    },
+    {
+      platform: "小红书", author: "美de冒泡儿", captured: "2026-08-31",
+      title: "西宁推荐吃什么",
+      url: "https://www.xiaohongshu.com/explore/6a166527000000003802098d",
+      status: "评论型美食清单 · 选择性采用", statusType: "recheck",
+      scope: "西宁夜市、面食、酸奶与具体店铺线索。",
+      note: "公开评论补充阿爷烤大饼、尕穆萨生烤、杨家麻辣烫、高担／梗皮酿皮、碗装酸奶约 ¥2.5—3、马万／正清抓面、朝阳生炒炮仗和老马家退骨精制干拌等线索；不少店铺地址和营业状态未完整提供，均需地图复核。"
+    },
+    {
+      platform: "小红书", author: "睡醒就出发", captured: "2026-08-31",
+      title: "🐫【丝路必吃清单】敦煌9家餐厅吃到扶墙",
+      url: "https://www.xiaohongshu.com/explore/688f053500000000220238ba",
+      status: "餐厅合集 + 公开评论 · 选择性采用", statusType: "recheck",
+      scope: "敦煌羊羔肉、胡羊焖饼、粉汤、黄面和烧烤餐厅候选。",
+      note: "清单列出沙州小院、妙街胡羊烧烤、靖远尕六、北颂冰煮羊、夏家合汁、老叶家牛羊肉粉汤、阿西娅、顺张黄面和周记焖饼子；评论称沙州小院接地气、夏家合汁与沙州小院好吃，也有羊膻味和地域归属质疑。仅作为敦煌市区候选，地址、营业、价格和近期评价需复核。"
+    },
+    {
+      platform: "小红书", author: "甜酒酿圆子🍨", captured: "2026-08-31",
+      title: "张掖的文创真的太好买了！（内附2家攻略）",
+      url: "https://www.xiaohongshu.com/explore/69faeb500000000023005b51",
+      status: "文创探店 + 公开评论 · 选择性采用", statusType: "recheck",
+      scope: "张掖大佛寺旁文创店、冰箱贴、盖章与手作体验。",
+      note: "笔记提到‘邮点意思’与‘来都来了’两家店相邻，可比较冰箱贴、八音盒、骆驼挂件、旋转小马、支架镜子和手工豆荚娃娃；评论称两家价格相近，作者提到可盖章及购买赠品。具体位置、活动、价格和库存需现场确认。"
+    },
+    {
+      platform: "小红书", author: "王都料｜敦煌文旅推荐官", captured: "2026-08-31",
+      title: "鸣沙山万人星空演唱会避坑！别白跑",
+      url: "https://www.xiaohongshu.com/explore/6a030571000000000702a4ad",
+      status: "活动现场经验 + 公开评论 · 场次时效性高", statusType: "recheck",
+      scope: "鸣沙山万人演唱会入场、保暖、补给、如厕与散场疏散。",
+      note: "现场经验建议 17:00 前到、提前如厕、穿包脚鞋或鞋套、带水和少量面包，日落后加厚外套，散场按摆渡车与疏散安排离场；评论显示活动场次集中在特定月份，不能推断 2026 年 9 月底仍有演出。仅在官方确认场次后启用。"
+    },
+    {
+      platform: "小红书", author: "骆小姐文创点心", captured: "2026-08-31",
+      title: "谁懂啊！在敦煌上了个800万的厕所，结果买走",
+      url: "https://www.xiaohongshu.com/explore/6a0979ba000000003701f416",
+      status: "文创营销型笔记 · 厕所信息未核实", statusType: "recheck",
+      scope: "敦煌夜市网红厕所位置线索与骆小姐文创酥饼伴手礼。",
+      note: "正文将敦煌夜市某网红厕所与骆小姐文创点心绑定宣传，推荐李广杏酥、西北沙枣面酥，称包装适合送人、人均几十元；厕所造价与设施描述未独立核验，点心口味、配料、保质期和价格需现场确认，仅保留为夜市顺路候选。"
+    },
+    {
+      platform: "小红书", author: "Leehi", captured: "2026-08-31",
+      title: "西宁YYDS!根本不用带行李(附zui新物价)",
+      url: "https://www.xiaohongshu.com/explore/685fbb0d000000001c0368af",
+      status: "应急补购体验 + 公开评论 · 价格时效性高", statusType: "recheck",
+      scope: "西宁新千夜市及周边服装、鞋帽、披肩和应急采购价格。",
+      note: "正文称新千夜市约 15:00 开始，披肩约 ¥25、加绒披肩约 ¥45、配饰约 ¥10—30、三合一冲锋衣约 ¥150；评论补充靴子约 ¥10—20但质量一般、建议自带舒适鞋，营业至午夜的说法也需现场核实。仅用于行李延误或临时缺件的应急补购，不改变提前准备原则。"
+    },
+    {
+      platform: "中国天气网／中国气象局", author: "官方气象服务", captured: "2026-07-16",
+      title: "青海城市预报、气象预警与交通气象入口",
+      url: "https://www.weather.com.cn/textFC/qinghai.shtml",
+      status: "官方复核入口", statusType: "confirmed",
+      scope: "沿途区县预报、风力、降水、能见度、灾害预警与出行风险。",
+      note: "官方预报入口用于临行复核；远期趋势不能替代前 72 小时、前 24 小时和当天的滚动查询，局地景区情况仍需结合景区公告、道路信息与向导确认。"
+    }
+  ],
+  days: [
+    {
+      id: "day1", short: "D1", isoDate: "2026-09-23", date: "09.23 周三",
+      title: "上海 → 西宁", theme: "早班机抵达，适应高原节奏", status: "建议方案", statusType: "suggested",
+      metrics: [
+        {label: "全天车程", value: "无（飞机）"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟡 低风险 约2200m"}
+      ],
+      alert: {title: "今日原则", text: "抵达后只做轻适应；补水、热食、早休息，不安排重景点。", tone: "blue"},
+      transport: [
+        {icon: "飞", route: "上海浦东 T2 → 西宁曹家堡 T3", time: "08:15—12:00", note: "春秋航空 9C7165"},
+        {icon: "车", route: "西宁机场 → 市区酒店", time: "约 40—60min", note: "包车接机"}
+      ],
+      timeline: [
+        {time: "05:15", title: "起床与最后检查", text: "证件、充电设备、保暖层和早餐安排。", level: "normal"},
+        {time: "06:00", title: "前往浦东机场", text: "目标 06:30—07:00 抵达 T2，办理值机与托运。", level: "key"},
+        {time: "08:15", title: "飞往西宁", text: "9C7165，计划 12:00 抵达西宁曹家堡机场 T3。", level: "key"},
+        {time: "12:00", title: "接机与简餐", text: "前往酒店；如不能入住，先安排清淡热食。", level: "normal"},
+        {time: "13:00", title: "入住放行李", text: "简单整理后出发，不建议长时间休息或热水澡。", level: "rest"},
+        {time: "14:00", title: "下南关街／新千", text: "按酒店位置顺路选一个；新千夜市可在负一楼和一楼补买披肩、帽子、墨镜及民族风配饰。", level: "normal"},
+        {time: "16:00", title: "景点备选（任选）", text: "青海省博物馆、藏文化博物馆（室内适合高原适应日）；东关清真寺、南关清真寺；南山公园提前到位等日落。", level: "normal"},
+        {time: "18:30", title: "大新街夜市／莫家街", text: "看完日落可直接前往；大新街为主要吃逛段，可顺路串联莫家街。20:30前结束，早点休息。", level: "normal"}
+      ],
+      modules: [
+        {icon: "住", title: "西宁住宿", type: "lodging", summary: "白云翔羚酒店（或同级）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：白云翔羚酒店或同级｜3人间"]},
+        {icon: "食", title: "西宁餐食与夜市候选", type: "food", summary: "首日优先热食；夜市只选一个片区", status: "建议方案", statusType: "suggested", items: ["海湖新区｜河湟老灶：炕锅羊排、玉米龙骨汤；尕张娃：炕锅羊排、酸辣里脊；悦宾楼虎台店：烤鸭", "城西／力盟｜马相卿：炕锅牛腩、羊肉串、炮仗面；贾小旧院／红光小院：酸辣里脊、生炒牦牛肉；祁记手工面片坊：面片、炕锅羊排", "城西师范大学附近｜尕晋娃、伊彩兴、马万、正清：抓面；朝阳一带：生炒炮仗", "商业巷｜西北口味关东煮", "下南关夜市｜酿皮、甜醅子、炕锅土豆、烤肉、青海老酸奶", "大新街／莫家街｜阿爷烤大饼、尕穆萨生烤、老马家退骨精制干拌", "其他候选｜艾菲尔双拼炕锅、宝葫芦甜醅无糖奶茶、青海土火锅（晚餐）"]},
+        {icon: "购", title: "新千夜市补购", type: "shopping", summary: "负一楼与一楼小件补给", status: "建议方案", statusType: "suggested", items: ["民族风披肩｜约 ¥15—25", "大沿牛仔帽／针织帽｜约 ¥15—20", "墨镜｜约 ¥20 左右", "藏式耳环、发饰和民族风裙子｜按需要选购"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "市区街拍与轻便分层", status: "建议方案", statusType: "suggested", items: ["机位｜南山公园日落、东关清真寺／南关清真寺外观、夜市街景", "配色｜米白、浅驼、奶咖，适合市区建筑和夜市灯光", "穿搭｜薄卫衣或针织＋宽松长裤，晚上加轻薄冲锋衣"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "景点、机位与厕所情况", status: "建议方案", statusType: "suggested", items: ["景点备选｜青海省博物馆、藏文化博物馆（室内适合高原适应日）；东关清真寺、南关清真寺（外观打卡或进内参观）；南山公园（日落机位，体力允许时）", "厕所情况｜市区、唐道、莫家街一带商场和餐厅厕所整体干净", "天气情况｜西宁市"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜先休息，不要一开始就照顾所有人；适合米白、浅驼穿搭", "B（INFP）｜适合热汤面和牛肉面；避免冰饮", "C（INTJ）｜今天别急着优化全路线，先放松", "全体｜早点休息，进入西北节奏；先适应环境，不急着优化整条路线，减少互相照顾造成的疲劳"]}
+      ]
+    },
+    {
+      id: "day2", short: "D2", isoDate: "2026-09-24", date: "09.24 周四",
+      title: "西宁 → 祁连", theme: "祁连山草原与卓尔山", status: "建议方案", statusType: "suggested",
+      metrics: [
+        {label: "全天车程", value: "约 5—6h"}, {label: "活动强度", value: "中"},
+        {label: "海拔风险", value: "🟠 中风险 约3000m"}
+      ],
+      alert: {title: "开始进入高原段", text: "沿途慢行、适时休息；不要跑跳，夜间重点保暖。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "西宁 → 达坂山观景台 → 门源盆地 → 峨堡／祁连草原", time: "约 4.5h", note: "包车｜沿途按安全条件停车"},
+        {icon: "车", route: "峨堡／祁连草原 → 卓尔山 → 祁连县城", time: "约 1.5—2h", note: "包车｜含景点间移动"}
+      ],
+      timeline: [
+        {time: "07:15", title: "起床与早餐", text: "简单早餐，检查保暖层、热水和车上补给。", level: "normal"},
+        {time: "08:00", title: "离开西宁", text: "沿 G227 向北，途中以安全停车为前提适时休息。", level: "key"},
+        {time: "10:30", title: "达坂山观景台／门源盆地", text: "短暂停留俯瞰门源盆地；风大时减少停留，不在观景台边缘久站。", level: "normal"},
+        {time: "12:30", title: "峨堡镇／祁连大草原", text: "草原短停、拍照和如厕；骑马按体力和现场条件选择，不作为必选项目。", level: "key"},
+        {time: "13:00", title: "草原午餐", text: "在峨堡镇或沿途选择牦牛汤、手抓羊肉等热食，午餐与休息至 14:00。", level: "rest"},
+        {time: "14:00", title: "前往卓尔山", text: "峨堡／草原区域前往卓尔山，车程约 15—30 分钟，按当天实际位置调整。", level: "normal"},
+        {time: "14:30—17:30", title: "卓尔山前山景区", text: "乘景交车上山，沿木栈道游览；重点看牛心山、丹霞、草原和祁连县城全景。", level: "key"},
+        {time: "备选", title: "卓尔山后山／伦布夏果", text: "体力充足且不影响入住时再安排；后山土路缓坡约 10—15 分钟，适合看日落、拍草原，可现场选择骑马或牵小羊。", level: "optional"},
+        {time: "19:00—20:00", title: "入住祁连县", text: "返回盛唐翠光酒店或同级，晚餐优先牦牛火锅等热食，早点休息。", level: "normal"}
+      ],
+      modules: [
+        {icon: "住", title: "祁连住宿", type: "lodging", summary: "盛唐翠光酒店（或同级）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：盛唐翠光酒店或同级｜3人间"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "草原、雪山与分层保暖", status: "建议方案", statusType: "suggested", items: ["机位｜达坂山观景台、门源盆地、峨堡经幡林、卓尔山木栈道与牛心山远景", "配色｜祁连草原适合浅色碎花裙、牛仔裙或白色系；针织开衫可兼顾保暖和拍照", "穿搭｜裙装内搭加绒打底裤，外层穿冲锋衣或薄羽绒；草原风大，选厚袜和防滑鞋／靴子，拍完及时裹紧外套"]},
+        {icon: "食", title: "祁连餐食与奶品", type: "food", summary: "草原午餐＋县城晚餐", status: "建议方案", statusType: "suggested", items: ["峨堡／沿途午餐｜牦牛汤、手抓羊肉、牦牛肉面片", "祁连县城·正餐｜天境牦牛壮骨汤（牦牛汤、烤羊肉串）、撒拉尔美食（手抓羊肉、土锅）、舌尖上的面片（面片、红烧牛腩）、裕润烤肉店（炕锅羊排、土火锅）", "饮品／甜品｜挞力亚：黑青稞、甜胚子奶茶；青海奶品少量尝试，不一次混喝多种"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "沿途景点与前后山选择", status: "建议方案", statusType: "suggested", items: ["沿途看点｜达坂山观景台俯瞰门源盆地；峨堡镇可短停、如厕和拍经幡林；祁连大草原以 G227 沿线安全停车点为主，不额外进入收费草场", "备选｜阿柔大寺只有在取消卓尔山后山且时间充裕时考虑；寺内注意着装，殿内不拍照，转经筒顺时针", "注意｜不翻越草场围栏、不追赶牛羊；卓尔山与后山均按体力安排，首日不强行走满"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜会很想拍很多合照，但别一直顾别人；适合卡其、米白穿搭", "B（INFP）｜草原会很治愈，记得保暖；适合牦牛肉汤锅、热水", "C（INTJ）｜会开始进入‘掌控路线模式’，注意放松；浅棕色适合今天", "全体｜进入高原段后动作放慢，保持饮水和保暖，不在高原段临时加点"]}
+      ]
+    },
+    {
+      id: "day3", short: "D3", isoDate: "2026-09-25", date: "09.25 周五",
+      title: "祁连 → 张掖", theme: "扁都口秋色与七彩丹霞日落", status: "建议方案", statusType: "suggested",
+      metrics: [
+        {label: "全天车程", value: "约 5—6h"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟢 低风险 约1400m"}
+      ],
+      alert: {title: "从高原进入河西走廊", text: "海拔下降但仍需防晒保湿；扁都口安排沿途短停，七彩丹霞以下午入园和日落为核心。观光车为单向动线，先确认入口与站点顺序。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "祁连 → 扁都口", time: "约 2.5—3h", note: "包车｜途中停车点按道路条件选择"},
+        {icon: "车", route: "扁都口 → 七彩丹霞", time: "约 1.5—2h", note: "经民乐县方向前往景区"},
+        {icon: "车", route: "七彩丹霞 → 张掖市区", time: "约 1—1.5h", note: "日落后返回酒店与市区晚餐"}
+      ],
+      timeline: [
+        {time: "07:30", title: "起床", text: "简单早餐后退房。", level: "normal"},
+        {time: "08:30", title: "祁连出发", text: "沿 G227 国道前往扁都口，途中穿越峡谷与草原。", level: "key"},
+        {time: "10:30", title: "扁都口短停", text: "在安全观景台拍摄峡谷、公路、草甸与远山，不在道路边长时间停留。", level: "normal"},
+        {time: "12:30", title: "扁都口／民乐县午餐补给", text: "手抓羊肉、农家菜或牛肉小饭，补水后前往七彩丹霞。", level: "rest"},
+        {time: "13:30", title: "前往七彩丹霞", text: "车程约 1.5—2 小时，提前准备防晒和饮水。", level: "normal"},
+        {time: "15:30", title: "七彩丹霞入园", text: "优先从北门进入，乘观光车按 1 号→2 号→3 号→4 号顺序游览；观景台之间以景交为主，不安排长距离步行。", level: "key"},
+        {time: "18:30", title: "前往张掖市区", text: "日落后返回酒店办理入住，车程约 1—1.5 小时。", level: "normal"},
+        {time: "19:30", title: "张掖市区逛吃", text: "甘州老街或市区夜市用餐，优先选择酒店附近，不为单店绕路。", level: "normal"},
+        {time: "21:30", title: "回酒店休息", text: "结束当天行程。", level: "rest"}
+      ],
+      modules: [
+        {icon: "住", title: "张掖住宿", type: "lodging", summary: "丹霞锦华酒店（或同级）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：丹霞锦华酒店或同级｜3人间"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "扁都口公路 + 七彩丹霞日落", status: "建议方案", statusType: "suggested", items: ["机位｜扁都口安全观景台拍公路、峡谷、草甸和远山；七彩丹霞 1 号台看全景、4 号台看日落", "配色｜扁都口适合牛仔、白色或浅色系；丹霞山体色彩丰富，选纯黑或纯白，避免碎花", "穿搭｜裙装内搭加绒打底裤，外层穿防风外套；穿防滑鞋，裙摆不要过长，防晒帽和墨镜必备"]},
+        {icon: "食", title: "张掖餐食与零食", type: "food", summary: "扁都口午餐 + 张掖市区晚餐", status: "建议方案", statusType: "suggested", items: ["扁都口／民乐县·午餐｜手抓羊肉、农家菜、牛肉小饭", "张掖市区·正餐｜张丹霞鱼庄：椒麻乌鱼片、牛肉小饭、炒拨拉；金张掖香再来麻辣烫：张掖麻辣烫", "张掖市区·小吃｜搓鱼子、卷子鸡、臊面、鸡蛋醪糟、杏皮水", "七彩丹霞景区·饮品／冰品｜前进酸奶、前进牛奶、思露杏皮茶、彩虹花筒"]},
+        {icon: "购", title: "七彩丹霞与张掖文创", type: "shopping", summary: "冰箱贴、八音盒与手作小件", status: "建议方案", statusType: "suggested", items: ["七彩丹霞｜可移动小车冰箱贴、七彩丹霞主题冰箱贴、木质尺", "张掖大佛寺附近｜邮点意思、来都来了：冰箱贴、八音盒、骆驼挂件、旋转小马、可支架镜子、手工豆荚娃娃", "购买前检查磁吸、活动部件和包装，便于后续长途携带"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "景点、补给与厕所情况", status: "建议方案", statusType: "suggested", items: ["扁都口｜祁连山与冷龙岭之间的峡谷通道，沿线观景台可短停拍摄公路、草甸和远山", "七彩丹霞｜优先安排北门及 1—4 号观景台；不要踩踏丹霞地貌，观景台之间乘景交车，不强行步行", "补给｜景区内不以小吃补给为主，午餐后备好水、少量零食、润唇膏和防晒用品", "厕所情况｜七彩丹霞游客服务中心及 1／2／4／5 号观景台有水厕；扁都口部分点位条件有限，午餐和短停时先解决", "天气情况｜重点关注扁都口风力、七彩丹霞能见度与日落时段"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜容易进入旅行高兴奋状态；适合焦糖、浅驼色", "B（INFP）｜丹霞会明显提升心情，是恢复日；适合卷子鸡、牛肉小饭", "C（INTJ）｜适合拍结构感、几何感和极简风景；少穿大红", "全体｜杏皮水、润唇膏和保湿一定要安排"]}
+      ]
+    },
+    {
+      id: "day4", short: "D4", isoDate: "2026-09-26", date: "09.26 周六",
+      title: "张掖 → 平山湖 → 嘉峪关", theme: "平山湖峡谷步行日", status: "建议方案", statusType: "suggested",
+      metrics: [
+        {label: "全天车程", value: "约 4.5—5h"}, {label: "活动强度", value: "中"},
+        {label: "海拔风险", value: "🟢 低风险 约1700m"}
+      ],
+      alert: {title: "平山湖后直接前往嘉峪关", text: "上午完成平山湖核心游览；午餐后直接前往嘉峪关，抵达后只安排东湖公园或南湖轻量看日落，不进入关城。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "张掖 → 平山湖大峡谷", time: "约 1—1.5h", note: "包车"},
+        {icon: "车", route: "平山湖 → 嘉峪关", time: "约 3—3.5h", note: "包车"}
+      ],
+      timeline: [
+        {time: "07:45", title: "起床", text: "简单早餐后从张掖出发。", level: "normal"},
+        {time: "08:30", title: "前往平山湖", text: "尽量按时离开市区。", level: "key"},
+        {time: "10:00", title: "平山湖大峡谷", text: "计划至 13:30；先看 1 号观景台九龙幻海，再按体力进入峡谷和一线天，穿防滑鞋。", level: "key"},
+        {time: "13:30", title: "午餐与短暂休息", text: "平山湖附近或民乐县用农家菜、手抓羊肉等简餐，补水后直接前往嘉峪关。", level: "rest"},
+        {time: "14:30", title: "直接前往嘉峪关", text: "车程约 3—3.5 小时，途中安排一次休息。", level: "key"},
+        {time: "18:00", title: "嘉峪关东湖公园／南湖日落", text: "抵达较早且体力允许时，先去东湖公园或南湖轻量散步看落日；不安排嘉峪关关城。", level: "optional"},
+        {time: "19:30", title: "入住与市区逛吃", text: "回酒店放行李后，在大唐美食街或富强市场附近用餐。", level: "normal"},
+        {time: "21:30", title: "回酒店休息", text: "结束当天行程，提前休息。", level: "rest"}
+      ],
+      modules: [
+        {icon: "住", title: "嘉峪关住宿", type: "lodging", summary: "遇见酒店（或同级）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：遇见酒店或同级｜3人间"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "峡谷、戈壁与城市日落", status: "建议方案", statusType: "suggested", items: ["机位｜平山湖 1 号观景台九龙幻海、峡谷步道和一线天；嘉峪关东湖公园或南湖看戈壁落日", "配色｜平山湖适合卡其、棕色和工装风；嘉峪关可用纯色上衣衬托城墙与戈壁", "穿搭｜工装裤或纯色上衣，穿防滑运动鞋，外层带防风衣"]},
+        {icon: "食", title: "餐饮备选", type: "food", summary: "平山湖午餐 + 嘉峪关晚餐", status: "建议方案", statusType: "suggested", items: ["平山湖／民乐县·午餐｜农家菜、手抓羊肉、牛肉小饭", "嘉峪关市区·正餐｜清真·山城手抓：椒盐羊肝、清汤丸子、河沿面片、蛋炒饭", "嘉峪关市区·烧烤｜小党烤肉：羊肉串；眼镜烤肉：椒盐肉、羊肉串；城边边烧烤：盐煎肉、暖锅羊排", "嘉峪关市区·烧烤备选｜清真 AAA 烧烤总店：红柳羊肉串、炒黄面；滚记糊锅：糊锅、麻花面筋", "大唐美食街／富强市场·晚餐小吃｜嘉峪关烤肉、大盘鸡、炕锅鸡、牛肉面"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "平山湖游览与嘉峪关日落备选", status: "建议方案", statusType: "suggested", items: ["平山湖｜普通游适合有体力者；观光车、峡谷步道和一线天按体力选择，不要卡末班车进入深谷", "补给｜景区内几乎没有小吃补给，午餐时带足饮水和少量零食；峡谷段穿防滑运动鞋，不穿拖鞋、凉鞋或小白鞋", "嘉峪关日落｜东湖公园适合市区散步，南湖适合开阔戈壁落日；到达较晚时直接入住休息", "厕所情况｜平山湖入口附近先解决，峡谷内部不依赖临时补给；嘉峪关市区用餐点和酒店附近更方便", "天气情况｜张掖市甘州区、嘉峪关市，重点关注大风、能见度和日落时段"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜嘉峪关会让你很有人生感；适合深卡其、沙色", "B（INFP）｜今天别勉强走满所有步道；适合大盘鸡、牛肉面", "C（INTJ）｜会进入观察型状态，很适合记录旅行；牛仔蓝适合今天", "全体｜鞋要防滑，峡谷段量力而行"]}
+      ]
+    },
+    {
+      id: "day5", short: "D5", isoDate: "2026-09-27", date: "09.27 周日",
+      title: "嘉峪关 → 敦煌", theme: "嘉峪关关城后前往敦煌", status: "行程已排，演出票待购", statusType: "recheck",
+      metrics: [
+        {label: "全天车程", value: "约 5.5—6.5h"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟢 低风险 约1100m"}
+      ],
+      alert: {title: "嘉峪关上午游览，敦煌晚间演出", text: "上午完成关城，午餐后直接前往敦煌；《又见敦煌》按 20:00 场安排，晚餐和进场时间按演出要求倒排。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "嘉峪关市区 → 嘉峪关关城", time: "约 20—30min", note: "包车"},
+        {icon: "车", route: "嘉峪关 → 敦煌", time: "约 4.5—5.5h", note: "包车直达敦煌，具体出发时间与中途休息由司机安排"}
+      ],
+      timeline: [
+        {time: "07:15", title: "起床", text: "简单早餐后出发。", level: "normal"},
+        {time: "08:00", title: "前往嘉峪关关城", text: "从酒店出发，预留检票和进入景区时间。", level: "key"},
+        {time: "08:30", title: "嘉峪关关城", text: "上午游览城墙、城楼、瓮城和展陈，可走马道登城；具体开放区域按当天景区安排。", level: "key"},
+        {time: "11:30", title: "市区午餐与休整", text: "搓鱼面、羊肉臊子面或其他简餐，补水后上车休息。", level: "rest"},
+        {time: "13:30", title: "前往敦煌", text: "车程约 4—5 小时，途中安排必要休息；水和零食提前放在车上。", level: "key"},
+        {time: "17:30", title: "抵达敦煌／入住帐篷营地", text: "办理入住、整理随身物品并换装；若演出场次较早，优先前往剧场。", level: "normal"},
+        {time: "18:45", title: "前往《又见敦煌》剧场", text: "预留约 15—20 分钟车程及换票、安检和入场时间。", level: "key"},
+        {time: "20:00", title: "《又见敦煌》", text: "演出约 90 分钟；穿平底鞋，按现场入场和存包规则执行。", level: "key"},
+        {time: "21:30", title: "返回营地", text: "散场后返回鸣沙山帐篷营地；篝火、越野等活动仅在住宿套餐和体力允许时选择。", level: "normal"},
+        {time: "22:30", title: "休息", text: "第二天为莫高窟核心日。", level: "rest"}
+      ],
+      modules: [
+        {icon: "住", title: "鸣沙山顶奢帐篷", type: "lodging", summary: "9/27 指定酒店", status: "暂定", statusType: "suggested", items: ["旅行社暂定鸣沙山顶奢帐篷一晚｜3人间／无需准备帐篷用品"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "关城与沙漠过渡", status: "建议方案", statusType: "suggested", items: ["机位｜嘉峪关城楼、长城边墙和敦煌夜市氛围街拍", "配色｜米白、金棕、浅驼适合关城与河西走廊，也适合敦煌夜市暖色灯光", "穿搭｜针织或冲锋衣作为外层，平底鞋方便演出走动，晚间注意保暖"]},
+        {icon: "食", title: "餐饮备选", type: "food", summary: "嘉峪关午餐 + 敦煌演出前晚餐", status: "建议方案", statusType: "suggested", items: ["嘉峪关市区·午餐｜搓鱼面、羊肉臊子面", "敦煌市区·正餐｜靖远尕六美味羊羔肉：白条羔羊肉、胡羊焖饼、沙葱炒鸡蛋；顺张黄面馆：驴肉黄面、凉拌酿皮", "敦煌市区·备选｜戈途羊肉·胡杨焖饼：胡杨焖饼、驴肉黄面、凉拌苜蓿", "沙洲食坊／夜市小吃｜沙葱牛肉饼、红柳烤肉、泡儿油糕、杏皮水；时间紧时优先快餐，不因排队影响演出"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "关城、长途车程与演出衔接", status: "建议方案", statusType: "suggested", items: ["嘉峪关关城｜上午光线柔和，城墙、城楼、瓮城和马道优先", "长途车程｜嘉峪关至敦煌约 4—5 小时，车上准备水、少量零食和外套，途中以休息为主", "《又见敦煌》｜全程走动转场，演出约 90 分钟；按演出要求提前 20—30 分钟到场，穿平底鞋，手机、相机和随身物品按现场存包及安检规则执行", "帐篷营地｜篝火、越野、打铁花等仅按住宿套餐、开放时间和体力选择，不影响第二天莫高窟早场"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜敦煌适合记录街景和旅途见闻；适合米白、金棕穿搭", "B（INFP）｜夜市氛围舒服，但累了就早回酒店；适合热面、驴肉黄面", "C（INTJ）｜会享受丝路文化和秩序感；浅驼色适合今天", "全体｜今晚以沙漠氛围体验为主，不再额外逛夜市；帐篷夜温差大，睡前注意保暖"]}
+      ]
+    },
+    {
+      id: "day6", short: "D6", isoDate: "2026-09-28", date: "09.28 周一",
+      title: "敦煌核心日", theme: "莫高窟、鸣沙山与月牙泉", status: "莫高窟已订", statusType: "confirmed",
+      metrics: [
+        {label: "全天车程", value: "短途"}, {label: "活动强度", value: "中（爬沙）"},
+        {label: "海拔风险", value: "🟢 低风险 约1100m"}
+      ],
+      alert: {title: "莫高窟 08:30 A 类常规票", text: "07:45 左右从住宿点出发，08:00 前后抵达数字展示中心完成身份证核验；上午完成莫高窟，鸣沙山安排在傍晚，避免正午爬沙。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "鸣沙山附近 → 莫高窟数字中心", time: "约 20—30min", note: "包车／市区车"},
+        {icon: "摆", route: "数字中心 → 窟区", time: "约 15min", note: "景区摆渡"},
+        {icon: "车", route: "市区 → 鸣沙山月牙泉", time: "约 15—20min", note: "具体接送待安排"}
+      ],
+      timeline: [
+        {time: "07:15", title: "起床与早餐", text: "酒店早餐，携带身份证原件、少量饮水和薄外套。", level: "normal"},
+        {time: "07:45", title: "前往莫高窟数字中心", text: "从鸣沙山住宿点出发，目标 08:00 前后抵达，预留核验、检票和集合时间。", level: "key"},
+        {time: "08:30", title: "莫高窟 A 类常规票", text: "3 人入场；完成两部数字电影、摆渡车和 8 个随机普窟，实体洞窟内禁止拍照。", level: "key"},
+        {time: "12:00", title: "返回市区午餐", text: "乘摆渡车返回数字中心后前往敦煌市区，安排午餐。", level: "normal"},
+        {time: "13:30", title: "市区文化空间／休息", text: "9 月 28 日为周一，敦煌市博物馆不作为当天安排；可在敦煌无界、敦煌印局、敦煌书局中选择，或回酒店休息。", level: "rest"},
+        {time: "15:30", title: "建荣市场／益旺国际超市", text: "按体力选择其一购买李广杏干、葡萄干、杏皮茶等特产；时间紧时直接休息。", level: "optional"},
+        {time: "16:30", title: "前往鸣沙山月牙泉", text: "车程约 20 分钟，建议 17:00 后入园，安排月牙泉、木梯沙山和日落。", level: "key"},
+        {time: "20:00", title: "沙洲夜市逛吃", text: "返回市区后选择沙洲食坊或沙洲夜市，购买小吃和文创；不为排队压缩休息。", level: "normal"},
+        {time: "22:00", title: "回酒店休息", text: "敦煌山庄入住，准备次日长途前往大柴旦。", level: "rest"}
+      ],
+      modules: [
+        {icon: "住", title: "敦煌住宿", type: "lodging", summary: "敦煌山庄（指定酒店）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：敦煌山庄｜3人间"]},
+        {icon: "约", title: "莫高窟备注", type: "booking", summary: "09.28 08:30｜3 人 A 类常规票已确认", status: "已确认", statusType: "confirmed", items: ["已订｜2026.09.28 08:30，3 人 A 类常规票；身份证原件随身携带", "到场｜建议 08:00 前后抵达数字展示中心，完成核验、检票和集合", "标准动线｜数字电影 → 摆渡车 → 8 个随机普窟 → 九层楼 → 复制窟陈列中心 → 返回", "普窟推荐｜第 96 窟九层楼、第 17 窟藏经洞、第 257 窟九色鹿故事、第 61 窟五台山图；补充候选：259、249、428、427、329、328、323、237、158 窟，是否开放以当日安排为准", "特窟推荐｜优先关注 45 窟、57 窟、220 窟；时间和余票允许时再考虑 275 窟、321 窟，现场按线路和售票情况决定", "参观规则｜实体洞窟内禁止拍照、录像和触碰壁画；复制窟、九层楼广场等允许拍摄区域按现场指引执行"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "日落沙丘与骆驼队", status: "建议方案", statusType: "suggested", items: ["机位｜月牙泉俯拍点、日落沙丘、骆驼队；中门步行到月牙泉约 10 分钟，优先走景区木梯", "配色｜红棕色或黑色异域风长裙适合沙漠；宽檐帽、披肩可兼顾造型与防风", "穿搭｜长裙内搭加绒打底裤，外搭厚外套；马丁靴／防沙鞋更适合沙地，日落后立刻加衣，拍照层不要影响行走"]},
+        {icon: "备", title: "鸣沙山防沙准备", type: "packing", summary: "D5 到营地后备齐，D6 入园使用", status: "建议方案", statusType: "suggested", items: ["防沙｜手机／相机密封袋，手机挂绳；相机不用时收好", "足部｜包脚舒适鞋或防沙鞋套；不穿白鞋和松脱拖鞋", "防晒｜防晒霜、墨镜、防风帽、披肩、润唇膏", "补给｜饮水、少量零食、湿巾和纸巾；入园前先解决如厕", "保暖｜日落后加冲锋衣或厚外套；骆驼、滑沙等项目按现场情况选择"]},
+        {icon: "食", title: "敦煌餐食、景区零食与夜市", type: "food", summary: "莫高窟午餐 + 鸣沙山夜市", status: "建议方案", statusType: "suggested", items: ["莫高窟／市区·午餐｜顺张黄面馆：驴肉黄面；夏家合汁／老叶家：羊肉粉汤；蒋氏臊子面：臊子面、浆水面", "敦煌市区·正餐备选｜沙州小院：羊羔肉、胡羊焖饼；周记焖饼子、妙街胡羊烧烤、北颂冰煮羊", "建荣市场·采购｜李广桃、葡萄、杏干、冻干", "沙洲夜市·小吃｜沙葱牛肉饼、漠北烤鱼、羊肉抓饭、苜蓿豆腐、锅巴土豆虾滑", "沙洲夜市·甜品饮品｜李广杏皮茶、放哈甜醅奶茶、驼奶特调", "沙洲夜市·食品伴手礼｜骆小姐文创酥饼：李广杏酥、沙枣面酥", "景区零食｜杏皮气泡水、巧克力味冰淇淋、酸奶；夜市不久排队，不压缩莫高窟和鸣沙山时间"]},
+        {icon: "购", title: "敦煌市区与沙洲夜市文创", type: "shopping", summary: "印局盖章 + 市场特产 + 夜市小件", status: "建议方案", statusType: "suggested", items: ["敦煌印局／敦煌无界｜相邻可一起逛；敦煌主题印章、敦煌 1900 拉花咖啡，时间充裕可体验泥板画、串珠或套色版画", "建荣市场｜李广杏干、葡萄干、杏皮茶、奶枣、奶皮子；杏干可优先试肉厚的黑色款", "建荣市场购买｜试吃后确认按斤计价，买完公平秤复称；适合购买后直接寄回或分装携带", "益旺国际超市｜杏干、杏皮茶、沙棘果糕；明码标价，适合集中采购", "沙洲夜市内巷｜飞天文创冰箱贴约 ¥3—8、金属书签约 ¥8—15、藻井丝巾约 ¥40—80、泥板画小摆件约 ¥25—40", "购买方式｜先逛后买，同款多比较；印局盖章本可自带，易碎品确认包装"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "莫高窟、鸣沙山与市区安排", status: "建议方案", statusType: "suggested", items: ["莫高窟｜A 类常规票含数字电影、摆渡车和 8 个随机普窟；九层楼、藏经洞、复制窟可按现场动线参观，实体洞窟内禁止拍照", "特窟｜完成常规参观后，按体力、开放窟和现场余票决定是否购买；特窟不作为当天必选", "鸣沙山｜傍晚入园，月牙泉、木梯沙山和日落按体力安排；手机／相机注意防沙，日落后及时加外套", "市区空间｜9 月 28 日为周一，敦煌市博物馆闭馆；敦煌无界、敦煌印局、敦煌书局可作为室内备选，印局与无界相邻", "厕所情况｜莫高窟游客服务中心、观影出口、陈列馆和鸣沙山游客中心优先使用；沙洲夜市周边可解决", "天气情况｜敦煌市，重点关注风力、沙尘、日落和晚间降温"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜适合拍人像和互动照片；米白、香槟金最出片", "B（INFP）｜莫高窟会让你情绪沉浸；适合牛肉粉汤、驴肉黄面", "C（INTJ）｜会喜欢洞窟结构和历史逻辑；浅驼色适合今天", "全体｜鸣沙山不硬爬，日落前后拍照最好"]}
+      ]
+    },
+    {
+      id: "day7", short: "D7", isoDate: "2026-09-29", date: "09.29 周二",
+      title: "敦煌 → 大柴旦", theme: "戈壁公路与翡翠湖", status: "旅行社排表已纳入", statusType: "confirmed",
+      metrics: [
+        {label: "全天车程", value: "约 5—5.5h"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟠 中风险 约3100m"}
+      ],
+      alert: {title: "重新进入高原和无人路段", text: "敦煌出发前加满油并补足饮水、零食；公路拍照服从交通安全，黑独山只作备选。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "敦煌 → 大柴旦", time: "约 4.5—5h", note: "包车｜中途休息、补给与厕所由司机安排"},
+        {icon: "车", route: "大柴旦 → 翡翠湖", time: "约 20—30min", note: "抵达时间与日落光线视当天路况调整"}
+      ],
+      timeline: [
+        {time: "07:30", title: "起床", text: "早餐后退房，检查水、零食和保暖层。", level: "normal"},
+        {time: "08:30", title: "敦煌出发前加油补给", text: "加满油，补足饮水和少量零食；进入柴达木戈壁线后服务点较少。", level: "key"},
+        {time: "12:30", title: "途中午餐与休整", text: "按司机安排在服务区或大柴旦镇附近简餐，途中以休息为主。", level: "normal"},
+        {time: "13:30", title: "抵达大柴旦并前往翡翠湖", text: "办理入园，景区距大柴旦镇约 20 分钟车程；抵达时间按当天路况调整。", level: "key"},
+        {time: "14:00", title: "翡翠湖", text: "乘观光小火车优先到远端，再按站点返回；蓝绿盐湖、盐结晶和雪山倒影适合下午光线。", level: "key"},
+        {time: "18:00", title: "返回大柴旦并入住", text: "办理入住、放行李并短暂休息。", level: "rest"},
+        {time: "19:00", title: "镇上补给与晚餐", text: "去镇上超市补充饮水和零食，再选择牦牛火锅、炕锅或热汤晚餐。", level: "normal"},
+        {time: "21:30", title: "回酒店休息", text: "结束当天行程，适应大柴旦海拔和夜间降温。", level: "rest"},
+        {time: "备选", title: "黑独山／公路拍摄", text: "仅在司机确认安全、时间和道路条件允许时选择。", level: "optional"}
+      ],
+      modules: [
+        {icon: "住", title: "大柴旦住宿", type: "lodging", summary: "怡景酒店（或同级）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：怡景酒店或同级｜3人间"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "戈壁公路与翡翠湖", status: "建议方案", statusType: "suggested", items: ["机位｜U 型公路极简构图；翡翠湖日落机位和湖面倒影（观景塔、观光车末班时间以景区当日安排为准）", "配色｜翡翠湖适合蒂芙尼蓝、薄荷绿或纯白；工装、白色、灰蓝也适合戈壁公路", "穿搭｜拍照层可用纯色长裙或上衣，外搭防风衣；公路拍摄不得站在车道中央"]},
+        {icon: "食", title: "大柴旦餐饮备选", type: "food", summary: "牦牛肉、羊肉与热汤", status: "建议方案", statusType: "suggested", items: ["大柴旦镇·正餐｜顶顶牛：干锅牦牛肉、青稞饼、酸奶；西北特色鲜羊馆：全羊汤、狗浇尿饼", "大柴旦镇·烧烤／火锅｜伊品轩：炕锅烤肉、土豆片；放牛娃：干锅火锅牦牛肉；青牧堂：牦牛铜锅涮", "大柴旦镇·简餐／小吃｜西关牛肉面：炮仗面、牛肉面；葱花馕", "长途抵达后优先热食，不饮酒、不吃太撑"]},
+        {icon: "购", title: "大柴旦与翡翠湖文创", type: "shopping", summary: "翡翠兔为地点限定候选", status: "建议方案", statusType: "suggested", items: ["翡翠湖候选｜翡翠兔冰箱贴；偏贵但有地点特色", "大柴旦镇周边｜普通冰箱贴和盐湖主题小件；购买前确认商品属性和价格", "不为了文创延长夜间行程；优先选择能明确对应翡翠湖或大柴旦的款式"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "翡翠湖游览与长途补给", status: "建议方案", statusType: "suggested", items: ["出发补给｜敦煌出发前加满油，车上备水、少量零食和保温杯；提前下载离线地图", "沿途｜服务区、厕所和信号按司机安排；冲锋衣、加绒裤、厚袜随车，抵达大柴旦后注意保暖", "翡翠湖｜湖区分散，观光小火车更省力；下午光线较柔和，晴天更容易看到蓝绿、白色盐结晶和倒影", "游览规则｜不踩盐结晶、不赤脚下水；相机或手机沾水后及时擦拭，盐湖卤水有腐蚀性", "黑独山｜仅在天气、道路、时间和体力都允许时短停", "厕所情况｜长途沿线先在敦煌或服务区解决；翡翠湖游客中心和主要站点优先使用", "天气情况｜大柴旦镇／翡翠湖，重点关注风力、能见度和夜间降温"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜空旷盐湖适合放空，但别陷入过度思考；适合白色、浅灰穿搭", "B（INFP）｜务必热食热水；晚餐适合牦牛肉汤锅、炕锅鸡", "C（INTJ）｜金水景观适合情绪舒缓；注意防风保湿，湖蓝色适合今天", "全体｜车程较长但顺路；状态一般可直接放弃黑独山，晚上只做酒店附近轻量追星"]}
+      ]
+    },
+    {
+      id: "day8", short: "D8", isoDate: "2026-09-30", date: "09.30 周三",
+      title: "大柴旦 → 水上雅丹", theme: "荒漠湖泊，夜宿水上雅丹附近", status: "旅行社排表已纳入", statusType: "confirmed",
+      metrics: [
+        {label: "全天车程", value: "约 4—5h（含沿途停留）"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟠 中风险 约2800m"}
+      ],
+      alert: {title: "出发前完成补给", text: "离开大柴旦前加满油、备好饮水和零食；315 U 型公路与东台吉乃尔湖按天气、路况和时间顺路停留，水上雅丹按计划游览。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "大柴旦 → 乌素特水上雅丹", time: "约 3—4h（含沿途停留）", note: "包车｜315 U 型公路、东台吉乃尔湖按时间和天气选择"},
+        {icon: "车", route: "乌素特水上雅丹 → 孤独星际", time: "约 8—10min", note: "包车｜酒店位于水上雅丹附近"}
+      ],
+      timeline: [
+        {time: "07:30", title: "起床", text: "早餐后退房，检查饮水、零食、防风外套和手机防沙袋。", level: "normal"},
+        {time: "08:30", title: "大柴旦出发", text: "前往水上雅丹，车程约 2.5—3 小时；出发前完成加油和补给。", level: "key"},
+        {time: "09:30", title: "315 U 型公路", text: "仅在指定安全观景台停车拍照，严禁站在行车道或弯道内。", level: "normal"},
+        {time: "10:30", title: "东台吉乃尔湖（备选）", text: "天气、道路和时间充裕时短停；若已看过翡翠湖或湖况不佳则直接略过。", level: "optional"},
+        {time: "11:30", title: "车上简餐与休整", text: "沿途服务点少，以自备干粮和饮水为主。", level: "rest"},
+        {time: "12:30", title: "入住孤独星际", text: "先办理入住或寄存行李，在酒店园区短暂休息和拍照。", level: "normal"},
+        {time: "14:00", title: "前往水上雅丹景区", text: "酒店至景区约 8—10 分钟。", level: "key"},
+        {time: "14:30", title: "水上雅丹深度游览", text: "乘景交车前往终点望海台，再按站点返回，重点看西海舰队、黄金沙滩、蓬莱仙岛和傍晚光线。", level: "key"},
+        {time: "18:30", title: "返回酒店休息", text: "回孤独星际放下随身物品，准备晚餐。", level: "rest"},
+        {time: "19:30", title: "酒店晚餐与星空", text: "优先选择酒店内热食；天气晴朗且园区开放时，在观景台短时看星空，不深夜远走。", level: "normal"}
+      ],
+      modules: [
+        {icon: "住", title: "水上雅丹住宿", type: "lodging", summary: "孤独星际（三人间）", status: "已预订", statusType: "confirmed", items: ["自行预订｜携程｜孤独星际（水上雅丹附近）｜3人间"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "U 型公路、雅丹与星空", status: "建议方案", statusType: "suggested", items: ["机位｜315 U 型公路安全观景台、水上雅丹望海台、西海舰队、黄金沙滩和蓬莱仙岛", "配色｜卡其、棕色或牛仔蓝适合荒漠与戈壁背景；酒店园区适合废土风拍摄", "穿搭｜速干内搭＋针织或抓绒＋防风冲锋衣；帽子、墨镜和披肩应有防风固定，水边不久站"]},
+        {icon: "食", title: "餐饮备选", type: "food", summary: "孤独星际酒店内用餐", status: "建议方案", statusType: "suggested", items: ["孤独星际·晚餐｜厨神中餐厅：羊肉火锅、川菜和西北菜", "酒店周边／车上｜自备少量零食、泡面和饮水；无人区不临时寻找餐厅", "早餐｜按酒店自助早餐供应安排"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "景点、补给与厕所情况", status: "建议方案", statusType: "suggested", items: ["景点简述｜乌素特水上雅丹是水上风蚀地貌，湖水与雅丹并存；景交车先到终点再逐站返回更省力", "沿途备餐｜大柴旦出发前准备水、热饮、零食和湿厕纸；315 U 型公路、东台吉乃尔湖沿线不依赖固定补给", "厕所情况｜水上雅丹游客服务中心和主要观景站点水厕较干净，优先使用；长途出发前先解决，沿途公路服务点少", "天气情况｜大柴旦镇／水上雅丹一带，重点关注风力、能见度和夜间降温"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜长途车上少处理工作消息，避免内耗；适合米色、防风外套", "B（INFP）｜今天最耗体力；适合炕锅鸡、牛肉面，务必早睡", "C（INTJ）｜水上雅丹很适合拍照，但别在风口久站；蓝绿色系适合今天", "全体｜今天不加夜间活动，回酒店后尽快休息"]}
+      ]
+    },
+    {
+      id: "day9", short: "D9", isoDate: "2026-10-01", date: "10.01 周四",
+      title: "水上雅丹 → 德令哈 → 茶卡 → 青海湖住宿", theme: "茶卡游览后入住青海湖", status: "旅行社排表已纳入", statusType: "confirmed",
+      metrics: [
+        {label: "全天车程", value: "约 8—10h"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟠 中风险 约3200m"}
+      ],
+      alert: {title: "长途转场，茶卡视天气安排", text: "水上雅丹出发，经德令哈补给后前往茶卡盐湖，再入住青海湖。茶卡晴朗、少云且风力较小时游览；阴天或大风时缩短停留。当天以抵达青海湖并完成入住为主，不安排景区游览。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "水上雅丹 → 德令哈", time: "约 2.5h", note: "包车｜途中安排短暂休整"},
+        {icon: "车", route: "德令哈 → 茶卡盐湖", time: "约 2h", note: "途中完成加油和补给"},
+        {icon: "车", route: "茶卡 → 青海湖住宿点", time: "约 2.5h", note: "包车｜当天只入住，不安排青海湖游览"}
+      ],
+      timeline: [
+        {time: "07:30", title: "起床", text: "早餐后退房，检查饮水、零食和保暖外套。", level: "normal"},
+        {time: "08:00", title: "水上雅丹出发", text: "前往德令哈，车程约 2.5 小时，途中欣赏柴达木盆地戈壁风光。", level: "key"},
+        {time: "10:30", title: "德令哈休整与补给", text: "简单午餐、加油、上厕所，补足后续路段所需物资。", level: "key"},
+        {time: "11:30", title: "前往茶卡盐湖", text: "车程约 2 小时，途中安排短暂休息。", level: "key"},
+        {time: "13:30", title: "茶卡盐湖", text: "天气晴朗、风力合适时乘小火车进湖游览；阴天或风大则缩短停留，在观景台拍照后出发。", level: "normal"},
+        {time: "16:00", title: "前往青海湖住宿点", text: "车程约 2.5 小时，沿途休息并欣赏青海湖东岸风光。", level: "normal"},
+        {time: "19:00", title: "入住与晚餐", text: "办理入住、放下行李，在酒店或附近用热食。", level: "rest"}
+      ],
+      modules: [
+        {icon: "住", title: "青海湖住宿", type: "lodging", summary: "蓝峰酒店（或同级）", status: "暂定", statusType: "suggested", items: ["旅行社暂定：蓝峰酒店或同级｜3人间"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "盐湖倒影与防风分层", status: "建议方案", statusType: "suggested", items: ["机位｜茶卡盐湖小火车轨道、湖心倒影和盐滩观景台", "配色｜正红或纯白长裙；白裙搭红色包或帽子，避免与盐滩融在一起", "穿搭｜裙装内搭加绒打底裤，外搭冲锋衣或薄羽绒；防滑鞋、墨镜、帽子和披肩优先，拍照后及时裹紧外套"]},
+        {icon: "食", title: "餐饮备选", type: "food", summary: "德令哈午餐、茶卡热食与青海湖晚餐", status: "建议方案", statusType: "suggested", items: ["德令哈·午餐／补给｜阿斯玛特色干锅炕锅：干锅牦牛肉、炕锅羊肉；食八方牦牛退骨肉：牦牛带骨肉、大骨汤；老严烤羊肉总店：炕锅羊排", "茶卡镇·游后热食｜聚雅特色炕锅肉土火锅：羊肉牛肉、铜锅土火锅；老冶家干锅羊肉：干锅羊肉、羊肉串；不将就石锅干锅牦牛：牦牛肉、青稞饼", "茶卡盐湖·小食｜大青盐冰淇淋，按天气和肠胃情况少量尝试", "青海湖周边·晚餐｜龙羊峡三文鱼炕锅、牦牛火锅、青海老酸奶", "点餐提醒｜西北菜分量偏大，三人先少量点菜；高原当天吃七八分饱，车上备水和少量干粮"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "茶卡游览与青海湖入住", status: "建议方案", statusType: "suggested", items: ["景点简述｜茶卡盐湖适合晴天、少云、风力较小时拍倒影；青海湖当天只办理入住，不安排景区游览", "沿途准备｜车上备水、少量零食和保温杯；德令哈完成加油、午餐和厕所补给", "游览注意｜茶卡下湖穿防水鞋套，不赤脚、不跨越安全区；湖边不跑跳，拍照后及时保暖", "厕所情况｜德令哈服务区、茶卡游客中心和小火车起点优先使用；长途出发前先解决", "天气情况｜德令哈市、乌兰县／茶卡镇和共和县青海湖沿线，重点关注风力、能见度和夜间降温"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜车程重新变长，注意不要过度照顾大家；白色、银灰穿搭适合茶卡", "B（INFP）｜不要久泡盐湖水；晚餐适合热汤、炕锅鸡", "C（INTJ）｜茶卡和青海湖是情绪舒缓点，适合慢慢看；浅蓝色适合今天", "全体｜长途穿越日，尽量不再额外加景点；氧气瓶继续放车上备用"]}
+      ]
+    },
+    {
+      id: "day10", short: "D10", isoDate: "2026-10-02", date: "10.02 周五",
+      title: "青海湖 → 西宁机场 → 上海", theme: "青海湖晨景后返程", status: "旅行社排表已纳入", statusType: "confirmed",
+      metrics: [
+        {label: "全天车程", value: "按向导安排"}, {label: "活动强度", value: "低"},
+        {label: "海拔风险", value: "🟡 低风险 返程日"}
+      ],
+      alert: {title: "返程日以机场为优先", text: "上午集中游览青海湖，午餐后返回西宁；下午优先安排青海藏文化博物院，青海省博物馆作为备选，按开放、交通和现场节奏灵活调整，18:10 左右抵达机场。", tone: "blue"},
+      transport: [
+        {icon: "车", route: "青海湖住宿点 → 二郎剑／湖边机位", time: "按酒店位置", note: "上午游览后返程"},
+        {icon: "车", route: "西宁市区 → 曹家堡 T3", time: "约 40min", note: "包车送机｜18:10 左右抵达机场"},
+        {icon: "飞", route: "西宁 T3 → 上海虹桥 T1", time: "20:55—23:40", note: "春秋航空 9C6834"}
+      ],
+      timeline: [
+        {time: "08:30", title: "早餐与退房", text: "整理行李和证件，轻装前往湖边。", level: "normal"},
+        {time: "09:30", title: "前往二郎剑／湖边机位", text: "从住宿点出发，具体车程按酒店位置和司机安排；不为赶机增加多个湖边点位。", level: "key"},
+        {time: "10:00", title: "青海湖游览", text: "二郎剑景区重点看海拔石碑、二郎剑码头与灯塔、白色钢琴和经幡阵；不购票时改走环湖西路或东格尔观景台。", level: "key"},
+        {time: "12:30", title: "返回西宁市区", text: "车程约 1.5—2.5 小时，途中休息并欣赏湖岸风光。", level: "key"},
+        {time: "13:30", title: "市区午餐", text: "益鑫手抓羊肉、马忠食府等西北餐厅择一用餐，补充体力。", level: "normal"},
+        {time: "14:00", title: "青海藏文化博物院（主方案）", text: "优先参观青海藏文化博物院；如开放、预约或交通不合适，再改去青海省博物馆。", level: "key"},
+        {time: "16:00", title: "取行李与返程整理", text: "取回行李、整理伴手礼和证件，预留市区前往机场的路况缓冲。", level: "normal"},
+        {time: "17:30", title: "前往西宁机场", text: "市区至曹家堡机场约 40 分钟，预留节假日路况缓冲。", level: "key"},
+        {time: "18:10", title: "机场值机与安检", text: "办理值机、托运和安检，前往登机口候机。", level: "key"},
+        {time: "18:55", title: "登机口候机", text: "完成登机前准备，按航班通知登机。", level: "normal"},
+        {time: "20:55", title: "返回上海", text: "9C6834，计划 23:40 抵达虹桥 T1。", level: "key"}
+      ],
+      modules: [
+        {icon: "住", title: "住宿", type: "lodging", summary: "当晚返沪，无住宿", status: "已确认", statusType: "confirmed", items: ["当天乘航班返回上海，无需住宿"]},
+        {icon: "摄", title: "摄影与穿搭", type: "photo", summary: "二郎剑湖景与免费机位", status: "建议方案", statusType: "suggested", items: ["机位｜二郎剑海拔石碑、码头与灯塔、白色钢琴和经幡阵；免费方案选环湖西路或东格尔观景台", "配色｜青海湖适合正红、白色或浅蓝色长裙，搭配红／黄披肩或民族风配饰", "穿搭｜裙装内搭加绒打底裤，外搭冲锋衣或厚外套；舒适鞋、墨镜和防风帽优先，拍完及时加衣"]},
+        {icon: "食", title: "返程餐食", type: "food", summary: "青海湖晨餐与西宁市区午餐", status: "建议方案", statusType: "suggested", items: ["西宁市区·午餐｜益鑫手抓羊肉：手抓羊肉；德禄酸奶：青海老酸奶；拜家酿皮：酿皮；溪格格牦牛大骨汤：牦牛大骨汤", "机场·候机｜按时间补充简餐和饮水"]},
+        {icon: "点", title: "看点与实用提示", type: "info", summary: "二郎剑与西宁市内博物馆安排", status: "建议方案", statusType: "suggested", items: ["游览重点｜二郎剑景区可看海拔石碑、码头灯塔、白色钢琴和经幡阵；不购票时选环湖西路或东格尔观景台", "市区博物馆｜青海藏文化博物院为下午主方案，青海省博物馆作为备选；若两馆都不便，再改走东关清真大寺＋下南关街或南山公园", "行李｜优先由司机随车保管；如现场提供寄存再使用，不为寄存往返绕路", "门票与规则｜二郎剑是否购票按当天预约和时间决定；湖边风大，注意防晒保暖，不触碰经幡、不投喂湟鱼", "厕所情况｜二郎剑游客中心、博物馆内和机场内优先使用", "天气情况｜共和县／黑马河镇和西宁市，重点关注湖边风力、能见度及机场方向交通天气"]},
+        {icon: "命", title: "八字与MBTI建议", type: "bazi", summary: "三人个性化提醒", status: "建议方案", statusType: "suggested", items: ["A（ESFJ）｜不要临时改太多计划，保持秩序感；适合米白、浅驼", "B（INFP）｜早餐吃热面或热粥；返程车上可以发呆，今天不用记录很多", "C（INTJ）｜青海湖轻看即可，不再追景点；运动鞋和舒适穿搭最重要", "全体｜20:55晚班机返程，18:10 左右抵达机场"]}
+      ]
+    }
+  ],
+  tasks: [
+    {title: "Day 5《又见敦煌》", text: "按 20:00 场安排，晚餐、前往剧场和存包安检按演出时间倒排。", status: "已纳入行程", type: "confirmed"},
+    {title: "确认 Day 9 茶卡安排", text: "结合当天实际天气与向导建议决定是否游览茶卡，再前往青海湖住宿。", status: "出发前复核", type: "recheck"},
+    {title: "补齐九晚住宿订单", text: "酒店／营地名称、地址、电话、房型、早餐、供暖、停车和取消规则。", status: "待补充", type: "pending"},
+    {title: "确认包车合同", text: "旅行社、司机、车型、车牌、总价、付款节点、里程、油路费和司机食宿。", status: "待补充", type: "pending"},
+    {title: "建立预约时间表", text: "莫高窟、演出、沙漠营地和各景区的预约日、放票日、订单号与退改规则。", status: "待补充", type: "pending"},
+    {title: "拆分实际预算", text: "将基础团费、机票、莫高窟、演出、体验、餐饮和个人消费分开记录。", status: "待补充", type: "pending"},
+    {title: "建立逐日天气复核表", text: "按天气模块中的县市／乡镇映射收藏查询点；前 72 小时、前 24 小时及每天早晚滚动查看预报、预警、风力、能见度和道路信息。", status: "出发前复核", type: "recheck"}
+  ]
+};
+
+// 成品展示清理：预算信息不进入页面；每日餐食仅保留地区、店名和推荐菜品。
+delete window.TRIP_DATA.meta.budget;
+delete window.TRIP_DATA.researchSources;
+window.TRIP_DATA.commonModules = window.TRIP_DATA.commonModules.filter((module) => module.id !== "budget");
+window.TRIP_DATA.tasks = (window.TRIP_DATA.tasks || []).filter((task) => !/预算/.test(task.title + task.text));
+window.TRIP_DATA.commonModules.forEach((module) => {
+  if (module.id === "lodging") module.items = module.items.filter((item) => !/预算/.test(item));
+  if (module.id === "food-shopping") module.items = ["沿途特色｜清炖羊肉、炕锅土豆、沙葱炒蛋、驴肉黄面、牛肉小饭、浆水面、杏皮水、八宝茶", "非羊肉稳妥选择｜牦牛肉面、炕锅鸡、大盘鸡、卷子鸡、驴肉黄面、土豆牛肉、素菜砂锅", "西宁｜手抓羊肉、炕锅羊肉、牛肉面、甜醅子、青海老酸奶", "张掖｜搓鱼子、卷子鸡、牛肉小饭、炒炮仗、杏皮水", "嘉峪关｜大盘鸡、炕锅鸡、牛肉面、烤肉", "敦煌｜驴肉黄面、胡羊焖饼、手抓羊肉、沙葱牛肉饼、杏皮茶", "大柴旦／德令哈｜炕锅羊肉、牦牛肉汤锅、炕锅鸡、牛肉面", "购物｜敦煌主题冰箱贴、明信片、刺绣小包、骆驼挂件、李广杏酥"];
+});
+window.TRIP_DATA.days.forEach((day) => day.modules.forEach((module) => {
+  if (module.type === "lodging") module.items = (module.items || []).filter((item) => !/预算/.test(item));
+}));
+const shoppingCards = {
+  day3: ["七彩丹霞｜七彩丹霞主题冰箱贴、可移动小车冰箱贴、木质尺", "大佛寺附近｜邮点意思、来都来了：冰箱贴、八音盒、骆驼挂件、手作小件"],
+  day6: ["沙洲夜市·文创｜敦煌主题冰箱贴、明信片、帆布袋、骆驼挂件", "沙洲夜市·食品伴手礼｜骆小姐文创酥饼：李广杏酥、沙枣面酥", "工艺品批发｜盛憶轩、敦盛工艺品批发：可比较冰箱贴、挂件和文创"],
+  day7: ["翡翠湖｜翡翠兔、翡翠湖主题冰箱贴", "大柴旦镇／翡翠湖周边｜地点限定小件和盐湖主题纪念品"]
+};
+window.TRIP_DATA.days.forEach((day) => day.modules.forEach((module) => {
+  if (module.type === "shopping" && shoppingCards[day.id]) module.items = shoppingCards[day.id];
+}));
+
+// 成品文案清理：隐藏调研来源口吻，只保留直接可执行的信息。
+const sourcePhrases = [
+  "作者实吃｜", "本篇美食清单新增｜", "评论区候选｜", "本篇评论新增｜", "本篇评论型店铺线索｜",
+  "本篇新增正餐候选｜", "本篇口味与点单提醒｜", "评论价格线索｜", "通用候选｜", "本篇候选｜",
+  "本篇新增｜", "笔记称", "笔记作者", "作者认为", "作者回忆", "作者称", "评论中作者回忆",
+  "评论中", "评论有人", "评论称", "评论提示", "评论补充", "网友询价基准（未核实）｜",
+  "来源提到", "平台交叉核对｜", "单篇笔记称", "一篇近期体验称", "一篇近期笔记称",
+  "一篇实购笔记认为", "有笔记推荐", "笔记提到", "笔记记录", "近期个人体验称"
+];
+function cleanDisplayText(value) {
+  if (typeof value !== "string") return value;
+  return sourcePhrases.reduce((text, phrase) => text.split(phrase).join(""), value)
+    .replace(/（未核实）/g, "")
+    .replace(/（非统一价）/g, "")
+    .replace(/作者回忆约/g, "约")
+    .replace(/评论对[^。；]+分歧较大；?/g, "")
+    .replace(/评论未提供交叉支持/g, "")
+    .trim();
+}
+function cleanDisplayObject(value) {
+  if (Array.isArray(value)) return value.map(cleanDisplayObject).filter((item) => item !== "");
+  if (value && typeof value === "object") {
+    Object.keys(value).forEach((key) => { value[key] = cleanDisplayObject(value[key]); });
+    return value;
+  }
+  return cleanDisplayText(value);
+}
+cleanDisplayObject(window.TRIP_DATA.overview);
+cleanDisplayObject(window.TRIP_DATA.commonModules);
+cleanDisplayObject(window.TRIP_DATA.days);
+cleanDisplayObject(window.TRIP_DATA.tasks);
+// V2 页面路由展示字段。
+window.TRIP_DATA.meta.route = {label: "青甘环线", cities: ["西宁", "张掖", "敦煌", "青海湖"]};
+window.TRIP_DATA.meta.dialogText = "这份青甘攻略以 10 天环线为主线；莫高窟票务已确认，Day 5 演出与 Day 9 盐湖分支按实际情况更新。";
+
+
+</script>
+  <script>
+(function () {
+  if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
+  window.scrollTo(0, 0);
+  const data = window.TRIP_DATA;
+  const $ = (selector) => document.querySelector(selector);
+  const TASK_KEY = "travel-guide-completed-tasks";
+  const AVAILABLE_THEMES = ["desert-gold", "harbor-blue", "island-turquoise", "mountain-green", "heritage-red", "snow-blue", "city-night"];
+  const ICONS = {
+    日期: "📅", 同行: "👥", 交通: "🚄", 预算: "💰", 状态: "📌",
+    交: "🚄", 线: "🧭", 住: "🏨", 食: "🍲", 包: "🧳", 雨: "🌧️", 约: "📋", 核: "🪪",
+    城: "🏙️", 车: "🚕", 高: "🏔️", 岛: "🏝️", 外: "🌍", 亲: "👨‍👩‍👧‍👦", 摄: "📷", 步: "🚶",
+    大交通: "🚄", 住宿: "🏨", 总路线: "🧭", 天气: "⛅", 美食: "🍲", 行李: "🧳", 应急: "⚠️",
+    伴: "👥", 备: "🧴", 摆: "🚌", 衣: "🧥", 补: "🧃", 购: "🛍️", 预约: "📋", 飞: "✈️", 点: "🔍", 命: "♾️", 食: "🥢"
+  };
+  const iconFor = (value) => ICONS[value] || value;
+
+  function formatItem(text) {
+    const barIndex = String(text).indexOf("｜");
+    if (barIndex > -1) {
+      const label = String(text).slice(0, barIndex);
+      const rest = String(text).slice(barIndex + 1);
+      return `<b class="item-label">${label}</b>｜${rest}`;
+    }
+    return String(text);
+  }
+
+  function applyTheme() {
+    const requestedTheme = data.meta.theme || "desert-gold";
+    const theme = AVAILABLE_THEMES.includes(requestedTheme) ? requestedTheme : "desert-gold";
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.themeLabel = data.meta.themeLabel || "目的地主题";
+    const themeColor = getComputedStyle(document.documentElement).getPropertyValue("--topbar").trim();
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta && themeColor) themeMeta.setAttribute("content", themeColor);
+  }
+
+  const status = (text, type) => `<span class="status ${type}">${text}</span>`;
+
+  function parseLocalDate(isoDate) {
+    const [year, month, day] = isoDate.split("-").map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  function toLocalISO(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function resolveCalendarContext() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const todayISO = toLocalISO(today);
+    const start = parseLocalDate(data.meta.startDate);
+    const end = parseLocalDate(data.meta.endDate);
+    const exactIndex = data.days.findIndex((day) => day.isoDate === todayISO);
+    let initialIndex = 0;
+
+    if (exactIndex >= 0) {
+      initialIndex = exactIndex;
+    } else if (today > end) {
+      initialIndex = data.days.length - 1;
+    } else if (today >= start) {
+      const previousMigratedDays = data.days
+        .map((day, index) => ({index, date: parseLocalDate(day.isoDate)}))
+        .filter((item) => item.date <= today);
+      initialIndex = previousMigratedDays.length ? previousMigratedDays[previousMigratedDays.length - 1].index : 0;
+    }
+
+    return {today, todayISO, start, end, exactIndex, initialIndex};
+  }
+
+  const calendarContext = resolveCalendarContext();
+
+  function renderMeta() {
+    $("#trip-kicker").textContent = data.meta.kicker;
+    $("#trip-title").textContent = data.meta.title;
+    $("#trip-subtitle").textContent = data.meta.subtitle;
+    $("#hero-tags").innerHTML = data.tags.map((tag) => `<span>${tag}</span>`).join("");
+
+    $("#hero-date").innerHTML = `<span aria-hidden="true">${iconFor("日期")}</span><span>${data.meta.dates}</span>`;
+
+    const route = data.meta.route || {};
+    $("#route-map-word").textContent = route.label || data.meta.themeLabel || "旅程";
+    ["a", "b", "c", "d"].forEach((key) => {
+      const node = $("#route-city-" + key);
+      if (node) node.textContent = (route.cities || [])["abcd".indexOf(key)] || "";
+    });
+  }
+
+  function renderOverview() {
+    const overviewGrid = $("#overview-grid");
+    if (!overviewGrid) return;
+    overviewGrid.innerHTML = data.overview.map((item) => `
+      <article class="overview-card tone-${item.tone}">
+        <div class="overview-card-top">
+          <span class="card-icon">${iconFor(item.icon)}</span>
+          ${status(item.status, item.statusType)}
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.body}</p>
+        <footer>${item.foot}</footer>
+      </article>
+    `).join("");
+  }
+
+  function renderCommonModules() {
+    const commonGrid = $("#common-module-grid");
+    if (!commonGrid) return;
+      commonGrid.innerHTML = data.commonModules.map((module) => `
+      <details class="common-card ${module.wide ? "wide" : ""}" data-common-id="${module.id}">
+        <summary>
+          <span class="common-icon">${iconFor(module.icon)}</span>
+          <span class="common-title"><strong>${module.title}</strong></span>
+        </summary>
+        ${Array.isArray(module.categories)
+          ? `<div class="common-categories">${module.categories.map((category) => `
+              <div class="common-category">
+                <strong class="common-category-title common-tone-${category.tone || "default"}">${category.title}</strong>
+                <ul>${category.items.map((item) => `<li>${formatItem(item)}</li>`).join("")}</ul>
+              </div>
+            `).join("")}</div>`
+          : `<ul>${module.items.map((item) => `<li>${formatItem(item)}</li>`).join("")}</ul>`}
+      </details>
+    `).join("");
+  }
+
+  function renderModuleCatalog() {
+    const catalog = $("#module-catalog");
+    if (!catalog) return;
+    const enabledModules = data.destinationModules.filter((module) => module.enabled);
+    const count = $("#module-count");
+    if (count) count.textContent = `本次启用 ${enabledModules.length} / ${data.destinationModules.length} 个可选模块`;
+    catalog.innerHTML = enabledModules.map((module) => `
+        <article class="catalog-card enabled">
+          <span class="catalog-icon">${iconFor(module.icon)}</span>
+          <div><span class="catalog-state">已启用</span><h3>${module.name}</h3><p>${module.text}</p></div>
+        </article>
+      `).join("");
+  }
+
+  function renderDays() {
+    const pagedDays = data.expectedDayCount > 3;
+    const missingDays = Math.max(0, data.expectedDayCount - data.days.length);
+    const tabs = data.days.map((day, index) => `
+      <button class="day-tab ${index === 0 ? "active" : ""} ${day.isoDate === calendarContext.todayISO ? "is-today" : ""}" data-day-index="${index}" type="button" role="tab" aria-selected="${index === 0}">
+        <strong>${day.short}</strong><span>${day.date}</span>${day.isoDate === calendarContext.todayISO ? "<em>今天</em>" : ""}
+      </button>
+    `).join("");
+    $("#day-selector").classList.toggle("short-trip", !pagedDays);
+    $("#day-selector").innerHTML = pagedDays ? `
+        <button class="day-arrow" id="day-prev" type="button" aria-label="上一天" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="day-tab-rail" role="tablist">${tabs}</div>
+        <button class="day-arrow" id="day-next" type="button" aria-label="下一天" ${data.days.length < 2 ? "disabled" : ""}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+        <span class="day-migration-note" id="day-progress-label">已接入 ${data.days.length}/${data.expectedDayCount} 天${missingDays ? ` · 其余 ${missingDays} 天待迁移` : ""}</span>
+      ` : `
+        <div class="day-tab-rail" role="tablist">${tabs}</div>
+        <span class="day-migration-note" id="day-progress-label">${data.expectedDayCount} 天短途行程 · 连续展开</span>
+      `;
+
+    $("#day-list").innerHTML = data.days.map((day, index) => `
+      <article class="day-card" id="${day.id}" data-day-index="${index}" ${pagedDays && index > 0 ? "hidden" : ""}>
+        <header class="day-card-header">
+          <div class="day-index"><span>${day.short}</span><small>${day.date}</small></div>
+          <div class="day-title-block">
+            <div class="day-title-line"><span>${day.theme}</span></div>
+            <h3>${day.title}</h3>
+          </div>
+        </header>
+        <div class="metric-row">
+          ${day.metrics.map((item) => `<div><span>${item.label}</span><strong>${item.value}</strong></div>`).join("")}
+        </div>
+        <div class="day-body">
+          <aside class="day-side">
+            <div class="alert-box alert-${day.alert.tone}">
+              <strong>${day.alert.title}</strong><p>${day.alert.text}</p>
+            </div>
+            <div class="transport-panel">
+              <h4>🚕 交通接驳</h4>
+              ${day.transport.map((item) => `
+                <div class="transport-line">
+                  <span class="transport-icon">${iconFor(item.icon)}</span>
+                  <div><strong>${item.route}</strong><span>${item.time}</span><small>${item.note}</small></div>
+                </div>
+              `).join("")}
+            </div>
+          </aside>
+          <div class="timeline-panel">
+            <div class="panel-title"><h4>🕘 今日时间轴</h4><span>关键节点优先</span></div>
+            <ol class="timeline">
+              ${day.timeline.map((item) => `
+                <li class="timeline-${item.level}"><time>${item.time}</time><div><strong>${item.title}</strong><p>${item.text}</p></div></li>
+              `).join("")}
+            </ol>
+          </div>
+        </div>
+        <div class="module-grid">
+          ${day.modules.map((module) => `
+            <details class="detail-card ${module.type}">
+              <summary><span class="detail-icon">${iconFor(module.icon)}</span><span><strong>${module.title}</strong></span></summary>
+              <ul>${module.items.map((item) => `<li>${formatItem(item)}</li>`).join("")}</ul>
+            </details>
+          `).join("")}
+        </div>
+      </article>
+    `).join("");
+
+    $("#day-footer-nav").hidden = !pagedDays;
+    $("#day-footer-nav").innerHTML = pagedDays ? `
+      <button id="day-footer-prev" type="button" disabled><span>←</span> 上一天</button>
+      <span id="day-footer-status">第 1 / ${data.expectedDayCount} 天</span>
+      <button id="day-footer-next" type="button" ${data.days.length < 2 ? "disabled" : ""}>下一天 <span>→</span></button>
+    ` : "";
+  }
+
+  function showDay(index, moveToSection) {
+    const pagedDays = data.expectedDayCount > 3;
+    const safeIndex = Math.max(0, Math.min(index, data.days.length - 1));
+    document.querySelectorAll(".day-card").forEach((card, cardIndex) => {
+      card.hidden = pagedDays && cardIndex !== safeIndex;
+    });
+    document.querySelectorAll(".day-tab").forEach((tab, tabIndex) => {
+      const active = tabIndex === safeIndex;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
+      if (active) tab.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
+    });
+
+    if (pagedDays) {
+      const atStart = safeIndex === 0;
+      const atEnd = safeIndex === data.days.length - 1;
+      $("#day-prev").disabled = atStart;
+      $("#day-next").disabled = atEnd;
+      $("#day-footer-prev").disabled = atStart;
+      $("#day-footer-next").disabled = atEnd;
+      $("#day-progress-label").textContent = `第 ${safeIndex + 1} / ${data.expectedDayCount} 天 · ${data.days[safeIndex].title}`;
+      $("#day-footer-status").textContent = `第 ${safeIndex + 1} / ${data.expectedDayCount} 天`;
+    }
+    document.body.dataset.activeDay = String(safeIndex);
+    if (moveToSection) {
+      const target = pagedDays ? $("#days") : document.querySelector(`.day-card[data-day-index="${safeIndex}"]`);
+      target.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+  }
+
+  function renderTasks() {
+    const taskGrid = $("#task-grid");
+    if (!taskGrid) return;
+    const completed = JSON.parse(localStorage.getItem(TASK_KEY) || "[]");
+    taskGrid.innerHTML = data.tasks.map((task, index) => `
+      <label class="task-card ${completed.includes(index) ? "completed" : ""}">
+        <span class="task-check-wrap">
+          <input class="task-check" type="checkbox" data-task-index="${index}" ${completed.includes(index) ? "checked" : ""}>
+          <span class="task-check-ui" aria-hidden="true">✓</span>
+        </span>
+        <span class="task-content">
+          ${status(task.status, task.type)}
+          <strong>${task.title}</strong>
+          <small>${task.text}</small>
+        </span>
+      </label>
+    `).join("");
+  }
+
+  function parseMinutes(value) {
+    const match = String(value).match(/^(\d{1,2}):(\d{2})/);
+    return match ? Number(match[1]) * 60 + Number(match[2]) : null;
+  }
+
+  function getValidationResults() {
+    const results = [];
+    const missingDays = Math.max(0, data.expectedDayCount - data.days.length);
+    results.push({
+      severity: missingDays ? "pending" : "pass",
+      title: missingDays ? `还有 ${missingDays} 天尚未接入母版` : "每日行程已全部接入",
+      text: `当前已整理 ${data.days.length} / ${data.expectedDayCount} 天；未接入内容不会被视为缺失或删除。`
+    });
+
+    const pendingLodging = data.days.filter((day) => day.modules.some((module) => module.type === "lodging" && module.statusType === "pending"));
+    results.push({
+      severity: pendingLodging.length ? "pending" : "pass",
+      title: pendingLodging.length ? `${pendingLodging.length} 天住宿信息待补充` : "住宿信息完整",
+      text: pendingLodging.length ? `${pendingLodging.map((day) => day.short).join("、")} 仍需填写酒店、地址、电话、订单和取消规则。` : "已具备旅途中查找所需信息。"
+    });
+
+    const pendingTransport = data.days.flatMap((day) => day.transport.filter((item) => /待确认/.test(item.note)).map(() => day.short));
+    results.push({
+      severity: pendingTransport.length ? "recheck" : "pass",
+      title: pendingTransport.length ? `${pendingTransport.length} 项交通信息待确认` : "交通信息已确认",
+      text: pendingTransport.length ? `${[...new Set(pendingTransport)].join("、")} 的司机、车型或接驳信息仍需补齐。` : "当前交通信息无明显缺口。"
+    });
+
+    const timelineIssues = data.days.filter((day) => {
+      const times = day.timeline.map((item) => parseMinutes(item.time)).filter((item) => item !== null);
+      return times.some((time, index) => index > 0 && time < times[index - 1]);
+    });
+    results.push({
+      severity: timelineIssues.length ? "warning" : "pass",
+      title: timelineIssues.length ? "发现时间轴顺序异常" : "已接入日期的时间轴顺序正常",
+      text: timelineIssues.length ? `${timelineIssues.map((day) => day.short).join("、")} 需要重新检查开始时间。` : "Day 1—2 暂未发现前后时间倒置。"
+    });
+
+    return [...data.knownIssues, ...results];
+  }
+
+  function renderValidation() {
+    if (!$("#validation-summary") || !$("#validation-list")) return;
+    const results = getValidationResults();
+    const unresolved = results.filter((item) => item.severity !== "pass").length;
+    $("#validation-summary").innerHTML = `
+      <div><strong>${unresolved}</strong><span>项待处理</span></div>
+      <p>这部分用于区分“攻略还没写完”和“行程本身有冲突”。后续每次补充内容都会重新检查。</p>
+    `;
+    const icons = {warning: "!", pending: "…", recheck: "↻", pass: "✓"};
+    $("#validation-list").innerHTML = results.map((item) => `
+      <article class="validation-item ${item.severity}">
+        <span class="validation-icon">${icons[item.severity]}</span>
+        <div><strong>${item.title}</strong><p>${item.text}</p></div>
+      </article>
+    `).join("");
+  }
+
+  function bindInteractions() {
+    const body = document.body;
+
+    document.querySelectorAll(".day-tab").forEach((button) => {
+      button.addEventListener("click", () => {
+        showDay(Number(button.dataset.dayIndex), data.expectedDayCount <= 3);
+      });
+    });
+    if (data.expectedDayCount > 3) {
+      $("#day-prev").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) - 1, false));
+      $("#day-next").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) + 1, false));
+      $("#day-footer-prev").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) - 1, true));
+      $("#day-footer-next").addEventListener("click", () => showDay(Number(body.dataset.activeDay || 0) + 1, true));
+    }
+
+    document.querySelectorAll(".task-check").forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        const checked = [...document.querySelectorAll(".task-check:checked")].map((item) => Number(item.dataset.taskIndex));
+        localStorage.setItem(TASK_KEY, JSON.stringify(checked));
+        checkbox.closest(".task-card").classList.toggle("completed", checkbox.checked);
+      });
+    });
+
+    const backTop = $("#back-top");
+    window.addEventListener("scroll", () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      $("#reading-progress").style.width = `${max > 0 ? window.scrollY / max * 100 : 0}%`;
+      backTop.classList.toggle("visible", window.scrollY > 500);
+    }, {passive: true});
+    backTop.addEventListener("click", () => window.scrollTo({top: 0, behavior: "smooth"}));
+    showDay(calendarContext.initialIndex, false);
+  }
+
+  applyTheme();
+  renderMeta();
+  renderOverview();
+  renderCommonModules();
+  renderModuleCatalog();
+  renderDays();
+  renderValidation();
+  renderTasks();
+  bindInteractions();
+  window.scrollTo(0, 0);
+  window.addEventListener("load", () => window.scrollTo(0, 0));
+})();
+
+</script>
+</body>
+</html>
