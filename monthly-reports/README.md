@@ -19,6 +19,7 @@
 | 202607_monthly_mkt_report.html | 2026年7月市场报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/202607_monthly_mkt_report.html) |
 | 202607_monthly_out-game_report.html | 2026年7月CP社区报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/202607_monthly_out-game_report.html) |
 | 202607_monthly_report.html | 2026年7月竞品报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/202607_monthly_report.html) |
+| 202608_monthly_mkt_report.html | 2026年8月市场报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/202608_monthly_mkt_report.html) |
 | 202608_monthly_out-game_report.html | 2026年8月CP社区报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/202608_monthly_out-game_report.html) |
 | 202608_monthly_report.html | 2026年8月竞品报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/202608_monthly_report.html) |
 | monthly_report_data_mar2026.html | 竞品报告 | [打开](https://jingruyi.github.io/my-reports/monthly-reports/monthly_report_data_mar2026.html) |
