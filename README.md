@@ -11,4 +11,3 @@
 | Travel_Guide_Quzhou.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/Travel_Guide_Quzhou.html) |
 | china_game_market_data.html | 报告文件 | [打开](https://jingruyi.github.io/my-reports/china_game_market_data.html) |
 | competitive_game_dashboard_light.html | 竞品大盘（精简版） | [打开](https://jingruyi.github.io/my-reports/competitive_game_dashboard_light.html) |
-| gansu_dunhuang_10_day_guide.html | 敦煌旅游攻略 | [打开](https://jingruyi.github.io/my-reports/gansu_dunhuang_10_day_guide.html) |
