@@ -29,3 +29,4 @@
 | 202610W2_weekly_report.html | 2026年第10周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202610W2_weekly_report.html) |
 | 202610W3_weekly_report.html | 2026年第10周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202610W3_weekly_report.html) |
 | 202610W4_weekly_report.html | 2026年第10周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202610W4_weekly_report.html) |
+| 202611W1_weekly_report.html | 2026年第11周竞品周报 | [打开](https://jingruyi.github.io/my-reports/weekly-reports/202611W1_weekly_report.html) |
