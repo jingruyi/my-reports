@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중국 동향 월보 · 2026년 10월 / 中国市场动向月报 · 2026年10月</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#ffffff;--surface:#ffffff;--surface2:#f5f7fa;--border:#dde2ea;--border2:#c5ccd8;--text:#000000;--text-dim:#111111;--text-muted:#444444;--tencent:#1d5fa8;--netease:#c0392b;--others:#16a34a;--accent:#c97a00;--up:#d32f2f;--down:#1565c0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;min-height:100vh;font-size:15px;}
+  body.lang-kr{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif!important;}
+  .container{max-width:100%;width:100%;margin:0;padding:16px 20px;}
+  .lang-toggle{position:fixed;top:14px;right:20px;z-index:999;display:flex;gap:2px;background:rgba(255,255,255,0.95);border:1px solid var(--border);border-radius:6px;padding:2px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+  .lang-btn{padding:4px 12px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-radius:4px;font-size:12px;font-weight:700;transition:all 0.15s;letter-spacing:.05em;font-family:inherit;}
+  .lang-btn.active{background:var(--accent);color:#fff;}
+  .lang-btn:hover:not(.active){color:var(--text);background:var(--border);}
+  .txt-cn{display:inline;}.txt-kr{display:none;}
+  .txt-cn-block{display:block;}.txt-kr-block{display:none;}
+  body.lang-kr .txt-cn{display:none!important;}body.lang-kr .txt-kr{display:inline!important;}
+  body.lang-kr .txt-cn-block{display:none!important;}body.lang-kr .txt-kr-block{display:block!important;}
+  .report-header{background:var(--surface);border:1px solid var(--border);border-radius:0;padding:24px 28px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
+  .report-title{font-size:22px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .report-title::before{content:'';display:inline-block;width:4px;height:22px;background:var(--accent);border-radius:2px;}
+  .report-meta{font-size:12px;color:var(--text-muted);line-height:1.8;}
+  .report-badge{background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;white-space:nowrap;}
+  .section-title{font-size:17px;font-weight:700;color:var(--text-dim);margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+  .top-text-section{background:#fffbeb;border:1px solid #f5d98a;border-left:4px solid #f0b429;border-radius:0;padding:16px 20px;margin-bottom:20px;}
+  .top-text-title{font-size:16px;font-weight:700;color:#92580a;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+  .top-text-body{font-size:14px;color:#3a2a00;line-height:1.9;}
+  .top-text-body ul{list-style:none;padding:0;margin:0;}
+  .top-text-body li{padding-left:1.2em;text-indent:-1.2em;margin-bottom:6px;}
+  .top-text-body li::before{content:"• ";color:#f0b429;font-weight:700;}
+  .g-tag{font-weight:700;padding:1px 6px;border-radius:4px;font-size:12px;color:#6b7280;background:rgba(107,114,128,0.1);}
+  .g-tag.tc{color:#1d5fa8!important;background:rgba(29,95,168,.1)!important;}
+  .g-tag.ne{color:#c0392b!important;background:rgba(192,57,43,.1)!important;}
+  .g-tag.ot{color:#16a34a!important;background:rgba(22,163,74,.1)!important;}
+  .summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:8px;}
+  .summary-card{background:var(--surface);border:1px solid var(--border);border-radius:0;padding:20px 20px 16px;box-shadow:0 1px 6px rgba(0,0,0,.06);border-top:4px solid transparent;display:flex;flex-direction:column;gap:0;}
+  .summary-card.c-market{border-top-color:var(--accent);background:linear-gradient(160deg,#fffbf2 0%,#fff 60%);box-shadow:0 2px 12px rgba(201,122,0,.12);}
+  .summary-card.c-pc{border-top-color:var(--tencent);background:linear-gradient(160deg,#f0f5ff 0%,#fff 60%);box-shadow:0 2px 12px rgba(29,95,168,.10);}
+  .summary-card.c-mobile{border-top-color:var(--netease);background:linear-gradient(160deg,#fff5f5 0%,#fff 60%);box-shadow:0 2px 12px rgba(192,57,43,.10);}
+  .summary-card.c-license{border-top-color:#7c3aed;background:linear-gradient(160deg,#f5f3ff 0%,#fff 60%);box-shadow:0 2px 12px rgba(124,58,237,.10);}
+  .card-game{font-size:13px;font-weight:700;margin-bottom:3px;}
+  .c-market .card-game{color:var(--accent);}.c-pc .card-game{color:var(--tencent);}
+  .c-mobile .card-game{color:var(--netease);}.c-license .card-game{color:#7c3aed;}
+  .card-big-val{font-size:26px;font-weight:700;line-height:1.1;margin-bottom:10px;padding-top:4px;}
+  .c-market .card-big-val{color:var(--accent);}.c-pc .card-big-val{color:var(--tencent);}
+  .c-mobile .card-big-val{color:var(--netease);}.c-license .card-big-val{color:#7c3aed;}
+  .card-metric-block{padding:8px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);line-height:1.7;}
+  .metric-mom{font-size:11px;font-weight:600;padding:2px 5px;border-radius:4px;display:inline-flex;align-items:center;gap:2px;white-space:nowrap;}
+  .metric-mom.up{color:var(--up);background:rgba(211,47,47,.09);}
+  .metric-mom.down{color:var(--down);background:rgba(21,101,192,.09);}
+  .content-card{background:var(--surface);border:1px solid var(--border);border-radius:0;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px;position:relative;overflow:hidden;}
+  .content-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.5;}
+  .sub-title{font-size:14px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+  .sub-title:first-child{margin-top:0;}
+  .bullet-list{list-style:none;padding:0;margin:0;}
+  .bullet-list li{font-size:14px;color:var(--text-dim);padding-left:1.2em;text-indent:-1.2em;margin-bottom:5px;line-height:1.85;}
+  .bullet-list li::before{content:"• ";color:var(--text-muted);font-weight:700;}
+  .sub-bullet{list-style:none;padding:0;margin:4px 0 0 1.2em;}
+  .sub-bullet li{font-size:13px;color:var(--text-dim);padding-left:1.2em;text-indent:-1.2em;margin-bottom:3px;line-height:1.8;}
+  .sub-bullet li::before{content:"– ";color:var(--text-muted);}
+  .table-wrap{overflow-x:auto;margin:10px 0 4px;}
+  .stats-table{width:100%;min-width:600px;border-collapse:collapse;font-size:13px;}
+  .stats-table th{background:var(--surface2);color:#6b7280;font-weight:600;padding:8px 12px;border:1px solid var(--border);border-bottom:2px solid var(--border2);text-align:left;white-space:nowrap;}
+  .stats-table td{padding:8px 12px;border:1px solid #e5e7eb;font-size:13px;vertical-align:middle;line-height:1.6;}
+  .stats-table tr:hover td{background:#fafafa;}
+  .stats-table tr.hl td{background:#fffbeb;}
+  .mom-up{color:#c0392b!important;font-weight:600;}.mom-down{color:#1a56db!important;font-weight:600;}
+  .mkt-tabs{display:flex;gap:10px;margin-bottom:0;align-items:flex-end;}
+  .mkt-tab-btn{flex:1;border:1px solid var(--border);border-top:4px solid transparent;border-radius:0;padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--surface2);color:var(--text-dim);transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+  .mkt-tab-btn.active.g1{background:rgba(29,95,168,.08);border-top-color:#1d5fa8;color:#1d5fa8;box-shadow:0 2px 8px rgba(29,95,168,.12);}
+  .mkt-tab-btn.active.g2{background:rgba(192,57,43,.08);border-top-color:#c0392b;color:#c0392b;box-shadow:0 2px 8px rgba(192,57,43,.12);}
+  .mkt-tab-btn.active.g3{background:rgba(22,163,74,.08);border-top-color:#16a34a;color:#16a34a;box-shadow:0 2px 8px rgba(22,163,74,.12);}
+  .mkt-tab-btn:hover:not(.active){background:var(--border);color:var(--text);}
+  .mkt-panel{display:none;}.mkt-panel.active{display:block;}
+  .mkt-panel-card{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:10px 0 4px;}
+  .product-item{background:var(--surface2);border:1px solid var(--border);border-radius:0;padding:14px 16px;}
+  .product-name{font-size:14px;font-weight:700;color:var(--text-dim);margin-bottom:6px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+  .product-desc{font-size:13px;color:var(--text-dim);line-height:1.8;}
+  .ext-link{font-size:11px;color:#1d5fa8;text-decoration:none;}
+  .ext-link:hover{text-decoration:underline;}
+  .ptag{display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:700;flex-shrink:0;line-height:normal;}
+  .b-new{background:#dbeafe;color:#1d4ed8;}.b-event{background:#dcfce7;color:#166534;}
+  .b-collab{background:#f3e8ff;color:#7e22ce;}.b-esports{background:#ffedd5;color:#9a3412;}
+  .b-milestone{background:#fce7f3;color:#9d174d;}.b-ai{background:#ede9fe;color:#5b21b6;}
+  .b-finance{background:#f0fdf4;color:#166534;}.b-policy{background:#fef9c3;color:#854d0e;}
+  .b-other{background:#f3f4f6;color:#374151;}.b-global{background:#cffafe;color:#0e7490;}
+  .b-invest{background:#fef3c7;color:#92400e;}.b-report{background:#e0f2fe;color:#0369a1;}
+  .trend-item{padding:16px 0;border-bottom:1px solid var(--border);}
+  .trend-item:last-child{border-bottom:none;padding-bottom:0;}
+  .trend-title{font-size:14px;font-weight:700;color:var(--text-dim);margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+  .top-divider{height:1px;background:var(--border);margin:20px 0;}
+  @media(max-width:900px){.summary-grid{grid-template-columns:repeat(2,1fr);}.product-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body class="lang-kr">
+
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('kr')">KR</button>
+  <button class="lang-btn" onclick="setLang('cn')">CN</button>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div>
+      <div class="report-title">
+        <span class="txt-cn">中国市场动向月报 · 2026年10月</span>
+        <span class="txt-kr">중국 동향 월보 · 2026년 10월</span>
+      </div>
+      <div class="report-meta">
+        담당팀：PUBGM Operation &amp; Coordination Team　|　담당자：Ru Yi Jing（经如一）<br>
+        동향 기간：2026-10-01 ～ 2026-10-31　|　출처：GAMMA 월보 / GameLook / 游信 / 공개 시장 데이터
+      </div>
+    </div>
+    <span class="report-badge">
+      <span class="txt-cn">2026年10月</span><span class="txt-kr">2026년 10월</span>
+    </span>
+  </div>
+
+  <!-- SUMMARY BOX -->
+  <div class="top-text-section">
+    <div class="top-text-title">⭐
+      <span class="txt-cn">10月市场动向摘要 Summary</span>
+      <span class="txt-kr">10월 시장 동향 요약 Summary</span>
+    </div>
+    <div class="top-text-body txt-cn-block">
+      <ul>
+        <li><strong>市场数据：</strong>10月国内游戏市场收入300.19亿元，环比增长0.75%。移动游戏收入环比增长3.68%，带动市场回升；中国自研游戏出海收入环比增长9.58%。</li>
+        <li><strong>版号：</strong>10月共195款游戏获批，其中国产183款、进口12款。韩国研发的《奥丁：神叛》和《普拉纳祝福》进入进口名单；另有10项游戏审批信息变更。</li>
+        <li><strong>Tencent：</strong>《三角洲行动》国服日活跃用户突破5,800万；天美研发的手游《怪物猎人：旅人》于10月29日在海外上线；《无畏契约》国服PC端累计注册用户突破1亿。</li>
+        <li><strong>NetEase：</strong>《蛋仔派对》通过国庆版本及联动提升流水榜排名，《逆水寒》手游和《燕云十六声》推出新内容；射击新作《极限战场》开启PC首次测试。</li>
+        <li><strong>其他上市公司：</strong>世纪华通、巨人网络、恺英网络和完美世界Q3收入同比增长，吉比特收入及归母净利润同比下降。头部企业的业绩表现继续分化。</li>
+        <li><strong>射击竞品：</strong>《三角洲行动》在10月推出新玩法，并披露协助警方侦破DMA外挂案件；《ARC Raiders》通过大型更新和免费试玩吸引玩家回流。内容更新与游戏环境治理仍是射击产品长线运营的重点。</li>
+        <li><strong>新游与跨端：</strong>《影之刃零》10月29日登陆PC／PS5，《怪物猎人：旅人》同日在海外移动平台上线；《星布谷地》和《白银之城》公布12月上线计划，年底新品发行节奏加快。</li>
+        <li><strong>PC／Steam：</strong>10月Steam同时在线人数峰值首次超过4,350万，再创历史新高。PC平台持续吸引玩家，也为射击游戏和国产新作提供了更大的发行空间。</li>
+        <li><strong>线下游戏场所：</strong>截至2025年底，全国上网服务场所及电竞酒店经营主体达12.26万家，同比增长12.68%。射击游戏的组队体验和赛事活动，为线下场所带来新的内容与社交需求。</li>
+        <li><strong>电竞市场：</strong>2025年中国电竞市场规模约1,960亿元、用户约5.13亿，预计2026年市场规模突破2,000亿元。移动电竞保持基础规模，赛事、直播与线下活动继续拓展用户参与方式。</li>
+      </ul>
+    </div>
+    <div class="top-text-body txt-kr-block">
+      <ul>
+        <li><strong>시장 데이터: </strong>10월 중국 게임 시장 매출은 300.19억 위안으로 전월 대비 0.75% 증가했다. 모바일 게임 매출이 전월 대비 3.68% 증가하며 시장 반등을 이끌었다. 중국 자체 개발 게임의 해외 매출은 전월 대비 9.58% 증가했다.</li>
+        <li><strong>판호: </strong>10월 총 195개 게임(내자 183개, 외자 12개)이 판호를 획득했다. 한국에서 개발한 〈오딘: 발할라 라이징〉과 〈블레스 언리쉬드〉가 외자 판호 승인 명단에 포함됐으며, 기존 게임의 승인 정보 변경은 별도로 10건이었다.</li>
+        <li><strong>Tencent: </strong>〈Delta Force〉 중국 서버의 일간 활성 이용자 수(DAU)가 5,800만 명을 돌파했다. TiMi가 개발한 모바일 게임 〈몬스터헌터 아웃랜더즈〉는 10월 29일 해외에 출시됐다. 〈VALORANT〉 중국 PC 버전의 누적 가입자는 1억 명을 넘어섰다.</li>
+        <li><strong>NetEase: </strong>〈Eggy Party〉는 국경절 업데이트와 콜라보에 힘입어 매출 순위가 상승했다. 〈역수한〉 모바일과 〈연운〉은 신규 콘텐츠를 출시했고, 슈팅 신작 〈극한전장〉은 첫 PC 테스트를 시작했다.</li>
+        <li><strong>기타 상장사: </strong>Century Huatong, Giant Network, Kingnet Network, Perfect World의 3분기 매출은 전년 동기 대비 증가했다. 반면 G-Bits는 매출과 지배주주 귀속 순이익이 모두 감소해 주요 게임사의 실적이 엇갈렸다.</li>
+        <li><strong>슈팅 경쟁작: </strong>〈Delta Force〉는 10월 신규 모드를 출시하고 DMA 기반 핵 프로그램 사건에 대한 경찰 수사에 협조했다고 밝혔다. 〈ARC Raiders〉는 대규모 업데이트와 무료 체험을 통해 이용자의 복귀를 유도했다. 콘텐츠 업데이트와 공정한 플레이 환경 조성은 슈팅 게임의 장기 운영에서 여전히 중요하다.</li>
+        <li><strong>신작 및 크로스 플랫폼: </strong>〈Phantom Blade Zero〉는 10월 29일 PC·PS5로 출시됐고, 같은 날 〈몬스터헌터 아웃랜더즈〉가 해외 모바일 플랫폼에 출시됐다. 〈쁘띠플래닛〉과 〈실버 팰리스〉도 12월 출시 계획을 발표하면서 연말 신작 출시가 빨라지고 있다.</li>
+        <li><strong>PC/Steam: </strong>10월 Steam 최고 동시 접속자 수가 처음으로 4,350만 명을 돌파하며 역대 최고치를 경신했다. PC 플랫폼에 이용자가 계속 유입되면서 슈팅 게임과 중국산 신작이 접근할 수 있는 시장도 커지고 있다.</li>
+        <li><strong>오프라인 게임 시설: </strong>2025년 말 기준 중국의 인터넷 이용 시설 및 이스포츠 호텔 운영 사업자는 12.26만 곳으로 전년 대비 12.68% 증가했다. 슈팅 게임을 함께 즐기거나 대회에 참여하려는 이용자들이 오프라인 공간에서 새로운 콘텐츠와 교류 기회를 찾고 있다.</li>
+        <li><strong>이스포츠 시장: </strong>2025년 중국 이스포츠 시장 규모는 약 1,960억 위안, 이용자는 약 5.13억 명으로 추산된다. 2026년에는 시장 규모가 2,000억 위안을 넘을 전망이다. 모바일 이스포츠가 시장의 기반을 유지하는 가운데 대회, 라이브 방송, 오프라인 이벤트를 통해 이용자 참여 방식이 다양해지고 있다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="section-title">📊
+    <span class="txt-cn">宏观市场核心数据</span>
+    <span class="txt-kr">거시적 시장 핵심 데이터</span>
+  </div>
+  <div style="font-size:12px;font-weight:700;color:#888;letter-spacing:.08em;margin:0 0 8px;display:flex;align-items:center;gap:8px;">
+    <span style="display:inline-block;width:3px;height:14px;background:#c97a00;border-radius:1px;"></span>
+    <span class="txt-cn">2026年10月</span><span class="txt-kr">2026년 10월</span>
+  </div>
+  <div class="summary-grid" style="margin-bottom:6px;">
+    <div class="summary-card c-market">
+      <div class="card-game">⭐ <span class="txt-cn">国内游戏市场</span><span class="txt-kr">중국 게임 시장</span></div>
+      <div class="card-big-val"><span class="txt-cn">300.19亿</span><span class="txt-kr">300.19억</span></div>
+      <div class="card-metric-block">MoM <span class="metric-mom up">▲0.75%</span>　YoY <span class="metric-mom down">▼4.27%</span></div>
+      <div class="card-metric-block"><span class="txt-cn">国庆期间版本更新、主题活动和长线产品运营支撑环比增长</span><span class="txt-kr">국경절 기간 버전 업데이트·테마 이벤트·장기 서비스 운영이 전월 대비 성장을 뒷받침</span></div>
+    </div>
+    <div class="summary-card c-pc">
+      <div class="card-game">🖥️ <span class="txt-cn">客户端游戏</span><span class="txt-kr">PC 게임</span></div>
+      <div class="card-big-val"><span class="txt-cn">61.17亿</span><span class="txt-kr">61.17억</span></div>
+      <div class="card-metric-block">MoM <span class="metric-mom down">▼12.37%</span>　YoY <span class="metric-mom down">▼15.36%</span></div>
+      <div class="card-metric-block"><span class="txt-cn">长线端游流水缩减，《原神》《三角洲行动》客户端流水环比下滑</span><span class="txt-kr">장기 서비스 PC 게임 매출 감소, 〈원신〉·〈Delta Force〉 PC 매출 전월 대비 감소</span></div>
+    </div>
+    <div class="summary-card c-mobile">
+      <div class="card-game">📱 <span class="txt-cn">移动游戏</span><span class="txt-kr">모바일 게임</span></div>
+      <div class="card-big-val"><span class="txt-cn">221.36亿</span><span class="txt-kr">221.36억</span></div>
+      <div class="card-metric-block">MoM <span class="metric-mom up">▲3.68%</span>　YoY <span class="metric-mom down">▼2.20%</span></div>
+      <div class="card-metric-block"><span class="txt-cn">《蛋仔派对》《王者荣耀》内容与活动、《我叫MT：崛起》新品推动环比回升</span><span class="txt-kr">〈Eggy Party〉·〈왕자영요〉 콘텐츠·이벤트, 신작 〈아임 MT: 라이즈〉가 전월 대비 반등 견인</span></div>
+    </div>
+    <div class="summary-card c-license">
+      <div class="card-game">🌏 <span class="txt-cn">中国自研游戏出海</span><span class="txt-kr">중국 자체 개발 게임 해외 매출</span></div>
+      <div class="card-big-val"><span class="txt-cn">18.95亿美元</span><span class="txt-kr">18.95억 달러</span></div>
+      <div class="card-metric-block">MoM <span class="metric-mom up">▲9.58%</span>　YoY <span class="metric-mom up">▲5.36%</span></div>
+      <div class="card-metric-block"><span class="txt-cn">《浪漫餐厅》《明日方舟》《鸣潮》提供基础收入，《影之刃零》带来新品增量</span><span class="txt-kr">〈Gossip Harbor〉·〈명일방주〉·〈명조〉가 기본 매출을 뒷받침, 〈Phantom Blade Zero〉가 추가 매출</span></div>
+    </div>
+  </div>
+  <div style="font-size:12px;font-weight:700;color:#888;letter-spacing:.08em;margin:14px 0 8px;display:flex;align-items:center;gap:8px;">
+    <span style="display:inline-block;width:3px;height:14px;background:#c97a00;border-radius:1px;"></span>
+    <span class="txt-cn">版号与重点产品指标</span><span class="txt-kr">판호 및 주요 타이틀 지표</span>
+  </div>
+  <div class="summary-grid">
+    <div class="summary-card c-license">
+      <div class="card-game">📋 <span class="txt-cn">当月版号发放</span><span class="txt-kr">당월 판호 발급</span></div>
+      <div class="card-big-val"><span class="txt-cn">195款</span><span class="txt-kr">195개</span></div>
+      <div class="card-metric-block"><span class="txt-cn">国产 <strong>183款</strong>　进口 <strong>12款</strong></span><span class="txt-kr">내자 <strong>183개</strong>　외자 <strong>12개</strong></span></div>
+      <div class="card-metric-block" style="font-size:11px;line-height:1.8;"><span class="txt-cn">较9月209款减少6.7%<br>另有10项游戏审批信息变更<br>韩国游戏2款</span><span class="txt-kr">9월 209개 대비 6.7% 감소<br>기존 게임 승인 정보 변경 10건<br>한국 게임 2종</span></div>
+    </div>
+    <div class="summary-card c-pc">
+      <div class="card-game">🎯 <span class="txt-cn">《三角洲行动》国服DAU</span><span class="txt-kr">〈Delta Force〉 중국 서버 DAU</span></div>
+      <div class="card-big-val"><span class="txt-cn">5,800万</span><span class="txt-kr">5,800만</span></div>
+      <div class="card-metric-block"><span class="txt-cn">10月8日项目组公布突破5,800万；国服整体DAU，未拆分PC和手游</span><span class="txt-kr">10월 8일 개발팀이 5,800만 돌파 발표；중국 서버 전체 DAU, PC·모바일 별도 수치 미공개</span></div>
+    </div>
+    <div class="summary-card c-market">
+      <div class="card-game">🖥️ <span class="txt-cn">Steam同时在线人数峰值</span><span class="txt-kr">Steam 최고 동시 접속자 수</span></div>
+      <div class="card-big-val"><span class="txt-cn">4,350万</span><span class="txt-kr">4,350만</span></div>
+      <div class="card-metric-block"><span class="txt-cn">10月11日首次突破，再创历史新高；其中约1,446万用户正在游戏</span><span class="txt-kr">10월 11일 처음 돌파, 역대 최고치 경신；이 중 약 1,446만 명이 게임 플레이 중</span></div>
+    </div>
+    <div class="summary-card c-mobile">
+      <div class="card-game">⚔️ <span class="txt-cn">《影之刃零》Steam同时在线峰值</span><span class="txt-kr">〈Phantom Blade Zero〉 Steam 최고 동시 접속자 수</span></div>
+      <div class="card-big-val"><span class="txt-cn">约72.3万</span><span class="txt-kr">약 72.3만</span></div>
+      <div class="card-metric-block"><span class="txt-cn">10月29日登陆PC和PS5，迅速登顶Steam全球畅销榜；10月30日达到峰值</span><span class="txt-kr">10월 29일 PC·PS5 출시 직후 Steam 글로벌 매출 순위 1위；10월 30일 최고치 기록</span></div>
+    </div>
+  </div>
+
+  <div class="top-divider"></div>
+
+  <!-- MARKET &amp; POLICY -->
+  <div class="section-title">🏛️ <span class="txt-cn">宏观市场与政策风向</span><span class="txt-kr">거시적 시장과 정책 방향</span></div>
+  <div class="content-card">
+    <div class="sub-title">■ <span class="txt-cn">市场数据</span><span class="txt-kr">시장 데이터</span></div>
+    <div class="trend-item" style="padding-top:0;"><div class="trend-title"><span class="txt-cn">10月市场收入回填：移动端环比增长，射击产品占据移动流水榜3席</span><span class="txt-kr">10월 시장 매출 집계: 모바일 매출 전월 대비 증가, 슈팅 게임 3종이 모바일 매출 순위에 진입</span></div></div>
+    <div class="table-wrap">
+      <table class="stats-table">
+        <thead><tr><th><span class="txt-cn">指标</span><span class="txt-kr">지표</span></th><th><span class="txt-cn">10月收入</span><span class="txt-kr">10월 매출</span></th><th>MoM</th><th>YoY</th><th><span class="txt-cn">核心驱动</span><span class="txt-kr">핵심 동인</span></th></tr></thead>
+        <tbody>
+          <tr class="hl">
+            <td><strong><span class="txt-cn">国内游戏市场</span><span class="txt-kr">중국 게임 시장</span></strong></td>
+            <td><strong><span class="txt-cn">300.19亿元</span><span class="txt-kr">300.19억 위안</span></strong></td>
+            <td class="mom-up">▲0.75%</td><td class="mom-down">▼4.27%</td>
+            <td><span class="txt-cn">国庆期间的版本更新、主题活动和长线产品运营支撑了环比增长；但增幅有限，部分成熟产品收入较去年同期回落，新品增量尚未填补缺口。</span><span class="txt-kr">국경절 기간의 버전 업데이트, 테마 이벤트 및 장기 서비스 게임 운영이 전월 대비 성장을 뒷받침했다. 다만 증가 폭은 제한적이었고, 일부 기존 게임의 매출이 전년 동월보다 줄어든 부분을 신작 매출이 채우지 못했다.</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">客户端游戏</span><span class="txt-kr">PC 게임</span></strong></td>
+            <td><strong><span class="txt-cn">61.17亿元</span><span class="txt-kr">61.17억 위안</span></strong></td>
+            <td class="mom-down">▼12.37%</td><td class="mom-down">▼15.36%</td>
+            <td><span class="txt-cn">长线端游流水缩减，双端产品中的《原神》《三角洲行动》客户端流水环比下滑；新品贡献不足以抵消存量产品的降幅。<strong>这里是客户端口径，不代表两款游戏的手游表现。</strong></span><span class="txt-kr">장기 서비스 PC 게임 매출이 줄었고, PC와 모바일에서 서비스하는 〈원신〉과 〈Delta Force〉 역시 PC 매출이 전월보다 감소했다. 신작 매출로는 기존 게임의 감소분을 상쇄하기 어려웠다. <strong>이 수치는 PC 버전만 집계한 것으로, 두 게임의 모바일 실적은 별도다.</strong></span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">移动游戏</span><span class="txt-kr">모바일 게임</span></strong></td>
+            <td><strong><span class="txt-cn">221.36亿元</span><span class="txt-kr">221.36억 위안</span></strong></td>
+            <td class="mom-up">▲3.68%</td><td class="mom-down">▼2.20%</td>
+            <td><span class="txt-cn">《蛋仔派对》《王者荣耀》的内容与活动，以及《我叫MT：崛起》的新品增量，推动环比回升；同比则受到《地下城与勇士：起源》《三角洲行动》《无尽冬日》等产品收入回落影响。伽马数据的<strong>手游流水测算榜</strong>中，《和平精英》第2、《三角洲行动》第3；榜单名次不是官方披露的收入。</span><span class="txt-kr">〈Eggy Party〉와 〈왕자영요〉의 콘텐츠·이벤트, 신작 〈아임 MT: 라이즈(我叫MT：崛起)〉의 매출이 전월 대비 반등을 이끌었다. 반면 전년 동월 대비로는 〈던전앤파이터 모바일〉, 〈Delta Force〉, 〈Whiteout Survival〉 등의 매출 감소가 영향을 미쳤다. Gamma Data의 <strong>모바일 게임 매출 추정 순위</strong>에서 〈화평정영〉은 2위, 〈Delta Force〉는 3위를 기록했다. 이는 공식 매출 공시가 아닌 추정치에 따른 순위다.</span></td>
+          </tr>
+          <tr>
+            <td><strong><span class="txt-cn">中国自研游戏出海</span><span class="txt-kr">중국 자체 개발 게임 해외 매출</span></strong></td>
+            <td><strong><span class="txt-cn">18.95亿美元</span><span class="txt-kr">18.95억 달러</span></strong></td>
+            <td class="mom-up">▲9.58%</td><td class="mom-up">▲5.36%</td>
+            <td><span class="txt-cn">伽马数据认为，《浪漫餐厅》《明日方舟》《鸣潮》等长线产品提供基础收入，《影之刃零》带来新品增量。<strong>这一项覆盖自研游戏出海整体，不能直接解读为出海手游收入增幅。</strong></span><span class="txt-kr">Gamma Data는 〈Gossip Harbor〉, 〈명일방주〉, 〈명조〉 등 장기 서비스 게임이 기본 매출을 뒷받침하고 신작 〈Phantom Blade Zero〉가 추가 매출을 냈다고 분석했다. <strong>이 지표는 자체 개발 게임의 전체 플랫폼 해외 매출을 집계하므로 모바일 게임만의 해외 매출 증가율로 해석할 수 없다.</strong></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+<ul class="bullet-list"><li><span class="txt-cn"><strong>战略解读：</strong>10月市场环比微增主要受手游增长支撑，但手游收入同比仍下降，节日活动和新品尚未扭转存量产品的压力。《和平精英》和《三角洲行动》手游仍位居流水测算榜前列，后续重点看内容更新能否持续带动留存与收入。</span><span class="txt-kr"><strong>전략적 해석:</strong> 10월 시장의 전월 대비 소폭 성장은 주로 모바일 게임이 이끌었다. 다만 모바일 매출은 전년 동월보다 줄어 명절 이벤트와 신작만으로 기존 게임의 매출 하락을 만회하지 못했다. 〈화평정영〉과 〈Delta Force〉 모바일은 매출 추정 순위 상위권을 유지했다. 향후 관건은 콘텐츠 업데이트가 이용자 유지와 매출로 계속 이어질지다.</span></li></ul>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-11-16/doc-iniyxuex2350749.shtml" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">新浪财经：伽马数据2026年10月中国游戏产业月度报告</span><span class="txt-kr">시나파이낸스 | Gamma Data 2026년 10월 중국 게임 산업 월간 보고서</span></a>
+    </div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">版号与监管</span><span class="txt-kr">판호 및 규제</span></div>
+    <div class="cd" style="margin-bottom:8px;"><span class="txt-cn"><strong>数据口径：</strong>按国家新闻出版署10月审批名单及《2026年中国游戏审批信息（CN）》版号报告统计</span><span class="txt-kr"><strong>집계 기준:</strong> 국가신문출판서의 10월 승인 명단 및 《2026년 중국 게임 승인 정보(CN)》 판호 보고서 기준</span></div>
+    <div class="trend-item">
+      <div class="trend-title"><span class="txt-cn">10月游戏版号：195款获批，较9月减少6.7%</span><span class="txt-kr">10월 판호 195개 승인, 9월 대비 6.7% 감소</span></div>
+      <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">国家新闻出版署10月29日公布本月审批信息：国产网络游戏183款、进口网络游戏12款，合计195款；较9月209款减少14款，环比-6.7%。另有10项已获批游戏的审批信息变更，单独统计。国产游戏按平台覆盖：移动端180款、客户端15款、网页端1款、主机1款，含14款多端游戏；进口游戏按平台覆盖：移动端10款、客户端5款，含3款移动+客户端游戏。</span><span class="txt-kr">국가신문출판서는 10월 29일 내자 온라인 게임 183개와 외자 온라인 게임 12개 등 총 195개의 승인 정보를 발표했다. 9월 209개에서 14개 줄어 전월 대비 6.7% 감소했다. 기존 게임의 승인 정보 변경 10건은 별도로 집계했다. 플랫폼별 내자 게임은 모바일 180개, PC 15개, 웹 1개, 콘솔 1개로 멀티 플랫폼 14개를 포함한다. 외자 게임은 모바일 10개, PC 5개로 모바일·PC 동시 승인 3개를 포함한다.</span></div>
+      <ul class="bullet-list"><li><span class="txt-cn"><strong>重点获批产品：</strong>腾讯模拟经营游戏《不可卷卷书店》获移动端版号，网易《桃花》获移动端+客户端版号；</span><span class="txt-kr"><strong>주요 승인 타이틀:</strong> Tencent의 경영 시뮬레이션 〈불가권권서점(不可卷卷书店)〉은 모바일 판호를, NetEase의 〈도화(桃花)〉는 모바일·PC 판호를 획득했다.</span></li><li><span class="txt-cn"><strong>韩国游戏：</strong>进口游戏中有2款获得审批的韩国游戏，《奥丁：神叛》（韩国 Lionheart Studio 研发的 MMORPG游戏），《普拉纳祝福》（韩国 Round8 Studio 研发的开放世界MMORPG游戏）</span><span class="txt-kr"><strong>한국 게임:</strong> 외자 판호를 획득한 한국 게임은 2종이다. 〈오딘: 발할라 라이징〉은 라이온하트 스튜디오가 개발한 MMORPG이며, 〈블레스 언리쉬드〉는 라운드8 스튜디오가 개발한 오픈월드 MMORPG다.</span></li><li><span class="txt-cn"><strong>审批变更：</strong>共有10款游戏变更审批信息。其中《劲舞团》涉及出版及运营单位变更，《决胜巅峰》涉及运营单位变更；《美职篮奇迹梦之队》《迷你枪战精英》增加客户端版本。</span><span class="txt-kr"><strong>승인 정보 변경:</strong> 총 10개 게임의 승인 정보가 변경됐다. 〈오디션〉은 출판·운영사가, 〈모바일 레전드: 뱅뱅〉은 운영사가 변경됐다. 〈NBA 기적의 드림팀〉과 〈미니 총전정영〉은 PC 버전을 추가했다.</span></li><li><span class="txt-cn"><strong>战略解读：</strong>月度供给继续高位，版号数量较9月总量减少6.7%，常态化供给节奏没有明显改变，国产产品仍占绝对多数。</span><span class="txt-kr"><strong>전략적 해석:</strong> 10월 판호 승인 건수는 9월보다 6.7% 줄었지만 여전히 높은 수준이다. 정기 승인 흐름에는 뚜렷한 변화가 없으며, 내자 게임이 계속 압도적인 비중을 차지하고 있다.</span></li></ul>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://krafton.atlassian.net/wiki/spaces/PUBGIPPUB/pages/876374905/2026+CN+2026+CN" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">2026年中国游戏审批信息（CN）</span><span class="txt-kr">2026년 중국 게임 승인 정보(CN)</span></a>　｜　<a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/gcwlyxspxx/202610/t20261029_1015044.html" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">国家新闻出版署：10月国产审批信息</span><span class="txt-kr">국가신문출판서 10월 내자 게임 승인 정보</span></a>　｜　<a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/jkwlyxspxx/202601/t20260126_947910.html" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">进口网络游戏审批信息</span><span class="txt-kr">외자 온라인 게임 승인 정보</span></a>　｜　<a href="https://www.nppa.gov.cn/bsfw/jggs/yxspjg/yxspbgxx/202601/t20260126_947941.html" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">游戏审批变更信息</span><span class="txt-kr">게임 승인 정보 변경</span></a>　｜　<a href="https://www.gamelook.com.cn/2026/10/605160/" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">GameLook：10月版号报道</span><span class="txt-kr">GameLook 10월 판호 보도</span></a>　｜　<a href="https://www.gamechosun.co.kr/webzine/article/view.php?no=227078" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">VALOFE公布《普拉纳祝福》为《Bless Unleashed》中国服务名</span><span class="txt-kr">VALOFE, ‘푸라나주푸(普拉纳祝福)’가 〈블레스 언리쉬드〉의 중국 서비스명이라고 발표</span></a>
+    </div>
+  </div>
+
+  <!-- COMPANY SECTIONS -->
+  <div class="section-title">🏢 <span class="txt-cn">中国Top游戏企业动向</span><span class="txt-kr">중국 상위권 게임사 동향</span></div>
+
+  <div class="mkt-tabs">
+    <button class="mkt-tab-btn active g1" onclick="showTab('tc')">Tencent</button>
+    <button class="mkt-tab-btn g2" onclick="showTab('ne')">NetEase</button>
+    <button class="mkt-tab-btn g3" onclick="showTab('ot')">Others</button>
+  </div>
+
+  <!-- TENCENT -->
+  <div id="tab-tc" class="mkt-panel active">
+    <div class="mkt-panel-card">
+    <div class="sub-title">■ <span class="txt-cn">Tencent：射击手游居前，跨端规模与安全治理并行</span><span class="txt-kr">Tencent: 슈팅 게임의 모바일 매출 상위권 유지, 크로스 플랫폼 이용자 증가와 부정행위 대응</span></div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">手游产品与运营</span><span class="txt-kr">모바일 게임 및 운영</span></div>
+    <div class="product-grid">
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-esports"><span class="txt-cn">测算榜第2</span><span class="txt-kr">추정 순위 2위</span></span><span class="txt-cn">《和平精英》</span><span class="txt-kr">〈화평정영〉</span>
+          <a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-11-16/doc-iniyxuex2350749.shtml" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">在伽马数据10月移动游戏流水<strong>测算榜</strong>中位列第2，继续保持射击手游头部位置。</span><span class="txt-kr">Gamma Data의 10월 모바일 게임 <strong>매출 추정 순위</strong>에서 2위를 기록하며 슈팅 모바일 게임 상위권을 유지했다.</span></div>
+      </div>
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-milestone"><span class="txt-cn">DAU 5,800万</span><span class="txt-kr">DAU 5,800만</span></span><span class="txt-cn">《三角洲行动》</span><span class="txt-kr">〈Delta Force〉</span>
+        </div>
+        <div class="product-desc"><span class="txt-cn">项目组10月8日公布国服DAU突破5,800万； <a href="https://www.taptap.cn/moment/857276261045634893" target="_blank" class="ext-link">↗</a> <a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-11-16/doc-iniyxuex2350749.shtml" target="_blank" class="ext-link">↗</a></span><span class="txt-kr">개발팀은 10월 8일 중국 서버 DAU가 5,800만 명을 돌파했다고 발표했다. <a href="https://www.taptap.cn/moment/857276261045634893" target="_blank" class="ext-link">↗</a> <a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-11-16/doc-iniyxuex2350749.shtml" target="_blank" class="ext-link">↗</a></span></div>
+      </div>
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-new"><span class="txt-cn">10.29海外上线</span><span class="txt-kr">10.29 해외 출시</span></span><span class="txt-cn">《怪物猎人：旅人》</span><span class="txt-kr">〈몬스터헌터 아웃랜더즈〉</span>
+          <a href="https://news.omg.com.tw/News/NewsContent?NewsID=14716" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">腾讯天美研发、卡普空授权的狩猎手游于10月29日在海外移动平台上线。</span><span class="txt-kr">Tencent 산하 TiMi가 캡콤 라이선스로 개발한 모바일 헌팅 게임으로, 10월 29일 해외 모바일 플랫폼에 출시됐다.</span></div>
+      </div>
+    </div>
+    <div class="trend-item" style="padding-bottom:4px;"><div class="trend-title"><span class="txt-cn">《三角洲行动》国服DAU节点</span><span class="txt-kr">〈Delta Force〉 중국 서버 DAU 추이</span></div></div>
+    <div class="table-wrap">
+      <table class="stats-table">
+        <thead><tr><th><span class="txt-cn">数据节点</span><span class="txt-kr">집계 시점</span></th><th><span class="txt-cn">DAU</span><span class="txt-kr">DAU</span></th><th><span class="txt-cn">手游／端游口径</span><span class="txt-kr">모바일·PC 집계 범위</span></th></tr></thead>
+        <tbody>
+          <tr><td><strong><span class="txt-cn">2025年4月</span><span class="txt-kr">2025년 4월</span></strong></td><td><span class="txt-cn">突破1,200万</span><span class="txt-kr">1,200만 명 돌파</span></td><td><span class="txt-cn"><strong>PC＋手游双端合计的峰值</strong>，4月前瞻直播的<a href="https://www.36kr.com/p/3251176864882952" target="_blank" class="ext-link">报道</a>明确写“双端”；<a href="https://static.www.tencent.com/uploads/2025/05/16/2af4e73edd208df236dadd8b9df89fc4.pdf" target="_blank" class="ext-link">腾讯Q1财报</a>随后确认4月峰值。</span><span class="txt-kr"><strong>PC·모바일 합산 최고 DAU</strong>. 4월 프리뷰 방송 관련 <a href="https://www.36kr.com/p/3251176864882952" target="_blank" class="ext-link">보도</a>에서 두 플랫폼을 합산한 수치라고 명시했고, <a href="https://static.www.tencent.com/uploads/2025/05/16/2af4e73edd208df236dadd8b9df89fc4.pdf" target="_blank" class="ext-link">Tencent 1분기 실적 보고서</a>에서도 4월 최고치를 확인했다.</span></td></tr>
+          <tr><td><strong><span class="txt-cn">2025年7月</span><span class="txt-kr">2025년 7월</span></strong></td><td><span class="txt-cn">突破2,000万</span><span class="txt-kr">2,000만 명 돌파</span></td><td><span class="txt-cn"><strong>PC＋手游产品整体的月平均DAU</strong>。<a href="https://static.www.tencent.com/uploads/2025/08/13/56af6c5c98acdc7bd757a7bd208d8189.pdf" target="_blank" class="ext-link">腾讯Q2财报</a></span><span class="txt-kr"><strong>PC·모바일 합산 월평균 DAU</strong>. <a href="https://static.www.tencent.com/uploads/2025/08/13/56af6c5c98acdc7bd757a7bd208d8189.pdf" target="_blank" class="ext-link">Tencent 2분기 실적 보고서</a></span></td></tr>
+          <tr><td><strong><span class="txt-cn">2025年9月21日</span><span class="txt-kr">2025년 9월 21일</span></strong></td><td><span class="txt-cn">突破3,000万</span><span class="txt-kr">3,000만 명 돌파</span></td><td><span class="txt-cn"><strong>包含PC和手游</strong>，其中<strong>PC端超过1,000万</strong>；<a href="https://www.taptap.cn/moment/718848903478250627" target="_blank" class="ext-link">项目组公告</a>、<a href="https://static.www.tencent.com/uploads/2025/11/13/3ff004e913507e0309f3f62a553185b2.pdf" target="_blank" class="ext-link">腾讯Q3材料</a></span><span class="txt-kr"><strong>PC·모바일 합산</strong>, 이 중 <strong>PC 이용자 1,000만 명 초과</strong>. <a href="https://www.taptap.cn/moment/718848903478250627" target="_blank" class="ext-link">개발팀 공지</a> / <a href="https://static.www.tencent.com/uploads/2025/11/13/3ff004e913507e0309f3f62a553185b2.pdf" target="_blank" class="ext-link">Tencent 3분기 실적 자료</a></span></td></tr>
+          <tr><td><strong><span class="txt-cn">2026年1月24日</span><span class="txt-kr">2026년 1월 24일</span></strong></td><td><span class="txt-cn">突破4,100万</span><span class="txt-kr">4,100만 명 돌파</span></td><td><span class="txt-cn"><strong>国服整体DAU</strong>，<strong>未拆分PC和手游</strong> <a href="https://www.taptap.cn/moment/764204757416936027" target="_blank" class="ext-link">项目组公告</a></span><span class="txt-kr"><strong>중국 서버 전체 DAU</strong>, <strong>PC·모바일 별도 수치 미공개</strong>. <a href="https://www.taptap.cn/moment/764204757416936027" target="_blank" class="ext-link">개발팀 공지</a></span></td></tr>
+          <tr><td><strong><span class="txt-cn">2026年3月18日</span><span class="txt-kr">2026년 3월 18일</span></strong></td><td><span class="txt-cn">突破5,000万</span><span class="txt-kr">5,000만 명 돌파</span></td><td><span class="txt-cn"><strong>国服整体DAU</strong>，<strong>未拆分PC和手游</strong>。<a href="https://www.taptap.cn/moment/783426894941915302" target="_blank" class="ext-link">项目组公告</a></span><span class="txt-kr"><strong>중국 서버 전체 DAU</strong>, <strong>PC·모바일 별도 수치 미공개</strong>. <a href="https://www.taptap.cn/moment/783426894941915302" target="_blank" class="ext-link">개발팀 공지</a></span></td></tr>
+          <tr><td><strong><span class="txt-cn">2026年10月8日</span><span class="txt-kr">2026년 10월 8일</span></strong></td><td><span class="txt-cn">突破5,800万</span><span class="txt-kr">5,800만 명 돌파</span></td><td><span class="txt-cn"><strong>国服整体DAU</strong>，<strong>未拆分PC和手游</strong>。<a href="https://www.taptap.cn/moment/857276261045634893" target="_blank" class="ext-link">项目组公告</a></span><span class="txt-kr"><strong>중국 서버 전체 DAU</strong>, <strong>PC·모바일 별도 수치 미공개</strong>. <a href="https://www.taptap.cn/moment/857276261045634893" target="_blank" class="ext-link">개발팀 공지</a></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">射击产品治理</span><span class="txt-kr">슈팅 게임 부정행위 대응</span></div>
+    <div class="product-grid">
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-other"><span class="txt-cn">外挂治理</span><span class="txt-kr">핵 대응</span></span><span class="txt-cn">《三角洲行动》</span><span class="txt-kr">〈Delta Force〉</span>
+          <a href="https://www.sina.cn/news/detail/5358586327990307.html" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">10月下旬公布协助警方侦破DMA外挂案，抓获嫌疑人16名、涉案金额超过2,000万元。这是安全治理动态，涉案金额不等于游戏或公司的损失。</span><span class="txt-kr">10월 하순, 경찰의 DMA 기반 핵 프로그램 사건 수사에 협조한 결과를 공개했다. 용의자 16명이 검거됐고 사건 관련 금액은 2,000만 위안을 넘었다. 이는 수사에서 파악한 금액으로 게임이나 회사의 피해액을 뜻하지 않는다.</span></div>
+      </div>
+    </div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">其他</span><span class="txt-kr">기타</span></div>
+    <div class="product-grid">
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-milestone"><span class="txt-cn">1亿用户</span><span class="txt-kr">가입자 1억</span></span><span class="txt-cn">《无畏契约》</span><span class="txt-kr">〈VALORANT〉</span>
+        </div>
+        <div class="product-desc"><span class="txt-cn">PC端：10月27日公布国服累计注册用户突破1亿。</span><span class="txt-kr">PC 버전은 10월 27일 중국 서버 누적 가입자 1억 명 돌파를 발표했다.</span></div>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://youxichaguan.com/archives/211453" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">游戏茶馆：《三角洲行动》日活</span><span class="txt-kr">게임차관 | Delta Force DAU</span></a>　｜　<a href="https://krafton.atlassian.net/wiki/spaces/PUBGIPPUB/pages/1388599386/2026.10.30+weekly+news+report" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">Ying Ying Yu 10月30日周报</span><span class="txt-kr">Ying Ying Yu 10월 30일 주간 보고서</span></a>　｜　<a href="https://news.17173.com/content/10282026/102029350.shtml" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">17173：《无畏契约》注册用户</span><span class="txt-kr">17173 | VALORANT 가입자 수</span></a>　｜　<a href="https://www.ithome.com/1/011/870.htm" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">IT之家：《全境封锁2》停运</span><span class="txt-kr">IT Home | 더 디비전 2 중국 서비스 종료</span></a>
+    </div>
+    </div>
+  </div>
+
+  <!-- NETEASE -->
+  <div id="tab-ne" class="mkt-panel">
+    <div class="mkt-panel-card">
+    <div class="sub-title">■ <span class="txt-cn">NetEase：手游长线内容更新，PC射击新品首测</span><span class="txt-kr">NetEase: 장기 서비스 모바일 게임 업데이트 및 PC 슈팅 신작 첫 테스트</span></div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">手游运营与产品测试</span><span class="txt-kr">모바일 게임 운영 및 신작 테스트</span></div>
+    <div class="product-grid">
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-collab"><span class="txt-cn">国庆联动</span><span class="txt-kr">국경절 콜라보</span></span><span class="txt-cn">《蛋仔派对》</span><span class="txt-kr">〈Eggy Party〉</span>
+          <a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-11-16/doc-iniyxuex2350749.shtml" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">国庆期间接续推出《小猪佩奇》、三丽鸥联动及版本活动；在伽马数据10月移动流水测算榜中的排名提升8位。</span><span class="txt-kr">국경절 기간 〈페파피그〉와 산리오 콜라보, 버전 이벤트를 잇달아 선보였다. Gamma Data의 10월 모바일 게임 매출 추정 순위에서 8계단 상승했다.</span></div>
+      </div>
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-new"><span class="txt-cn">4.2资料片</span><span class="txt-kr">4.2 확장팩</span></span><span class="txt-cn">《逆水寒》手游</span><span class="txt-kr">〈역수한〉 모바일</span>
+          <a href="https://www.taptap.cn/moment/859457889956268210" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">10月30日开启4.2资料片“苗疆蛊事”，延续大版本内容更新。</span><span class="txt-kr">10월 30일 4.2 확장팩 ‘묘강고사’를 출시하며 대규모 콘텐츠 업데이트를 이어갔다.</span></div>
+      </div>
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-new"><span class="txt-cn">未央城</span><span class="txt-kr">미앙성</span></span><span class="txt-cn">《燕云十六声》</span><span class="txt-kr">〈연운〉</span>
+          <a href="https://www.taptap.cn/game-event/13249" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">10月23日开放“未央城”主题区域。</span><span class="txt-kr">10월 23일 ‘미앙성’ 테마 지역을 개방했다.</span></div>
+      </div>
+      <div class="product-item">
+        <div class="product-name"><span class="ptag b-new"><span class="txt-cn">PC首测</span><span class="txt-kr">PC 첫 테스트</span></span><span class="txt-cn">《极限战场》</span><span class="txt-kr">〈극한전장〉</span>
+          <a href="https://www.taptap.cn/app/944749?os=ios" target="_blank" class="ext-link">↗</a>
+        </div>
+        <div class="product-desc"><span class="txt-cn">网易自研竞技射击产品于10月15日开启首次测试，<strong>本次仅开放PC</strong>。</span><span class="txt-kr">NetEase가 자체 개발한 경쟁형 슈팅 게임으로, 10월 15일 첫 테스트를 시작했다. <strong>이번 테스트는 PC에서만 진행했다</strong>.</span></div>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-11-16/doc-iniyxuex2350749.shtml" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">伽马数据：10月移动游戏报告</span><span class="txt-kr">Gamma Data 10월 모바일 게임 보고서</span></a>　｜　<a href="https://www.taptap.cn/moment/864946503704120352?group_id=232565" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《逆水寒》手游官方更新</span><span class="txt-kr">〈역수한〉 모바일 공식 업데이트</span></a>　｜　<a href="https://www.taptap.cn/game-event/13249" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《燕云十六声》官方版本介绍</span><span class="txt-kr">〈연운〉 공식 버전 소개</span></a>　｜　<a href="https://www.taptap.cn/app/944749?os=pc" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《极限战场》官方测试页</span><span class="txt-kr">〈극한전장〉 공식 테스트 페이지</span></a>
+    </div>
+    </div>
+  </div>
+
+  <!-- OTHERS -->
+  <div id="tab-ot" class="mkt-panel">
+    <div class="mkt-panel-card">
+    <div class="sub-title">■ <span class="txt-cn">Others：Q3收入与利润表现分化</span><span class="txt-kr">기타 게임사: 3분기 매출과 이익 성장세가 기업별로 엇갈림</span></div>
+<ul class="bullet-list"><li><span class="txt-cn"><strong>世纪华通：</strong>前三季度营收332.98亿元、归母净利润63.35亿元，同比分别+22.31%、+45.37%；产品包括《Whiteout Survival》《Kingshot》《无尽冬日》《奔奔王国》。多款国内外产品共同构成收入来源</span><span class="txt-kr"><strong>Century Huatong:</strong> 1~3분기 누적 매출은 332.98억 위안, 지배주주 귀속 순이익은 63.35억 위안으로 전년 동기 대비 각각 22.31%, 45.37% 증가했다. 〈Whiteout Survival〉, 〈Kingshot〉 및 중국 서비스 타이틀 〈무진동일(无尽冬日)〉, 〈분분왕국(奔奔王国)〉 등 국내외 여러 게임에서 매출을 냈다.</span></li><li><span class="txt-cn"><strong>巨人网络：</strong>前三季度营收66.85亿元、归母净利润28.86亿元，同比分别+98.45%、+103.73%；重点产品：《超自然行动组》。产品表现与轻量渠道扩展共同支撑增长。</span><span class="txt-kr"><strong>Giant Network:</strong> 1~3분기 누적 매출은 66.85억 위안, 지배주주 귀속 순이익은 28.86억 위안으로 전년 동기 대비 각각 98.45%, 103.73% 증가했다. 주력 게임 〈초자연행동조〉의 성과와 경량 플랫폼 유통 채널 확대가 성장을 뒷받침했다.</span></li><li><span class="txt-cn"><strong>恺英网络：</strong>前三季度营收72.58亿元、归母净利润20.69亿元，同比分别+78.11%、+30.69%；《烈焰觉醒》及传奇IP相关损益影响业绩。</span><span class="txt-kr"><strong>Kingnet Network:</strong> 1~3분기 누적 매출은 72.58억 위안, 지배주주 귀속 순이익은 20.69억 위안으로 전년 동기 대비 각각 78.11%, 30.69% 증가했다. 〈열염각성〉과 미르의 전설 IP 관련 손익이 실적에 영향을 미쳤다.</span></li><li><span class="txt-cn"><strong>完美世界：</strong>Q3营收23.62亿元、归母净利润5.06亿元，同比分别+36.85%、+211.47%；《异环》截至10月28日全球累计流水超27亿元。单季改善明显，前三季度归母净利润同比仍降。</span><span class="txt-kr"><strong>Perfect World:</strong> 3분기 매출은 23.62억 위안, 지배주주 귀속 순이익은 5.06억 위안으로 전년 동기 대비 각각 36.85%, 211.47% 증가했다. 〈Neverness to Everness〉의 글로벌 누적 매출은 10월 28일 기준 27억 위안을 넘어섰다. 분기 실적은 뚜렷하게 개선됐으나 1~3분기 누적 지배주주 귀속 순이익은 전년 동기 대비 여전히 감소했다.</span></li><li><span class="txt-cn"><strong>吉比特：</strong>Q3营收17.70亿元、归母净利润4.93亿元，同比分别-10.07%、-13.34%。存量产品与新品贡献仍需持续跟踪。</span><span class="txt-kr"><strong>G-Bits:</strong> 3분기 매출은 17.70억 위안, 지배주주 귀속 순이익은 4.93억 위안으로 전년 동기 대비 각각 10.07%, 13.34% 감소했다. 기존 게임과 신작의 매출 기여도를 계속 살펴볼 필요가 있다.</span></li></ul>
+    <div style="margin-top:8px;font-size:12px;"><span class="txt-cn">数据与原始披露：</span><span class="txt-kr">데이터 및 공시 원문:</span> <a href="https://static.cninfo.com.cn/finalpage/2026-10-29/1225637104.PDF" target="_blank" class="ext-link"><span class="txt-cn">世纪华通2026年三季度报告</span><span class="txt-kr">Century Huatong 2026년 3분기 보고서</span></a>　｜　<a href="https://static.cninfo.com.cn/finalpage/2026-10-30/1225645387.PDF" target="_blank" class="ext-link"><span class="txt-cn">巨人网络2026年三季度报告</span><span class="txt-kr">Giant Network 2026년 3분기 보고서</span></a>　｜　<a href="https://static.cninfo.com.cn/finalpage/2026-10-29/1225634330.PDF" target="_blank" class="ext-link"><span class="txt-cn">恺英网络2026年三季度报告</span><span class="txt-kr">Kingnet Network 2026년 3분기 보고서</span></a>　｜　<a href="https://static.cninfo.com.cn/finalpage/2026-10-30/1225639052.PDF" target="_blank" class="ext-link"><span class="txt-cn">完美世界2026年三季度报告</span><span class="txt-kr">Perfect World 2026년 3분기 보고서</span></a>　｜　<a href="https://www.sse.com.cn/assortment/stock/list/info/announcement/index.shtml?productId=603444" target="_blank" class="ext-link"><span class="txt-cn">吉比特上交所公告列表（含2026年三季度报告）</span><span class="txt-kr">G-Bits 상하이증권거래소 공시 목록(2026년 3분기 보고서 포함)</span></a></div>
+    </div>
+  </div>
+
+  <!-- PRODUCT WATCH -->
+  <div class="section-title">🎮 <span class="txt-cn">产品观察</span><span class="txt-kr">타이틀 리서치</span></div>
+  <div class="content-card">
+    <div class="sub-title">■ <span class="txt-cn">射击竞品重大事件</span><span class="txt-kr">슈팅 경쟁작 주요 동향</span></div>
+    <div class="trend-item">
+      <div class="trend-title"><span class="txt-cn">《三角洲行动》：国服DAU新节点与10月玩法、安全治理</span><span class="txt-kr">Delta Force 중국 서버 DAU 기록 경신, 10월 신규 모드 및 부정행위 대응</span></div>
+      <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">《三角洲行动》国服日活跃用户突破5,800万，二周年后继续推出限时身份玩法；10月底又通过警方协作披露DMA外挂黑产案件。涉案金额超过2,000万元。</span><span class="txt-kr">〈Delta Force〉 중국 서버 DAU가 5,800만 명을 돌파했다. 2주년 이후에도 기간 한정 역할 모드를 선보였으며, 10월 말에는 경찰과의 공조를 통해 DMA 기반 핵 프로그램 불법 유통 사건을 공개했다. 사건 관련 금액은 2,000만 위안을 넘었다.</span></div>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://www.taptap.cn/moment/857276261045634893?group_id=531928" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《三角洲行动》项目组DAU公告</span><span class="txt-kr">Delta Force 개발팀 DAU 공지</span></a>　｜　<a href="https://www.taptap.cn/moment/860117981001156646" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《三角洲行动》官方玩法公告</span><span class="txt-kr">Delta Force 공식 모드 공지</span></a>　｜　<a href="https://www.ithome.com/1/018/691.htm" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">DMA外挂案件公告报道</span><span class="txt-kr">DMA 핵 프로그램 사건 발표 보도</span></a>
+    </div>
+    <div class="trend-item">
+      <div class="trend-title"><span class="txt-cn">《无畏契约》《极限战场》与《全境封锁2》</span><span class="txt-kr">VALORANT, 극한전장 및 더 디비전 2</span></div>
+      <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">《无畏契约》国服PC累计注册用户突破1亿，网易《极限战场》开启首次PC测试；另一方面，腾讯代理的《全境封锁2》国服宣布停运。</span><span class="txt-kr">〈VALORANT〉 중국 PC 버전의 누적 가입자가 1억 명을 돌파했고, NetEase의 〈극한전장〉은 첫 PC 테스트를 시작했다. 한편 Tencent가 퍼블리싱하는 〈더 디비전 2〉 중국 서버는 서비스 종료를 발표했다.</span></div>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://news.17173.com/content/10282026/102029350.shtml" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">17173：《无畏契约》注册用户</span><span class="txt-kr">17173 | VALORANT 가입자 수</span></a>　｜　<a href="https://youxichaguan.com/archives/211565" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">游戏茶馆：《极限战场》</span><span class="txt-kr">게임차관 | 극한전장</span></a>　｜　<a href="https://www.ithome.com/1/011/870.htm" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">IT之家：《全境封锁2》停运</span><span class="txt-kr">IT Home | 더 디비전 2 중국 서비스 종료</span></a>
+    </div>
+    <div class="trend-item">
+      <div class="trend-title"><span class="txt-cn">《ARC Raiders》：大型更新与免费试玩期间Steam在线回升</span><span class="txt-kr">ARC Raiders, 대규모 업데이트와 무료 체험 기간에 Steam 동시 접속자 수 반등</span></div>
+      <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">《ARC Raiders》10月8日更新后，Steam同时在线峰值于10月11日达到185,443，为3月以来新高。</span><span class="txt-kr">〈ARC Raiders〉는 10월 8일 업데이트 이후 10월 11일 Steam 최고 동시 접속자 수가 185,443명을 기록하며 3월 이후 최고치에 도달했다.</span></div>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://arcraiders.com/news/frozen-trail-is-live" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《ARC Raiders》官方更新及免费试玩公告</span><span class="txt-kr">ARC Raiders 공식 업데이트 및 무료 체험 공지</span></a>　｜　<a href="https://steamdb.info/app/1808500/charts/" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">SteamDB</span><span class="txt-kr">SteamDB</span></a>　｜　<a href="http://www.gamelook.com.cn/2026/10/603736/" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">GameLook</span><span class="txt-kr">GameLook</span></a>
+    </div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">重点新游与国产买断制</span><span class="txt-kr">주요 신작 및 중국산 패키지 게임</span></div>
+    <div class="trend-item">
+      <div class="trend-title"><span class="txt-cn">《影之刃零》首发验证中国高规格买断制产品的全球声量</span><span class="txt-kr">Phantom Blade Zero, 출시 초반 성과로 중국 대작 패키지 게임의 글로벌 관심도 입증</span></div>
+      <ul class="bullet-list"><li><span class="txt-cn">国产武侠动作RPG《影之刃零》于10月29日登陆PC和PS5，迅速登顶Steam全球畅销榜；10月30日Steam同时在线峰值达到约72.3万。发售前第三方机构估算全平台预购约85万份、收入约4,300万美元</span><span class="txt-kr">중국산 무협 액션 RPG 〈Phantom Blade Zero〉는 10월 29일 PC와 PS5로 출시된 직후 Steam 글로벌 매출 순위 1위에 올랐다. 10월 30일 Steam 최고 동시 접속자 수는 약 72.3만 명이었다. 출시 전 외부 기관은 전체 플랫폼 예약 판매량을 약 85만 장, 예약 판매 매출을 약 4,300만 달러로 추산했다.</span></li><li><span class="txt-cn"><strong>战略解读：</strong>中国团队已能把本土题材、动作玩法和全球PC/主机发行组合成高声量首发，但首发后的口碑维护和内容更新将决定长期价值。</span><span class="txt-kr"><strong>전략적 해석:</strong> 중국 개발사들은 자국 소재와 액션 게임플레이, 글로벌 PC·콘솔 출시를 결합해 출시 초반 큰 관심을 모을 수 있게 됐다. 장기적인 가치는 출시 후 이용자 평가를 관리하고 콘텐츠를 계속 업데이트하는 데 달려 있다.</span></li></ul>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://www.cnfin.com/gs-lb/detail/20261028/4487782_1.html" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">新华财经：预购估算</span><span class="txt-kr">신화파이낸스 | 예약 판매 추정치</span></a>　｜　<a href="http://www.gamelook.com.cn/2026/10/605121/" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">GameLook：首发表现</span><span class="txt-kr">GameLook | 출시 초반 성과</span></a>
+    </div>
+    <div class="trend-item">
+      <div class="trend-title"><span class="txt-cn">跨端新品进入密集上线准备期</span><span class="txt-kr">크로스 플랫폼 신작 출시 준비 본격화</span></div>
+      <ul class="bullet-list"><li><span class="txt-cn">米哈游《星布谷地》定于12月4日全球公测；</span><span class="txt-kr">miHoYo의 〈쁘띠플래닛〉은 12월 4일 글로벌 공개 테스트를 시작할 예정이다.</span></li><li><span class="txt-cn">乐元素UE5动作RPG《白银之城》定于12月14日全球公测，官方称预约超过1,500万。</span><span class="txt-kr">Happy Elements의 UE5 액션 RPG 〈실버 팰리스〉는 12월 14일 글로벌 공개 테스트를 시작할 예정이다. 회사 발표에 따르면 사전 예약자는 1,500만 명을 넘어섰다.</span></li><li><span class="txt-cn">腾讯天美《怪物猎人：旅人》则于10月29日上线国际服，并进入多个地区iOS游戏免费榜前列。</span><span class="txt-kr">Tencent 산하 TiMi의 〈몬스터헌터 아웃랜더즈〉는 10월 29일 글로벌 서버를 오픈했으며, 여러 지역에서 iOS 게임 무료 순위 상위권에 진입했다.</span></li><li><span class="txt-cn"><strong>战略解读：</strong>中国厂商的新品节奏继续向PC、主机和移动多端同步，以及全球发行集中。12月新游将争夺移动用户注意力；</span><span class="txt-kr"><strong>전략적 해석:</strong> 중국 게임사들은 PC·콘솔·모바일 동시 출시와 글로벌 서비스에 더욱 집중하고 있다. 12월에는 신작들이 모바일 이용자의 관심을 두고 경쟁할 전망이다.</span></li></ul>
+    </div>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://www.taptap.cn/app/776320/topic?type=official" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">《星布谷地》官方公告</span><span class="txt-kr">쁘띠플래닛 공식 공지</span></a>　｜　<a href="https://www.ithome.com/1/020/538.htm" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">IT之家：《白银之城》</span><span class="txt-kr">IT Home | 실버 팰리스</span></a>　｜　<a href="https://news.17173.com/content/10292026/122211755.shtml" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">17173：《怪物猎人：旅人》</span><span class="txt-kr">17173 | 몬스터헌터 아웃랜더즈</span></a>
+    </div>
+  </div>
+
+  <!-- TRENDS -->
+  <div class="section-title">📈 <span class="txt-cn">行业热点/趋势</span><span class="txt-kr">업계 이슈/트렌드</span></div>
+  <div class="content-card">
+    <div class="sub-title">■ <span class="txt-cn">PC/Steam平台继续扩张</span><span class="txt-kr">PC/Steam 플랫폼 성장 지속</span></div>
+    <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">10月11日，Steam同时在线人数首次突破4,350万，其中约1,446万用户正在游戏。平台总体用户池仍在扩大。</span><span class="txt-kr">10월 11일 Steam 동시 접속자 수가 처음으로 4,350만 명을 넘어섰으며, 이 중 약 1,446만 명이 게임을 플레이하고 있었다. 플랫폼 전체 이용자 기반은 계속 확대되고 있다.</span></div>
+    <ul class="bullet-list"><li><span class="txt-cn"><strong>战略解读：</strong>PC渠道仍能聚集大量用户，PC市场增长会吸引更多中国厂商进入，也会加剧新品与成熟长线产品争夺愿望单、直播曝光和玩家时长。</span><span class="txt-kr"><strong>전략적 해석:</strong> PC는 여전히 많은 이용자가 모이는 채널이다. PC 시장이 성장하면 더 많은 중국 게임사가 진입하는 한편, 신작과 장기 서비스 게임이 위시리스트 등록, 라이브 방송 노출, 이용자의 플레이 시간을 두고 벌이는 경쟁도 심해질 전망이다.</span></li></ul>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://store.steampowered.com/stats/" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">Steam官方统计</span><span class="txt-kr">Steam 공식 통계</span></a>　｜　<a href="https://finance.sina.com.cn/tech/digi/2026-10-12/doc-iniuxfmt7225515.shtml" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">新浪科技/IT之家汇总</span><span class="txt-kr">시나테크/IT Home 종합</span></a>
+    </div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">网吧与电竞馆回暖，线下渠道重新成为产品触点</span><span class="txt-kr">PC방과 이스포츠 시설 회복세, 오프라인 공간이 다시 이용자 접점으로 부상</span></div>
+    <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">中国互联网上网服务行业协会数据显示，2025年全国<strong>上网服务场所及电竞酒店经营主体</strong>共12.26万家，同比增长12.68%，近两年净增约4.56万家；终端保有量1,136万台，行业营收1,016.8亿元；回升与高性价比娱乐、多端游戏、3A产品和线下社交需求有关。</span><span class="txt-kr">중국인터넷이용서비스산업협회에 따르면 2025년 중국의 <strong>인터넷 이용 시설 및 이스포츠 호텔 운영 사업자</strong>는 총 12.26만 곳으로 전년 대비 12.68% 증가했다. 최근 2년간 순증 규모는 약 4.56만 곳이었다. 보유 단말기는 1,136만 대, 업계 매출은 1,016.8억 위안이었다. 가격 대비 만족도가 높은 여가 활동, 멀티 플랫폼 게임, AAA 게임 및 오프라인 교류에 대한 수요가 회복세를 뒷받침했다.</span></div>
+    <ul class="bullet-list"><li><span class="txt-cn"><strong>中国方面补充：</strong>《三角洲行动》《无畏契约》等射击产品出现在网吧热力榜，反映线下高性能设备、组队和社交体验仍是PC产品的触点。</span><span class="txt-kr"><strong>중국 현지 동향:</strong> 〈Delta Force〉와 〈VALORANT〉 등 슈팅 게임이 PC방 인기 순위에 올랐다. 고성능 장비를 이용하고 팀을 꾸려 함께 플레이할 수 있는 오프라인 공간이 여전히 PC 게임의 이용자 접점임을 보여준다.</span></li><li><span class="txt-cn"><strong>战略解读：</strong>上网服务经营主体和行业营收回升，表明线下场所正结合设备、组队空间和配套消费拓展体验。</span><span class="txt-kr"><strong>전략적 해석:</strong> 인터넷 이용 시설 운영 사업자 수와 업계 매출이 회복되고 있다. 오프라인 시설은 장비와 팀 플레이 공간, 현장 소비를 결합해 이용자 경험을 넓히고 있다.</span></li></ul>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://cj.sina.com.cn/articles/view/2953054937/b0040ad900101rap6" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">游戏陀螺/新浪财经</span><span class="txt-kr">게임타라/시나파이낸스</span></a>　｜　<a href="https://krafton.atlassian.net/wiki/spaces/PUBGIPPUB/pages/1388599386/2026.10.30+weekly+news+report" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">Ying Ying Yu 10月30日周报</span><span class="txt-kr">Ying Ying Yu 10월 30일 주간 보고서</span></a>
+    </div>
+    <div class="sub-title" style="margin-top:22px;">■ <span class="txt-cn">电竞市场仍具规模，增长更多依赖内容与线下消费</span><span class="txt-kr">이스포츠 시장 규모 유지, 콘텐츠와 오프라인 소비가 성장에 기여</span></div>
+    <div class="product-desc" style="margin-bottom:6px;"><span class="txt-cn">艾瑞《2026年中国电竞行业研究报告》估计，<strong>2025年</strong>中国电竞市场规模约1,960亿元，同比增长9.5%；电竞用户约5.13亿，同比增长0.4%。</span><span class="txt-kr">iResearch의 《2026년 중국 이스포츠 산업 연구 보고서》 추산에 따르면 <strong>2025년</strong> 중국 이스포츠 시장 규모는 약 1,960억 위안으로 전년 대비 9.5% 증가했다. 이스포츠 이용자는 약 5.13억 명으로 전년 대비 0.4% 늘었다.</span></div>
+    <ul class="bullet-list"><li><span class="txt-cn"><strong>战略解读：</strong>2025年电竞用户规模同比仅增长0.4%，市场规模同比增长9.5%，显示增长更多来自存量价值提升。</span><span class="txt-kr"><strong>전략적 해석:</strong> 2025년 이스포츠 이용자 수가 전년 대비 0.4% 증가하는 동안 시장 규모는 9.5% 성장했다. 신규 이용자 유입보다 기존 이용자층에서 창출되는 가치의 증가가 시장 성장을 더 크게 뒷받침했다.</span></li></ul>
+    <div style="margin-top:8px;font-size:12px;">
+      <span class="txt-cn">Link｜</span><span class="txt-kr">Link｜</span><a href="https://tradeinservices.mofcom.gov.cn/article/yjgd/hyyj/202610/201644.html" target="_blank" class="ext-link" style="font-size:12px;"><span class="txt-cn">中国服务贸易指南网</span><span class="txt-kr">중국 서비스무역 가이드망</span></a>
+    </div>
+  </div>
+
+
+</div><!-- /container -->
+
+<script>
+function setLang(lang){
+  document.body.className=lang==='kr'?'lang-kr':'';
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()===lang.toUpperCase());
+  });
+}
+function showTab(id){
+  document.querySelectorAll('.mkt-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mkt-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>
